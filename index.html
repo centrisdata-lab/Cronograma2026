@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cronograma Campus 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #1a3c6e;
+      --blue-mid:   #1e4d8c;
+      --blue-light: #e8f0fb;
+      --orange:     #f5a623;
+      --orange-dk:  #c97d00;
+      --white:      #ffffff;
+      --bg:         #f0f4fa;
+      --border:     #d0dff5;
+      --text:       #1a2a4a;
+      --muted:      #6b7fa3;
+      --green:      #1a7a3c;
+      --green-bg:   #e6f7ed;
+      --red:        #c0392b;
+      --red-bg:     #fdecea;
+      --yellow:     #b45309;
+      --yellow-bg:  #fff8e1;
+      --gray:       #4b5563;
+      --gray-bg:    #f1f3f5;
+    }
+
+    body {
+      font-family: 'Nunito', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar { background: var(--blue); height: 5px; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 18px 32px;
+    }
+    .header-inner { display: flex; align-items: center; gap: 16px; }
+    .header-logo {
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      width: 56px; height: 56px; flex-shrink: 0;
+      font-size: 1.6rem; border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(26,60,110,0.25);
+    }
+    .header-text { flex: 1; }
+    .header-text .supertitle {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 2px;
+    }
+    .header-text h1 { font-size: 1.4rem; font-weight: 900; color: var(--blue); }
+    .header-text p  { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 8px 18px;
+      padding: 10px 32px; background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+    .legend-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── MAIN ── */
+    main { padding: 24px 32px 60px; }
+
+    /* ── DASHBOARD CARDS ── */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .dash-card {
+      background: var(--white);
+      border: 2px solid transparent;
+      border-radius: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .dash-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .dash-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .dash-card.active { border-color: currentColor; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+    .dash-card .dc-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .dash-card .dc-label {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .dash-card .dc-count {
+      font-size: 2.2rem; font-weight: 900; line-height: 1;
+    }
+    .dash-card .dc-sub {
+      font-size: 0.72rem; font-weight: 600; margin-top: 4px; opacity: 0.75;
+    }
+
+    /* card themes */
+    .dc-active   { color: var(--yellow); }
+    .dc-active::before   { background: var(--orange); }
+    .dc-active.active    { background: var(--yellow-bg); }
+
+    .dc-vence    { color: var(--red);    }
+    .dc-vence::before    { background: var(--red); }
+    .dc-vence.active     { background: var(--red-bg); }
+
+    .dc-upcoming { color: var(--blue);   }
+    .dc-upcoming::before { background: var(--blue); }
+    .dc-upcoming.active  { background: var(--blue-light); }
+
+    .dc-done     { color: var(--green);  }
+    .dc-done::before     { background: var(--green); }
+    .dc-done.active      { background: var(--green-bg); }
+
+    /* ── FILTER LABEL ── */
+    .filter-label {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; font-size: 0.8rem; font-weight: 800;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px;
+    }
+    .filter-label span { color: var(--blue); }
+    .filter-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    /* ── ACTIVITY CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .card:hover { box-shadow: 0 6px 20px rgba(26,60,110,0.1); transform: translateY(-2px); }
+
+    .card-accent { height: 4px; flex-shrink: 0; }
+
+    .card-body {
+      display: flex; align-items: flex-start;
+      gap: 12px; padding: 14px 16px 10px; flex: 1;
+    }
+
+    .card-circle {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+    }
+
+    .card-info { flex: 1; }
+
+    .card-title {
+      font-size: 0.87rem; font-weight: 800; color: var(--blue); line-height: 1.35;
+    }
+
+    /* status row */
+    .card-status {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+      margin-top: 8px;
+    }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .sp-start    { background: var(--blue-light); color: var(--blue-mid); }
+    .sp-end      { background: var(--red-bg); color: var(--red); }
+    .sp-single   { background: var(--yellow-bg); color: var(--yellow); }
+    .sp-countdown-urgent { background: var(--red-bg); color: var(--red); font-weight: 900; }
+    .sp-countdown-soon   { background: var(--yellow-bg); color: var(--yellow); font-weight: 900; }
+    .sp-countdown-far    { background: var(--blue-light); color: var(--blue); }
+    .sp-puntual          { background: var(--yellow-bg); color: var(--yellow); border: 1px solid #ffe08a; }
+    .sp-done             { background: var(--gray-bg); color: var(--gray); }
+
+    /* progress */
+    .card-progress { padding: 0 16px 12px; }
+    .prog-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.63rem; font-weight: 700; color: var(--muted); margin-bottom: 4px;
+    }
+    .prog-track {
+      height: 7px; background: var(--bg); border-radius: 4px;
+      overflow: hidden; border: 1px solid var(--border);
+    }
+    .prog-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .prog-meta {
+      font-size: 0.65rem; font-weight: 800; text-align: right; margin-top: 3px;
+    }
+
+    /* note */
+    .card-note {
+      margin: 0 16px 12px;
+      font-size: 0.72rem; font-weight: 600; color: var(--blue-mid);
+      line-height: 1.45; background: var(--blue-light);
+      border-left: 3px solid var(--blue-mid);
+      padding: 5px 10px; border-radius: 0 5px 5px 0;
+    }
+
+    /* badge pulse */
+    .badge-active {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.62rem; font-weight: 800; padding: 2px 8px;
+      border-radius: 20px; background: var(--red); color: white;
+      text-transform: uppercase; letter-spacing: 0.4px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.4); }
+      50%      { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
+    }
+
+    /* category card styles */
+    .card.cat-vence    { background: #fff5f5; border-color: #f5c6c6; }
+    .card.cat-active   { background: #fffdf0; border-color: #fde68a; }
+    .card.cat-upcoming { background: #f0f5ff; border-color: var(--border); }
+    .card.cat-done     { background: #f8f9fa; border-color: #d1d5db; }
+
+    /* category tag */
+    .cat-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.6rem; font-weight: 800; letter-spacing: 0.6px;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 0 10px 0 6px;
+      position: absolute; top: 0; right: 0;
+    }
+    .cat-tag-vence    { background: var(--red);    color: white; }
+    .cat-tag-active   { background: var(--orange); color: white; }
+    .cat-tag-upcoming { background: var(--blue);   color: white; }
+    .cat-tag-done     { background: #9ca3af;       color: white; }
+
+    .card { position: relative; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,20,50,0.55); backdrop-filter: blur(3px);
+      z-index: 100; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white); border-radius: 20px;
+      width: 96vw; max-width: 1100px; height: 90vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      animation: slideUp 0.22s ease;
+      overflow: hidden;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 36px 44px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 24px;
+    }
+    .modal-header-icon {
+      width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    .modal-header-info { flex: 1; }
+    .modal-header-info h2 { font-size: 1.7rem; font-weight: 900; color: var(--blue); line-height: 1.3; }
+    .modal-cat-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px;
+      text-transform: uppercase; padding: 5px 18px; border-radius: 20px;
+      margin-top: 10px;
+    }
+    .modal-close {
+      background: none; border: none; font-size: 2rem; cursor: pointer;
+      color: var(--muted); line-height: 1; padding: 2px; flex-shrink: 0;
+    }
+    .modal-close:hover { color: var(--red); }
+
+    .modal-body { padding: 32px 44px; flex: 1; overflow-y: auto; }
+
+    .modal-dates {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px;
+    }
+    .modal-dates .status-pill { font-size: 0.95rem; padding: 8px 20px; }
+
+    .modal-progress { margin-bottom: 28px; }
+    .modal-progress .prog-labels { font-size: 0.9rem; margin-bottom: 8px; }
+    .modal-progress .prog-track  { height: 14px; }
+    .modal-progress .prog-meta   { font-size: 0.88rem; margin-top: 6px; }
+
+    .modal-section-label {
+      font-size: 0.82rem; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+
+    .modal-detail-box {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 20px;
+      font-size: 1rem; color: var(--text); line-height: 1.7;
+      margin-bottom: 22px; min-height: 50px;
+    }
+
+    .modal-textarea {
+      width: 100%; min-height: 160px; resize: vertical;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; font-family: inherit; font-size: 1rem;
+      color: var(--text); background: var(--white); outline: none;
+      transition: border-color 0.15s; margin-bottom: 4px;
+    }
+    .modal-textarea:focus { border-color: var(--blue-mid); }
+
+    .modal-footer {
+      display: flex; gap: 14px; justify-content: flex-end;
+      padding: 22px 44px; border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .btn-cancel {
+      padding: 12px 30px; border-radius: 25px; border: 1.5px solid var(--border);
+      background: var(--white); color: var(--muted); font-family: inherit;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+    }
+    .btn-cancel:hover { border-color: var(--muted); }
+    .btn-save {
+      padding: 12px 36px; border-radius: 25px; border: none;
+      background: var(--blue); color: white; font-family: inherit;
+      font-size: 1rem; font-weight: 800; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(26,60,110,0.3);
+    }
+    .btn-save:hover { background: var(--blue-mid); }
+    .btn-saved { background: var(--green) !important; }
+
+    /* card clickable */
+    .card { cursor: pointer; }
+
+    /* empty state */
+    .empty {
+      grid-column: 1/-1;
+      text-align: center; padding: 40px;
+      color: var(--muted); font-size: 0.88rem; font-weight: 700;
+    }
+    .empty .e-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+    @media (max-width: 900px) {
+      .dashboard { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      main   { padding: 16px 14px 40px; }
+      .legend { padding: 10px 14px; }
+      .dashboard { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-logo">📅</div>
+    <div class="header-text">
+      <div class="supertitle">Fundación Maria Luisa · Campus Virtual</div>
+      <h1>Cronograma de Actividades 2026</h1>
+      <p>Ruta de Actividades Pedagógicas</p>
+    </div>
+  </div>
+</header>
+
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-icon" id="m-icon"></div>
+      <div class="modal-header-info">
+        <h2 id="m-title"></h2>
+        <div class="modal-cat-tag" id="m-cat"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-dates" id="m-dates"></div>
+      <div id="m-progress"></div>
+      <div class="modal-section-label">Detalle / Notas de la actividad</div>
+      <textarea class="modal-textarea" id="m-textarea" placeholder="Escribe aquí el detalle, responsable, avances o cualquier nota importante sobre esta actividad…"></textarea>
+      <div id="m-saved-note" style="display:none">
+        <div class="modal-section-label">Nota guardada</div>
+        <div class="modal-detail-box" id="m-saved-text"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
+      <button class="btn-save" id="btn-save" onclick="saveNote()">💾 Guardar detalle</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <div class="dash-card dc-active active" onclick="setFilter('active')" id="dc-active">
+      <div class="dc-icon">🔴</div>
+      <div class="dc-label">En curso</div>
+      <div class="dc-count" id="cnt-active">0</div>
+      <div class="dc-sub">activas ahora</div>
+    </div>
+    <div class="dash-card dc-vence" onclick="setFilter('vence')" id="dc-vence">
+      <div class="dc-icon">⚠️</div>
+      <div class="dc-label">Vencen pronto</div>
+      <div class="dc-count" id="cnt-vence">0</div>
+      <div class="dc-sub">en los próximos 7 días</div>
+    </div>
+    <div class="dash-card dc-upcoming" onclick="setFilter('upcoming')" id="dc-upcoming">
+      <div class="dc-icon">📅</div>
+      <div class="dc-label">Próximas</div>
+      <div class="dc-count" id="cnt-upcoming">0</div>
+      <div class="dc-sub">por iniciar</div>
+    </div>
+    <div class="dash-card dc-done" onclick="setFilter('done')" id="dc-done">
+      <div class="dc-icon">✅</div>
+      <div class="dc-label">Completadas</div>
+      <div class="dc-count" id="cnt-done">0</div>
+      <div class="dc-sub">finalizadas</div>
+    </div>
+  </div>
+
+  <!-- Filter label -->
+  <div class="filter-label" id="filter-label">
+    Mostrando: <span id="filter-name">Todas las actividades</span>
+    <button id="btn-all" onclick="setFilter('all')" style="display:none;margin-left:10px;padding:6px 18px;border-radius:20px;border:none;background:var(--blue);color:white;font-family:inherit;font-size:0.78rem;font-weight:800;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 10px rgba(26,60,110,0.25);transition:all 0.2s;">Ver todas las actividades</button>
+  </div>
+
+  <!-- Cards -->
+  <div id="cards-root"></div>
+</main>
+
+<script>
+// ── Data ─────────────────────────────────────────────────────────────────────
+const _t = new Date();
+const TODAY = new Date(_t.getFullYear(), _t.getMonth(), _t.getDate());
+
+const activities = [
+  { emoji:"📩", label:"Cuerpo Académico Zonal",
+    start:"2026-06-03", end:"2026-06-23", color:"#28a745" },
+
+  { emoji:"📌", label:"Acompañamiento pedagógico a las áreas de formación",
+    start:"2026-06-11", end:"2026-06-30", color:"#1a3c6e" },
+
+  { emoji:"🎥", label:"Micro-Pitchs Zonales — Profesores nuevos",
+    start:"2026-06-17", end:"2026-06-29", color:"#28a745" },
+
+  { emoji:"📌", label:"Reuniones de alineación y planeación: Responsables de curso, Profesores y Enlaces",
+    start:"2026-06-22", end:"2026-07-31", color:"#1a3c6e",
+    note:"Entregables: Valoraciones · Monitores de Clases" },
+
+  { emoji:"📩", label:"Consolidar listado de cursos ofertados para Colombia por zona",
+    start:"2026-06-24", end:"2026-06-28", color:"#28a745" },
+
+  { emoji:"📌", label:"Responsables de curso — Profesores — Co-creación",
+    start:"2026-06-24", end:null, color:"#f5a623",
+    note:"Pendiente: solicitar cronograma" },
+
+  { emoji:"👥", label:"Sesión Coach pedagógico: Equipos Zonales",
+    start:"2026-06-27", end:null, color:"#7c3aed" },
+
+  { emoji:"💡", label:"Sesión Coach pedagógico: Profesores de Curso y Tutores",
+    start:"2026-06-27", end:null, color:"#7c3aed" },
+
+  { emoji:"🤝", label:"Lanzamiento convocatoria — Estudiantes en la Iglesia",
+    start:"2026-07-05", end:null, color:"#f5a623" },
+
+  { emoji:"📊", label:"Índices de Estudiantes sin conectarse la 1ra semana",
+    start:"2026-08-15", end:null, color:"#6c757d" },
+
+  { emoji:"📘", label:"Semana de refuerzo por Curso",
+    start:"2026-09-05", end:"2026-09-12", color:"#1a3c6e" },
+
+  { emoji:"🎓", label:"Apertura Ciclo: Formación continua — Profesores y Tutores",
+    start:"2026-09-05", end:null, color:"#7c3aed" },
+
+  { emoji:"🏁", label:"Clase final de Curso",
+    start:"2026-11-01", end:null, color:"#dc3545" },
+
+  { emoji:"📋", label:"Reporte de aprobaciones — Estudiantes por Curso",
+    start:"2026-11-14", end:null, color:"#dc3545" },
+];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function parseDate(str) {
+  const [y,m,d] = str.split("-").map(Number);
+  return new Date(y, m-1, d);
+}
+
+function fmt(str) {
+  return parseDate(str).toLocaleDateString("es-CO", { day:"numeric", month:"long", year:"numeric" });
+}
+
+function fmtShort(str) {
+  return parseDate(str).toLocaleDateString("es-CO", { day:"numeric", month:"short" });
+}
+
+function diffDays(a, b) {
+  return Math.round((b - a) / 86400000);
+}
+
+function endRef(item) {
+  return item.end ? parseDate(item.end) : parseDate(item.start);
+}
+
+function isActive(item) {
+  const s = parseDate(item.start);
+  if (!item.end) return s.getTime() === TODAY.getTime();
+  return s <= TODAY && TODAY <= parseDate(item.end);
+}
+
+function isPast(item) {
+  return endRef(item) < TODAY;
+}
+
+function isVencePronto(item) {
+  if (!isActive(item)) return false;
+  if (!item.end) return false;
+  return diffDays(TODAY, parseDate(item.end)) <= 7;
+}
+
+function isUpcoming(item) {
+  return !isActive(item) && !isPast(item);
+}
+
+function progressPct(item) {
+  if (!item.end) return null;
+  const s = parseDate(item.start), e = parseDate(item.end);
+  const total = diffDays(s, e);
+  if (total === 0) return 100;
+  return Math.max(0, Math.min(100, Math.round(diffDays(s, TODAY) / total * 100)));
+}
+
+// ── Classify ─────────────────────────────────────────────────────────────────
+const lists = {
+  active:   activities.filter(a => isActive(a)),
+  vence:    activities.filter(a => isVencePronto(a)),
+  upcoming: activities.filter(a => isUpcoming(a)).sort((a,b) => a.start.localeCompare(b.start)),
+  done:     activities.filter(a => isPast(a)).sort((a,b) => b.end ? b.end.localeCompare(a.end||a.start) : -1),
+};
+
+// Update counts
+document.getElementById("cnt-active").textContent   = lists.active.length;
+document.getElementById("cnt-vence").textContent    = lists.vence.length;
+document.getElementById("cnt-upcoming").textContent = lists.upcoming.length;
+document.getElementById("cnt-done").textContent     = lists.done.length;
+
+// ── Card builder ─────────────────────────────────────────────────────────────
+function buildCard(item, filterKey) {
+  const active = isActive(item);
+  const past   = isPast(item);
+  const pct    = progressPct(item);
+  const catCls = filterKey !== "all" ? `cat-${filterKey}` : isVencePronto(item) ? "cat-vence" : active ? "cat-active" : past ? "cat-done" : "cat-upcoming";
+  const catLabels = { "cat-vence":"⚠️ Vence pronto", "cat-active":"🟡 En curso", "cat-upcoming":"📅 Próxima", "cat-done":"✅ Completada" };
+  const catTag = `<span class="cat-tag cat-tag-${catCls.replace('cat-','')}">${catLabels[catCls]}</span>`;
+  const daysLeft = item.end ? diffDays(TODAY, parseDate(item.end)) : null;
+  const daysUntilStart = diffDays(TODAY, parseDate(item.start));
+
+  // status pills
+  let statusHtml = "";
+
+  if (active) {
+    statusHtml += `<span class="badge-active">● En curso</span>`;
+    statusHtml += `<span class="status-pill sp-start">🗓 Inició: ${fmt(item.start)}</span>`;
+    if (item.end) {
+      const dl = diffDays(TODAY, parseDate(item.end));
+      const cls = dl <= 3 ? "sp-countdown-urgent" : dl <= 7 ? "sp-countdown-soon" : "sp-end";
+      statusHtml += `<span class="status-pill sp-end">🏁 Termina: ${fmt(item.end)}</span>`;
+      statusHtml += `<span class="status-pill ${cls}">⏳ Faltan ${dl} día${dl!==1?"s":""}</span>`;
+    }
+  } else if (past) {
+    statusHtml += `<span class="status-pill sp-done">✅ Finalizada</span>`;
+    statusHtml += `<span class="status-pill sp-start">🗓 ${fmt(item.start)}</span>`;
+    if (item.end) statusHtml += `<span class="status-pill sp-end">🏁 ${fmt(item.end)}</span>`;
+  } else {
+    // upcoming
+    statusHtml += `<span class="status-pill sp-start">🗓 Inicia: ${fmt(item.start)}</span>`;
+    if (item.end) statusHtml += `<span class="status-pill sp-end">🏁 Termina: ${fmt(item.end)}</span>`;
+    else statusHtml += `<span class="status-pill sp-puntual">📍 Evento puntual</span>`;
+
+    if (daysUntilStart === 0) {
+      statusHtml += `<span class="status-pill sp-countdown-urgent">¡Empieza hoy!</span>`;
+    } else if (daysUntilStart <= 3) {
+      statusHtml += `<span class="status-pill sp-countdown-urgent">⚡ En ${daysUntilStart} día${daysUntilStart!==1?"s":""}</span>`;
+    } else if (daysUntilStart <= 7) {
+      statusHtml += `<span class="status-pill sp-countdown-soon">🔜 En ${daysUntilStart} días</span>`;
+    } else {
+      statusHtml += `<span class="status-pill sp-countdown-far">📆 En ${daysUntilStart} días</span>`;
+    }
+  }
+
+  // progress bar
+  let progHtml = "";
+  if (pct !== null && active) {
+    progHtml = `
+      <div class="card-progress">
+        <div class="prog-labels">
+          <span>Progreso de la actividad</span>
+          <span>${pct}% completado</span>
+        </div>
+        <div class="prog-track">
+          <div class="prog-fill" style="width:${pct}%;background:${item.color}"></div>
+        </div>
+        <div class="prog-meta" style="color:${pct>=80?'#c0392b':item.color}">
+          ${pct >= 80 ? "⚠️ Próxima a vencer" : `Faltan ${daysLeft} día${daysLeft!==1?"s":""} para terminar`}
+        </div>
+      </div>`;
+  } else if (pct !== null && past) {
+    progHtml = `
+      <div class="card-progress">
+        <div class="prog-track">
+          <div class="prog-fill" style="width:100%;background:#ccc"></div>
+        </div>
+        <div class="prog-meta" style="color:#aaa">Actividad completada</div>
+      </div>`;
+  }
+
+  const noteHtml = item.note ? `<div class="card-note">📎 ${item.note}</div>` : "";
+
+  return `
+    <div class="card ${catCls}" onclick="openModal('${item.label.replace(/'/g,"\\'")}')">
+      ${catTag}
+      <div class="card-accent" style="background:${item.color}"></div>
+      <div class="card-body">
+        <div class="card-circle" style="background:${item.color}">${item.emoji}</div>
+        <div class="card-info">
+          <div class="card-title">${item.label}</div>
+          <div class="card-status">${statusHtml}</div>
+        </div>
+      </div>
+      ${progHtml}
+      ${noteHtml}
+    </div>`;
+}
+
+// ── Priority sort: vence primero, luego activas, luego próximas, luego pasadas ─
+function priorityScore(item) {
+  if (isVencePronto(item))  return 0;
+  if (isActive(item))       return 1;
+  if (isUpcoming(item))     return 2 + diffDays(TODAY, parseDate(item.start));
+  return 9999;
+}
+
+const allSorted = [...activities].sort((a, b) => priorityScore(a) - priorityScore(b));
+
+// ── Filter logic ──────────────────────────────────────────────────────────────
+const filterNames = {
+  all:      "📋 Todas las actividades",
+  active:   "🟡 En curso ahora",
+  vence:    "🔴 Vencen en los próximos 7 días",
+  upcoming: "📅 Próximas actividades",
+  done:     "✅ Actividades completadas",
+};
+
+let currentFilter = "all";
+
+const sectionDefs = [
+  { key:"vence",    icon:"⚠️", label:"Vencen pronto",          cls:"ash-vence"    },
+  { key:"active",   icon:"🟡", label:"En curso ahora",          cls:"ash-active"   },
+  { key:"upcoming", icon:"📅", label:"Próximas actividades",    cls:"ash-upcoming" },
+  { key:"done",     icon:"✅", label:"Completadas",             cls:"ash-done"     },
+];
+
+function renderAll() {
+  const root = document.getElementById("cards-root");
+  const seen = new Set();
+  const all  = [];
+  sectionDefs.forEach(sec => {
+    lists[sec.key].forEach(item => {
+      if (!seen.has(item.label)) {
+        seen.add(item.label);
+        all.push({ item, key: sec.key });
+      }
+    });
+  });
+  if (!all.length) {
+    root.innerHTML = `<div class="empty"><div class="e-icon">🎉</div>No hay actividades.</div>`;
+    return;
+  }
+  root.innerHTML = `<div class="cards-grid">${all.map(({item, key}) => buildCard(item, key)).join("")}</div>`;
+}
+
+function renderFiltered(key) {
+  const items = lists[key];
+  const root  = document.getElementById("cards-root");
+  if (!items.length) {
+    root.innerHTML = `<div class="empty"><div class="e-icon">🎉</div>No hay actividades en esta categoría.</div>`;
+    return;
+  }
+  root.innerHTML = `<div class="cards-grid">${items.map(item => buildCard(item, key)).join("")}</div>`;
+}
+
+function setFilter(key) {
+  if (currentFilter === key) key = "all";
+  currentFilter = key;
+
+  ["active","vence","upcoming","done"].forEach(k => {
+    document.getElementById(`dc-${k}`).classList.toggle("active", k === key);
+  });
+
+  document.getElementById("filter-name").textContent = filterNames[key];
+  document.getElementById("btn-all").style.display = "inline-block";
+
+  if (key === "all") renderAll();
+  else renderFiltered(key);
+}
+
+// Init
+setFilter("all");
+
+// ── MODAL ────────────────────────────────────────────────────────────────────
+const catTagConfig = {
+  "cat-vence":    { label:"⚠️ Vence pronto",       bg: "#c0392b", color:"white" },
+  "cat-active":   { label:"🟡 En curso",            bg: "#f5a623", color:"white" },
+  "cat-upcoming": { label:"📅 Próxima",             bg: "#1a3c6e", color:"white" },
+  "cat-done":     { label:"✅ Completada",          bg: "#9ca3af", color:"white" },
+};
+
+let currentModalKey = null;
+
+function openModal(label) {
+  const entry = activities.find(a => a.label === label);
+  if (!entry) return;
+
+  const catCls = isVencePronto(entry) ? "cat-vence" : isActive(entry) ? "cat-active" : isPast(entry) ? "cat-done" : "cat-upcoming";
+  const cfg    = catTagConfig[catCls];
+  const pct    = progressPct(entry);
+  const active = isActive(entry);
+  const past   = isPast(entry);
+
+  currentModalKey = label;
+
+  // icon
+  const icon = document.getElementById("m-icon");
+  icon.textContent = entry.emoji;
+  icon.style.background = entry.color;
+
+  // title
+  document.getElementById("m-title").textContent = entry.label;
+
+  // cat tag
+  const cat = document.getElementById("m-cat");
+  cat.textContent = cfg.label;
+  cat.style.background = cfg.bg;
+  cat.style.color = cfg.color;
+
+  // dates
+  const startLabel = (active || past) ? "Inició" : "Inicia";
+  const endLabel   = past ? "Terminó" : "Termina";
+  let datesHtml = `<span class="status-pill sp-start">🗓 ${startLabel}: ${fmt(entry.start)}</span>`;
+  if (entry.end) {
+    datesHtml += `<span class="status-pill sp-end">🏁 ${endLabel}: ${fmt(entry.end)}</span>`;
+    if (active) {
+      const dl = diffDays(TODAY, parseDate(entry.end));
+      datesHtml += `<span class="status-pill ${dl<=3?'sp-countdown-urgent':dl<=7?'sp-countdown-soon':'sp-countdown-far'}">⏳ Faltan ${dl} día${dl!==1?"s":""}</span>`;
+    }
+  } else {
+    datesHtml += `<span class="status-pill sp-puntual">📍 Evento puntual</span>`;
+  }
+  document.getElementById("m-dates").innerHTML = datesHtml;
+
+  // progress
+  let progHtml = "";
+  if (pct !== null && !past) {
+    const dl = diffDays(TODAY, parseDate(entry.end));
+    progHtml = `
+      <div class="modal-progress">
+        <div class="prog-labels"><span>Progreso</span><span>${pct}% completado</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${entry.color}"></div></div>
+        <div class="prog-meta" style="color:${entry.color}">Faltan ${dl} día${dl!==1?"s":""} para terminar</div>
+      </div>`;
+  }
+  document.getElementById("m-progress").innerHTML = progHtml;
+
+  // saved note
+  const saved = localStorage.getItem("note_" + label);
+  const textarea = document.getElementById("m-textarea");
+  const savedNote = document.getElementById("m-saved-note");
+  const savedText = document.getElementById("m-saved-text");
+
+  if (saved) {
+    textarea.value = saved;
+    savedNote.style.display = "block";
+    savedText.textContent = saved;
+  } else {
+    textarea.value = "";
+    savedNote.style.display = "none";
+  }
+
+  const btn = document.getElementById("btn-save");
+  btn.textContent = "💾 Guardar detalle";
+  btn.classList.remove("btn-saved");
+
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById("modal-overlay")) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+  currentModalKey = null;
+}
+
+function saveNote() {
+  if (!currentModalKey) return;
+  const val = document.getElementById("m-textarea").value.trim();
+  if (val) {
+    localStorage.setItem("note_" + currentModalKey, val);
+    document.getElementById("m-saved-note").style.display = "block";
+    document.getElementById("m-saved-text").textContent = val;
+  } else {
+    localStorage.removeItem("note_" + currentModalKey);
+    document.getElementById("m-saved-note").style.display = "none";
+  }
+  const btn = document.getElementById("btn-save");
+  btn.textContent = "✅ Guardado";
+  btn.classList.add("btn-saved");
+  setTimeout(() => {
+    btn.textContent = "💾 Guardar detalle";
+    btn.classList.remove("btn-saved");
+  }, 2000);
+}
+</script>
+</body>
+</html>
