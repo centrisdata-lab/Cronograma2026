@@ -647,31 +647,7 @@ function buildCard(item, filterKey) {
     }
   }
 
-  // progress bar
   let progHtml = "";
-  if (pct !== null && active) {
-    progHtml = `
-      <div class="card-progress">
-        <div class="prog-labels">
-          <span>Progreso de la actividad</span>
-          <span>${pct}% completado</span>
-        </div>
-        <div class="prog-track">
-          <div class="prog-fill" style="width:${pct}%;background:${item.color}"></div>
-        </div>
-        <div class="prog-meta" style="color:${pct>=80?'#c0392b':item.color}">
-          ${pct >= 80 ? "⚠️ Próxima a vencer" : `Faltan ${daysLeft} día${daysLeft!==1?"s":""} para terminar`}
-        </div>
-      </div>`;
-  } else if (pct !== null && past) {
-    progHtml = `
-      <div class="card-progress">
-        <div class="prog-track">
-          <div class="prog-fill" style="width:100%;background:#ccc"></div>
-        </div>
-        <div class="prog-meta" style="color:#aaa">Actividad completada</div>
-      </div>`;
-  }
 
   const noteHtml = item.note ? `<div class="card-note">📎 ${item.note}</div>` : "";
 
