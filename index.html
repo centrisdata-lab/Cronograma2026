@@ -431,7 +431,7 @@
   <div class="header-inner">
     <div class="header-logo">📅</div>
     <div class="header-text">
-      <div class="supertitle">Fundación Maria Luisa · Campus Virtual</div>
+      <div class="supertitle">FIMLM · Campus Virtual</div>
       <h1>Cronograma de Actividades 2026</h1>
       <p>Ruta de Actividades Pedagógicas</p>
     </div>
@@ -919,21 +919,13 @@ function openModal(label) {
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
 
-  // Cargar nota de Firestore
+  // Cargar nota de Firestore (db ya está listo en window.db)
   const docId = label.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 100);
-  import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js").then(({ getFirestore, doc, getDoc }) => {
-    const db = getFirestore(firebaseApp);
-    getDoc(doc(db, "notas", docId)).then(snap => {
-      if (snap.exists()) {
-        const nota = snap.data().nota || "";
-        textarea.value = nota;
-        if (nota) {
-          savedNote.style.display = "block";
-          savedText.textContent = nota;
-        }
-      }
-    });
-  });
+  if (window._firestoreReady) {
+    window._loadNota(docId, textarea, savedNote, savedText);
+  } else {
+    window._pendingModal = { docId, textarea, savedNote, savedText };
+  }
 }
 
 async function saveNote() {
@@ -944,15 +936,12 @@ async function saveNote() {
   btn.disabled = true;
 
   const docId = currentModalKey.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 100);
-  const { getFirestore, doc, setDoc, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-  const db = getFirestore(firebaseApp);
+  await window._saveNota(docId, currentModalKey, val);
 
   if (val) {
-    await setDoc(doc(db, "notas", docId), { nota: val, actividad: currentModalKey, actualizado: new Date().toISOString() });
     document.getElementById("m-saved-note").style.display = "block";
     document.getElementById("m-saved-text").textContent = val;
   } else {
-    await deleteDoc(doc(db, "notas", docId));
     document.getElementById("m-saved-note").style.display = "none";
   }
 
@@ -979,17 +968,44 @@ function closeModalDirect() {
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  const firebaseConfig = {
+  const app = initializeApp({
     apiKey: "AIzaSyAafSa57kwgN0R6-ErlZrg1gv3nB7qEuu4",
     authDomain: "cronogramacampus.firebaseapp.com",
     projectId: "cronogramacampus",
     storageBucket: "cronogramacampus.firebasestorage.app",
     messagingSenderId: "751625758792",
     appId: "1:751625758792:web:54317d0139ccda4e78d07d"
+  });
+
+  const db = getFirestore(app);
+
+  window._loadNota = async (docId, textarea, savedNote, savedText) => {
+    const snap = await getDoc(doc(db, "notas", docId));
+    if (snap.exists()) {
+      const nota = snap.data().nota || "";
+      textarea.value = nota;
+      if (nota) { savedNote.style.display = "block"; savedText.textContent = nota; }
+    }
   };
 
-  window.firebaseApp = initializeApp(firebaseConfig);
+  window._saveNota = async (docId, actividad, val) => {
+    if (val) {
+      await setDoc(doc(db, "notas", docId), { nota: val, actividad, actualizado: new Date().toISOString() });
+    } else {
+      await deleteDoc(doc(db, "notas", docId));
+    }
+  };
+
+  window._firestoreReady = true;
+
+  // Si había un modal abierto esperando
+  if (window._pendingModal) {
+    const { docId, textarea, savedNote, savedText } = window._pendingModal;
+    window._pendingModal = null;
+    window._loadNota(docId, textarea, savedNote, savedText);
+  }
 </script>
 </body>
 </html>
