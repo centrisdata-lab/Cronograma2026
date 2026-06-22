@@ -892,18 +892,7 @@ function openModal(label) {
   }
   document.getElementById("m-dates").innerHTML = datesHtml;
 
-  // progress
-  let progHtml = "";
-  if (pct !== null && !past) {
-    const dl = diffDays(TODAY, parseDate(entry.end));
-    progHtml = `
-      <div class="modal-progress">
-        <div class="prog-labels"><span>Progreso</span><span>${pct}% completado</span></div>
-        <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${entry.color}"></div></div>
-        <div class="prog-meta" style="color:${entry.color}">Faltan ${dl} día${dl!==1?"s":""} para terminar</div>
-      </div>`;
-  }
-  document.getElementById("m-progress").innerHTML = progHtml;
+  document.getElementById("m-progress").innerHTML = "";
 
   // Cargar nota desde Firestore
   const textarea = document.getElementById("m-textarea");
