@@ -76,10 +76,28 @@
     /* ── DASHBOARD CARDS ── */
     .dashboard {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-bottom: 28px;
     }
+
+    .subfiltro {
+      display: none; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .subfiltro.visible { display: flex; }
+    .subfiltro-label {
+      font-size: 0.75rem; font-weight: 800; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.6px;
+      display: flex; align-items: center;
+    }
+    .subfiltro-btn {
+      padding: 5px 16px; border-radius: 20px; border: 2px solid transparent;
+      font-family: inherit; font-size: 0.78rem; font-weight: 800;
+      cursor: pointer; transition: all 0.2s; background: var(--white);
+    }
+    .subfiltro-btn.all-active  { border-color: var(--orange); color: var(--orange); }
+    .subfiltro-btn.vence-active { background: var(--red); color: white; border-color: var(--red); }
+    .subfiltro-btn:not(.all-active):not(.vence-active) { color: var(--muted); border-color: var(--border); }
 
     .dash-card {
       background: var(--white);
@@ -452,17 +470,11 @@
 <main>
   <!-- Dashboard -->
   <div class="dashboard">
-    <div class="dash-card dc-active active" onclick="setFilter('active')" id="dc-active">
+    <div class="dash-card dc-active" onclick="setFilter('active')" id="dc-active">
       <div class="dc-icon">🔴</div>
       <div class="dc-label">En curso</div>
       <div class="dc-count" id="cnt-active">0</div>
-      <div class="dc-sub">activas ahora</div>
-    </div>
-    <div class="dash-card dc-vence" onclick="setFilter('vence')" id="dc-vence">
-      <div class="dc-icon">⚠️</div>
-      <div class="dc-label">Vencen pronto</div>
-      <div class="dc-count" id="cnt-vence">0</div>
-      <div class="dc-sub">en los próximos 7 días</div>
+      <div class="dc-sub" id="sub-active">activas ahora</div>
     </div>
     <div class="dash-card dc-upcoming" onclick="setFilter('upcoming')" id="dc-upcoming">
       <div class="dc-icon">📅</div>
@@ -472,10 +484,17 @@
     </div>
     <div class="dash-card dc-done" onclick="setFilter('done')" id="dc-done">
       <div class="dc-icon">✅</div>
-      <div class="dc-label">Completadas</div>
+      <div class="dc-label">Finalizadas</div>
       <div class="dc-count" id="cnt-done">0</div>
-      <div class="dc-sub">finalizadas</div>
+      <div class="dc-sub">completadas</div>
     </div>
+  </div>
+
+  <!-- Subfiltro En Curso -->
+  <div class="subfiltro" id="subfiltro">
+    <span class="subfiltro-label">Filtrar:</span>
+    <button class="subfiltro-btn all-active" id="sf-all" onclick="setSubFilter('all')">Todas en curso</button>
+    <button class="subfiltro-btn" id="sf-vence" onclick="setSubFilter('vence')">⚠️ Vencen pronto</button>
   </div>
 
   <!-- Filter label -->
@@ -597,11 +616,17 @@ const lists = {
   done:     activities.filter(a => isPast(a)).sort((a,b) => b.end ? b.end.localeCompare(a.end||a.start) : -1),
 };
 
-// Update counts
-document.getElementById("cnt-active").textContent   = lists.active.length;
-document.getElementById("cnt-vence").textContent    = lists.vence.length;
+// "En curso" agrupa activas + vencen pronto
+const totalActive = lists.active.length + lists.vence.length;
+document.getElementById("cnt-active").textContent   = totalActive;
 document.getElementById("cnt-upcoming").textContent = lists.upcoming.length;
 document.getElementById("cnt-done").textContent     = lists.done.length;
+
+// Sub-label de la tarjeta En Curso: indicar cuántas vencen pronto
+if (lists.vence.length > 0) {
+  document.getElementById("sub-active").innerHTML =
+    `activas &nbsp;·&nbsp; <span style="color:var(--red);font-weight:900">${lists.vence.length} vence${lists.vence.length>1?"n":""} pronto</span>`;
+}
 
 // ── Card builder ─────────────────────────────────────────────────────────────
 function buildCard(item, filterKey) {
@@ -680,19 +705,18 @@ const allSorted = [...activities].sort((a, b) => priorityScore(a) - priorityScor
 // ── Filter logic ──────────────────────────────────────────────────────────────
 const filterNames = {
   all:      "📋 Todas las actividades",
-  active:   "🟡 En curso ahora",
-  vence:    "🔴 Vencen en los próximos 7 días",
+  active:   "🟡 En curso",
   upcoming: "📅 Próximas actividades",
-  done:     "✅ Actividades completadas",
+  done:     "✅ Actividades finalizadas",
 };
 
 let currentFilter = "all";
 
 const sectionDefs = [
-  { key:"vence",    icon:"⚠️", label:"Vencen pronto",          cls:"ash-vence"    },
-  { key:"active",   icon:"🟡", label:"En curso ahora",          cls:"ash-active"   },
-  { key:"upcoming", icon:"📅", label:"Próximas actividades",    cls:"ash-upcoming" },
-  { key:"done",     icon:"✅", label:"Completadas",             cls:"ash-done"     },
+  { key:"vence",    icon:"⚠️", label:"Vencen pronto",       cls:"ash-vence"    },
+  { key:"active",   icon:"🟡", label:"En curso",             cls:"ash-active"   },
+  { key:"upcoming", icon:"📅", label:"Próximas actividades", cls:"ash-upcoming" },
+  { key:"done",     icon:"✅", label:"Finalizadas",          cls:"ash-done"     },
 ];
 
 function renderAll() {
@@ -724,19 +748,51 @@ function renderFiltered(key) {
   root.innerHTML = `<div class="cards-grid">${items.map(item => buildCard(item, key)).join("")}</div>`;
 }
 
+let currentSubFilter = "all"; // "all" | "vence"
+
 function setFilter(key) {
   if (currentFilter === key) key = "all";
   currentFilter = key;
+  currentSubFilter = "all";
 
-  ["active","vence","upcoming","done"].forEach(k => {
+  ["active","upcoming","done"].forEach(k => {
     document.getElementById(`dc-${k}`).classList.toggle("active", k === key);
   });
 
-  document.getElementById("filter-name").textContent = filterNames[key];
-  document.getElementById("btn-all").style.display = "inline-block";
+  // Mostrar/ocultar subfiltro
+  const subfiltro = document.getElementById("subfiltro");
+  if (key === "active") {
+    subfiltro.classList.add("visible");
+    setSubFilter("all", false);
+  } else {
+    subfiltro.classList.remove("visible");
+  }
 
-  if (key === "all") renderAll();
+  document.getElementById("filter-name").textContent = filterNames[key] || "Todas las actividades";
+  document.getElementById("btn-all").style.display = key === "all" ? "none" : "inline-block";
+
+  if (key === "all") { renderAll(); }
+  else if (key === "active") { renderActiveGroup("all"); }
   else renderFiltered(key);
+}
+
+function setSubFilter(sub, render = true) {
+  currentSubFilter = sub;
+  document.getElementById("sf-all").className   = "subfiltro-btn" + (sub === "all"   ? " all-active"   : "");
+  document.getElementById("sf-vence").className = "subfiltro-btn" + (sub === "vence" ? " vence-active"  : "");
+  if (render) renderActiveGroup(sub);
+}
+
+function renderActiveGroup(sub) {
+  const root  = document.getElementById("cards-root");
+  const items = sub === "vence"
+    ? lists.vence
+    : [...lists.vence, ...lists.active]; // vencen pronto primero
+  if (!items.length) {
+    root.innerHTML = `<div class="empty"><div class="e-icon">🎉</div>No hay actividades en esta categoría.</div>`;
+    return;
+  }
+  root.innerHTML = `<div class="cards-grid">${items.map(item => buildCard(item, isVencePronto(item) ? "vence" : "active")).join("")}</div>`;
 }
 
 // Init
