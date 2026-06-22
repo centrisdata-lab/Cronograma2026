@@ -132,12 +132,26 @@
 
     /* ── FILTER LABEL ── */
     .filter-label {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
       margin-bottom: 14px; font-size: 0.8rem; font-weight: 800;
       color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px;
     }
-    .filter-label span { color: var(--blue); }
-    .filter-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .filter-label span { color: var(--blue); white-space: nowrap; }
+    .filter-label::after { content: ''; flex: 1; min-width: 20px; height: 1px; background: var(--border); }
+    #btn-all {
+      display: none; white-space: nowrap;
+      padding: 6px 18px; border-radius: 20px; border: none;
+      background: var(--blue); color: white;
+      font-family: inherit; font-size: 0.78rem; font-weight: 800;
+      cursor: pointer; letter-spacing: 0.5px;
+      box-shadow: 0 3px 10px rgba(26,60,110,0.25); transition: all 0.2s;
+    }
+    #btn-all:hover { background: var(--blue-mid); }
+    @media (max-width: 600px) {
+      .filter-label { font-size: 0.72rem; gap: 8px; }
+      .filter-label::after { display: none; }
+      #btn-all { font-size: 0.72rem; padding: 5px 14px; }
+    }
 
     /* ── CARDS GRID ── */
     .cards-grid {
@@ -467,7 +481,7 @@
   <!-- Filter label -->
   <div class="filter-label" id="filter-label">
     Mostrando: <span id="filter-name">Todas las actividades</span>
-    <button id="btn-all" onclick="setFilter('all')" style="display:none;margin-left:10px;padding:6px 18px;border-radius:20px;border:none;background:var(--blue);color:white;font-family:inherit;font-size:0.78rem;font-weight:800;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 10px rgba(26,60,110,0.25);transition:all 0.2s;">Ver todas las actividades</button>
+    <button id="btn-all" onclick="setFilter('all')">Ver todas las actividades</button>
   </div>
 
   <!-- Cards -->
