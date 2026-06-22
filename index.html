@@ -406,16 +406,14 @@
     <div class="modal-body">
       <div class="modal-dates" id="m-dates"></div>
       <div id="m-progress"></div>
-      <div class="modal-section-label">Detalle / Notas de la actividad</div>
-      <textarea class="modal-textarea" id="m-textarea" placeholder="Escribe aquí el detalle, responsable, avances o cualquier nota importante sobre esta actividad…"></textarea>
-      <div id="m-saved-note" style="display:none">
-        <div class="modal-section-label">Nota guardada</div>
-        <div class="modal-detail-box" id="m-saved-text"></div>
+      <div class="modal-section-label">📋 Notas / Detalle</div>
+      <div class="modal-detail-box" id="m-sheet-note">
+        <span style="color:var(--muted);font-style:italic">Cargando nota desde el cronograma…</span>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
-      <button class="btn-save" id="btn-save" onclick="saveNote()">💾 Guardar detalle</button>
+      <button class="btn-cancel" onclick="closeModalDirect()">Cerrar</button>
+      <a id="btn-edit-sheet" href="https://docs.google.com/spreadsheets/d/1jAyK-6G2Ixc6IqqNkucspXVMbeqC2nxY-Nnp0z0l2_g/edit" target="_blank" class="btn-save" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">✏️ Editar en Google Sheets</a>
     </div>
   </div>
 </div>
@@ -737,12 +735,55 @@ function setFilter(key) {
 // Init
 setFilter("all");
 
+// ── SHEET NOTES ──────────────────────────────────────────────────────────────
+const SHEET_ID  = "1jAyK-6G2Ixc6IqqNkucspXVMbeqC2nxY-Nnp0z0l2_g";
+const SHEET_TAB = "Listado Actividades";
+// Cache de notas: { label -> nota }
+let sheetNotes = null;
+
+async function loadSheetNotes() {
+  if (sheetNotes) return sheetNotes;
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TAB)}`;
+    const res  = await fetch(url);
+    const text = await res.text();
+    // Google devuelve /*O_o*/\ngoogle.visualization.Query.setResponse({...});
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    const rows = json.table.rows;
+    const notes = {};
+    rows.forEach(row => {
+      if (!row.c) return;
+      const actCell  = row.c[0]; // columna A: Actividad
+      const noteCell = row.c[5]; // columna F (índice 5): Notas/Detalle
+      if (actCell && actCell.v) {
+        // limpiar emojis del nombre para comparar
+        const label = String(actCell.v).replace(/[\u{1F300}-\u{1FFFF}]/gu,"").trim();
+        notes[label] = noteCell && noteCell.v ? String(noteCell.v) : "";
+      }
+    });
+    sheetNotes = notes;
+    return notes;
+  } catch(e) {
+    return {};
+  }
+}
+
+function findNote(label, notes) {
+  // Busca coincidencia parcial flexible
+  const clean = s => s.replace(/[\u{1F300}-\u{1FFFF}]/gu,"").replace(/\s+/g," ").trim().toLowerCase();
+  const lbl = clean(label);
+  for (const [key, val] of Object.entries(notes)) {
+    if (clean(key).includes(lbl.slice(0,20)) || lbl.includes(clean(key).slice(0,20))) return val;
+  }
+  return "";
+}
+
 // ── MODAL ────────────────────────────────────────────────────────────────────
 const catTagConfig = {
-  "cat-vence":    { label:"⚠️ Vence pronto",       bg: "#c0392b", color:"white" },
-  "cat-active":   { label:"🟡 En curso",            bg: "#f5a623", color:"white" },
-  "cat-upcoming": { label:"📅 Próxima",             bg: "#1a3c6e", color:"white" },
-  "cat-done":     { label:"✅ Completada",          bg: "#9ca3af", color:"white" },
+  "cat-vence":    { label:"⚠️ Vence pronto",  bg: "#c0392b", color:"white" },
+  "cat-active":   { label:"🟡 En curso",       bg: "#f5a623", color:"white" },
+  "cat-upcoming": { label:"📅 Próxima",        bg: "#1a3c6e", color:"white" },
+  "cat-done":     { label:"✅ Completada",     bg: "#9ca3af", color:"white" },
 };
 
 let currentModalKey = null;
@@ -801,27 +842,19 @@ function openModal(label) {
   }
   document.getElementById("m-progress").innerHTML = progHtml;
 
-  // saved note
-  const saved = localStorage.getItem("note_" + label);
-  const textarea = document.getElementById("m-textarea");
-  const savedNote = document.getElementById("m-saved-note");
-  const savedText = document.getElementById("m-saved-text");
-
-  if (saved) {
-    textarea.value = saved;
-    savedNote.style.display = "block";
-    savedText.textContent = saved;
-  } else {
-    textarea.value = "";
-    savedNote.style.display = "none";
-  }
-
-  const btn = document.getElementById("btn-save");
-  btn.textContent = "💾 Guardar detalle";
-  btn.classList.remove("btn-saved");
-
+  // Mostrar modal primero, luego cargar nota
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
+
+  const noteBox = document.getElementById("m-sheet-note");
+  noteBox.innerHTML = `<span style="color:var(--muted);font-style:italic">Cargando nota…</span>`;
+
+  loadSheetNotes().then(notes => {
+    const note = findNote(label, notes);
+    noteBox.innerHTML = note
+      ? `<span style="white-space:pre-wrap">${note}</span>`
+      : `<span style="color:var(--muted);font-style:italic">Sin notas registradas para esta actividad.</span>`;
+  });
 }
 
 function closeModal(e) {
@@ -834,25 +867,6 @@ function closeModalDirect() {
   currentModalKey = null;
 }
 
-function saveNote() {
-  if (!currentModalKey) return;
-  const val = document.getElementById("m-textarea").value.trim();
-  if (val) {
-    localStorage.setItem("note_" + currentModalKey, val);
-    document.getElementById("m-saved-note").style.display = "block";
-    document.getElementById("m-saved-text").textContent = val;
-  } else {
-    localStorage.removeItem("note_" + currentModalKey);
-    document.getElementById("m-saved-note").style.display = "none";
-  }
-  const btn = document.getElementById("btn-save");
-  btn.textContent = "✅ Guardado";
-  btn.classList.add("btn-saved");
-  setTimeout(() => {
-    btn.textContent = "💾 Guardar detalle";
-    btn.classList.remove("btn-saved");
-  }, 2000);
-}
 </script>
 </body>
 </html>
