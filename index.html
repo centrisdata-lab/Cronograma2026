@@ -844,41 +844,58 @@ function openModal(label) {
   }
   document.getElementById("m-progress").innerHTML = progHtml;
 
-  // Cargar nota guardada
-  const saved = localStorage.getItem("note_" + label);
+  // Cargar nota desde Firestore
   const textarea = document.getElementById("m-textarea");
   const savedNote = document.getElementById("m-saved-note");
   const savedText = document.getElementById("m-saved-text");
-
-  if (saved) {
-    textarea.value = saved;
-    savedNote.style.display = "block";
-    savedText.textContent = saved;
-  } else {
-    textarea.value = "";
-    savedNote.style.display = "none";
-  }
-
   const btn = document.getElementById("btn-save");
+
+  textarea.value = "";
+  savedNote.style.display = "none";
   btn.textContent = "💾 Guardar detalle";
   btn.classList.remove("btn-saved");
 
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
+
+  // Cargar nota de Firestore
+  const docId = label.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 100);
+  import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js").then(({ getFirestore, doc, getDoc }) => {
+    const db = getFirestore(firebaseApp);
+    getDoc(doc(db, "notas", docId)).then(snap => {
+      if (snap.exists()) {
+        const nota = snap.data().nota || "";
+        textarea.value = nota;
+        if (nota) {
+          savedNote.style.display = "block";
+          savedText.textContent = nota;
+        }
+      }
+    });
+  });
 }
 
-function saveNote() {
+async function saveNote() {
   if (!currentModalKey) return;
   const val = document.getElementById("m-textarea").value.trim();
+  const btn = document.getElementById("btn-save");
+  btn.textContent = "Guardando…";
+  btn.disabled = true;
+
+  const docId = currentModalKey.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 100);
+  const { getFirestore, doc, setDoc, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  const db = getFirestore(firebaseApp);
+
   if (val) {
-    localStorage.setItem("note_" + currentModalKey, val);
+    await setDoc(doc(db, "notas", docId), { nota: val, actividad: currentModalKey, actualizado: new Date().toISOString() });
     document.getElementById("m-saved-note").style.display = "block";
     document.getElementById("m-saved-text").textContent = val;
   } else {
-    localStorage.removeItem("note_" + currentModalKey);
+    await deleteDoc(doc(db, "notas", docId));
     document.getElementById("m-saved-note").style.display = "none";
   }
-  const btn = document.getElementById("btn-save");
+
+  btn.disabled = false;
   btn.textContent = "✅ Guardado";
   btn.classList.add("btn-saved");
   setTimeout(() => {
@@ -897,6 +914,21 @@ function closeModalDirect() {
   currentModalKey = null;
 }
 
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAafSa57kwgN0R6-ErlZrg1gv3nB7qEuu4",
+    authDomain: "cronogramacampus.firebaseapp.com",
+    projectId: "cronogramacampus",
+    storageBucket: "cronogramacampus.firebasestorage.app",
+    messagingSenderId: "751625758792",
+    appId: "1:751625758792:web:54317d0139ccda4e78d07d"
+  };
+
+  window.firebaseApp = initializeApp(firebaseConfig);
 </script>
 </body>
 </html>
