@@ -591,7 +591,7 @@ function progressPct(item) {
 
 // ── Classify ─────────────────────────────────────────────────────────────────
 const lists = {
-  active:   activities.filter(a => isActive(a)),
+  active:   activities.filter(a => isActive(a) && !isVencePronto(a)),
   vence:    activities.filter(a => isVencePronto(a)),
   upcoming: activities.filter(a => isUpcoming(a)).sort((a,b) => a.start.localeCompare(b.start)),
   done:     activities.filter(a => isPast(a)).sort((a,b) => b.end ? b.end.localeCompare(a.end||a.start) : -1),
