@@ -406,14 +406,16 @@
     <div class="modal-body">
       <div class="modal-dates" id="m-dates"></div>
       <div id="m-progress"></div>
-      <div class="modal-section-label">📋 Notas / Detalle</div>
-      <div class="modal-detail-box" id="m-sheet-note">
-        <span style="color:var(--muted);font-style:italic">Cargando nota desde el cronograma…</span>
+      <div class="modal-section-label">Detalle / Notas de la actividad</div>
+      <textarea class="modal-textarea" id="m-textarea" placeholder="Escribe aquí el detalle, responsable, avances o cualquier nota importante sobre esta actividad…"></textarea>
+      <div id="m-saved-note" style="display:none">
+        <div class="modal-section-label">Nota guardada</div>
+        <div class="modal-detail-box" id="m-saved-text"></div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-cancel" onclick="closeModalDirect()">Cerrar</button>
-      <a id="btn-edit-sheet" href="https://docs.google.com/spreadsheets/d/1jAyK-6G2Ixc6IqqNkucspXVMbeqC2nxY-Nnp0z0l2_g/edit" target="_blank" class="btn-save" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">✏️ Editar en Google Sheets</a>
+      <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
+      <button class="btn-save" id="btn-save" onclick="saveNote()">💾 Guardar detalle</button>
     </div>
   </div>
 </div>
@@ -842,19 +844,47 @@ function openModal(label) {
   }
   document.getElementById("m-progress").innerHTML = progHtml;
 
-  // Mostrar modal primero, luego cargar nota
+  // Cargar nota guardada
+  const saved = localStorage.getItem("note_" + label);
+  const textarea = document.getElementById("m-textarea");
+  const savedNote = document.getElementById("m-saved-note");
+  const savedText = document.getElementById("m-saved-text");
+
+  if (saved) {
+    textarea.value = saved;
+    savedNote.style.display = "block";
+    savedText.textContent = saved;
+  } else {
+    textarea.value = "";
+    savedNote.style.display = "none";
+  }
+
+  const btn = document.getElementById("btn-save");
+  btn.textContent = "💾 Guardar detalle";
+  btn.classList.remove("btn-saved");
+
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
+}
 
-  const noteBox = document.getElementById("m-sheet-note");
-  noteBox.innerHTML = `<span style="color:var(--muted);font-style:italic">Cargando nota…</span>`;
-
-  loadSheetNotes().then(notes => {
-    const note = findNote(label, notes);
-    noteBox.innerHTML = note
-      ? `<span style="white-space:pre-wrap">${note}</span>`
-      : `<span style="color:var(--muted);font-style:italic">Sin notas registradas para esta actividad.</span>`;
-  });
+function saveNote() {
+  if (!currentModalKey) return;
+  const val = document.getElementById("m-textarea").value.trim();
+  if (val) {
+    localStorage.setItem("note_" + currentModalKey, val);
+    document.getElementById("m-saved-note").style.display = "block";
+    document.getElementById("m-saved-text").textContent = val;
+  } else {
+    localStorage.removeItem("note_" + currentModalKey);
+    document.getElementById("m-saved-note").style.display = "none";
+  }
+  const btn = document.getElementById("btn-save");
+  btn.textContent = "✅ Guardado";
+  btn.classList.add("btn-saved");
+  setTimeout(() => {
+    btn.textContent = "💾 Guardar detalle";
+    btn.classList.remove("btn-saved");
+  }, 2000);
 }
 
 function closeModal(e) {
