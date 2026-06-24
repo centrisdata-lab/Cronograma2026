@@ -70,8 +70,79 @@
     .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
     .legend-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 
+    /* ── TABS ── */
+    .tabs {
+      display: flex; gap: 0;
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      padding: 0 32px;
+    }
+    .tab-btn {
+      padding: 14px 28px; font-family: inherit; font-size: 0.85rem;
+      font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+      border: none; background: none; cursor: pointer; color: var(--muted);
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active { color: var(--blue); border-bottom-color: var(--orange); }
+    .tab-btn:hover:not(.active) { color: var(--blue); }
+
     /* ── MAIN ── */
     main { padding: 24px 32px 60px; }
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    /* ── EQUIPO ── */
+    .equipo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .rol-card {
+      background: var(--white); border-radius: 16px;
+      border: 1.5px solid var(--border);
+      overflow: hidden; box-shadow: 0 2px 12px rgba(26,60,110,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .rol-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(26,60,110,0.12); }
+    .rol-card-header {
+      padding: 20px 24px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .rol-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    .rol-card-header h3 { font-size: 1rem; font-weight: 900; color: var(--blue); line-height: 1.3; }
+    .rol-perfil {
+      padding: 0 24px 14px;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+      border-bottom: 1px solid var(--border);
+    }
+    .rol-funciones { padding: 14px 24px 20px; }
+    .rol-funciones-title {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+    .rol-funciones ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .rol-funciones ul li {
+      font-size: 0.82rem; color: var(--text); line-height: 1.4;
+      padding-left: 18px; position: relative;
+    }
+    .rol-funciones ul li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--orange); font-size: 0.75rem;
+    }
+    .rol-expandir {
+      display: block; width: 100%; padding: 10px;
+      background: var(--bg); border: none; border-top: 1px solid var(--border);
+      font-family: inherit; font-size: 0.75rem; font-weight: 800;
+      color: var(--muted); cursor: pointer; transition: background 0.15s;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .rol-expandir:hover { background: var(--blue-light); color: var(--blue); }
+    .rol-funciones.collapsed ul li:nth-child(n+4) { display: none; }
+
+    @media (max-width: 900px) { .equipo-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .equipo-grid { grid-template-columns: 1fr; } .tabs { padding: 0 14px; } .tab-btn { padding: 12px 16px; font-size: 0.75rem; } }
 
     /* ── DASHBOARD CARDS ── */
     .dashboard {
@@ -438,6 +509,11 @@
   </div>
 </header>
 
+<nav class="tabs">
+  <button class="tab-btn active" onclick="switchTab('cronograma')">📋 Cronograma</button>
+  <button class="tab-btn" onclick="switchTab('equipo')">👥 Equipo</button>
+</nav>
+
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
@@ -467,6 +543,7 @@
   </div>
 </div>
 
+<div id="tab-cronograma" class="tab-section active">
 <main>
   <!-- Dashboard -->
   <div class="dashboard">
@@ -506,6 +583,14 @@
   <!-- Cards -->
   <div id="cards-root"></div>
 </main>
+</div><!-- /tab-cronograma -->
+
+<!-- TAB EQUIPO -->
+<div id="tab-equipo" class="tab-section">
+<main>
+  <div class="equipo-grid" id="equipo-grid"></div>
+</main>
+</div>
 
 <script>
 // ── Data ─────────────────────────────────────────────────────────────────────
@@ -951,6 +1036,209 @@ function closeModalDirect() {
   document.getElementById("modal-overlay").classList.remove("open");
   document.body.style.overflow = "";
   currentModalKey = null;
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll(".tab-section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + name).classList.add("active");
+  event.currentTarget.classList.add("active");
+  if (name === "equipo") renderEquipo();
+}
+
+// ── EQUIPO DATA ───────────────────────────────────────────────────────────────
+const equipoRoles = [
+  {
+    nombre: "Responsable de Curso",
+    emoji: "🎓", color: "#1a3c6e",
+    perfil: "Voluntario comprometido con el diseño y acompañamiento de cursos en el Campus Virtual, enfocado en crear experiencias formativas accesibles y motivadoras. Hábil coordinador de equipos zonales y excelente comunicador.",
+    funciones: [
+      "Diseñar los contenidos del curso",
+      "Elaborar el documento conceptual",
+      "Diseñar la guía de aprendizaje",
+      "Entregar la presentación institucional del curso",
+      "Producir video con pautas para el desarrollo de la clase",
+      "Entregar el cronograma oficial del curso",
+      "Definir fechas de valoraciones o evaluaciones",
+      "Publicar los módulos en el Campus Virtual",
+      "Sugerir una estrategia única de gamificación",
+      "Coordinar enlaces país y zona",
+      "Socializar ajustes académicos con los enlaces de curso",
+    ]
+  },
+  {
+    nombre: "Apoyo Pedagógico",
+    emoji: "📚", color: "#7c3aed",
+    perfil: "Voluntario organizador y motivador con talento para acompañar equipos docentes. Proactivo en prevención de deserción y mantenimiento de recursos humanos. Comprometido con la calidad educativa del Campus Virtual.",
+    funciones: [
+      "Gestionar el aval de los equipos de apoyo en el rol de profesores",
+      "Organizar los grupos de profesores de acuerdo con su perfil académico",
+      "Organizar los grupos en cuerpo académico",
+      "Apoyar y acompañar a los informadores de país/zona",
+      "Evaluar la asignación de profesores para los cursos a ofertar",
+      "Gestionar la correcta asignación de profesores",
+      "Fortalecer el trabajo en equipo entre informadores",
+      "Velar por la ejecución del plan académico trazado",
+      "Gestionar novedades académicas y administrativas",
+      "Prevenir la deserción de profesores y estudiantes",
+    ]
+  },
+  {
+    nombre: "Enlace de Curso",
+    emoji: "🔗", color: "#0891b2",
+    perfil: "Persona empática y proactiva con vocación pedagógica, hábil en herramientas digitales. Comunicador cordial que motiva la participación activa y acompaña con calidez a profesores y estudiantes.",
+    funciones: [
+      "Brindar acompañamiento técnico durante las clases",
+      "Orientar pedagógicamente al profesor en el proceso formativo",
+      "Capacitar en el uso de herramientas digitales",
+      "Orientar en la implementación de estrategias de gamificación",
+      "Promover la participación activa de los estudiantes",
+      "Revisar clases grabadas para garantizar calidad pedagógica",
+      "Revisar rúbricas de evaluación",
+      "Realizar seguimiento al proceso de valoraciones académicas",
+      "Brindar retroalimentación al profesor de forma constructiva",
+      "Verificar el estado académico de los estudiantes",
+    ]
+  },
+  {
+    nombre: "Profesores",
+    emoji: "👨‍🏫", color: "#f5a623",
+    perfil: "Docente voluntario apasionado por la educación con habilidad para motivar grupos. Comunicador empático que fomenta interacción activa, resuelve dudas y guía estudiantes en riesgo con calidez.",
+    funciones: [
+      "Orientar encuentros grupales virtuales",
+      "Aplicar los lineamientos pedagógicos institucionales",
+      "Implementar estrategias de diferenciación metodológica",
+      "Calificar oportunamente",
+      "Dar respuesta a foros en los tiempos establecidos",
+      "Aplicar rúbricas de evaluación",
+      "Realizar retroalimentación formativa constante",
+      "Fomentar la intervención activa en cada encuentro",
+      "Motivar y acompañar a los estudiantes en riesgo académico",
+      "Solicitar asistencia de estudiantes a tutores al finalizar cada clase",
+    ]
+  },
+  {
+    nombre: "Apoyo Tutores",
+    emoji: "🤝", color: "#059669",
+    perfil: "Voluntario comprometido con el acompañamiento integral de equipos de tutores a nivel zonal y de países. Enfocado en fortalecer procesos formativos tecnológicos y humanos mediante una gestión cercana y motivadora.",
+    funciones: [
+      "Planificar y coordinar actividades de acompañamiento",
+      "Hacer seguimiento al equipo de tutores en su proceso formativo",
+      "Fortalecer el trabajo en equipo con pedagogía y soporte tecnológico",
+      "Convocar y coordinar tutores que apoyan en convenios de la FIMLM",
+      "Apoyar el proceso de graduación de los estudiantes",
+    ]
+  },
+  {
+    nombre: "Enlace de Curso Tutores",
+    emoji: "📎", color: "#dc2626",
+    perfil: "Voluntario con capacidad de coordinación y liderazgo de equipos. Hábil en comunicación efectiva, resolución de novedades y gestión de información.",
+    funciones: [
+      "Aplicar los valores y principios de la FIMLM",
+      "Fortalecer el trabajo en equipo con el equipo de zona o país",
+      "Articular el trabajo con los tutores",
+      "Socializar con el equipo de tutores las características del curso",
+      "Hacer seguimiento al desempeño de los tutores de grupo",
+      "Gestionar y dar seguimiento a novedades del curso",
+      "Garantizar soluciones oportunas a dificultades",
+    ]
+  },
+  {
+    nombre: "Tutores de Curso",
+    emoji: "🧑‍💻", color: "#ea580c",
+    perfil: "Voluntario con vocación de servicio que apoya el proceso de enseñanza-aprendizaje y el acompañamiento directo a los estudiantes. Empático, motivador y con habilidades tecnológicas.",
+    funciones: [
+      "Aplicar los valores y principios de la FIMLM",
+      "Trabajar en equipo con los enlaces de tutores",
+      "Apoyar al profesor durante las clases",
+      "Resolver dudas sobre la plataforma",
+      "Hacer seguimiento al desempeño de los estudiantes",
+    ]
+  },
+  {
+    nombre: "Informadores",
+    emoji: "📣", color: "#7c3aed",
+    perfil: "Voluntarios de la FIMLM de cada una de las iglesias. Comprometidos en brindar apoyo a los estudiantes y acompañarlos activamente durante el desarrollo de los cursos.",
+    funciones: [
+      "Aplicar los valores y principios de la FIMLM",
+      "Trabajar en equipo con las coordinadoras municipales",
+      "Conocer la oferta académica y fecha de inicio de los cursos",
+      "Acompañar activamente a los estudiantes durante los cursos",
+      "Conocer cómo será la comunicación del estudiante con tutores y profesores",
+    ]
+  },
+  {
+    nombre: "Enlace Delegación",
+    emoji: "🏛️", color: "#1a3c6e",
+    perfil: "Voluntario comprometido con el acompañamiento y socialización de información al equipo de la delegación. Excelente comunicador, enfocado en crear experiencias formativas accesibles y motivadoras.",
+    funciones: [
+      "Apoyar en las convocatorias de los cursos ofertados",
+      "Socializar toda la información relevante al equipo de la delegación",
+      "Facilitar la comunicación entre el Campus Virtual y la delegación",
+      "Acompañar con gestión cercana, efectiva y empática",
+    ]
+  },
+  {
+    nombre: "Soporte Tecnológico País/Zona",
+    emoji: "🖥️", color: "#0f766e",
+    perfil: "Responsable del soporte tecnológico a nivel de país o zona. Coordina equipos administradores, gestiona plataformas y garantiza el correcto funcionamiento del Campus Virtual.",
+    funciones: [
+      "Crear equipos voluntarios administradores por área de formación",
+      "Consolidar bases de datos de caracterización de cursos",
+      "Comparar estudiantes en plataforma Minube vs Campus",
+      "Capacitación y resolución de novedades del administrador de curso",
+      "Activar valoraciones, foros y anuncios semanales",
+      "Control semanal de calificaciones, valoraciones y foros",
+      "Cargar clases al Campus semanalmente y cierre de curso",
+      "Control y seguimiento de tareas asignadas al administrador",
+    ]
+  },
+  {
+    nombre: "Soporte Tecnológico del Curso",
+    emoji: "⚙️", color: "#475569",
+    perfil: "Responsable del soporte tecnológico a nivel de curso. Apoya directamente a informadores, profesores y tutores, garantizando la correcta gestión de la plataforma.",
+    funciones: [
+      "Apoyo a equipos de informadores, profesores y tutores",
+      "Comparar cantidad de estudiantes en Minube vs Campus",
+      "Consolidar bases de datos de caracterización del curso",
+      "Realizar anuncios semanales del curso asignado",
+      "Coordinar grabaciones de clases y subirlas al Campus",
+      "Control y seguimiento a las tareas asignadas a los informadores",
+    ]
+  },
+];
+
+let equipoRendered = false;
+function renderEquipo() {
+  if (equipoRendered) return;
+  equipoRendered = true;
+  const grid = document.getElementById("equipo-grid");
+  grid.innerHTML = equipoRoles.map((rol, idx) => `
+    <div class="rol-card">
+      <div class="rol-card-header">
+        <div class="rol-icon" style="background:${rol.color}">${rol.emoji}</div>
+        <h3>${rol.nombre}</h3>
+      </div>
+      <div class="rol-perfil">${rol.perfil}</div>
+      <div class="rol-funciones collapsed" id="func-${idx}">
+        <div class="rol-funciones-title">Funciones principales</div>
+        <ul>${rol.funciones.map(f => `<li>${f}</li>`).join("")}</ul>
+      </div>
+      <button class="rol-expandir" id="btn-func-${idx}" onclick="toggleFunciones(${idx})">
+        Ver todas las funciones (${rol.funciones.length}) ▾
+      </button>
+    </div>
+  `).join("");
+}
+
+function toggleFunciones(idx) {
+  const el = document.getElementById("func-" + idx);
+  const btn = document.getElementById("btn-func-" + idx);
+  const collapsed = el.classList.toggle("collapsed");
+  btn.textContent = collapsed
+    ? `Ver todas las funciones (${equipoRoles[idx].funciones.length}) ▾`
+    : "Ver menos ▴";
 }
 
 </script>
