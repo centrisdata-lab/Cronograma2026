@@ -76,13 +76,16 @@
       background: var(--white);
       border-bottom: 2px solid var(--border);
       padding: 0 32px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
       padding: 14px 28px; font-family: inherit; font-size: 0.85rem;
       font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
       border: none; background: none; cursor: pointer; color: var(--muted);
       border-bottom: 3px solid transparent; margin-bottom: -2px;
-      transition: all 0.2s;
+      transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
     }
     .tab-btn.active { color: var(--blue); border-bottom-color: var(--orange); }
     .tab-btn:hover:not(.active) { color: var(--blue); }
@@ -575,10 +578,20 @@
       .dashboard { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      header { padding: 14px 16px; }
-      main   { padding: 16px 14px 40px; }
-      .legend { padding: 10px 14px; }
-      .dashboard { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      header { padding: 12px 14px; }
+      .header-logo { width: 44px; height: 44px; font-size: 1.3rem; border-radius: 10px; }
+      .header-text h1 { font-size: 1.1rem; }
+      .header-text p  { font-size: 0.72rem; }
+      main   { padding: 14px 12px 40px; }
+      .legend { padding: 8px 12px; }
+      .tabs { padding: 0 8px; }
+      .tab-btn { padding: 12px 14px; font-size: 0.72rem; }
+      .dashboard { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .dash-card { padding: 12px 10px; }
+      .dash-card .dc-icon { font-size: 1.2rem; margin-bottom: 4px; }
+      .dash-card .dc-label { font-size: 0.58rem; }
+      .dash-card .dc-count { font-size: 1.6rem; }
+      .dash-card .dc-sub { font-size: 0.6rem; }
       .cards-grid { grid-template-columns: 1fr; }
     }
   </style>
