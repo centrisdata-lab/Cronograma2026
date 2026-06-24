@@ -198,6 +198,41 @@
       color: var(--muted); margin-bottom: 16px; text-align: center;
     }
 
+    /* ── ZONAS ── */
+    .zonas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 32px; }
+    .zona-card {
+      background: var(--white); border-radius: 16px; border: 2px solid var(--border);
+      padding: 22px 24px; cursor: pointer; transition: all 0.2s;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .zona-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(26,60,110,0.13); }
+    .zona-card.selected { border-color: var(--orange); box-shadow: 0 6px 20px rgba(245,166,35,0.2); }
+    .zona-card-top { display: flex; align-items: center; gap: 14px; }
+    .zona-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .zona-card h3 { font-size: 1rem; font-weight: 900; color: var(--blue); line-height: 1.3; }
+    .zona-card .zona-sub { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+    .zona-card .zona-count { font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-top: 4px; }
+
+    .zona-detalle {
+      display: none; background: var(--white); border-radius: 16px;
+      border: 1.5px solid var(--border); padding: 28px 32px;
+      box-shadow: 0 4px 20px rgba(26,60,110,0.07);
+    }
+    .zona-detalle.open { display: block; }
+    .zona-detalle h2 { font-size: 1.2rem; font-weight: 900; color: var(--blue); margin-bottom: 20px; }
+    .miembros-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .miembro-card {
+      background: var(--bg); border-radius: 12px; padding: 14px 16px;
+      border: 1px solid var(--border);
+    }
+    .miembro-nombre { font-size: 0.92rem; font-weight: 800; color: var(--blue); margin-bottom: 4px; }
+    .miembro-rol { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .miembro-info { display: flex; flex-direction: column; gap: 3px; }
+    .miembro-info a { font-size: 0.78rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+    .miembro-info a:hover { color: var(--blue); }
+    @media (max-width: 900px) { .zonas-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { .zonas-grid { grid-template-columns: 1fr; } .zona-detalle { padding: 18px 16px; } }
+
     /* ── DASHBOARD CARDS ── */
     .dashboard {
       display: grid;
@@ -567,6 +602,7 @@
   <button class="tab-btn active" onclick="switchTab('cronograma')">📋 Cronograma</button>
   <button class="tab-btn" onclick="switchTab('equipo')">👥 Equipo</button>
   <button class="tab-btn" onclick="switchTab('organigrama')">🏛️ Organigrama</button>
+  <button class="tab-btn" onclick="switchTab('zonas')">🗺️ Zonas</button>
 </nav>
 
 
@@ -717,6 +753,17 @@
       <div class="org-node est">🎓 Estudiantes</div>
 
     </div>
+  </div>
+</main>
+</div>
+
+<!-- TAB ZONAS -->
+<div id="tab-zonas" class="tab-section">
+<main>
+  <div class="zonas-grid" id="zonas-grid"></div>
+  <div class="zona-detalle" id="zona-detalle">
+    <h2 id="zona-detalle-title"></h2>
+    <div class="miembros-grid" id="zona-miembros"></div>
   </div>
 </main>
 </div>
@@ -1167,6 +1214,155 @@ function closeModalDirect() {
   currentModalKey = null;
 }
 
+// ── ZONAS DATA ────────────────────────────────────────────────────────────────
+const zonas = [
+  {
+    id: "bogota", nombre: "Bogotá / Cundinamarca", emoji: "🏙️", color: "#1a3c6e",
+    departamentos: "Bogotá D.C. · Cundinamarca",
+    equipo: [
+      { nombre: "Yasmin Benavidez", rol: "Encargada Profesores", correo: "yasmin.benavides@fimlm.education", cel: "3057046257" },
+      { nombre: "Jonathan Moreno", rol: "Apoyo Pedagógico", correo: "jhonatan.moreno@fimlm.education", cel: "3133108462" },
+      { nombre: "Diana Estefanía Caicedo", rol: "Apoyo Pedagógico", correo: "dianaestefania.caicedo@fimlm.education", cel: "3142483216" },
+      { nombre: "Edith Estupiñan Corso", rol: "Apoyo Pedagógico", correo: "edith.estupinan@fimlm.education", cel: "3134621788" },
+      { nombre: "Martha Martinez", rol: "Encargada de Tutores", correo: "martha.martinezf@fimlm.education", cel: "3005048881" },
+      { nombre: "Beleisy Bran", rol: "Apoyo Tutores", correo: "beleisy.bran@fimlm.education", cel: "3016898106" },
+      { nombre: "Nidi Johana González", rol: "Apoyo Tutores", correo: "nidy.gonzalez@fimlm.education", cel: "3106931253" },
+      { nombre: "Jennifer Galvis", rol: "Apoyo Tutores", correo: "jennifer.galvis@fimlm.education", cel: "3137799873" },
+      { nombre: "Paola Hernandez", rol: "Encargada Admin Soporte Tec.", correo: "paola.hernandez@fimlm.education", cel: "3502937668" },
+      { nombre: "Daniela Velez Montero", rol: "Apoyo Admin Soporte Tecnológico", correo: "daniela.velez@fimlm.education", cel: "3122188184" },
+    ]
+  },
+  {
+    id: "caribe", nombre: "Zona Caribe", emoji: "🌊", color: "#0891b2",
+    departamentos: "Atlántico · Guajira · Córdoba · Cesar · Sucre · San Andrés",
+    equipo: [
+      { nombre: "Yudy Paola Sedano", rol: "Encargada Pedagógica", correo: "judy.sedano@fimlm.education", cel: "3124682537" },
+      { nombre: "Melissa Quirós", rol: "Apoyo Pedagógico", correo: "melissa.quiroz@fimlm.education", cel: "3126233254" },
+      { nombre: "Patricia Palacio", rol: "Encargada de Tutores", correo: "patricia.palacio@fimlm.education", cel: "3135821671" },
+      { nombre: "Sonia Rodriguez", rol: "Apoyo Tutores", correo: "sonia.rodriguez@fimlm.education", cel: "3006114261" },
+      { nombre: "Lizbeth Beatriz Romero", rol: "Apoyo Tutores", correo: "beatriz.romero@fimlm.education", cel: "3014755387" },
+      { nombre: "Anyi Cortés", rol: "Admin Soporte Tecnológico", correo: "anyi.cortes@fimlm.education", cel: "3116143718" },
+    ]
+  },
+  {
+    id: "antioquia", nombre: "Antioquia / Eje Cafetero", emoji: "☕", color: "#7c3aed",
+    departamentos: "Antioquia · Caldas · Risaralda · Quindío",
+    equipo: [
+      { nombre: "Luz Aleyda Galindo", rol: "Encargada Pedagógica", correo: "luz.galindo@fimlm.education", cel: "3138889338" },
+      { nombre: "David Moná", rol: "Encargado Pedagógico", correo: "david.mona@fimlm.education", cel: "3102971503" },
+      { nombre: "Estefania Larrota", rol: "Encargada Pedagógica", correo: "katerina.larrota@fimlm.education", cel: "3012077257" },
+      { nombre: "Martha Lina Gonzalez", rol: "Encargada de Tutores", correo: "martha.gonzalez@fimlm.education", cel: "3127290530" },
+      { nombre: "Deisy Alejandra Galeano", rol: "Apoyo Tutores", correo: "deisy.galeano@fimlm.education", cel: "3108535516" },
+      { nombre: "Luis Felipe López", rol: "Apoyo Tutores", correo: "luis.lopez@fimlm.education", cel: "3152874814" },
+      { nombre: "Felipe Duarte", rol: "Encargado Soporte Tecnológico", correo: "felipe.duarte@fimlm.education", cel: "3104584879" },
+    ]
+  },
+  {
+    id: "pacifico", nombre: "Zona Pacífico", emoji: "🌿", color: "#059669",
+    departamentos: "Valle del Cauca · Cauca · Chocó · Nariño · Putumayo",
+    equipo: [
+      { nombre: "Yolanda Moreno", rol: "Coordinadora Zona / Enlace Valle del Cauca", correo: "cali.sameco@fimlm.org", cel: "3164937355" },
+      { nombre: "Diana Escallón", rol: "Apoyo Coordinadora / Enlace Valle", correo: "diana.escallon@fimlm.education", cel: "3146783487" },
+      { nombre: "Betty Machado", rol: "Encargada Pedagogía", correo: "betty.machado@fimlm.education", cel: "3154136040" },
+      { nombre: "Jenny Trejos", rol: "Apoyo Pedagógico", correo: "jenny.trejos@fimlm.education", cel: "3136717338" },
+      { nombre: "Angie Zulay Moreno", rol: "Apoyo Pedagógico / Enlace Chocó", correo: "g.choco@fundacionmarialuisa.org", cel: "3136808200" },
+      { nombre: "Yhennifer Andrea Aguilar", rol: "Apoyo Pedagógico / Enlace Nariño y Putumayo", correo: "yhennifer.aguilar@fimlm.education", cel: "3214560770" },
+      { nombre: "Yajaira Benavides", rol: "Encargada Tutores", correo: "yajaira.benavides@fimlm.education", cel: "3008553296" },
+      { nombre: "Alejandra Bacca", rol: "Apoyo Tutores", correo: "maria.bacca@fimlm.education", cel: "3152860114" },
+      { nombre: "Andrés Ledesma", rol: "Apoyo Tutores / Enlace Cauca", correo: "andres.ledesma@fimlm.education", cel: "3187236539" },
+      { nombre: "Zuleima Mosquera", rol: "Encargada Admin & Soporte Tec.", correo: "zuleima.mosquera@fimlm.education", cel: "3168734131" },
+      { nombre: "Tulio León", rol: "Apoyo Administradores", correo: "tulio.leon@fimlm.education", cel: "3175803188" },
+      { nombre: "Omar Garzón", rol: "Apoyo Administradores", correo: "omar.garzon@fimlm.education", cel: "3154136040" },
+      { nombre: "Mónica Valencia", rol: "Encargada Informadores Valle", correo: "monica.valencia@fimlm.education", cel: "3127865048" },
+      { nombre: "Divier Moreno", rol: "Encargado Informadores Chocó", correo: "quibdo.medrano@fimlm.org", cel: "3223859023" },
+      { nombre: "Carolina Bravo", rol: "Encargada Informadores Nariño", correo: "irma.bravo@fimlm.education", cel: "3007632298" },
+      { nombre: "Liset Tatiana Piamba", rol: "Encargada Informadores Cauca", correo: null, cel: "3175601434" },
+    ]
+  },
+  {
+    id: "sur", nombre: "Sur y Llanos", emoji: "🌾", color: "#d97706",
+    departamentos: "Meta · Huila · Tolima · Caquetá · Llanos Orientales",
+    equipo: [
+      { nombre: "Jackeline Cedano", rol: "Encargada Admin y Soporte Tec.", correo: "g.meta@fundacionmarialuisa.org", cel: "3138292957" },
+      { nombre: "Norfa Rios", rol: "Encargada Pedagógica", correo: "norfa.rios@fimlm.education", cel: "3104588903" },
+      { nombre: "Yaddy Aguilar González", rol: "Encargada Pedagógica", correo: "yaddy.aguilar@fimlm.education", cel: "3103084568" },
+      { nombre: "Edna Patricia Leguizamon", rol: "Apoyo Pedagógico", correo: "edna.leguizamon@fimlm.education", cel: "3102460487" },
+      { nombre: "Helida Mosquera", rol: "Apoyo Pedagógico", correo: "helida.mosquera@fimlm.education", cel: null },
+      { nombre: "Shirley Guzman", rol: "Apoyo Pedagógico", correo: "shirley.guzman@fimlm.education", cel: null },
+      { nombre: "Yuli Granados", rol: "Apoyo Pedagógico", correo: "yuli.granados@fimlm.education", cel: null },
+      { nombre: "Gladys Jiménez", rol: "Encargada de Tutores", correo: "gladys.jimenez@fimlm.education", cel: "3143498624" },
+      { nombre: "Derlys Acosta", rol: "Encargada de Tutores", correo: "derlys.acosta@fimlm.education", cel: "3202790746" },
+      { nombre: "Mayra Jaramillo", rol: "Apoyo Tutores", correo: "mayra.jaramillo@fimlm.education", cel: null },
+      { nombre: "Andrea Sanabria", rol: "Apoyo Tutores", correo: "andrea.sanabria@fimlm.education", cel: null },
+      { nombre: "Janeth Manrique", rol: "Apoyo Tutores", correo: "janeth.manrique@fimlm.education", cel: null },
+      { nombre: "Angela Montealegre", rol: "Encargada Admin Soporte Tec.", correo: "angela.montealegre@fimlm.education", cel: "3124702532" },
+      { nombre: "Ingrid Katerine Dávila", rol: "Apoyo Administradores", correo: "ingrid.davila@fimlm.education", cel: "3209225917" },
+      { nombre: "Denis Yem Martinez", rol: "Apoyo Administradores", correo: "huila2@fundacionmarialuisa.org", cel: "3202625087" },
+    ]
+  },
+  {
+    id: "santanderes", nombre: "Santanderes y Boyacá", emoji: "⛰️", color: "#dc2626",
+    departamentos: "Santander · Norte de Santander · Boyacá",
+    equipo: [
+      { nombre: "Alejandra Delgado Gómez", rol: "Encargada Pedagógica", correo: "alejandra.delgado@fimlm.education", cel: "3124145981" },
+      { nombre: "Leydy Viviana Torres Zafra", rol: "Apoyo Pedagógico Santander", correo: "leydy.torres@fimlm.education", cel: "3209050972" },
+      { nombre: "Lina Torres", rol: "Encargada de Tutores", correo: "lina.torres@fimlm.education", cel: "3164308391" },
+      { nombre: "Laura Blanco", rol: "Apoyo Tutores Santander", correo: "laura.blanco@fimlm.education", cel: "3107970039" },
+      { nombre: "Acileana Rincon", rol: "Apoyo Tutores Norte de Santander", correo: "acileana.rincon@fimlm.education", cel: "3203370025" },
+      { nombre: "Liliana Alarcon", rol: "Apoyo Tutores Boyacá", correo: "liliana.alarcon@fimlm.education", cel: "3114713456" },
+      { nombre: "Lizeth Gutierrez", rol: "Encargada Soporte Tecnológico", correo: "lizeth.gutierrez@fimlm.education", cel: "3114979345" },
+      { nombre: "Ronal Virgen", rol: "Apoyo Administradores", correo: "ronal.virgen@fimlm.education", cel: "3123075662" },
+    ]
+  },
+];
+
+let zonasRendered = false;
+let zonaSeleccionada = null;
+
+function renderZonas() {
+  if (zonasRendered) return;
+  zonasRendered = true;
+  const grid = document.getElementById("zonas-grid");
+  grid.innerHTML = zonas.map(z => `
+    <div class="zona-card" id="zcard-${z.id}" onclick="selectZona('${z.id}')">
+      <div class="zona-card-top">
+        <div class="zona-icon" style="background:${z.color}">${z.emoji}</div>
+        <div>
+          <h3>${z.nombre}</h3>
+          <div class="zona-sub">${z.departamentos}</div>
+        </div>
+      </div>
+      <span class="zona-count" style="background:${z.color}20;color:${z.color}">
+        ${z.equipo.length} integrantes
+      </span>
+    </div>
+  `).join("");
+}
+
+function selectZona(id) {
+  const zona = zonas.find(z => z.id === id);
+  if (!zona) return;
+
+  document.querySelectorAll(".zona-card").forEach(c => c.classList.remove("selected"));
+  document.getElementById("zcard-" + id).classList.add("selected");
+
+  const detalle = document.getElementById("zona-detalle");
+  document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
+  document.getElementById("zona-miembros").innerHTML = zona.equipo.map(m => `
+    <div class="miembro-card">
+      <div class="miembro-nombre">${m.nombre}</div>
+      <div class="miembro-rol" style="color:${zona.color}">${m.rol}</div>
+      <div class="miembro-info">
+        ${m.correo ? `<a href="mailto:${m.correo}">✉️ ${m.correo}</a>` : ""}
+        ${m.cel    ? `<a href="tel:${m.cel}">📞 ${m.cel}</a>` : ""}
+      </div>
+    </div>
+  `).join("");
+
+  detalle.classList.add("open");
+  detalle.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 // ── TABS ─────────────────────────────────────────────────────────────────────
 function switchTab(name) {
   document.querySelectorAll(".tab-section").forEach(s => s.classList.remove("active"));
@@ -1174,6 +1370,7 @@ function switchTab(name) {
   document.getElementById("tab-" + name).classList.add("active");
   event.currentTarget.classList.add("active");
   if (name === "equipo") renderEquipo();
+  if (name === "zonas") renderZonas();
 }
 
 // ── EQUIPO DATA ───────────────────────────────────────────────────────────────
