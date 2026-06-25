@@ -2205,6 +2205,15 @@ function switchTab(name) {
   if (name === "equipo") renderEquipo();
   if (name === "zonas") renderZonas();
   if (editMode) updateAddBtn();
+  localStorage.setItem("activeTab", name);
+}
+
+function restoreTab() {
+  const saved = localStorage.getItem("activeTab");
+  if (saved && saved !== "cronograma") {
+    const btn = document.querySelector(`.tab-btn[onclick*="'${saved}'"]`);
+    if (btn) { btn.click(); }
+  }
 }
 
 // ── EQUIPO DATA ───────────────────────────────────────────────────────────────
@@ -2456,7 +2465,7 @@ function toggleFunciones(idx) {
   };
 
   window._firestoreReady = true;
-  window._loadEdicion();
+  window._loadEdicion().then(() => restoreTab());
 
   // Si había un modal abierto esperando
   if (window._pendingModal) {
