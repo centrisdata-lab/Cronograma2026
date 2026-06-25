@@ -2449,8 +2449,6 @@ function toggleFunciones(idx) {
   window._saveEdicion = async (data) => {
     await setDoc(doc(db, "config", "contenido"), {
       activities:  JSON.stringify(data.activities),
-      equipoRoles: JSON.stringify(data.equipoRoles),
-      zonas:       JSON.stringify(data.zonas),
       actualizado: new Date().toISOString(),
     });
   };
@@ -2459,14 +2457,15 @@ function toggleFunciones(idx) {
     const snap = await getDoc(doc(db, "config", "contenido"));
     if (snap.exists()) {
       const d = snap.data();
+      // Solo restaurar actividades — zonas y roles se gestionan desde el código
       if (d.activities)  { const a = JSON.parse(d.activities);  activities.length=0;  a.forEach(x=>activities.push(x)); rebuildLists(); setFilter("all"); }
-      if (d.equipoRoles) { const r = JSON.parse(d.equipoRoles); equipoRoles.length=0; r.forEach(x=>equipoRoles.push(x)); }
-      if (d.zonas)       { const z = JSON.parse(d.zonas);       zonas.length=0;       z.forEach(x=>zonas.push(x)); }
     }
   };
 
   window._firestoreReady = true;
-  window._loadEdicion().then(() => restoreTab()).catch(() => restoreTab());
+  // Restaurar pestaña inmediatamente (sin esperar Firebase) para evitar flash
+  restoreTab();
+  window._loadEdicion().catch(() => {});
 
   // Si había un modal abierto esperando
   if (window._pendingModal) {
