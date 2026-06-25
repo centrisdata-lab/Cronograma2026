@@ -2196,11 +2196,12 @@ function addOrganigramaExtra(titulo, desc) {
   cont.appendChild(div);
 }
 
-function switchTab(name) {
+function switchTab(name, btnEl) {
   document.querySelectorAll(".tab-section").forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("tab-" + name).classList.add("active");
-  event.currentTarget.classList.add("active");
+  const activeBtn = btnEl || (typeof event !== "undefined" && event.currentTarget) || document.querySelector(`.tab-btn[onclick*="'${name}'"]`);
+  if (activeBtn) activeBtn.classList.add("active");
   currentTab = name;
   if (name === "equipo") renderEquipo();
   if (name === "zonas") renderZonas();
@@ -2212,7 +2213,7 @@ function restoreTab() {
   const saved = localStorage.getItem("activeTab");
   if (saved && saved !== "cronograma") {
     const btn = document.querySelector(`.tab-btn[onclick*="'${saved}'"]`);
-    if (btn) { btn.click(); }
+    if (btn) switchTab(saved, btn);
   }
 }
 
@@ -2465,7 +2466,7 @@ function toggleFunciones(idx) {
   };
 
   window._firestoreReady = true;
-  window._loadEdicion().then(() => restoreTab());
+  window._loadEdicion().then(() => restoreTab()).catch(() => restoreTab());
 
   // Si había un modal abierto esperando
   if (window._pendingModal) {
