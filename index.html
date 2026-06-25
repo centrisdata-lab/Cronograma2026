@@ -1090,7 +1090,8 @@ function buildCard(item, filterKey) {
   const noteHtml = item.note ? `<div class="card-note">📎 ${item.note}</div>` : "";
 
   return `
-    <div class="card ${catCls}" onclick="openModal('${item.label.replace(/'/g,"\\'")}')">
+    <div class="card ${catCls}" onclick="editMode ? openEditForm('cronograma', activities.findIndex(a=>a.label===unescape('${escape(item.label)}'))) : openModal('${item.label.replace(/'/g,"\\'")}')">
+      <div class="edit-chip" onclick="event.stopPropagation();openEditForm('cronograma', activities.findIndex(a=>a.label===unescape('${escape(item.label)}')))">✏️ Editar</div>
       ${catTag}
       <div class="card-accent" style="background:${item.color}"></div>
       <div class="card-body">
@@ -1587,9 +1588,9 @@ async function guardarCambiosEdicion() {
 }
 
 function updateAddBtn() {
-  const labels = { equipo:"＋ Nuevo rol", organigrama:"＋ Nuevo organigrama", zonas:"＋ Nueva zona" };
+  const labels = { cronograma:"＋ Nueva actividad", equipo:"＋ Nuevo rol", zonas:"＋ Nueva zona" };
   const btn = document.getElementById("btn-add-item");
-  if (currentTab === "cronograma") {
+  if (currentTab === "organigrama") {
     btn.style.display = "none";
   } else {
     btn.style.display = "inline-block";
