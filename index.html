@@ -857,6 +857,7 @@
     <button class="org-sel-btn" onclick="showOrg(1, this)">👥 Equipo Colombia</button>
     <button class="org-sel-btn" onclick="showOrg(2, this)">🗺️ Zonal A</button>
     <button class="org-sel-btn" onclick="showOrg(3, this)">🗺️ Zonal B</button>
+    <button class="org-sel-btn" onclick="showOrg(4, this)">👥 Coordinadores Zonales</button>
   </div>
 
   <!-- Panel 0: Campus Virtual -->
@@ -1203,6 +1204,86 @@
     </div>
   </div>
   </div><!-- /org-panel-3 -->
+
+  <!-- Panel 4: Coordinadores Zonales -->
+  <div class="org-panel" id="org-panel-4" style="display:none;">
+  <div class="org-section-title">Coordinadores Zonales Campus Colombia</div>
+  <div class="org-wrap">
+    <div class="org-tree">
+
+      <!-- Nivel 1: Campus Colombia + lateral Articular -->
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%;max-width:700px;">
+        <div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="org-node top" style="background:#1565c0;min-width:200px;text-align:center;">🗺️ Campus Colombia</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0;">
+          <div style="height:2px;width:40px;background:#93c5fd;flex-shrink:0;"></div>
+          <div class="org-node coord" style="font-size:0.8rem;text-align:center;background:#1e88e5;">🔗 Articular comunicación con los enlaces departamentales</div>
+        </div>
+      </div>
+      <div style="width:2px;height:20px;background:#93c5fd;"></div>
+
+      <!-- Nivel 2: Coordinación Zonal -->
+      <div class="org-node coord" style="min-width:200px;max-width:260px;">🏛️ Coordinación Zonal</div>
+      <div style="width:2px;height:20px;background:#93c5fd;"></div>
+
+      <!-- 6 zonas -->
+      <div style="display:flex;align-items:flex-start;gap:12px;position:relative;">
+        <div style="position:absolute;top:0;left:40px;right:40px;height:2px;background:#93c5fd;"></div>
+
+        <!-- Antioquia - Eje Cafetero -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">☕ Zona Antioquia — Eje Cafetero</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Felipe Duarte</div>
+        </div>
+
+        <!-- Bogotá - Cundinamarca -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">🏙️ Zona Bogotá — Cundinamarca</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Diana Paola Garnica<br>Jeniffer Galvis</div>
+        </div>
+
+        <!-- Pacífico -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">🌿 Zona Pacífico</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Yolanda Moreno<br>Diana Escallón<br>Andrés Ledesma</div>
+        </div>
+
+        <!-- Sur y Llanos -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">🌾 Zona Sur y Llanos</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Denis Yem Martinez<br>Norfa Rios</div>
+        </div>
+
+        <!-- Caribe -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">🌊 Zona Caribe</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Anyi Cortés</div>
+        </div>
+
+        <!-- Santanderes, Cesar y Boyacá -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
+          <div style="width:2px;height:24px;background:#93c5fd"></div>
+          <div class="org-node apoyo" style="width:100%;max-width:150px;text-align:center;font-size:0.8rem;">🏔️ Santanderes, Cesar y Boyacá</div>
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node enlace" style="width:100%;max-width:150px;text-align:center;font-size:0.78rem;">Lizeth Gutierrez</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div><!-- /org-panel-4 -->
 
 </main>
 </div>
