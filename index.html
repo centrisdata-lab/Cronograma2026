@@ -616,8 +616,15 @@
       background: var(--blue); color: white; font-family: inherit;
       font-size: 0.78rem; font-weight: 800; cursor: pointer;
     }
+    .btn-guardar-edicion {
+      margin-left: auto; padding: 7px 20px; border-radius: 20px;
+      border: none; background: var(--blue); color: white;
+      font-family: inherit; font-size: 0.78rem; font-weight: 800; cursor: pointer;
+      box-shadow: 0 3px 10px rgba(26,60,110,0.25);
+    }
+    .btn-guardar-edicion:hover { background: var(--blue-mid); }
     .btn-salir-edicion {
-      margin-left: auto; padding: 7px 18px; border-radius: 20px;
+      padding: 7px 18px; border-radius: 20px;
       border: 2px solid var(--red); background: white; color: var(--red);
       font-family: inherit; font-size: 0.78rem; font-weight: 800; cursor: pointer;
     }
@@ -711,7 +718,8 @@
 <div class="edit-bar" id="edit-bar">
   <span>✏️ MODO EDICIÓN ACTIVO</span>
   <button class="btn-add" id="btn-add-item" onclick="openAddForm()">＋ Añadir</button>
-  <button class="btn-salir-edicion" onclick="exitEditMode()">✕ Salir sin guardar</button>
+  <button class="btn-salir-edicion" onclick="exitEditMode()">✕ Salir</button>
+  <button class="btn-guardar-edicion" onclick="guardarCambiosEdicion()">💾 Guardar cambios</button>
 </div>
 
 <!-- Modal contraseña -->
@@ -1556,6 +1564,29 @@ function exitEditMode() {
   closeEditForm();
 }
 
+async function guardarCambiosEdicion() {
+  const btn = document.querySelector(".btn-guardar-edicion");
+  btn.textContent = "Guardando…";
+  btn.disabled = true;
+  try {
+    await window._saveEdicion({
+      activities: activities.map(a => ({...a})),
+      equipoRoles: equipoRoles.map(r => ({...r})),
+      zonas: zonas.map(z => ({...z})),
+    });
+    btn.textContent = "✅ Guardado";
+    setTimeout(() => {
+      btn.textContent = "💾 Guardar cambios";
+      btn.disabled = false;
+      exitEditMode();
+    }, 1200);
+  } catch(e) {
+    btn.textContent = "💾 Guardar cambios";
+    btn.disabled = false;
+    alert("Error al guardar. Intenta de nuevo.");
+  }
+}
+
 function updateAddBtn() {
   const labels = { cronograma:"＋ Nueva actividad", equipo:"＋ Nuevo rol", organigrama:"＋ Nuevo organigrama", zonas:"＋ Nueva zona" };
   document.getElementById("btn-add-item").textContent = labels[currentTab] || "＋ Añadir";
@@ -2012,7 +2043,27 @@ function toggleFunciones(idx) {
     }
   };
 
+  window._saveEdicion = async (data) => {
+    await setDoc(doc(db, "config", "contenido"), {
+      activities:  JSON.stringify(data.activities),
+      equipoRoles: JSON.stringify(data.equipoRoles),
+      zonas:       JSON.stringify(data.zonas),
+      actualizado: new Date().toISOString(),
+    });
+  };
+
+  window._loadEdicion = async () => {
+    const snap = await getDoc(doc(db, "config", "contenido"));
+    if (snap.exists()) {
+      const d = snap.data();
+      if (d.activities)  { const a = JSON.parse(d.activities);  activities.length=0;  a.forEach(x=>activities.push(x)); rebuildLists(); setFilter("all"); }
+      if (d.equipoRoles) { const r = JSON.parse(d.equipoRoles); equipoRoles.length=0; r.forEach(x=>equipoRoles.push(x)); }
+      if (d.zonas)       { const z = JSON.parse(d.zonas);       zonas.length=0;       z.forEach(x=>zonas.push(x)); }
+    }
+  };
+
   window._firestoreReady = true;
+  window._loadEdicion();
 
   // Si había un modal abierto esperando
   if (window._pendingModal) {
