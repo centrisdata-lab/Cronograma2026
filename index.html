@@ -647,14 +647,15 @@
 
     /* edit card overlays */
     body.edit-mode .card { position: relative; }
-    body.edit-mode .card::after {
-      content: '✏️ Editar'; position: absolute; inset: 0;
-      background: rgba(26,60,110,0.08); border-radius: inherit;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; font-weight: 800; color: var(--blue);
-      opacity: 0; transition: opacity 0.15s; pointer-events: none;
+    .edit-chip {
+      position: absolute; top: 8px; left: 8px; z-index: 10;
+      background: var(--orange); color: white;
+      font-size: 0.68rem; font-weight: 800; padding: 3px 10px;
+      border-radius: 20px; display: none; align-items: center; gap: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;
+      pointer-events: none;
     }
-    body.edit-mode .card:hover::after { opacity: 1; }
+    body.edit-mode .edit-chip { display: flex; pointer-events: all; }
 
     /* edit form modal */
     .edit-form-overlay {
@@ -1082,6 +1083,7 @@ function buildCard(item, filterKey) {
 
   return `
     <div class="card ${catCls}" onclick="editMode ? openEditForm('cronograma', activities.findIndex(a=>a.label===unescape('${escape(item.label)}'))) : openModal('${item.label.replace(/'/g,"\\'")}')">
+      <div class="edit-chip" onclick="event.stopPropagation();openEditForm('cronograma', activities.findIndex(a=>a.label===unescape('${escape(item.label)}')))">✏️ Editar</div>
       ${catTag}
       <div class="card-accent" style="background:${item.color}"></div>
       <div class="card-body">
@@ -1467,7 +1469,8 @@ function renderZonas() {
   zonasRendered = true;
   const grid = document.getElementById("zonas-grid");
   grid.innerHTML = zonas.map((z, idx) => `
-    <div class="zona-card" id="zcard-${z.id}" onclick="editMode ? openEditForm('zonas',${idx}) : selectZona('${z.id}')">
+    <div class="zona-card" style="position:relative" id="zcard-${z.id}" onclick="editMode ? openEditForm('zonas',${idx}) : selectZona('${z.id}')">
+      <div class="edit-chip" onclick="event.stopPropagation();openEditForm('zonas',${idx})">✏️ Editar</div>
       <div class="zona-card-top">
         <div class="zona-icon" style="background:${z.color}">${z.emoji}</div>
         <div>
@@ -1948,10 +1951,11 @@ function renderEquipo() {
   equipoRendered = true;
   const grid = document.getElementById("equipo-grid");
   grid.innerHTML = equipoRoles.map((rol, idx) => `
-    <div class="rol-card" onclick="if(editMode) openEditForm('equipo',${idx})">
+    <div class="rol-card" style="position:relative" onclick="if(editMode) openEditForm('equipo',${idx})">
+      <div class="edit-chip" onclick="event.stopPropagation();openEditForm('equipo',${idx})">✏️ Editar</div>
       <div class="rol-card-header">
         <div class="rol-icon" style="background:${rol.color}">${rol.emoji}</div>
-        <h3>${rol.nombre}${editMode ? ' <span style="font-size:0.7rem;color:var(--orange)">✏️</span>' : ''}</h3>
+        <h3>${rol.nombre}</h3>
       </div>
       <div class="rol-perfil">${rol.perfil}</div>
       <div class="rol-funciones collapsed" id="func-${idx}">
