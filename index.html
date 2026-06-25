@@ -652,6 +652,20 @@
     .pwd-cancel { padding: 9px 20px; border-radius: 10px; border: 1.5px solid var(--border); background: white; font-family: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
     .pwd-ok { padding: 9px 20px; border-radius: 10px; border: none; background: var(--blue); color: white; font-family: inherit; font-size: 0.85rem; font-weight: 800; cursor: pointer; }
 
+    /* org selector */
+    .org-selector {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      padding: 20px 24px 8px; justify-content: center;
+    }
+    .org-sel-btn {
+      padding: 9px 20px; border-radius: 24px; border: 2px solid var(--blue);
+      background: white; color: var(--blue); font-family: inherit;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      transition: all 0.18s;
+    }
+    .org-sel-btn:hover { background: #dbeafe; }
+    .org-sel-btn.active { background: var(--blue); color: white; }
+
     /* edit card overlays */
     body.edit-mode .card { position: relative; }
     .edit-chip {
@@ -837,6 +851,16 @@
 <!-- TAB ORGANIGRAMA -->
 <div id="tab-organigrama" class="tab-section">
 <main>
+  <!-- Selector de organigramas -->
+  <div class="org-selector" id="org-selector">
+    <button class="org-sel-btn active" onclick="showOrg(0, this)">🏛️ Campus Virtual</button>
+    <button class="org-sel-btn" onclick="showOrg(1, this)">👥 Equipo Colombia</button>
+    <button class="org-sel-btn" onclick="showOrg(2, this)">🗺️ Regional A</button>
+    <button class="org-sel-btn" onclick="showOrg(3, this)">🗺️ Regional B</button>
+  </div>
+
+  <!-- Panel 0: Campus Virtual -->
+  <div class="org-panel" id="org-panel-0">
   <div class="org-section-title">Estructura Organizacional — Campus Virtual FIMLM 2026</div>
   <div class="org-wrap">
     <div class="org-tree">
@@ -906,9 +930,11 @@
     </div>
   </div>
   <div id="org-extra"></div>
+  </div><!-- /org-panel-0 -->
 
-  <!-- Organigrama con nombres -->
-  <div class="org-section-title" style="margin-top:48px;">Estructura Organizacional Campus — Equipo Colombia</div>
+  <!-- Panel 1: Equipo Colombia -->
+  <div class="org-panel" id="org-panel-1" style="display:none;">
+  <div class="org-section-title">Estructura Organizacional Campus — Equipo Colombia</div>
   <div class="org-wrap">
     <div class="org-tree">
 
@@ -1020,9 +1046,11 @@
       </div><!-- fin nivel 4 -->
     </div>
   </div>
+  </div><!-- /org-panel-1 -->
 
-  <!-- Organigrama Regional A -->
-  <div class="org-section-title" style="margin-top:48px;">Estructura Regional Campus Colombia — Zona Antioquia · Eje Cafetero · Bogotá · Cundinamarca · Pacífico · Sur y Santanderes</div>
+  <!-- Panel 2: Regional A -->
+  <div class="org-panel" id="org-panel-2" style="display:none;">
+  <div class="org-section-title">Estructura Regional — Zona Antioquia · Eje Cafetero · Bogotá · Cundinamarca · Pacífico · Sur y Santanderes</div>
   <div class="org-wrap">
     <div class="org-tree">
       <div class="org-node top" style="background:#1565c0;">🗺️ &nbsp;Campus Colombia</div>
@@ -1073,9 +1101,11 @@
       </div>
     </div>
   </div>
+  </div><!-- /org-panel-2 -->
 
-  <!-- Organigrama Regional B -->
-  <div class="org-section-title" style="margin-top:48px;">Estructura Regional Campus Colombia — Zona Caribe · Santanderes y Boyacá</div>
+  <!-- Panel 3: Regional B -->
+  <div class="org-panel" id="org-panel-3" style="display:none;">
+  <div class="org-section-title">Estructura Regional — Zona Caribe · Santanderes y Boyacá</div>
   <div class="org-wrap">
     <div class="org-tree">
       <div class="org-node top" style="background:#1565c0;">🗺️ &nbsp;Campus Colombia</div>
@@ -1121,6 +1151,7 @@
       </div>
     </div>
   </div>
+  </div><!-- /org-panel-3 -->
 
 </main>
 </div>
@@ -1769,6 +1800,12 @@ function enterEditMode() {
   document.getElementById("btn-edit-mode").textContent = "✏️ Editando…";
   document.getElementById("edit-bar").classList.add("open");
   updateAddBtn();
+}
+
+function showOrg(idx, btn) {
+  document.querySelectorAll(".org-panel").forEach((p, i) => p.style.display = i === idx ? "" : "none");
+  document.querySelectorAll(".org-sel-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
 }
 
 function exitEditMode() {
