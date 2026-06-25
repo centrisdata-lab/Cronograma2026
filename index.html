@@ -594,6 +594,100 @@
       .dash-card .dc-sub { font-size: 0.6rem; }
       .cards-grid { grid-template-columns: 1fr; }
     }
+    /* ── EDIT MODE ── */
+    .btn-edit-mode {
+      margin-left: auto; padding: 9px 20px; border-radius: 20px;
+      border: 2px solid var(--border); background: var(--white);
+      font-family: inherit; font-size: 0.78rem; font-weight: 800;
+      color: var(--muted); cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    }
+    .btn-edit-mode:hover { border-color: var(--orange); color: var(--orange); }
+    .btn-edit-mode.active { background: var(--orange); color: white; border-color: var(--orange); }
+
+    .edit-bar {
+      display: none; background: #fff8e1; border-bottom: 2px solid var(--orange);
+      padding: 10px 32px; align-items: center; gap: 12px;
+    }
+    .edit-bar.open { display: flex; }
+    .edit-bar span { font-size: 0.82rem; font-weight: 700; color: var(--orange); }
+    .btn-add {
+      padding: 7px 18px; border-radius: 20px; border: none;
+      background: var(--blue); color: white; font-family: inherit;
+      font-size: 0.78rem; font-weight: 800; cursor: pointer;
+    }
+    .btn-salir-edicion {
+      margin-left: auto; padding: 7px 18px; border-radius: 20px;
+      border: 2px solid var(--red); background: white; color: var(--red);
+      font-family: inherit; font-size: 0.78rem; font-weight: 800; cursor: pointer;
+    }
+
+    /* password modal */
+    .pwd-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,20,50,0.6); align-items: center; justify-content: center;
+    }
+    .pwd-overlay.open { display: flex; }
+    .pwd-box {
+      background: white; border-radius: 20px; padding: 36px 40px;
+      width: 360px; max-width: 90vw; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .pwd-box h3 { font-size: 1.1rem; font-weight: 900; color: var(--blue); }
+    .pwd-box p  { font-size: 0.85rem; color: var(--muted); }
+    .pwd-input {
+      padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: 1rem; outline: none; width: 100%;
+    }
+    .pwd-input:focus { border-color: var(--orange); }
+    .pwd-error { font-size: 0.8rem; color: var(--red); font-weight: 700; display: none; }
+    .pwd-btns { display: flex; gap: 10px; justify-content: flex-end; }
+    .pwd-cancel { padding: 9px 20px; border-radius: 10px; border: 1.5px solid var(--border); background: white; font-family: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    .pwd-ok { padding: 9px 20px; border-radius: 10px; border: none; background: var(--blue); color: white; font-family: inherit; font-size: 0.85rem; font-weight: 800; cursor: pointer; }
+
+    /* edit card overlays */
+    body.edit-mode .card { position: relative; }
+    body.edit-mode .card::after {
+      content: '✏️ Editar'; position: absolute; inset: 0;
+      background: rgba(26,60,110,0.08); border-radius: inherit;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; color: var(--blue);
+      opacity: 0; transition: opacity 0.15s; pointer-events: none;
+    }
+    body.edit-mode .card:hover::after { opacity: 1; }
+
+    /* edit form modal */
+    .edit-form-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,20,50,0.6); align-items: center; justify-content: center; padding: 20px;
+    }
+    .edit-form-overlay.open { display: flex; }
+    .edit-form-box {
+      background: white; border-radius: 20px; padding: 32px 36px;
+      width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25); display: flex; flex-direction: column; gap: 14px;
+    }
+    .edit-form-box h3 { font-size: 1.1rem; font-weight: 900; color: var(--blue); }
+    .ef-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+    .ef-input, .ef-textarea {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: inherit; font-size: 0.9rem; outline: none;
+    }
+    .ef-input:focus, .ef-textarea:focus { border-color: var(--orange); }
+    .ef-textarea { min-height: 80px; resize: vertical; }
+    .ef-row { display: flex; gap: 10px; }
+    .ef-row > div { flex: 1; }
+    .ef-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; }
+    .ef-cancel { padding: 9px 20px; border-radius: 10px; border: 1.5px solid var(--border); background: white; font-family: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    .ef-delete { padding: 9px 20px; border-radius: 10px; border: none; background: var(--red-bg); color: var(--red); font-family: inherit; font-size: 0.85rem; font-weight: 800; cursor: pointer; }
+    .ef-save { padding: 9px 20px; border-radius: 10px; border: none; background: var(--blue); color: white; font-family: inherit; font-size: 0.85rem; font-weight: 800; cursor: pointer; }
+    .ef-members { display: flex; flex-direction: column; gap: 8px; }
+    .ef-member-row { display: flex; gap: 6px; align-items: center; }
+    .ef-member-row input { flex: 1; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.82rem; outline: none; }
+    .ef-member-row input:focus { border-color: var(--orange); }
+    .ef-member-remove { background: none; border: none; color: var(--red); font-size: 1.1rem; cursor: pointer; padding: 4px; }
+    .ef-add-member { padding: 6px 14px; border-radius: 8px; border: 1.5px dashed var(--border); background: white; font-family: inherit; font-size: 0.78rem; font-weight: 700; color: var(--muted); cursor: pointer; }
+    .ef-add-member:hover { border-color: var(--blue); color: var(--blue); }
   </style>
 </head>
 <body>
@@ -608,8 +702,43 @@
       <h1>Gestión Actividades Campus 2026</h1>
       <p>Ruta de Actividades Pedagógicas</p>
     </div>
+    <button class="btn-edit-mode" id="btn-edit-mode" onclick="toggleEditMode()">✏️ Editar contenido</button>
   </div>
 </header>
+
+<!-- Barra de edición -->
+<div class="edit-bar" id="edit-bar">
+  <span>✏️ MODO EDICIÓN ACTIVO</span>
+  <button class="btn-add" id="btn-add-item" onclick="openAddForm()">＋ Añadir</button>
+  <button class="btn-salir-edicion" onclick="exitEditMode()">✕ Salir sin guardar</button>
+</div>
+
+<!-- Modal contraseña -->
+<div class="pwd-overlay" id="pwd-overlay">
+  <div class="pwd-box">
+    <h3>🔒 Acceso de edición</h3>
+    <p>Ingresa la contraseña para editar el contenido.</p>
+    <input class="pwd-input" id="pwd-input" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()"/>
+    <div class="pwd-error" id="pwd-error">Contraseña incorrecta</div>
+    <div class="pwd-btns">
+      <button class="pwd-cancel" onclick="closePwd()">Cancelar</button>
+      <button class="pwd-ok" onclick="checkPwd()">Ingresar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal formulario edición -->
+<div class="edit-form-overlay" id="edit-form-overlay">
+  <div class="edit-form-box" id="edit-form-box">
+    <h3 id="ef-title">Editar</h3>
+    <div id="ef-fields"></div>
+    <div class="ef-btns">
+      <button class="ef-cancel" onclick="closeEditForm()">Cancelar</button>
+      <button class="ef-delete" id="ef-delete-btn" onclick="deleteEditItem()" style="display:none">🗑 Eliminar</button>
+      <button class="ef-save" onclick="saveEditForm()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
 
 <nav class="tabs">
   <button class="tab-btn active" onclick="switchTab('cronograma')">📋 Cronograma</button>
@@ -767,6 +896,7 @@
 
     </div>
   </div>
+  <div id="org-extra"></div>
 </main>
 </div>
 
@@ -951,7 +1081,7 @@ function buildCard(item, filterKey) {
   const noteHtml = item.note ? `<div class="card-note">📎 ${item.note}</div>` : "";
 
   return `
-    <div class="card ${catCls}" onclick="openModal('${item.label.replace(/'/g,"\\'")}')">
+    <div class="card ${catCls}" onclick="editMode ? openEditForm('cronograma', activities.findIndex(a=>a.label===unescape('${escape(item.label)}'))) : openModal('${item.label.replace(/'/g,"\\'")}')">
       ${catTag}
       <div class="card-accent" style="background:${item.color}"></div>
       <div class="card-body">
@@ -1336,8 +1466,8 @@ function renderZonas() {
   if (zonasRendered) return;
   zonasRendered = true;
   const grid = document.getElementById("zonas-grid");
-  grid.innerHTML = zonas.map(z => `
-    <div class="zona-card" id="zcard-${z.id}" onclick="selectZona('${z.id}')">
+  grid.innerHTML = zonas.map((z, idx) => `
+    <div class="zona-card" id="zcard-${z.id}" onclick="editMode ? openEditForm('zonas',${idx}) : selectZona('${z.id}')">
       <div class="zona-card-top">
         <div class="zona-icon" style="background:${z.color}">${z.emoji}</div>
         <div>
@@ -1377,13 +1507,277 @@ function selectZona(id) {
 }
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
+// ── EDIT MODE ────────────────────────────────────────────────────────────────
+let editMode = false;
+let editContext = null; // { type, index } del item en edición
+
+function toggleEditMode() {
+  if (editMode) { exitEditMode(); return; }
+  document.getElementById("pwd-overlay").classList.add("open");
+  setTimeout(() => document.getElementById("pwd-input").focus(), 100);
+}
+
+function closePwd() {
+  document.getElementById("pwd-overlay").classList.remove("open");
+  document.getElementById("pwd-input").value = "";
+  document.getElementById("pwd-error").style.display = "none";
+}
+
+function checkPwd() {
+  const val = document.getElementById("pwd-input").value;
+  if (val === "123") {
+    closePwd();
+    enterEditMode();
+  } else {
+    document.getElementById("pwd-error").style.display = "block";
+    document.getElementById("pwd-input").value = "";
+    document.getElementById("pwd-input").focus();
+  }
+}
+
+function enterEditMode() {
+  editMode = true;
+  document.body.classList.add("edit-mode");
+  document.getElementById("btn-edit-mode").classList.add("active");
+  document.getElementById("btn-edit-mode").textContent = "✏️ Editando…";
+  document.getElementById("edit-bar").classList.add("open");
+  updateAddBtn();
+}
+
+function exitEditMode() {
+  editMode = false;
+  document.body.classList.remove("edit-mode");
+  document.getElementById("btn-edit-mode").classList.remove("active");
+  document.getElementById("btn-edit-mode").textContent = "✏️ Editar contenido";
+  document.getElementById("edit-bar").classList.remove("open");
+  closeEditForm();
+}
+
+function updateAddBtn() {
+  const labels = { cronograma:"＋ Nueva actividad", equipo:"＋ Nuevo rol", organigrama:"＋ Nuevo organigrama", zonas:"＋ Nueva zona" };
+  document.getElementById("btn-add-item").textContent = labels[currentTab] || "＋ Añadir";
+}
+
+// ── EDIT FORM ─────────────────────────────────────────────────────────────────
+let currentTab = "cronograma";
+let efContext = null; // { type, index or null }
+
+function closeEditForm() {
+  document.getElementById("edit-form-overlay").classList.remove("open");
+  efContext = null;
+}
+
+function openAddForm() {
+  efContext = { type: currentTab, index: null };
+  buildForm();
+  document.getElementById("ef-delete-btn").style.display = "none";
+  document.getElementById("edit-form-overlay").classList.add("open");
+}
+
+function openEditForm(type, index) {
+  if (!editMode) return;
+  efContext = { type, index };
+  buildForm();
+  document.getElementById("ef-delete-btn").style.display = "inline-block";
+  document.getElementById("edit-form-overlay").classList.add("open");
+}
+
+function buildForm() {
+  const { type, index } = efContext;
+  const box = document.getElementById("ef-fields");
+  const isNew = index === null;
+
+  if (type === "cronograma") {
+    const a = isNew ? { label:"", emoji:"📌", color:"#1a3c6e", start:"", end:"", note:"" } : activities[index];
+    document.getElementById("ef-title").textContent = isNew ? "Nueva actividad" : "Editar actividad";
+    box.innerHTML = `
+      <div><div class="ef-label">Nombre de la actividad</div><input class="ef-input" id="ef-label" value="${a.label||""}"/></div>
+      <div class="ef-row">
+        <div><div class="ef-label">Emoji</div><input class="ef-input" id="ef-emoji" value="${a.emoji||"📌"}" style="width:80px"/></div>
+        <div><div class="ef-label">Color</div><input type="color" id="ef-color" value="${a.color||"#1a3c6e"}" style="height:42px;width:60px;border-radius:8px;border:1.5px solid #d0dff5;cursor:pointer"/></div>
+      </div>
+      <div class="ef-row">
+        <div><div class="ef-label">Fecha inicio</div><input class="ef-input" type="date" id="ef-start" value="${a.start||""}"/></div>
+        <div><div class="ef-label">Fecha fin (opcional)</div><input class="ef-input" type="date" id="ef-end" value="${a.end||""}"/></div>
+      </div>
+      <div><div class="ef-label">Nota / Detalle</div><textarea class="ef-textarea" id="ef-note">${a.note||""}</textarea></div>
+    `;
+  } else if (type === "equipo") {
+    const r = isNew ? { nombre:"", emoji:"👤", color:"#1a3c6e", perfil:"", funciones:[] } : equipoRoles[index];
+    document.getElementById("ef-title").textContent = isNew ? "Nuevo rol" : "Editar rol";
+    box.innerHTML = `
+      <div class="ef-row">
+        <div style="flex:2"><div class="ef-label">Nombre del rol</div><input class="ef-input" id="ef-nombre" value="${r.nombre||""}"/></div>
+        <div><div class="ef-label">Emoji</div><input class="ef-input" id="ef-emoji" value="${r.emoji||"👤"}" style="width:70px"/></div>
+        <div><div class="ef-label">Color</div><input type="color" id="ef-color" value="${r.color||"#1a3c6e"}" style="height:42px;width:60px;border-radius:8px;border:1.5px solid #d0dff5;cursor:pointer"/></div>
+      </div>
+      <div><div class="ef-label">Perfil general</div><textarea class="ef-textarea" id="ef-perfil">${r.perfil||""}</textarea></div>
+      <div>
+        <div class="ef-label">Funciones principales</div>
+        <div class="ef-members" id="ef-funciones">
+          ${(r.funciones||[]).map((f,i) => `<div class="ef-member-row"><input value="${f}" data-fi="${i}"/><button class="ef-member-remove" onclick="removeFuncion(${i})">✕</button></div>`).join("")}
+        </div>
+        <button class="ef-add-member" onclick="addFuncion()">＋ Añadir función</button>
+      </div>
+    `;
+  } else if (type === "zonas") {
+    const z = isNew ? { nombre:"", emoji:"📍", color:"#1a3c6e", departamentos:"", equipo:[] } : zonas[index];
+    document.getElementById("ef-title").textContent = isNew ? "Nueva zona" : "Editar zona";
+    box.innerHTML = `
+      <div class="ef-row">
+        <div style="flex:2"><div class="ef-label">Nombre de la zona</div><input class="ef-input" id="ef-nombre" value="${z.nombre||""}"/></div>
+        <div><div class="ef-label">Emoji</div><input class="ef-input" id="ef-emoji" value="${z.emoji||"📍"}" style="width:70px"/></div>
+        <div><div class="ef-label">Color</div><input type="color" id="ef-color" value="${z.color||"#1a3c6e"}" style="height:42px;width:60px;border-radius:8px;border:1.5px solid #d0dff5;cursor:pointer"/></div>
+      </div>
+      <div><div class="ef-label">Departamentos</div><input class="ef-input" id="ef-deptos" value="${z.departamentos||""}"/></div>
+      <div>
+        <div class="ef-label">Integrantes del equipo</div>
+        <div class="ef-members" id="ef-miembros">
+          ${(z.equipo||[]).map((m,i) => `
+            <div class="ef-member-row" data-mi="${i}">
+              <input placeholder="Nombre" value="${m.nombre||""}" data-field="nombre"/>
+              <input placeholder="Rol" value="${m.rol||""}" data-field="rol"/>
+              <input placeholder="Correo" value="${m.correo||""}" data-field="correo"/>
+              <input placeholder="Celular" value="${m.cel||""}" data-field="cel"/>
+              <button class="ef-member-remove" onclick="removeMiembro(${i})">✕</button>
+            </div>`).join("")}
+        </div>
+        <button class="ef-add-member" onclick="addMiembro()">＋ Añadir integrante</button>
+      </div>
+    `;
+  } else if (type === "organigrama") {
+    document.getElementById("ef-title").textContent = "Nuevo organigrama";
+    box.innerHTML = `
+      <div><div class="ef-label">Título del organigrama</div><input class="ef-input" id="ef-org-titulo" placeholder="Ej: Estructura Regional 2026"/></div>
+      <div><div class="ef-label">Descripción (opcional)</div><textarea class="ef-textarea" id="ef-org-desc" placeholder="Breve descripción del organigrama"></textarea></div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:4px">Después de guardar podrás ver el organigrama en la sección.</p>
+    `;
+    document.getElementById("ef-delete-btn").style.display = "none";
+  }
+}
+
+function addFuncion() {
+  const cont = document.getElementById("ef-funciones");
+  const i = cont.children.length;
+  const div = document.createElement("div");
+  div.className = "ef-member-row";
+  div.innerHTML = `<input placeholder="Nueva función" data-fi="${i}"/><button class="ef-member-remove" onclick="this.parentElement.remove()">✕</button>`;
+  cont.appendChild(div);
+}
+function removeFuncion(i) {
+  document.querySelectorAll("#ef-funciones .ef-member-row")[i]?.remove();
+}
+function addMiembro() {
+  const cont = document.getElementById("ef-miembros");
+  const div = document.createElement("div");
+  div.className = "ef-member-row";
+  div.innerHTML = `<input placeholder="Nombre" data-field="nombre"/><input placeholder="Rol" data-field="rol"/><input placeholder="Correo" data-field="correo"/><input placeholder="Celular" data-field="cel"/><button class="ef-member-remove" onclick="this.parentElement.remove()">✕</button>`;
+  cont.appendChild(div);
+}
+function removeMiembro(i) {
+  document.querySelectorAll("#ef-miembros .ef-member-row")[i]?.remove();
+}
+
+function saveEditForm() {
+  const { type, index } = efContext;
+  const isNew = index === null;
+
+  if (type === "cronograma") {
+    const obj = {
+      label: document.getElementById("ef-label").value.trim(),
+      emoji: document.getElementById("ef-emoji").value.trim(),
+      color: document.getElementById("ef-color").value,
+      start: document.getElementById("ef-start").value,
+      end:   document.getElementById("ef-end").value || null,
+      note:  document.getElementById("ef-note").value.trim(),
+    };
+    if (!obj.label || !obj.start) { alert("El nombre y la fecha de inicio son obligatorios."); return; }
+    if (isNew) activities.push(obj); else activities[index] = { ...activities[index], ...obj };
+    rebuildLists(); setFilter("all");
+
+  } else if (type === "equipo") {
+    const funciones = [...document.querySelectorAll("#ef-funciones input")].map(i => i.value.trim()).filter(Boolean);
+    const obj = {
+      nombre: document.getElementById("ef-nombre").value.trim(),
+      emoji:  document.getElementById("ef-emoji").value.trim(),
+      color:  document.getElementById("ef-color").value,
+      perfil: document.getElementById("ef-perfil").value.trim(),
+      funciones,
+    };
+    if (!obj.nombre) { alert("El nombre del rol es obligatorio."); return; }
+    if (isNew) equipoRoles.push(obj); else equipoRoles[index] = obj;
+    equipoRendered = false; renderEquipo();
+
+  } else if (type === "zonas") {
+    const rows = [...document.querySelectorAll("#ef-miembros .ef-member-row")];
+    const equipo = rows.map(row => ({
+      nombre: row.querySelector('[data-field="nombre"]')?.value.trim() || "",
+      rol:    row.querySelector('[data-field="rol"]')?.value.trim() || "",
+      correo: row.querySelector('[data-field="correo"]')?.value.trim() || null,
+      cel:    row.querySelector('[data-field="cel"]')?.value.trim() || null,
+    })).filter(m => m.nombre);
+    const obj = {
+      id:            isNew ? "zona_" + Date.now() : zonas[index].id,
+      nombre:        document.getElementById("ef-nombre").value.trim(),
+      emoji:         document.getElementById("ef-emoji").value.trim(),
+      color:         document.getElementById("ef-color").value,
+      departamentos: document.getElementById("ef-deptos").value.trim(),
+      equipo,
+    };
+    if (!obj.nombre) { alert("El nombre de la zona es obligatorio."); return; }
+    if (isNew) zonas.push(obj); else zonas[index] = obj;
+    zonasRendered = false; renderZonas();
+
+  } else if (type === "organigrama") {
+    const titulo = document.getElementById("ef-org-titulo").value.trim();
+    const desc   = document.getElementById("ef-org-desc").value.trim();
+    if (!titulo) { alert("El título es obligatorio."); return; }
+    addOrganigramaExtra(titulo, desc);
+  }
+
+  closeEditForm();
+}
+
+function deleteEditItem() {
+  const { type, index } = efContext;
+  if (!confirm("¿Eliminar este elemento?")) return;
+  if (type === "cronograma") { activities.splice(index, 1); rebuildLists(); setFilter("all"); }
+  else if (type === "equipo") { equipoRoles.splice(index, 1); equipoRendered = false; renderEquipo(); }
+  else if (type === "zonas") { zonas.splice(index, 1); zonasRendered = false; renderZonas(); }
+  closeEditForm();
+}
+
+function rebuildLists() {
+  lists.active   = activities.filter(a => isActive(a) && !isVencePronto(a));
+  lists.vence    = activities.filter(a => isVencePronto(a));
+  lists.upcoming = activities.filter(a => isUpcoming(a)).sort((a,b) => a.start.localeCompare(b.start));
+  lists.done     = activities.filter(a => isPast(a)).sort((a,b) => b.end ? b.end.localeCompare(a.end||a.start) : -1);
+  document.getElementById("cnt-active").textContent   = lists.active.length + lists.vence.length;
+  document.getElementById("cnt-upcoming").textContent = lists.upcoming.length;
+  document.getElementById("cnt-done").textContent     = lists.done.length;
+}
+
+// organigramas extra
+const organigramasExtra = [];
+function addOrganigramaExtra(titulo, desc) {
+  organigramasExtra.push({ titulo, desc });
+  const cont = document.getElementById("org-extra");
+  if (!cont) return;
+  const div = document.createElement("div");
+  div.style = "margin-top:32px;background:white;border-radius:16px;padding:24px 28px;border:1.5px solid var(--border);";
+  div.innerHTML = `<h3 style="font-size:1rem;font-weight:900;color:var(--blue);margin-bottom:8px">${titulo}</h3><p style="font-size:0.85rem;color:var(--muted)">${desc||""}</p>`;
+  cont.appendChild(div);
+}
+
 function switchTab(name) {
   document.querySelectorAll(".tab-section").forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("tab-" + name).classList.add("active");
   event.currentTarget.classList.add("active");
+  currentTab = name;
   if (name === "equipo") renderEquipo();
   if (name === "zonas") renderZonas();
+  if (editMode) updateAddBtn();
 }
 
 // ── EQUIPO DATA ───────────────────────────────────────────────────────────────
@@ -1554,10 +1948,10 @@ function renderEquipo() {
   equipoRendered = true;
   const grid = document.getElementById("equipo-grid");
   grid.innerHTML = equipoRoles.map((rol, idx) => `
-    <div class="rol-card">
+    <div class="rol-card" onclick="if(editMode) openEditForm('equipo',${idx})">
       <div class="rol-card-header">
         <div class="rol-icon" style="background:${rol.color}">${rol.emoji}</div>
-        <h3>${rol.nombre}</h3>
+        <h3>${rol.nombre}${editMode ? ' <span style="font-size:0.7rem;color:var(--orange)">✏️</span>' : ''}</h3>
       </div>
       <div class="rol-perfil">${rol.perfil}</div>
       <div class="rol-funciones collapsed" id="func-${idx}">
