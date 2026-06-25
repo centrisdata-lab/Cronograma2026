@@ -1770,6 +1770,7 @@ const zonas = [
     id: "caribe", nombre: "Zona Caribe", emoji: "🌊", color: "#0891b2",
     departamentos: "Atlántico · Guajira · Córdoba · Cesar · Sucre · San Andrés",
     equipo: [
+      { nombre: "Anyi Cortés", rol: "Coordinadora Zonal", correo: "anyi.cortes@fimlm.education", cel: "3116143718" },
       { nombre: "Yudy Paola Sedano", rol: "Encargada Pedagógica", correo: "judy.sedano@fimlm.education", cel: "3124682537" },
       { nombre: "Melissa Quirós", rol: "Apoyo Pedagógico", correo: "melissa.quiroz@fimlm.education", cel: "3126233254" },
       { nombre: "Patricia Palacio", rol: "Encargada de Tutores", correo: "patricia.palacio@fimlm.education", cel: "3135821671" },
@@ -1782,6 +1783,7 @@ const zonas = [
     id: "antioquia", nombre: "Antioquia / Eje Cafetero", emoji: "☕", color: "#7c3aed",
     departamentos: "Antioquia · Caldas · Risaralda · Quindío · Urabá",
     equipo: [
+      { nombre: "Felipe Duarte", rol: "Coordinador Zonal", correo: "felipe.duarte@fimlm.education", cel: "3104584879" },
       { nombre: "Luz Aleyda Galindo", rol: "Encargada Pedagógica", correo: "luz.galindo@fimlm.education", cel: "3138889338" },
       { nombre: "Alba Rubi Botero", rol: "Encargado Pedagógico", correo: "alba.botero@fimlm.education", cel: "" },
       { nombre: "Estefania Larrota", rol: "Encargada Pedagógica", correo: "katerina.larrota@fimlm.education", cel: "3012077257" },
@@ -1795,15 +1797,16 @@ const zonas = [
     id: "pacifico", nombre: "Zona Pacífico", emoji: "🌿", color: "#059669",
     departamentos: "Valle del Cauca · Cauca · Chocó · Nariño · Putumayo",
     equipo: [
-      { nombre: "Yolanda Moreno", rol: "Coordinadora Zona / Enlace Valle del Cauca", correo: "cali.sameco@fimlm.org", cel: "3164937355" },
-      { nombre: "Diana Escallón", rol: "Apoyo Coordinadora / Enlace Valle", correo: "diana.escallon@fimlm.education", cel: "3146783487" },
+      { nombre: "Yolanda Moreno", rol: "Coordinadora Zonal / Enlace Valle del Cauca", correo: "cali.sameco@fimlm.org", cel: "3164937355" },
+      { nombre: "Diana Escallón", rol: "Coordinadora Zonal / Enlace Valle", correo: "diana.escallon@fimlm.education", cel: "3146783487" },
+      { nombre: "Andrés Ledesma", rol: "Coordinador Zonal / Enlace Cauca", correo: "andres.ledesma@fimlm.education", cel: "3187236539" },
       { nombre: "Betty Machado", rol: "Encargada Pedagogía", correo: "betty.machado@fimlm.education", cel: "3154136040" },
       { nombre: "Jenny Trejos", rol: "Apoyo Pedagógico", correo: "jenny.trejos@fimlm.education", cel: "3136717338" },
       { nombre: "Angie Zulay Moreno", rol: "Apoyo Pedagógico / Enlace Chocó", correo: "g.choco@fundacionmarialuisa.org", cel: "3136808200" },
       { nombre: "Yhennifer Andrea Aguilar", rol: "Apoyo Pedagógico / Enlace Nariño y Putumayo", correo: "yhennifer.aguilar@fimlm.education", cel: "3214560770" },
       { nombre: "Yajaira Benavides", rol: "Encargada Tutores", correo: "yajaira.benavides@fimlm.education", cel: "3008553296" },
       { nombre: "Alejandra Bacca", rol: "Apoyo Tutores", correo: "maria.bacca@fimlm.education", cel: "3152860114" },
-      { nombre: "Andrés Ledesma", rol: "Apoyo Tutores / Enlace Cauca", correo: "andres.ledesma@fimlm.education", cel: "3187236539" },
+      { nombre: "Andrés Ledesma", rol: "Enlace Cauca", correo: "andres.ledesma@fimlm.education", cel: "3187236539" },
       { nombre: "Zuleima Mosquera", rol: "Encargada Admin & Soporte Tec.", correo: "zuleima.mosquera@fimlm.education", cel: "3168734131" },
       { nombre: "Tulio León", rol: "Apoyo Administradores", correo: "tulio.leon@fimlm.education", cel: "3175803188" },
       { nombre: "Omar Garzón", rol: "Apoyo Administradores", correo: "omar.garzon@fimlm.education", cel: "3154136040" },
@@ -1817,6 +1820,8 @@ const zonas = [
     id: "sur", nombre: "Sur y Llanos", emoji: "🌾", color: "#d97706",
     departamentos: "Meta · Huila · Tolima · Caquetá · Llanos Orientales",
     equipo: [
+      { nombre: "Denis Yem Martinez", rol: "Coordinador Zonal", correo: "huila2@fundacionmarialuisa.org", cel: "3202625087" },
+      { nombre: "Norfa Rios", rol: "Coordinadora Zonal", correo: "norfa.rios@fimlm.education", cel: "3104588903" },
       { nombre: "Jackeline Cedano", rol: "Encargada Admin y Soporte Tec.", correo: "g.meta@fundacionmarialuisa.org", cel: "3138292957" },
       { nombre: "Norfa Rios", rol: "Encargada Pedagógica", correo: "norfa.rios@fimlm.education", cel: "3104588903" },
       { nombre: "Yaddy Aguilar González", rol: "Encargada Pedagógica", correo: "yaddy.aguilar@fimlm.education", cel: "3103084568" },
@@ -1831,20 +1836,19 @@ const zonas = [
       { nombre: "Janeth Manrique", rol: "Apoyo Tutores", correo: "janeth.manrique@fimlm.education", cel: null },
       { nombre: "Angela Montealegre", rol: "Encargada Admin Soporte Tec.", correo: "angela.montealegre@fimlm.education", cel: "3124702532" },
       { nombre: "Ingrid Katerine Dávila", rol: "Apoyo Administradores", correo: "ingrid.davila@fimlm.education", cel: "3209225917" },
-      { nombre: "Denis Yem Martinez", rol: "Apoyo Administradores", correo: "huila2@fundacionmarialuisa.org", cel: "3202625087" },
     ]
   },
   {
     id: "santanderes", nombre: "Santanderes y Boyacá", emoji: "⛰️", color: "#dc2626",
     departamentos: "Santander · Norte de Santander · Boyacá",
     equipo: [
+      { nombre: "Lizeth Gutierrez", rol: "Coordinadora Zonal", correo: "lizeth.gutierrez@fimlm.education", cel: "3114979345" },
       { nombre: "Alejandra Delgado Gómez", rol: "Encargada Pedagógica", correo: "alejandra.delgado@fimlm.education", cel: "3124145981" },
       { nombre: "Leydy Viviana Torres Zafra", rol: "Apoyo Pedagógico Santander", correo: "leydy.torres@fimlm.education", cel: "3209050972" },
       { nombre: "Lina Torres", rol: "Encargada de Tutores", correo: "lina.torres@fimlm.education", cel: "3164308391" },
       { nombre: "Laura Blanco", rol: "Apoyo Tutores Santander", correo: "laura.blanco@fimlm.education", cel: "3107970039" },
       { nombre: "Acileana Rincon", rol: "Apoyo Tutores Norte de Santander", correo: "acileana.rincon@fimlm.education", cel: "3203370025" },
       { nombre: "Liliana Alarcon", rol: "Apoyo Tutores Boyacá", correo: "liliana.alarcon@fimlm.education", cel: "3114713456" },
-      { nombre: "Lizeth Gutierrez", rol: "Encargada Soporte Tecnológico", correo: "lizeth.gutierrez@fimlm.education", cel: "3114979345" },
       { nombre: "Ronal Virgen", rol: "Apoyo Administradores", correo: "ronal.virgen@fimlm.education", cel: "3123075662" },
     ]
   },
