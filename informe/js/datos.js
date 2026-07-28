@@ -23,7 +23,7 @@ const ROLES = [
   { key: "profesores",            label: "Profesores" },
   { key: "tutores",                label: "Tutores" },
   { key: "administradores",        label: "Administradores" },
-  { key: "coordinadora",           label: "Coordinadora" },
+  { key: "coordinadora",           label: "Coordinadores Zonales" },
   { key: "enlaceTutores",          label: "Enlace de tutores" },
   { key: "encargadoPedagogicoZonal", label: "Encargado pedagógico zonal" },
   { key: "apoyoPedagogico",        label: "Apoyo pedagógico" },
@@ -106,7 +106,7 @@ const ZONAS = [
     oferta: { cursos: 31, grupos: 100, cupos: 4750 },
     comunidad: { iglesias: 111, creyentes: 44400 },
     informadores: 935,
-    coordinadoresZonales: 1,
+    coordinadoresZonales: 2,
     enlaceDelegacion: 6,
   },
   {
@@ -278,7 +278,7 @@ const TOTALES = {
   oferta: { cursos: 154, grupos: 535, cupos: 26910 },
   comunidad: { iglesias: 603, creyentes: 236800 },
   informadores: 4701,
-  coordinadoresZonales: 11,
+  coordinadoresZonales: 12,
   enlaceDelegacion: 98,
 };
 

@@ -53,7 +53,10 @@
       <table>
         <thead><tr><th>Rol</th><th>Total</th></tr></thead>
         <tbody>
-          ${ROLES.map((r) => `<tr><td>${emojiRol[r.key] || "•"} ${r.label}</td><td>${fmt.format(TOTALES.personal[r.key])}</td></tr>`).join("")}
+          ${ROLES.map((r) => {
+            const valor = r.key === "coordinadora" ? TOTALES.coordinadoresZonales : TOTALES.personal[r.key];
+            return `<tr><td>${emojiRol[r.key] || "•"} ${r.label}</td><td>${fmt.format(valor)}</td></tr>`;
+          }).join("")}
           <tr><td>🔗 Enlace de profesores</td><td>${fmt.format(TOTALES.personal.enlaceProfesores)}</td></tr>
           <tr class="fila-total"><td>🧮 Total cuerpo académico</td><td>${fmt.format(totalPersonal)}</td></tr>
         </tbody>
