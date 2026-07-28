@@ -399,14 +399,18 @@ html, body {
 .kpi-detalle-panel {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.35s ease;
+  margin-top: -20px;
+  transition: max-height 0.35s ease, margin-top 0.35s ease;
 }
-.kpi-detalle-panel.is-open { max-height: 1400px; }
+.kpi-detalle-panel.is-open {
+  max-height: 1400px;
+  margin-top: 0;
+}
 
 .kpi-detalle-panel__inner {
   position: relative;
-  margin-top: 10px;
-  padding: 18px 22px 22px;
+  margin-top: 0;
+  padding: 22px 22px 22px;
   background: var(--superficie);
   border: 2px solid var(--naranja);
   border-radius: var(--radio-md);

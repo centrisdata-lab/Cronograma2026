@@ -716,7 +716,7 @@
 
 <div class="topbar"></div>
 
-<header>
+<header id="app-header">
   <div class="header-inner">
     <div class="header-logo">📅</div>
     <div class="header-text">
@@ -2213,6 +2213,8 @@ function switchTab(name, btnEl) {
   const activeBtn = btnEl || (typeof event !== "undefined" && event.currentTarget) || document.querySelector(`.tab-btn[onclick*="'${name}'"]`);
   if (activeBtn) activeBtn.classList.add("active");
   currentTab = name;
+  const header = document.getElementById("app-header");
+  if (header) header.style.display = name === "informe" ? "none" : "";
   if (name === "equipo") renderEquipo();
   if (name === "zonas") renderZonas();
   if (editMode) updateAddBtn();
