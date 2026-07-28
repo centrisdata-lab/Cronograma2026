@@ -41,6 +41,8 @@
       profesores: "👩‍🏫", tutores: "🧑‍🏫", administradores: "🗂️", coordinadora: "🧭",
       enlaceTutores: "🔗", apoyoPedagogico: "🧑‍🎓", coordinadorTutores: "🧑‍💼",
       apoyoTutores: "🤝", responsableCurso: "📌",
+      encargadoPedagogicoZonal: "🎓", encargadoTutoresZonal: "👔",
+      encargadoInformadoresZonal: "🗣️", encargadoSoporteTecnicoZonal: "💻",
       apoyoInformadores: "📣", apoyoSoporteTecnologico: "🛠️", enlaceSoporteTecnologico: "🔧",
     };
     const emojiZona = "📍";
