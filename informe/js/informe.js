@@ -61,12 +61,23 @@
       const cupos = CUPOS_POR_CURSO[c.curso];
       return cupos ? Object.values(cupos).reduce((s, v) => s + v, 0) : 0;
     };
+    // Agrupado por categoría (mismo orden que CATEGORIAS_CURSO); dentro
+    // de cada categoría se respeta el orden de CURSOS_DETALLE, así los
+    // niveles de un mismo curso (Nivel 1, Nivel 2) quedan uno seguido
+    // del otro en vez de reordenarse por cantidad de grupos.
+    const filasCursosPorCategoria = CATEGORIAS_CURSO.map((cat) => {
+      const cursosCat = CURSOS_DETALLE.filter((c) => c.categoria === cat.id);
+      if (cursosCat.length === 0) return "";
+      const filas = cursosCat
+        .map((c) => `<tr><td>📖 ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`)
+        .join("");
+      return `<tr class="fila-categoria"><td colspan="3">${cat.label}</td></tr>${filas}`;
+    }).join("");
     const tablaCursos = `
       <table>
         <thead><tr><th>Curso</th><th>Grupos</th><th>Cupos</th></tr></thead>
         <tbody>
-          ${[...CURSOS_DETALLE].sort((a, b) => totalGruposCurso(b) - totalGruposCurso(a))
-            .map((c) => `<tr><td>📖 ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`).join("")}
+          ${filasCursosPorCategoria}
           <tr class="fila-total"><td>🧮 Total (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td><td>${fmt.format(totalCupos)}</td></tr>
         </tbody>
       </table>
