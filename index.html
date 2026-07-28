@@ -233,6 +233,24 @@
     .miembro-info { display: flex; flex-direction: column; gap: 3px; }
     .miembro-info a { font-size: 0.78rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; }
     .miembro-info a:hover { color: var(--blue); }
+
+    /* Organigrama sencillo: coordinador(es) zonal(es) arriba, conectado
+       por una línea vertical al resto del equipo de la zona. */
+    .org-coordinadores {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 4px;
+    }
+    .org-coordinadores .miembro-card {
+      max-width: 280px; border-width: 2px; box-shadow: 0 3px 10px rgba(26,60,110,0.08);
+    }
+    .org-connector {
+      width: 2px; height: 22px; background: var(--border); margin: 0 auto 4px;
+    }
+    .org-equipo-label {
+      font-size: 0.7rem; font-weight: 800; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.6px; text-align: center;
+      margin-bottom: 10px;
+    }
     @media (max-width: 900px) { .zonas-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 600px) { .zonas-grid { grid-template-columns: 1fr; } .zona-detalle { padding: 18px 16px; } }
 
@@ -1893,7 +1911,12 @@ function selectZona(id) {
 
   const detalle = document.getElementById("zona-detalle");
   document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
-  document.getElementById("zona-miembros").innerHTML = zona.equipo.map(m => `
+
+  const esCoordinador = (rol) => /^coordinador(a)?\b/i.test((rol || "").trim());
+  const coordinadores = zona.equipo.filter(m => esCoordinador(m.rol));
+  const resto = zona.equipo.filter(m => !esCoordinador(m.rol));
+
+  const tarjeta = (m) => `
     <div class="miembro-card">
       <div class="miembro-nombre">${m.nombre}</div>
       <div class="miembro-rol" style="color:${zona.color}">${m.rol}</div>
@@ -1902,7 +1925,16 @@ function selectZona(id) {
         ${m.cel    ? `<a href="tel:${m.cel}">📞 ${m.cel}</a>` : ""}
       </div>
     </div>
-  `).join("");
+  `;
+
+  document.getElementById("zona-miembros").innerHTML = `
+    ${coordinadores.length ? `
+      <div class="org-coordinadores">${coordinadores.map(tarjeta).join("")}</div>
+      <div class="org-connector"></div>
+      <div class="org-equipo-label">Equipo de zona</div>
+    ` : ""}
+    <div class="miembros-grid">${resto.map(tarjeta).join("")}</div>
+  `;
 
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });
