@@ -138,7 +138,7 @@
 
     cont.innerHTML = kpis.map((k, idx) => `
       <article class="kpi-card">
-        <button class="kpi-card__toggle" type="button" data-kpi-toggle aria-expanded="false" aria-controls="kpi-detalle-${idx}">
+        <button class="kpi-card__toggle" type="button" data-kpi-toggle="${idx}" aria-expanded="false" aria-controls="kpi-detalle-panel">
           <div class="kpi-card__icon" aria-hidden="true">${k.icon}</div>
           <span class="kpi-card__label">${k.label}</span>
           <span class="kpi-card__value">${k.value}</span>
@@ -146,17 +146,37 @@
           <div class="kpi-card__bar"><span style="width:100%"></span></div>
           <span class="kpi-card__hint">Ver el detalle que sustenta esta cifra</span>
         </button>
-        <div class="kpi-card__detalle" id="kpi-detalle-${idx}">
-          <div class="kpi-card__detalle-inner">${k.detalle}</div>
-        </div>
       </article>
     `).join("");
 
-    cont.querySelectorAll("[data-kpi-toggle]").forEach((btn) => {
+    const panel = document.getElementById("kpi-detalle-panel");
+    const panelInner = document.getElementById("kpi-detalle-panel-inner");
+    const botones = Array.from(cont.querySelectorAll("[data-kpi-toggle]"));
+
+    function cerrarPanel() {
+      panel.classList.remove("is-open");
+      botones.forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        b.closest(".kpi-card").classList.remove("is-active");
+      });
+    }
+
+    botones.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const card = btn.closest(".kpi-card");
-        const abierta = card.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(abierta));
+        const idx = Number(btn.dataset.kpiToggle);
+        const yaActiva = btn.closest(".kpi-card").classList.contains("is-active");
+
+        if (yaActiva) {
+          cerrarPanel();
+          return;
+        }
+
+        botones.forEach((b) => b.closest(".kpi-card").classList.remove("is-active"));
+        btn.closest(".kpi-card").classList.add("is-active");
+        botones.forEach((b) => b.setAttribute("aria-expanded", String(b === btn)));
+
+        panelInner.innerHTML = kpis[idx].detalle;
+        panel.classList.add("is-open");
       });
     });
   }

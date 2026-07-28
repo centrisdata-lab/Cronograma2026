@@ -307,13 +307,14 @@ html, body {
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .kpi-card:hover { transform: translateY(-3px); box-shadow: var(--sombra-card-hover); }
-.kpi-card.is-open:hover { transform: none; }
-/* Al abrirse, la tarjeta ocupa todo el ancho de la fila para que
-   la tabla de detalle tenga espacio real; el resto de tarjetas
-   sigue debajo. */
-.kpi-card.is-open {
-  grid-column: 1 / -1;
+.kpi-card.is-active:hover { transform: none; }
+/* La tarjeta activa se resalta pero mantiene su posición y tamaño
+   en el grid; el detalle se muestra en un panel único debajo de
+   toda la fila, así las demás tarjetas nunca se mueven. */
+.kpi-card.is-active {
   box-shadow: var(--sombra-card-hover);
+  outline: 2px solid var(--naranja);
+  outline-offset: -2px;
 }
 
 .kpi-card__toggle {
@@ -384,18 +385,30 @@ html, body {
 }
 .kpi-card__toggle:hover .kpi-card__hint,
 .kpi-card__toggle:focus-visible .kpi-card__hint { opacity: 1; }
-.kpi-card.is-open .kpi-card__hint { display: none; }
+.kpi-card.is-active .kpi-card__hint { display: none; }
 .kpi-card__toggle:focus-visible {
   outline: 3px solid var(--naranja);
   outline-offset: -3px;
 }
 
-.kpi-card__detalle {
+/* Panel único de detalle: vive fuera del grid, debajo de la fila
+   de tarjetas, así al abrirse ninguna tarjeta cambia de tamaño
+   ni posición. */
+.kpi-detalle-panel {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.35s ease;
 }
-.kpi-card.is-open .kpi-card__detalle { max-height: 1400px; }
+.kpi-detalle-panel.is-open { max-height: 1400px; }
+
+.kpi-detalle-panel__inner {
+  margin-top: 16px;
+  padding: 18px 22px 22px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-card);
+}
 
 .kpi-card__detalle-inner {
   padding: 4px 22px 22px;
