@@ -79,6 +79,13 @@
 
     const tablaCuposPorZona = `
       <table>
+        <thead><tr><th>Composición de grupos</th><th>Cupos</th></tr></thead>
+        <tbody>
+          <tr><td>🧩 51 grupos de 60 cupos</td><td>${fmt.format(51 * 60)}</td></tr>
+          <tr><td>🧩 479 grupos de 50 cupos</td><td>${fmt.format(479 * 50)}</td></tr>
+        </tbody>
+      </table>
+      <table style="margin-top:14px;">
         <thead><tr><th>Zona</th><th>Cupos</th></tr></thead>
         <tbody>
           ${[...ZONAS].sort((a, b) => b.oferta.cupos - a.oferta.cupos)
@@ -124,7 +131,7 @@
         icon: "🎓",
         label: "Cupos ofertados",
         value: fmt.format(totalCupos),
-        delta: `50 cupos por grupo`,
+        delta: `51 grupos de 60 cupos · 479 grupos de 50 cupos`,
         detalle: tablaCuposPorZona,
       },
       {
@@ -153,6 +160,13 @@
     const panelInner = document.getElementById("kpi-detalle-panel-inner");
     const botones = Array.from(cont.querySelectorAll("[data-kpi-toggle]"));
 
+    function posicionarCaret(card) {
+      // Centra el triángulo conector bajo la tarjeta activa, para que
+      // el panel se vea "pegado" a esa tarjeta y no como un bloque suelto.
+      const centroCard = card.offsetLeft + card.offsetWidth / 2;
+      panelInner.style.setProperty("--caret-left", `${centroCard}px`);
+    }
+
     function cerrarPanel() {
       panel.classList.remove("is-open");
       botones.forEach((b) => {
@@ -164,7 +178,8 @@
     botones.forEach((btn) => {
       btn.addEventListener("click", () => {
         const idx = Number(btn.dataset.kpiToggle);
-        const yaActiva = btn.closest(".kpi-card").classList.contains("is-active");
+        const card = btn.closest(".kpi-card");
+        const yaActiva = card.classList.contains("is-active");
 
         if (yaActiva) {
           cerrarPanel();
@@ -172,12 +187,18 @@
         }
 
         botones.forEach((b) => b.closest(".kpi-card").classList.remove("is-active"));
-        btn.closest(".kpi-card").classList.add("is-active");
+        card.classList.add("is-active");
         botones.forEach((b) => b.setAttribute("aria-expanded", String(b === btn)));
 
         panelInner.innerHTML = kpis[idx].detalle;
+        posicionarCaret(card);
         panel.classList.add("is-open");
       });
+    });
+
+    window.addEventListener("resize", () => {
+      const cardActiva = cont.querySelector(".kpi-card.is-active");
+      if (cardActiva) posicionarCaret(cardActiva);
     });
   }
 

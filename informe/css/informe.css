@@ -393,7 +393,9 @@ html, body {
 
 /* Panel único de detalle: vive fuera del grid, debajo de la fila
    de tarjetas, así al abrirse ninguna tarjeta cambia de tamaño
-   ni posición. */
+   ni posición. Un triángulo conector (--caret-left) se posiciona
+   por JS justo debajo de la tarjeta activa, dando la sensación de
+   que el panel "nace" de esa tarjeta. */
 .kpi-detalle-panel {
   overflow: hidden;
   max-height: 0;
@@ -402,12 +404,26 @@ html, body {
 .kpi-detalle-panel.is-open { max-height: 1400px; }
 
 .kpi-detalle-panel__inner {
-  margin-top: 16px;
+  position: relative;
+  margin-top: 10px;
   padding: 18px 22px 22px;
   background: var(--superficie);
-  border: 1px solid var(--borde);
+  border: 2px solid var(--naranja);
   border-radius: var(--radio-md);
   box-shadow: var(--sombra-card);
+}
+.kpi-detalle-panel__inner::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: var(--caret-left, 40px);
+  width: 16px;
+  height: 16px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--superficie);
+  border-left: 2px solid var(--naranja);
+  border-top: 2px solid var(--naranja);
+  border-radius: 3px 0 0 0;
 }
 
 .kpi-card__detalle-inner {
