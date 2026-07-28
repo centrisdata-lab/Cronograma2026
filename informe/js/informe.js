@@ -43,7 +43,7 @@
       apoyoTutores: "🤝", responsableCurso: "📌",
       encargadoPedagogicoZonal: "🎓", encargadoTutoresZonal: "👔",
       encargadoInformadoresZonal: "🗣️", encargadoSoporteTecnicoZonal: "💻",
-      apoyoInformadores: "📣", apoyoSoporteTecnologico: "🛠️", enlaceSoporteTecnologico: "🔧",
+      apoyoInformadores: "📣", apoyoSoporteTecnologico: "🛠️", enlaceSoporteTecnologico: "🔌",
     };
     const emojiZona = "📍";
 
@@ -55,8 +55,10 @@
         <tbody>
           ${ROLES.map((r) => {
             const valor = r.key === "coordinadora" ? TOTALES.coordinadoresZonales : TOTALES.personal[r.key];
-            return `<tr><td>${emojiRol[r.key] || "•"} ${r.label}</td><td>${fmt.format(valor)}</td></tr>`;
+            const nota = r.key === "encargadoInformadoresZonal" ? " <small>(solo zona A)</small>" : "";
+            return `<tr><td>${emojiRol[r.key] || "•"} ${r.label}${nota}</td><td>${fmt.format(valor)}</td></tr>`;
           }).join("")}
+          <tr><td>🏫 Enlaces Campus Delegación Departamental</td><td>${fmt.format(TOTALES.enlaceDelegacion)}</td></tr>
           <tr><td>🔗 Enlace de profesores</td><td>${fmt.format(TOTALES.personal.enlaceProfesores)}</td></tr>
           <tr class="fila-total"><td>🧮 Total cuerpo académico</td><td>${fmt.format(totalPersonal)}</td></tr>
         </tbody>
