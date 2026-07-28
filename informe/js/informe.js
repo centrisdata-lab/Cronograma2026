@@ -47,19 +47,34 @@
     };
     const emojiZona = "📍";
 
+    // Filas exactas de la tarjeta "Cuerpo académico" (orden y
+    // etiquetas curados a mano; no todas las claves de ROLES
+    // aparecen aquí porque esta tarjeta muestra un subconjunto).
+    const filasCuerpoAcademico = [
+      { emoji: "🧭", label: "Coordinadores Zonales", valor: TOTALES.coordinadoresZonales },
+      { emoji: "🏫", label: "Enlaces Campus Delegación Departamental", valor: TOTALES.enlaceDelegacion },
+      { emoji: "👩‍🏫", label: "Profesores", valor: TOTALES.personal.profesores },
+      { emoji: "🧑‍🏫", label: "Tutores", valor: TOTALES.personal.tutores },
+      { emoji: "🗂️", label: "Soporte Tecnológico", valor: TOTALES.personal.administradores },
+      { emoji: "👔", label: "Apoyo de tutores zonal", valor: TOTALES.personal.encargadoTutoresZonal },
+      { emoji: "🤝", label: "Apoyo tutores (apoyo del zonal)", valor: TOTALES.personal.apoyoTutores },
+      { emoji: "🎓", label: "Apoyo pedagógico zonal", valor: TOTALES.personal.encargadoPedagogicoZonal },
+      { emoji: "🧑‍🎓", label: "Apoyo pedagógico (apoyo del zonal)", valor: TOTALES.personal.apoyoPedagogico },
+      { emoji: "🔗", label: "Enlace de curso", valor: TOTALES.enlacesCurso },
+      { emoji: "📌", label: "Responsable de curso", valor: TOTALES.personal.responsableCurso },
+      { emoji: "🗣️", label: "Apoyo de informadores zonal", nota: " <small>(solo zona A)</small>", valor: TOTALES.personal.encargadoInformadoresZonal },
+      { emoji: "📣", label: "Apoyo informadores (apoyo del zonal)", valor: TOTALES.personal.apoyoInformadores },
+      { emoji: "💻", label: "Apoyo soporte tecnológico zonal", valor: TOTALES.personal.encargadoSoporteTecnicoZonal },
+      { emoji: "🛠️", label: "Apoyo soporte tecnológico (apoyo del zonal)", valor: TOTALES.personal.apoyoSoporteTecnologico },
+    ];
+
     // Contenido del detalle desplegable de cada tarjeta: una mini
     // tabla de dos columnas (concepto / valor) que sustenta el total.
     const tablaRoles = `
       <table>
         <thead><tr><th>Rol</th><th>Total</th></tr></thead>
         <tbody>
-          ${ROLES.map((r) => {
-            const valor = r.key === "coordinadora" ? TOTALES.coordinadoresZonales : TOTALES.personal[r.key];
-            const nota = r.key === "encargadoInformadoresZonal" ? " <small>(solo zona A)</small>" : "";
-            return `<tr><td>${emojiRol[r.key] || "•"} ${r.label}${nota}</td><td>${fmt.format(valor)}</td></tr>`;
-          }).join("")}
-          <tr><td>🏫 Enlaces Campus Delegación Departamental</td><td>${fmt.format(TOTALES.enlaceDelegacion)}</td></tr>
-          <tr><td>🔗 Enlace de profesores</td><td>${fmt.format(TOTALES.personal.enlaceProfesores)}</td></tr>
+          ${filasCuerpoAcademico.map((f) => `<tr><td>${f.emoji} ${f.label}${f.nota || ""}</td><td>${fmt.format(f.valor)}</td></tr>`).join("")}
           <tr class="fila-total"><td>🧮 Total cuerpo académico</td><td>${fmt.format(totalPersonal)}</td></tr>
         </tbody>
       </table>
