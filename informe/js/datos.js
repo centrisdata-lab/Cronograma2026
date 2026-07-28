@@ -29,6 +29,9 @@ const ROLES = [
   { key: "coordinadorTutores",     label: "Coordinador de tutores" },
   { key: "apoyoTutores",           label: "Apoyo tutores" },
   { key: "responsableCurso",       label: "Responsable de curso" },
+  { key: "apoyoInformadores",      label: "Apoyo informadores zona" },
+  { key: "apoyoSoporteTecnologico", label: "Apoyo soporte tecnológico zona" },
+  { key: "enlaceSoporteTecnologico", label: "Enlace soporte tecnológico" },
 ];
 
 /* Cada zona agrupa: departamentos que la componen, personal por
@@ -45,15 +48,16 @@ const ZONAS = [
     personal: {
       profesores: 238, tutores: 175, administradores: 74, coordinadora: 1,
       enlaceProfesores: 1, enlaceTutores: 0,
-      apoyoPedagogico: 3, coordinadorTutores: 3, apoyoTutores: 0, responsableCurso: 0,
-      total: 495,
+      apoyoPedagogico: 4, coordinadorTutores: 3, apoyoTutores: 4, responsableCurso: 0,
+      apoyoInformadores: 4, apoyoSoporteTecnologico: 2, enlaceSoporteTecnologico: 0,
+      total: 506,
     },
     enlacesCurso: 37,
     oferta: { cursos: 37, grupos: 169, cupos: 8600 },
     comunidad: { iglesias: 97, creyentes: 38800 },
     informadores: 838,
     coordinadoresZonales: 2,
-    enlaceDelegacion: 66,
+    enlaceDelegacion: 67,
     // Única zona donde el enlace se asigna por iglesia y no por departamento.
     notaEnlace: "Asignados por iglesia: 35 en Bogotá y 31 en Cundinamarca",
   },
@@ -65,14 +69,15 @@ const ZONAS = [
     personal: {
       profesores: 74, tutores: 65, administradores: 34, coordinadora: 0,
       enlaceProfesores: 3, enlaceTutores: 0,
-      apoyoPedagogico: 2, coordinadorTutores: 1, apoyoTutores: 0, responsableCurso: 0,
-      total: 179,
+      apoyoPedagogico: 3, coordinadorTutores: 1, apoyoTutores: 2, responsableCurso: 0,
+      apoyoInformadores: 0, apoyoSoporteTecnologico: 1, enlaceSoporteTecnologico: 0,
+      total: 183,
     },
     enlacesCurso: 23,
     oferta: { cursos: 23, grupos: 47, cupos: 2400 },
     comunidad: { iglesias: 63, creyentes: 25200 },
     informadores: 355,
-    coordinadoresZonales: 1,
+    coordinadoresZonales: 2,
     enlaceDelegacion: 7,
   },
   {
@@ -83,8 +88,9 @@ const ZONAS = [
     personal: {
       profesores: 180, tutores: 119, administradores: 9, coordinadora: 0,
       enlaceProfesores: 0, enlaceTutores: 0,
-      apoyoPedagogico: 0, coordinadorTutores: 2, apoyoTutores: 0, responsableCurso: 0,
-      total: 310,
+      apoyoPedagogico: 3, coordinadorTutores: 2, apoyoTutores: 3, responsableCurso: 0,
+      apoyoInformadores: 0, apoyoSoporteTecnologico: 1, enlaceSoporteTecnologico: 0,
+      total: 317,
     },
     enlacesCurso: 21,
     oferta: { cursos: 31, grupos: 100, cupos: 4750 },
@@ -101,15 +107,16 @@ const ZONAS = [
     personal: {
       profesores: 172, tutores: 213, administradores: 45, coordinadora: 1,
       enlaceProfesores: 16, enlaceTutores: 1,
-      apoyoPedagogico: 3, coordinadorTutores: 0, apoyoTutores: 1, responsableCurso: 1,
-      total: 453,
+      apoyoPedagogico: 4, coordinadorTutores: 0, apoyoTutores: 2, responsableCurso: 1,
+      apoyoInformadores: 1, apoyoSoporteTecnologico: 3, enlaceSoporteTecnologico: 0,
+      total: 459,
     },
     enlacesCurso: 28,
     oferta: { cursos: 27, grupos: 88, cupos: 4550 },
     comunidad: { iglesias: 131, creyentes: 52400 },
     informadores: 777,
     coordinadoresZonales: 3,
-    enlaceDelegacion: 5,
+    enlaceDelegacion: 6,
   },
   {
     id: "sur-llanos",
@@ -119,8 +126,9 @@ const ZONAS = [
     personal: {
       profesores: 157, tutores: 121, administradores: 23, coordinadora: 0,
       enlaceProfesores: 4, enlaceTutores: 0,
-      apoyoPedagogico: 4, coordinadorTutores: 3, apoyoTutores: 4, responsableCurso: 0,
-      total: 316,
+      apoyoPedagogico: 6, coordinadorTutores: 3, apoyoTutores: 5, responsableCurso: 0,
+      apoyoInformadores: 0, apoyoSoporteTecnologico: 4, enlaceSoporteTecnologico: 0,
+      total: 323,
     },
     enlacesCurso: 34,
     oferta: { cursos: 20, grupos: 103, cupos: 5150 },
@@ -137,15 +145,16 @@ const ZONAS = [
     personal: {
       profesores: 36, tutores: 44, administradores: 8, coordinadora: 0,
       enlaceProfesores: 1, enlaceTutores: 0,
-      apoyoPedagogico: 2, coordinadorTutores: 3, apoyoTutores: 0, responsableCurso: 0,
-      total: 94,
+      apoyoPedagogico: 2, coordinadorTutores: 3, apoyoTutores: 4, responsableCurso: 0,
+      apoyoInformadores: 0, apoyoSoporteTecnologico: 2, enlaceSoporteTecnologico: 0,
+      total: 100,
     },
     enlacesCurso: 16,
     oferta: { cursos: 16, grupos: 28, cupos: 1460 },
     comunidad: { iglesias: 88, creyentes: 30800 },
     informadores: 445,
     coordinadoresZonales: 1,
-    enlaceDelegacion: 3,
+    enlaceDelegacion: 4,
   },
 ];
 
@@ -238,15 +247,16 @@ const TOTALES = {
   personal: {
     profesores: 857, tutores: 737, administradores: 193, coordinadora: 2,
     enlaceProfesores: 25, enlaceTutores: 1,
-    apoyoPedagogico: 14, coordinadorTutores: 12, apoyoTutores: 5, responsableCurso: 1,
-    total: 1847,
+    apoyoPedagogico: 22, coordinadorTutores: 12, apoyoTutores: 20, responsableCurso: 1,
+    apoyoInformadores: 5, apoyoSoporteTecnologico: 13, enlaceSoporteTecnologico: 0,
+    total: 1888,
   },
   enlacesCurso: 159,
   oferta: { cursos: 154, grupos: 535, cupos: 26910 },
   comunidad: { iglesias: 603, creyentes: 236800 },
   informadores: 4701,
-  coordinadoresZonales: 10,
-  enlaceDelegacion: 94,
+  coordinadoresZonales: 11,
+  enlaceDelegacion: 97,
 };
 
 /* Cupos por curso y zona (fuente: hoja "Cupos" del consolidado

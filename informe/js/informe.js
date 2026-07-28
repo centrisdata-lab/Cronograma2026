@@ -41,6 +41,7 @@
       profesores: "👩‍🏫", tutores: "🧑‍🏫", administradores: "🗂️", coordinadora: "🧭",
       enlaceTutores: "🔗", apoyoPedagogico: "🧑‍🎓", coordinadorTutores: "🧑‍💼",
       apoyoTutores: "🤝", responsableCurso: "📌",
+      apoyoInformadores: "📣", apoyoSoporteTecnologico: "🛠️", enlaceSoporteTecnologico: "🔧",
     };
     const emojiZona = "📍";
 
@@ -424,9 +425,9 @@
     const table = document.getElementById("tabla-consolidada");
     if (!table) return;
 
-    // "Coordinadora" (rol de personal, suma al total de 1.840) se
-    // excluye del recorrido genérico y se sustituye por la columna
-    // "Coordinadores Zonales" (dato aparte, no forma parte del
+    // "Coordinadora" (rol de personal) se excluye del recorrido
+    // genérico y se sustituye por la columna "Coordinadores
+    // Zonales" (dato aparte, no forma parte del
     // cuerpo académico ni de ese total).
     const rolesUsados = ROLES.filter((r) => r.key !== "coordinadora" && TOTALES.personal[r.key] > 0);
 
@@ -436,7 +437,7 @@
           <th>Zona</th>
           ${rolesUsados.map((r) => `<th>${r.label}</th>`).join("")}
           <th>Coordinadores Zonales</th>
-          <th>Enlaces de curso</th>
+          <th>Enlaces Apoyo pedagógico</th>
           <th>Total</th>
         </tr>
       </thead>`;
