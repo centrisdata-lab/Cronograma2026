@@ -223,7 +223,7 @@
     }
     .zona-detalle.open { display: block; }
     .zona-detalle h2 { font-size: 1.2rem; font-weight: 900; color: var(--blue); margin-bottom: 20px; }
-    .miembros-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .miembros-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; width: 100%; }
     .miembro-card {
       background: var(--bg); border-radius: 12px; padding: 14px 16px;
       border: 1px solid var(--border);
@@ -236,15 +236,18 @@
 
     /* Organigrama sencillo: coordinador(es) zonal(es) arriba, conectado
        por una línea vertical al resto del equipo de la zona. */
+    .org-zona-wrap {
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+    }
     .org-coordinadores {
       display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
-      margin-bottom: 4px;
+      width: 100%;
     }
     .org-coordinadores .miembro-card {
-      max-width: 280px; border-width: 2px; box-shadow: 0 3px 10px rgba(26,60,110,0.08);
+      width: 100%; max-width: 280px; border-width: 2px; box-shadow: 0 3px 10px rgba(26,60,110,0.08);
     }
     .org-connector {
-      width: 2px; height: 22px; background: var(--border); margin: 0 auto 4px;
+      width: 2px; height: 22px; background: var(--border); margin: 4px 0;
     }
     .org-equipo-label {
       font-size: 0.7rem; font-weight: 800; color: var(--muted);
@@ -1939,12 +1942,14 @@ function selectZona(id) {
   `;
 
   document.getElementById("zona-miembros").innerHTML = `
-    ${coordinadores.length ? `
-      <div class="org-coordinadores">${coordinadores.map(tarjeta).join("")}</div>
-      <div class="org-connector"></div>
-      <div class="org-equipo-label">Equipo de zona</div>
-    ` : ""}
-    <div class="miembros-grid">${resto.map(tarjeta).join("")}</div>
+    <div class="org-zona-wrap">
+      ${coordinadores.length ? `
+        <div class="org-coordinadores">${coordinadores.map(tarjeta).join("")}</div>
+        <div class="org-connector"></div>
+        <div class="org-equipo-label">Equipo de zona</div>
+      ` : ""}
+      <div class="miembros-grid">${resto.map(tarjeta).join("")}</div>
+    </div>
   `;
 
   detalle.classList.add("open");
