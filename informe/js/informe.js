@@ -30,7 +30,7 @@
     const cont = document.getElementById("kpi-grid");
     if (!cont) return;
 
-    const totalPersonal = TOTALES.personal.total;
+    const totalPersonal = TOTALES.personal.totalPersonasUnicas;
     const totalCursos = TOTALES.oferta.cursos;
     const totalGrupos = TOTALES.oferta.grupos;
     const totalCupos = TOTALES.oferta.cupos;
@@ -57,7 +57,8 @@
           <tr><td>🔗 Enlace de profesores</td><td>${fmt.format(TOTALES.personal.enlaceProfesores)}</td></tr>
           <tr class="fila-total"><td>🧮 Total cuerpo académico</td><td>${fmt.format(totalPersonal)}</td></tr>
         </tbody>
-      </table>`;
+      </table>
+      <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Este total (${fmt.format(totalPersonal)}) es la cifra oficial de personas distintas. La suma de los roles de esta tabla da un número mayor porque varias personas cumplen más de un rol a la vez.</p>`;
 
     const totalGruposCurso = (c) => ZONAS.reduce((s, z) => s + (c[z.id] || 0), 0);
     const totalCuposCurso = (c) => {

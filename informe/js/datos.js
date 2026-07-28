@@ -268,6 +268,11 @@ const TOTALES = {
     encargadoInformadoresZonal: 4, apoyoInformadores: 9,
     encargadoSoporteTecnicoZonal: 6, apoyoSoporteTecnologico: 9, enlaceSoporteTecnologico: 0,
     total: 1898,
+    // Cifra real de personas (headcount único). "total" (1.898) es la
+    // suma de roles y da más porque varias personas cumplen más de un
+    // rol a la vez (ej. alguien es "Apoyo tutores" y también "Enlace
+    // de curso"); 1.840 es el dato oficial de personas distintas.
+    totalPersonasUnicas: 1840,
   },
   enlacesCurso: 159,
   oferta: { cursos: 154, grupos: 535, cupos: 26910 },
