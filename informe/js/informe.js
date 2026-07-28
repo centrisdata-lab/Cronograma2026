@@ -143,7 +143,7 @@
         icon: "🧩",
         label: "Grupos conformados",
         value: fmt.format(totalGrupos),
-        delta: `≈ ${(totalGrupos / totalCursos).toFixed(1)} grupos por curso`,
+        delta: `Promedio: ${(totalGrupos / totalCursos).toFixed(1)} grupos por curso`,
         detalle: tablaGruposPorZona,
       },
       {

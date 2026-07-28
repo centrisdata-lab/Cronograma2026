@@ -465,16 +465,19 @@ html, body {
   border-bottom: none;
 }
 .kpi-card__detalle-inner tr.fila-categoria td {
-  padding: 12px 10px 6px;
-  font-size: 11px;
+  padding: 10px 10px;
+  margin-top: 6px;
+  font-size: 12.5px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   color: var(--naranja-oscuro);
+  background: color-mix(in srgb, var(--naranja) 12%, white);
   border-bottom: 1px solid var(--borde);
+  border-top: 2px solid var(--naranja);
   text-align: left;
 }
-.kpi-card__detalle-inner tr.fila-categoria:first-child td { padding-top: 0; }
+.kpi-card__detalle-inner tr.fila-categoria:first-child td { border-top: none; }
 
 /* Al abrirse a ancho completo, la lista se reparte en columnas
    (cada fila es un bloque de tabla independiente) para aprovechar
@@ -848,18 +851,18 @@ html, body {
 /* Encabezado discreto de categoría dentro de la tabla de cursos:
    se nota que agrupa, sin competir con los datos. */
 .data-table tbody tr.fila-categoria td {
-  background: var(--fondo);
-  color: var(--texto-muted);
-  font-size: 11px;
+  background: color-mix(in srgb, var(--naranja) 12%, white) !important;
+  color: var(--naranja-oscuro);
+  font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 8px 10px;
+  padding: 9px 10px;
   text-align: left;
-  border-top: 1px solid var(--borde);
+  border-top: 2px solid var(--naranja);
   border-bottom: 1px solid var(--borde);
 }
-.data-table tbody tr.fila-categoria:hover { background: var(--fondo); }
+.data-table tbody tr.fila-categoria:hover td { background: color-mix(in srgb, var(--naranja) 18%, white) !important; }
 
 .data-table .cell-total {
   background: rgba(245, 166, 35, 0.16) !important;
