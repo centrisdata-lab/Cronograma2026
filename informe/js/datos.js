@@ -87,7 +87,7 @@ const ZONAS = [
       total: 310,
     },
     enlacesCurso: 21,
-    oferta: { cursos: 26, grupos: 95, cupos: 4750 },
+    oferta: { cursos: 31, grupos: 100, cupos: 4750 },
     comunidad: { iglesias: 111, creyentes: 44400 },
     informadores: 935,
     coordinadoresZonales: 1,
@@ -123,7 +123,7 @@ const ZONAS = [
       total: 316,
     },
     enlacesCurso: 34,
-    oferta: { cursos: 20, grupos: 103, cupos: 5250 },
+    oferta: { cursos: 20, grupos: 103, cupos: 5150 },
     comunidad: { iglesias: 113, creyentes: 45200 },
     informadores: 1113,
     coordinadoresZonales: 2,
@@ -166,6 +166,7 @@ const CATEGORIAS_CURSO = [
   { id: "idiomas",              label: "Idiomas" },
   { id: "artes-oficios",        label: "Artes y Oficios" },
   { id: "medio-ambiente",       label: "Medio Ambiente y Agroproductividad" },
+  { id: "presencial",           label: "Ejecución Presencial (Antioquia y Eje Cafetero)" },
 ];
 
 /* Detalle de cursos por zona: cantidad de GRUPOS de cada curso
@@ -221,6 +222,13 @@ const CURSOS_DETALLE = [
   // --- Medio Ambiente y Agroproductividad ---
   { curso: "El ABC del Reciclaje", categoria: "medio-ambiente", "bogota-cundinamarca": 5, "sur-llanos": 7, "antioquia-eje-cafetero": 3, "santanderes-boyaca": 1, "pacifico": 2, "caribe": 1, zonasQueOfrecen: 6 },
   { curso: "Salud y Bienestar para Ovinos y Caprinos", categoria: "medio-ambiente", "bogota-cundinamarca": 1, "sur-llanos": 0, "antioquia-eje-cafetero": 0, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
+
+  // --- Ejecución Presencial (Antioquia y Eje Cafetero) ---
+  { curso: "Sistemas e Informática · Sistema Básico", categoria: "presencial", "bogota-cundinamarca": 0, "sur-llanos": 0, "antioquia-eje-cafetero": 1, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
+  { curso: "Sistemas e Informática · Nivel Avanzado", categoria: "presencial", "bogota-cundinamarca": 0, "sur-llanos": 0, "antioquia-eje-cafetero": 1, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
+  { curso: "Huertas Caseras", categoria: "presencial", "bogota-cundinamarca": 0, "sur-llanos": 0, "antioquia-eje-cafetero": 1, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
+  { curso: "English Leasing a Conversación", categoria: "presencial", "bogota-cundinamarca": 0, "sur-llanos": 0, "antioquia-eje-cafetero": 1, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
+  { curso: "Bonsái en Alambre y Pedrería", categoria: "presencial", "bogota-cundinamarca": 0, "sur-llanos": 0, "antioquia-eje-cafetero": 1, "santanderes-boyaca": 0, "pacifico": 0, "caribe": 0, zonasQueOfrecen: 1 },
 ];
 
 /* Totales generales (tal como aparecen en el reporte más
@@ -234,9 +242,59 @@ const TOTALES = {
     total: 1847,
   },
   enlacesCurso: 159,
-  oferta: { cursos: 149, grupos: 530, cupos: 27010 },
+  oferta: { cursos: 154, grupos: 535, cupos: 26910 },
   comunidad: { iglesias: 603, creyentes: 236800 },
   informadores: 4701,
   coordinadoresZonales: 10,
   enlaceDelegacion: 94,
+};
+
+/* Cupos por curso y zona (fuente: hoja "Cupos" del consolidado
+   Convocatoria 32). La suma de este detalle da 26.860; los 50
+   cupos restantes hasta el total nacional (26.910) corresponden
+   a un grupo presencial adicional en Bogotá y Cundinamarca cuyo
+   curso aún no está identificado, por lo que no aparece aquí. */
+const CUPOS_POR_CURSO = {
+  "Bienestar para la persona mayor": { "bogota-cundinamarca": 300, "sur-llanos": 250, "antioquia-eje-cafetero": 200, "pacifico": 150 },
+  "Bisutería": { "santanderes-boyaca": 100, "caribe": 60, "bogota-cundinamarca": 250, "antioquia-eje-cafetero": 50, "pacifico": 60 },
+  "Comprensión Lectora": { "sur-llanos": 400, "santanderes-boyaca": 50, "caribe": 250, "antioquia-eje-cafetero": 350, "pacifico": 250, "bogota-cundinamarca": 500 },
+  "Business English 1": { "bogota-cundinamarca": 60, "antioquia-eje-cafetero": 50, "pacifico": 60 },
+  "Profundización Costos para Emprendedores": { "sur-llanos": 250, "santanderes-boyaca": 50, "caribe": 50, "pacifico": 60, "bogota-cundinamarca": 250 },
+  "Confección: Manejo de Máquinas de Coser": { "caribe": 60, "antioquia-eje-cafetero": 50, "pacifico": 120, "bogota-cundinamarca": 120 },
+  "Business English 2": { "bogota-cundinamarca": 60 },
+  "Despertar Emprendedor": { "sur-llanos": 700, "santanderes-boyaca": 100, "caribe": 100, "antioquia-eje-cafetero": 150, "pacifico": 150, "bogota-cundinamarca": 400 },
+  "Despertar Humano": { "sur-llanos": 800, "santanderes-boyaca": 200, "caribe": 200, "antioquia-eje-cafetero": 650, "pacifico": 350, "bogota-cundinamarca": 500 },
+  "Economía del Hogar": { "sur-llanos": 500, "santanderes-boyaca": 200, "caribe": 200, "antioquia-eje-cafetero": 400, "pacifico": 300, "bogota-cundinamarca": 450 },
+  "El ABC del Reciclaje": { "sur-llanos": 350, "santanderes-boyaca": 50, "caribe": 50, "antioquia-eje-cafetero": 150, "pacifico": 100, "bogota-cundinamarca": 250 },
+  "Estrategias para la Búsqueda de Empleo": { "sur-llanos": 50, "caribe": 50, "antioquia-eje-cafetero": 150, "pacifico": 150, "bogota-cundinamarca": 350 },
+  "Familias Empresarias del Campo": { "santanderes-boyaca": 50, "sur-llanos": 100, "antioquia-eje-cafetero": 50, "pacifico": 60, "bogota-cundinamarca": 250 },
+  "Inglés Nivel 1": { "santanderes-boyaca": 240, "sur-llanos": 250, "caribe": 200, "antioquia-eje-cafetero": 250, "pacifico": 350, "bogota-cundinamarca": 750 },
+  "Inglés Nivel 2": { "santanderes-boyaca": 60, "sur-llanos": 200, "caribe": 100, "antioquia-eje-cafetero": 200, "pacifico": 350, "bogota-cundinamarca": 450 },
+  "Francés Nivel 1": { "caribe": 50, "pacifico": 200, "bogota-cundinamarca": 200 },
+  "Italiano Nivel 1": { "santanderes-boyaca": 60, "caribe": 60, "pacifico": 150, "bogota-cundinamarca": 60 },
+  "English for Kids": { "bogota-cundinamarca": 100 },
+  "Mi Negocio en Internet": { "sur-llanos": 250, "santanderes-boyaca": 50, "caribe": 50, "pacifico": 60, "bogota-cundinamarca": 200 },
+  "English for Teens": { "bogota-cundinamarca": 100 },
+  "Modistería (Faldas)": { "sur-llanos": 150, "santanderes-boyaca": 50, "antioquia-eje-cafetero": 100, "caribe": 120, "pacifico": 120, "bogota-cundinamarca": 120 },
+  "Floristería 1": { "pacifico": 60, "bogota-cundinamarca": 120 },
+  "Orientación Emprendedora": { "sur-llanos": 150, "santanderes-boyaca": 50, "antioquia-eje-cafetero": 400, "caribe": 150, "pacifico": 200, "bogota-cundinamarca": 350 },
+  "Repostería 1": { "sur-llanos": 150, "antioquia-eje-cafetero": 100, "caribe": 120, "pacifico": 200, "bogota-cundinamarca": 150 },
+  "Sistemas Nivel 1": { "santanderes-boyaca": 50, "sur-llanos": 250, "antioquia-eje-cafetero": 700, "caribe": 150, "pacifico": 400, "bogota-cundinamarca": 650 },
+  "Repostería 2": { "sur-llanos": 50, "caribe": 120, "pacifico": 120, "bogota-cundinamarca": 100 },
+  "Pintura en madera 1": { "antioquia-eje-cafetero": 50, "caribe": 100, "pacifico": 60, "bogota-cundinamarca": 180 },
+  "Sistemas Nivel 2": { "santanderes-boyaca": 100, "sur-llanos": 150, "antioquia-eje-cafetero": 250, "caribe": 60, "pacifico": 200, "bogota-cundinamarca": 240 },
+  "Sin Límites Virtual": { "sur-llanos": 100, "antioquia-eje-cafetero": 50, "caribe": 50, "bogota-cundinamarca": 100 },
+  "Francés Nivel 2": { "bogota-cundinamarca": 100 },
+  "Portugués Nivel 1": { "caribe": 50, "pacifico": 150, "bogota-cundinamarca": 180 },
+  "Peinados y Trenzas": { "sur-llanos": 50, "antioquia-eje-cafetero": 150, "pacifico": 120, "bogota-cundinamarca": 180 },
+  "Italiano Nivel 2": { "bogota-cundinamarca": 120 },
+  "Sistemas e Informática · Sistema Básico": { "antioquia-eje-cafetero": 50 },
+  "Sistemas e Informática · Nivel Avanzado": { "antioquia-eje-cafetero": 50 },
+  "Huertas Caseras": { "antioquia-eje-cafetero": 50 },
+  "Muñecas de Trapo": { "bogota-cundinamarca": 120 },
+  "English Leasing a Conversación": { "antioquia-eje-cafetero": 50 },
+  "Bonsái en Alambre y Pedrería": { "antioquia-eje-cafetero": 50 },
+  "Portugués Nivel 2": { "bogota-cundinamarca": 60 },
+  "Modistería: Reparación y Modificación de Prendas de Vestir": { "bogota-cundinamarca": 120 },
+  "Salud y Bienestar para Ovinos y Caprinos": { "bogota-cundinamarca": 60 },
 };

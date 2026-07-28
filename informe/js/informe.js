@@ -57,15 +57,20 @@
       </table>`;
 
     const totalGruposCurso = (c) => ZONAS.reduce((s, z) => s + (c[z.id] || 0), 0);
+    const totalCuposCurso = (c) => {
+      const cupos = CUPOS_POR_CURSO[c.curso];
+      return cupos ? Object.values(cupos).reduce((s, v) => s + v, 0) : 0;
+    };
     const tablaCursos = `
       <table>
-        <thead><tr><th>Curso</th><th>Grupos</th></tr></thead>
+        <thead><tr><th>Curso</th><th>Grupos</th><th>Cupos</th></tr></thead>
         <tbody>
           ${[...CURSOS_DETALLE].sort((a, b) => totalGruposCurso(b) - totalGruposCurso(a))
-            .map((c) => `<tr><td>📖 ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td></tr>`).join("")}
-          <tr class="fila-total"><td>🧮 Total grupos (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td></tr>
+            .map((c) => `<tr><td>📖 ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`).join("")}
+          <tr class="fila-total"><td>🧮 Total (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td><td>${fmt.format(totalCupos)}</td></tr>
         </tbody>
-      </table>`;
+      </table>
+      <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Incluye 50 cupos de un grupo presencial adicional en Bogotá y Cundinamarca aún sin curso identificado.</p>`;
 
     const tablaGruposPorZona = `
       <table>

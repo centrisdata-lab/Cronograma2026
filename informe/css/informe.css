@@ -457,7 +457,7 @@ html, body {
   font-weight: 700;
   color: var(--texto-primario);
 }
-.kpi-card__detalle-inner td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.kpi-card__detalle-inner td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
 .kpi-card__detalle-inner tr:last-child td { border-bottom: none; }
 .kpi-card__detalle-inner tr.fila-total td {
   color: var(--azul-marino);
@@ -959,7 +959,10 @@ html, body {
     min-width: 0;
     overflow-wrap: break-word;
   }
-  .kpi-card__detalle-inner tbody tr td:last-child { flex: 0 0 auto; }
+  .kpi-card__detalle-inner tbody tr td:not(:first-child) {
+    flex: 0 0 auto;
+    padding-left: 14px;
+  }
 }
 
 @media (max-width: 420px) {
