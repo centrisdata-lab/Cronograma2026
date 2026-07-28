@@ -1809,7 +1809,6 @@ const zonas = [
     departamentos: "Atlántico · Guajira · Córdoba · Cesar · Sucre · San Andrés",
     equipo: [
       { nombre: "Anyi Cortés", rol: "Coordinadora Zonal", correo: "anyi.cortes@fimlm.education", cel: "3116143718" },
-      { nombre: "Yudy Paola Sedano", rol: "Encargada Pedagógica", correo: "judy.sedano@fimlm.education", cel: "3124682537" },
       { nombre: "Melissa Quirós", rol: "Apoyo Pedagógico", correo: "melissa.quiroz@fimlm.education", cel: "3126233254" },
       { nombre: "Patricia Palacio", rol: "Encargada de Tutores", correo: "patricia.palacio@fimlm.education", cel: "3135821671" },
       { nombre: "Sonia Rodriguez", rol: "Apoyo Tutores", correo: "sonia.rodriguez@fimlm.education", cel: "3006114261" },
@@ -1822,6 +1821,7 @@ const zonas = [
     departamentos: "Antioquia · Caldas · Risaralda · Quindío · Urabá",
     equipo: [
       { nombre: "Felipe Duarte", rol: "Coordinador Zonal", correo: "felipe.duarte@fimlm.education", cel: "3104584879" },
+      { nombre: "Ivoony Molina", rol: "Coordinadora Zonal", correo: "", cel: "" },
       { nombre: "Luz Aleyda Galindo", rol: "Encargada Pedagógica", correo: "luz.galindo@fimlm.education", cel: "3138889338" },
       { nombre: "Alba Rubi Botero", rol: "Encargado Pedagógico", correo: "alba.botero@fimlm.education", cel: "" },
       { nombre: "Estefania Larrota", rol: "Encargada Pedagógica", correo: "katerina.larrota@fimlm.education", cel: "3012077257" },
@@ -1928,11 +1928,15 @@ function selectZona(id) {
 
   const esCoordinador = (rol) => /^coordinador(a)?\b/i.test((rol || "").trim());
   const coordinadores = zona.equipo.filter(m => esCoordinador(m.rol));
-  const resto = zona.equipo.filter(m => !esCoordinador(m.rol));
+  const nombresCoordinadores = new Set(coordinadores.map(m => m.nombre));
+  // El resto del equipo excluye tanto las filas de coordinador como
+  // cualquier otra fila que sea la misma persona en otro rol (ya
+  // representada arriba, en su tarjeta de coordinador).
+  const resto = zona.equipo.filter(m => !esCoordinador(m.rol) && !nombresCoordinadores.has(m.nombre));
 
-  const tarjeta = (m) => `
+  const tarjeta = (m, esCoord) => `
     <div class="miembro-card">
-      <div class="miembro-nombre">${m.nombre}</div>
+      <div class="miembro-nombre"${esCoord ? ` style="color:${zona.color};font-weight:900;"` : ""}>${m.nombre}</div>
       <div class="miembro-rol" style="color:${zona.color}">${m.rol}</div>
       <div class="miembro-info">
         ${m.correo ? `<a href="mailto:${m.correo}">✉️ ${m.correo}</a>` : ""}
@@ -1944,11 +1948,11 @@ function selectZona(id) {
   document.getElementById("zona-miembros").innerHTML = `
     <div class="org-zona-wrap">
       ${coordinadores.length ? `
-        <div class="org-coordinadores">${coordinadores.map(tarjeta).join("")}</div>
+        <div class="org-coordinadores">${coordinadores.map(m => tarjeta(m, true)).join("")}</div>
         <div class="org-connector"></div>
         <div class="org-equipo-label">Equipo de zona</div>
       ` : ""}
-      <div class="miembros-grid">${resto.map(tarjeta).join("")}</div>
+      <div class="miembros-grid">${resto.map(m => tarjeta(m, false)).join("")}</div>
     </div>
   `;
 
