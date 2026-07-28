@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe Cuerpo Académico · CAMPUS FIMLM</title>
+
+  <!-- Tipografías (misma línea gráfica que el generador de tarjetas) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/informe.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ======= ENCABEZADO DEL INFORME ======= -->
+    <header class="report-header">
+      <div class="report-header__top">
+        <img class="report-header__logo" src="img/logo-campus.png" alt="Logo CAMPUS FIMLM" />
+        <div class="report-header__brand">
+          <span class="report-header__eyebrow">Campus FIMLM</span>
+          <h1>Informe del Cuerpo Académico</h1>
+          <p class="report-header__subtitle">Consolidado nacional por zonas</p>
+        </div>
+      </div>
+
+      <div class="report-header__meta">
+        <span class="pill pill--light"><strong>Corte:</strong>&nbsp;25 de julio de 2026</span>
+        <span class="pill pill--light" id="pill-cobertura"><strong>Cobertura:</strong>&nbsp;<span id="cobertura-texto"></span></span>
+      </div>
+    </header>
+
+    <main class="app-main report-main">
+
+      <!-- ======= RESUMEN GENERAL ======= -->
+      <section class="section" id="resumen" aria-labelledby="resumen-titulo">
+        <div class="section__head">
+          <h2 id="resumen-titulo">Resumen general</h2>
+          <p>Consolidado nacional del cuerpo académico y de la oferta de cursos, grupos y cupos por zona.</p>
+        </div>
+
+        <div class="kpi-grid" id="kpi-grid">
+          <!-- Tarjetas KPI generadas por js/informe.js -->
+        </div>
+      </section>
+
+      <!-- ======= COMPARATIVO POR ZONA (TABLA RESUMEN) ======= -->
+      <section class="section panel" id="comparativo" aria-labelledby="comparativo-titulo">
+        <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-comparativo">
+          <div class="panel__titles">
+            <h2 id="comparativo-titulo">Comparativo por zona</h2>
+            <p>Cuerpo académico y oferta académica de cada zona, con su participación sobre los cupos ofertados a nivel nacional. El <strong>Enlace Campus Delegación</strong> es la persona que el coordinador zonal asigna en cada departamento para acompañarlo; en Bogotá &amp; Cundinamarca se asigna por iglesia.</p>
+          </div>
+          <span class="panel__action">
+            <span class="panel__action-label" aria-hidden="true"></span>
+            <span class="panel__toggle" aria-hidden="true">+</span>
+          </span>
+        </button>
+
+        <div class="panel__body" id="panel-comparativo">
+          <div class="panel__body-inner">
+            <div class="card table-card">
+              <div class="table-scroll">
+                <table class="data-table" id="tabla-comparativo-zonas">
+                  <!-- Generada por js/informe.js -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= DETALLE POR ZONA ======= -->
+      <section class="section" id="zonas" aria-labelledby="zonas-titulo">
+        <div class="section__head">
+          <h2 id="zonas-titulo">Detalle por zona</h2>
+          <p>Composición del cuerpo académico por rol y oferta de cursos, grupos y cupos en cada zona y sus departamentos.</p>
+        </div>
+
+        <div class="zone-list" id="zone-list">
+          <!-- Bloques de zona generados por js/informe.js -->
+        </div>
+      </section>
+
+      <!-- ======= CURSOS POR ZONA ======= -->
+      <section class="section panel" id="cursos" aria-labelledby="cursos-titulo">
+        <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-cursos">
+          <div class="panel__titles">
+            <h2 id="cursos-titulo">Cursos por zona</h2>
+            <p>Grupos abiertos de cada curso en cada zona. Un mismo curso puede tener varios grupos por horario.</p>
+          </div>
+          <span class="panel__action">
+            <span class="panel__action-label" aria-hidden="true"></span>
+            <span class="panel__toggle" aria-hidden="true">+</span>
+          </span>
+        </button>
+
+        <div class="panel__body" id="panel-cursos">
+          <div class="panel__body-inner">
+            <div class="card table-card">
+              <div class="table-scroll">
+                <table class="data-table" id="tabla-cursos">
+                  <!-- Generada por js/informe.js -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= TABLA CONSOLIDADA ======= -->
+      <section class="section panel" id="consolidado" aria-labelledby="consolidado-titulo">
+        <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-consolidado">
+          <div class="panel__titles">
+            <h2 id="consolidado-titulo">Tabla consolidada de cuerpo académico</h2>
+            <p>Totales por rol para cada zona, tal como se registran en el reporte regional.</p>
+          </div>
+          <span class="panel__action">
+            <span class="panel__action-label" aria-hidden="true"></span>
+            <span class="panel__toggle" aria-hidden="true">+</span>
+          </span>
+        </button>
+
+        <div class="panel__body" id="panel-consolidado">
+          <div class="panel__body-inner">
+            <div class="card table-card">
+              <div class="table-scroll">
+                <table class="data-table" id="tabla-consolidada">
+                  <!-- Generada por js/informe.js -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= PIE DEL INFORME ======= -->
+      <footer class="report-footer">
+        <span class="punto"></span>
+        <span class="texto">CAMPUS FIMLM · Informe generado a partir del reporte regional</span>
+        <span class="punto"></span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Datos estructurados por zona -->
+  <script src="js/datos.js"></script>
+  <!-- Lógica de renderizado del informe -->
+  <script src="js/informe.js"></script>
+</body>
+</html>
