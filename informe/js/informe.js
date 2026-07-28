@@ -86,8 +86,11 @@
       <table>
         <thead><tr><th>Composición de grupos</th><th>Cupos</th></tr></thead>
         <tbody>
-          <tr><td>🧩 51 grupos de 60 cupos</td><td>${fmt.format(51 * 60)}</td></tr>
-          <tr><td>🧩 479 grupos de 50 cupos</td><td>${fmt.format(479 * 50)}</td></tr>
+          <tr><td>🧩 61 grupos de 60 cupos</td><td>${fmt.format(61 * 60)}</td></tr>
+          <tr><td>🧩 456 grupos de 50 cupos</td><td>${fmt.format(456 * 50)}</td></tr>
+          <tr><td>🧩 5 grupos de 40 cupos</td><td>${fmt.format(5 * 40)}</td></tr>
+          <tr><td>🧩 8 grupos de 25 cupos</td><td>${fmt.format(8 * 25)}</td></tr>
+          <tr><td>🧩 1 grupo presencial adicional (Bogotá, curso sin identificar)</td><td>${fmt.format(50)}</td></tr>
         </tbody>
       </table>
       <table style="margin-top:14px;">
@@ -136,7 +139,7 @@
         icon: "🎓",
         label: "Cupos ofertados",
         value: fmt.format(totalCupos),
-        delta: `51 grupos de 60 cupos · 479 grupos de 50 cupos`,
+        delta: `61 grupos de 60 · 456 de 50 · 5 de 40 · 8 de 25 cupos`,
         detalle: tablaCuposPorZona,
       },
       {
