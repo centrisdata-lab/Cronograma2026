@@ -481,7 +481,26 @@ html, body {
 
 /* Lista vertical simple: una fila debajo de otra, sin reparto en
    columnas (evita que categorías queden una al lado de la otra). */
-.kpi-detalle-panel__inner thead { display: none; }
+.kpi-detalle-panel__inner thead {
+  display: block;
+  position: sticky;
+  top: 0;
+  background: var(--superficie);
+  z-index: 1;
+}
+.kpi-detalle-panel__inner thead tr {
+  display: flex;
+  gap: 10px;
+}
+.kpi-detalle-panel__inner thead th:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+.kpi-detalle-panel__inner thead th:not(:first-child) {
+  flex: 0 0 70px;
+  text-align: right;
+}
 .kpi-detalle-panel__inner tbody {
   display: block;
   max-height: 420px;
