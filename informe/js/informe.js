@@ -117,8 +117,8 @@
         </tbody>
       </table>`;
 
-    const tablaCoberturaGrupos = `
-      <table>
+    const tablaCoberturaPorZona = `
+      <table class="tabla-cobertura">
         <thead>
           <tr>
             <th>Zona</th>
@@ -150,7 +150,31 @@
             <td>${fmt.format(TOTALES.gruposCobertura.dosProfesores)}</td>
           </tr>
         </tbody>
-      </table>
+      </table>`;
+
+    // Vista curso-por-curso-y-grupo: agrupada por zona, con el N° de
+    // profesores y tutores tal cual quedó registrado para cada grupo
+    // individual (fuente: columna "Mi Nube" del reporte).
+    const tablaCoberturaPorGrupo = `
+      <table>
+        <thead><tr><th>Curso · Grupo</th><th>Profesores</th><th>Tutores</th></tr></thead>
+        <tbody>
+          ${ZONAS.map((z) => {
+            const grupos = GRUPOS_DETALLE_COBERTURA[z.id] || [];
+            const filaZona = `<tr class="fila-categoria"><td colspan="3">${z.nombre}</td></tr>`;
+            const filasGrupo = grupos.map((g) => `<tr><td>📖 ${g.curso} · Grupo ${g.grupo}</td><td>${fmt.format(g.profesores)}</td><td>${fmt.format(g.tutores)}</td></tr>`).join("");
+            return filaZona + filasGrupo;
+          }).join("")}
+        </tbody>
+      </table>`;
+
+    const tablaCoberturaGrupos = `
+      <div class="cobertura-toggle">
+        <button type="button" class="cobertura-toggle__btn is-active" data-cobertura-view="zona">Por zona</button>
+        <button type="button" class="cobertura-toggle__btn" data-cobertura-view="grupo">Por curso y grupo</button>
+      </div>
+      <div class="cobertura-view" data-cobertura-content="zona">${tablaCoberturaPorZona}</div>
+      <div class="cobertura-view" data-cobertura-content="grupo" hidden>${tablaCoberturaPorGrupo}</div>
       <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Los grupos "sin tutor" tienen 2 profesores asignados; uno de ellos hace las veces de tutor en ese grupo.</p>`;
 
     const tablaCuposPorZona = `
@@ -228,7 +252,7 @@
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unTutor)}</span><span class="kpi-card__value-tag">1 Tutor</span></span>
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unProfesor)}</span><span class="kpi-card__value-tag">1 Profesor</span></span>
           </span>`,
-        delta: `${fmt.format(TOTALES.gruposCobertura.sinTutor)} grupos sin tutor asignado*`,
+        delta: `${fmt.format(TOTALES.gruposCobertura.sinTutor)} grupos sin tutor (tienen 2 profesores; uno de ellos hace las veces de tutor)`,
         detalle: tablaCoberturaGrupos,
       },
     ];
@@ -283,6 +307,20 @@
         panelInner.innerHTML = kpis[idx].detalle;
         posicionarCaret(card);
         panel.classList.add("is-open");
+      });
+    });
+
+    // Delegado: alterna entre las vistas "Por zona" / "Por curso y
+    // grupo" dentro del detalle de la tarjeta "Grupos con 1 solo
+    // profesor o tutor" (el HTML se reinyecta cada vez que se abre
+    // una tarjeta, por eso el listener vive en el contenedor padre).
+    panelInner.addEventListener("click", (ev) => {
+      const btn = ev.target.closest("[data-cobertura-view]");
+      if (!btn) return;
+      const vista = btn.dataset.coberturaView;
+      panelInner.querySelectorAll("[data-cobertura-view]").forEach((b) => b.classList.toggle("is-active", b === btn));
+      panelInner.querySelectorAll("[data-cobertura-content]").forEach((el) => {
+        el.hidden = el.dataset.coberturaContent !== vista;
       });
     });
 
