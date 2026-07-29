@@ -313,6 +313,14 @@
       const idx = zonaBtn.dataset.coberturaZonaToggle;
       const body = panelInner.querySelector(`[data-cobertura-zona-body="${idx}"]`);
       const abierto = zonaBtn.getAttribute("aria-expanded") === "true";
+      // Acordeón exclusivo: al abrir una zona se cierran las demás,
+      // para no mostrar varios detalles largos a la vez.
+      panelInner.querySelectorAll("[data-cobertura-zona-toggle]").forEach((b) => {
+        if (b !== zonaBtn) b.setAttribute("aria-expanded", "false");
+      });
+      panelInner.querySelectorAll("[data-cobertura-zona-body]").forEach((el) => {
+        if (el !== body) el.hidden = true;
+      });
       zonaBtn.setAttribute("aria-expanded", String(!abierto));
       if (body) body.hidden = abierto;
     }

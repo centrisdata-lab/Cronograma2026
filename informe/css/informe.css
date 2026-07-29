@@ -633,24 +633,10 @@ html, body {
   max-width: 620px;
   border-collapse: collapse;
   font-size: 12.5px;
-  max-height: 320px;
-  display: block;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.cobertura-zona-detalle__table thead,
-.cobertura-zona-detalle__table tbody,
-.cobertura-zona-detalle__table tr {
-  display: table;
-  width: 100%;
   table-layout: fixed;
 }
 .cobertura-zona-detalle__table col.col-curso { width: 70%; }
 .cobertura-zona-detalle__table col.col-num { width: 15%; }
-.cobertura-zona-detalle__table thead {
-  position: sticky;
-  top: 0;
-}
 .cobertura-zona-detalle__table th {
   text-align: left;
   padding: 6px 8px;
