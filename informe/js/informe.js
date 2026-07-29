@@ -117,7 +117,11 @@
         </tbody>
       </table>`;
 
-    const tablaCoberturaPorZona = `
+    // Tabla resumen por zona, con cada fila de zona clickeable: al
+    // hacer clic se despliega debajo el detalle curso-por-curso-y-
+    // grupo de esa zona (fuente: columna "Mi Nube" del reporte).
+    const tablaCoberturaGrupos = `
+      <p style="font-size:12.5px;color:var(--azul-marino-2);font-weight:700;margin:0 0 10px;">👉 Haz clic sobre cada zona para ver el detalle por curso y grupo.</p>
       <table class="tabla-cobertura">
         <thead>
           <tr>
@@ -130,15 +134,25 @@
           </tr>
         </thead>
         <tbody>
-          ${ZONAS.map((z) => {
+          ${ZONAS.map((z, zi) => {
             const g = GRUPOS_COBERTURA[z.id];
-            return `<tr>
-              <td>${emojiZona} ${z.nombre}</td>
+            const grupos = GRUPOS_DETALLE_COBERTURA[z.id] || [];
+            const filasDetalle = grupos.map((d) => `<tr><td>📖 ${d.curso} · Grupo ${d.grupo}</td><td>${fmt.format(d.profesores)}</td><td>${fmt.format(d.tutores)}</td></tr>`).join("");
+            return `<tr class="cobertura-zona-fila" data-cobertura-zona-toggle="${zi}" aria-expanded="false" tabindex="0" role="button">
+              <td>${emojiZona} ${z.nombre} <span class="cobertura-zona-fila__caret" aria-hidden="true">▾</span></td>
               <td>${fmt.format(g.unTutor)}</td>
               <td>${fmt.format(g.sinTutor)}</td>
               <td>${fmt.format(g.dosTutores)}</td>
               <td>${fmt.format(g.unProfesor)}</td>
               <td>${fmt.format(g.dosProfesores)}</td>
+            </tr>
+            <tr class="cobertura-zona-detalle" data-cobertura-zona-body="${zi}" hidden>
+              <td colspan="6">
+                <table class="cobertura-zona-detalle__table">
+                  <thead><tr><th>Curso · Grupo</th><th>Profesores</th><th>Tutores</th></tr></thead>
+                  <tbody>${filasDetalle}</tbody>
+                </table>
+              </td>
             </tr>`;
           }).join("")}
           <tr class="fila-total">
@@ -150,40 +164,7 @@
             <td>${fmt.format(TOTALES.gruposCobertura.dosProfesores)}</td>
           </tr>
         </tbody>
-      </table>`;
-
-    // Vista curso-por-curso-y-grupo: un acordeón con un botón por
-    // zona (con el N° de grupos) que despliega su propia tabla al
-    // hacer clic, en vez de mostrar las 531 filas de una vez.
-    const tablaCoberturaPorGrupo = `
-      <div class="cobertura-zonas-acordeon">
-        ${ZONAS.map((z, zi) => {
-          const grupos = GRUPOS_DETALLE_COBERTURA[z.id] || [];
-          const filas = grupos.map((g) => `<tr><td>📖 ${g.curso} · Grupo ${g.grupo}</td><td>${fmt.format(g.profesores)}</td><td>${fmt.format(g.tutores)}</td></tr>`).join("");
-          return `
-            <div class="cobertura-zona-item">
-              <button type="button" class="cobertura-zona-item__toggle" data-cobertura-zona-toggle="${zi}" aria-expanded="false">
-                <span>${emojiZona} ${z.nombre}</span>
-                <span class="cobertura-zona-item__count">${fmt.format(grupos.length)} grupos</span>
-                <span class="cobertura-zona-item__caret" aria-hidden="true">▾</span>
-              </button>
-              <div class="cobertura-zona-item__body" data-cobertura-zona-body="${zi}" hidden>
-                <table>
-                  <thead><tr><th>Curso · Grupo</th><th>Profesores</th><th>Tutores</th></tr></thead>
-                  <tbody>${filas}</tbody>
-                </table>
-              </div>
-            </div>`;
-        }).join("")}
-      </div>`;
-
-    const tablaCoberturaGrupos = `
-      <div class="cobertura-toggle">
-        <button type="button" class="cobertura-toggle__btn is-active" data-cobertura-view="zona">Por zona</button>
-        <button type="button" class="cobertura-toggle__btn cobertura-toggle__btn--destacado" data-cobertura-view="grupo">👉 Haz clic aquí para ver el detalle por curso y grupo</button>
-      </div>
-      <div class="cobertura-view" data-cobertura-content="zona">${tablaCoberturaPorZona}</div>
-      <div class="cobertura-view" data-cobertura-content="grupo" hidden>${tablaCoberturaPorGrupo}</div>
+      </table>
       <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Los grupos "sin tutor" tienen 2 profesores asignados; uno de ellos hace las veces de tutor en ese grupo.</p>`;
 
     const tablaCuposPorZona = `
@@ -323,27 +304,26 @@
     // grupo" dentro del detalle de la tarjeta "Grupos con 1 solo
     // profesor o tutor" (el HTML se reinyecta cada vez que se abre
     // una tarjeta, por eso el listener vive en el contenedor padre).
+    // Cada fila de zona en la tabla de cobertura es clickeable: abre
+    // o cierra la fila con el detalle curso-por-curso-y-grupo justo
+    // debajo, sin salir de la vista resumen.
+    function toggleCoberturaZona(zonaBtn) {
+      const idx = zonaBtn.dataset.coberturaZonaToggle;
+      const body = panelInner.querySelector(`[data-cobertura-zona-body="${idx}"]`);
+      const abierto = zonaBtn.getAttribute("aria-expanded") === "true";
+      zonaBtn.setAttribute("aria-expanded", String(!abierto));
+      if (body) body.hidden = abierto;
+    }
     panelInner.addEventListener("click", (ev) => {
-      const viewBtn = ev.target.closest("[data-cobertura-view]");
-      if (viewBtn) {
-        const vista = viewBtn.dataset.coberturaView;
-        panelInner.querySelectorAll("[data-cobertura-view]").forEach((b) => b.classList.toggle("is-active", b === viewBtn));
-        panelInner.querySelectorAll("[data-cobertura-content]").forEach((el) => {
-          el.hidden = el.dataset.coberturaContent !== vista;
-        });
-        return;
-      }
-
-      // Acordeón de zonas dentro de "Por curso y grupo": cada botón
-      // abre/cierra solo su propia tabla.
       const zonaBtn = ev.target.closest("[data-cobertura-zona-toggle]");
-      if (zonaBtn) {
-        const idx = zonaBtn.dataset.coberturaZonaToggle;
-        const body = panelInner.querySelector(`[data-cobertura-zona-body="${idx}"]`);
-        const abierto = zonaBtn.getAttribute("aria-expanded") === "true";
-        zonaBtn.setAttribute("aria-expanded", String(!abierto));
-        if (body) body.hidden = abierto;
-      }
+      if (zonaBtn) toggleCoberturaZona(zonaBtn);
+    });
+    panelInner.addEventListener("keydown", (ev) => {
+      if (ev.key !== "Enter" && ev.key !== " ") return;
+      const zonaBtn = ev.target.closest("[data-cobertura-zona-toggle]");
+      if (!zonaBtn) return;
+      ev.preventDefault();
+      toggleCoberturaZona(zonaBtn);
     });
 
     window.addEventListener("resize", () => {

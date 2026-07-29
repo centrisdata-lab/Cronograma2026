@@ -587,112 +587,55 @@ html, body {
   flex: none;
 }
 
-/* Alternador "Por zona" / "Por curso y grupo" dentro del detalle
-   de la tarjeta "Grupos con 1 solo profesor o tutor". */
-.cobertura-toggle {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.cobertura-toggle__btn {
-  font: inherit;
-  font-size: 12.5px;
-  font-weight: 800;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1.5px solid var(--borde);
-  background: var(--superficie);
-  color: var(--texto-secundario);
+/* Filas clickeables de la tabla "Grupos con 1 solo profesor o
+   tutor": cada zona se puede abrir para ver su detalle por curso y
+   grupo justo debajo, sin salir de la vista resumen. */
+.kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-fila {
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background 0.12s ease;
 }
-.cobertura-toggle__btn:hover { border-color: var(--naranja); }
-.cobertura-toggle__btn.is-active {
-  background: var(--azul-marino);
-  border-color: var(--azul-marino);
-  color: #fff;
+.kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-fila:hover,
+.kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-fila:focus-visible {
+  background: color-mix(in srgb, var(--naranja) 10%, white);
 }
-
-/* Botón destacado para llevar al detalle por curso/grupo: más
-   grande, color naranja vivo y un pulso sutil hasta que se hace
-   clic, para que no pase desapercibido junto a "Por zona". */
-.cobertura-toggle__btn--destacado {
-  font-size: 13.5px;
-  padding: 9px 18px;
-  background: var(--naranja);
-  border-color: var(--naranja);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35);
-  animation: cobertura-pulso 1.8s ease-in-out infinite;
+.kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-fila:focus-visible {
+  outline: 2px solid var(--naranja);
+  outline-offset: -2px;
 }
-.cobertura-toggle__btn--destacado:hover {
-  background: var(--naranja-oscuro);
-  border-color: var(--naranja-oscuro);
-}
-.cobertura-toggle__btn--destacado.is-active {
-  background: var(--azul-marino);
-  border-color: var(--azul-marino);
-  box-shadow: none;
-  animation: none;
-}
-@keyframes cobertura-pulso {
-  0%, 100% { box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35); }
-  50% { box-shadow: 0 3px 16px rgba(245, 166, 35, 0.7); }
-}
-
-/* Acordeón de zonas dentro de "Por curso y grupo": cada zona es un
-   botón que despliega su propia tabla, en vez de mostrar las ~530
-   filas de todas las zonas de una vez. */
-.cobertura-zonas-acordeon {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.cobertura-zona-item {
-  border: 1px solid var(--borde);
-  border-radius: var(--radio-sm);
-  overflow: hidden;
-}
-.cobertura-zona-item__toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 10px 14px;
-  background: #fdecd2;
-  border: none;
-  font: inherit;
-  font-weight: 800;
-  font-size: 13px;
-  color: #d9791c;
-  cursor: pointer;
-  text-align: left;
-}
-.cobertura-zona-item__count {
-  margin-left: auto;
-  font-size: 11.5px;
-  font-weight: 700;
+.cobertura-zona-fila__caret {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
   color: var(--texto-muted);
-  text-transform: none;
-  letter-spacing: 0;
-}
-.cobertura-zona-item__caret {
   transition: transform 0.15s ease;
 }
-.cobertura-zona-item__toggle[aria-expanded="true"] .cobertura-zona-item__caret {
+.cobertura-zona-fila[aria-expanded="true"] .cobertura-zona-fila__caret {
   transform: rotate(180deg);
 }
-.cobertura-zona-item__body {
-  padding: 4px 14px 10px;
-  max-height: 360px;
-  overflow-y: auto;
+.kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-detalle td {
+  padding: 10px 10px 14px 30px;
+  background: var(--fondo);
 }
-.cobertura-zona-item__body table {
+.cobertura-zona-detalle__table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 12.5px;
+  max-height: 320px;
+  display: block;
+  overflow-y: auto;
 }
-.cobertura-zona-item__body th {
+.cobertura-zona-detalle__table thead,
+.cobertura-zona-detalle__table tbody,
+.cobertura-zona-detalle__table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.cobertura-zona-detalle__table thead {
+  position: sticky;
+  top: 0;
+}
+.cobertura-zona-detalle__table th {
   text-align: left;
   padding: 6px 8px;
   font-size: 10.5px;
@@ -700,15 +643,13 @@ html, body {
   text-transform: uppercase;
   color: var(--texto-muted);
   border-bottom: 1px solid var(--borde);
-  position: sticky;
-  top: 0;
-  background: var(--superficie);
+  background: var(--fondo);
 }
-.cobertura-zona-item__body th:not(:first-child),
-.cobertura-zona-item__body td:not(:first-child) {
+.cobertura-zona-detalle__table th:not(:first-child),
+.cobertura-zona-detalle__table td:not(:first-child) {
   text-align: right;
 }
-.cobertura-zona-item__body td {
+.cobertura-zona-detalle__table td {
   padding: 6px 8px;
   border-bottom: 1px solid var(--borde);
   font-weight: 700;
