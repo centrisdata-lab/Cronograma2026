@@ -148,7 +148,9 @@
             </tr>
             <tr class="cobertura-zona-detalle" data-cobertura-zona-body="${zi}" hidden>
               <td colspan="6">
+                <div class="cobertura-zona-detalle__titulo">Detalle por curso y grupo · ${z.nombre}</div>
                 <table class="cobertura-zona-detalle__table">
+                  <colgroup><col class="col-curso"><col class="col-num"><col class="col-num"></colgroup>
                   <thead><tr><th>Curso · Grupo</th><th>Profesores</th><th>Tutores</th></tr></thead>
                   <tbody>${filasDetalle}</tbody>
                 </table>
