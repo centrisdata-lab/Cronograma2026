@@ -180,7 +180,7 @@
     const tablaCoberturaGrupos = `
       <div class="cobertura-toggle">
         <button type="button" class="cobertura-toggle__btn is-active" data-cobertura-view="zona">Por zona</button>
-        <button type="button" class="cobertura-toggle__btn" data-cobertura-view="grupo">Por curso y grupo</button>
+        <button type="button" class="cobertura-toggle__btn cobertura-toggle__btn--destacado" data-cobertura-view="grupo">👉 Haz clic aquí para ver el detalle por curso y grupo</button>
       </div>
       <div class="cobertura-view" data-cobertura-content="zona">${tablaCoberturaPorZona}</div>
       <div class="cobertura-view" data-cobertura-content="grupo" hidden>${tablaCoberturaPorGrupo}</div>

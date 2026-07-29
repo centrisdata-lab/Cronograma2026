@@ -613,6 +613,33 @@ html, body {
   color: #fff;
 }
 
+/* Botón destacado para llevar al detalle por curso/grupo: más
+   grande, color naranja vivo y un pulso sutil hasta que se hace
+   clic, para que no pase desapercibido junto a "Por zona". */
+.cobertura-toggle__btn--destacado {
+  font-size: 13.5px;
+  padding: 9px 18px;
+  background: var(--naranja);
+  border-color: var(--naranja);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35);
+  animation: cobertura-pulso 1.8s ease-in-out infinite;
+}
+.cobertura-toggle__btn--destacado:hover {
+  background: var(--naranja-oscuro);
+  border-color: var(--naranja-oscuro);
+}
+.cobertura-toggle__btn--destacado.is-active {
+  background: var(--azul-marino);
+  border-color: var(--azul-marino);
+  box-shadow: none;
+  animation: none;
+}
+@keyframes cobertura-pulso {
+  0%, 100% { box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35); }
+  50% { box-shadow: 0 3px 16px rgba(245, 166, 35, 0.7); }
+}
+
 /* Acordeón de zonas dentro de "Por curso y grupo": cada zona es un
    botón que despliega su propia tabla, en vez de mostrar las ~530
    filas de todas las zonas de una vez. */
