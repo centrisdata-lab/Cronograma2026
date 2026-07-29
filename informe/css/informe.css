@@ -431,7 +431,10 @@ html, body {
   transition: max-height 0.35s ease, margin-top 0.35s ease;
 }
 .kpi-detalle-panel.is-open {
-  max-height: 1400px;
+  /* Suficientemente alto para la vista de cobertura de grupos, que al
+     expandir una zona (hasta ~170 filas) puede superar los 1400px que
+     bastaban para el resto de tarjetas. */
+  max-height: 8000px;
   margin-top: 0;
 }
 
