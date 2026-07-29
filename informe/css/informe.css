@@ -479,14 +479,11 @@ html, body {
 }
 .kpi-detalle-panel__inner tr.fila-categoria:first-child td { border-top: none !important; }
 
-/* Al abrirse a ancho completo, la lista se reparte en columnas
-   (cada fila es un bloque de tabla independiente) para aprovechar
-   el espacio horizontal en vez de quedar como una lista larga. */
+/* Lista vertical simple: una fila debajo de otra, sin reparto en
+   columnas (evita que categorías queden una al lado de la otra). */
 .kpi-detalle-panel__inner thead { display: none; }
 .kpi-detalle-panel__inner tbody {
   display: block;
-  column-width: 230px;
-  column-gap: 24px;
   max-height: 420px;
   overflow-y: auto;
 }
@@ -495,8 +492,6 @@ html, body {
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
 }
 .kpi-detalle-panel__inner tbody tr.fila-total {
   font-family: var(--fuente-titulos);
