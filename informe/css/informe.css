@@ -630,12 +630,13 @@ html, body {
 }
 .cobertura-zona-detalle__table {
   width: 100%;
-  max-width: 480px;
+  max-width: 620px;
   border-collapse: collapse;
   font-size: 12.5px;
   max-height: 320px;
   display: block;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .cobertura-zona-detalle__table thead,
 .cobertura-zona-detalle__table tbody,
@@ -644,8 +645,8 @@ html, body {
   width: 100%;
   table-layout: fixed;
 }
-.cobertura-zona-detalle__table col.col-curso { width: auto; }
-.cobertura-zona-detalle__table col.col-num { width: 90px; }
+.cobertura-zona-detalle__table col.col-curso { width: 70%; }
+.cobertura-zona-detalle__table col.col-num { width: 15%; }
 .cobertura-zona-detalle__table thead {
   position: sticky;
   top: 0;
