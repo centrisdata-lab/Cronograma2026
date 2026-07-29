@@ -612,6 +612,9 @@ html, body {
 .cobertura-zona-fila[aria-expanded="true"] .cobertura-zona-fila__caret {
   transform: rotate(180deg);
 }
+.kpi-detalle-panel__inner table.tabla-cobertura tbody tr[hidden] {
+  display: none;
+}
 .kpi-detalle-panel__inner table.tabla-cobertura tr.cobertura-zona-detalle td {
   padding: 10px 10px 14px 30px;
   background: var(--fondo);
