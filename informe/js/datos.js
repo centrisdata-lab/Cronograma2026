@@ -280,6 +280,7 @@ const TOTALES = {
   informadores: 4701,
   coordinadoresZonales: 13,
   enlaceDelegacion: 99,
+  gruposCobertura: { unTutor: 318, sinTutor: 33, dosTutores: 180, unProfesor: 253, dosProfesores: 278 },
 };
 
 /* Cupos por curso y zona (fuente: hoja "Cupos" del consolidado
@@ -330,4 +331,17 @@ const CUPOS_POR_CURSO = {
   "Portugués Nivel 2": { "bogota-cundinamarca": 60 },
   "Modistería: Reparación y Modificación de Prendas de Vestir": { "bogota-cundinamarca": 120 },
   "Salud y Bienestar para Ovinos y Caprinos": { "bogota-cundinamarca": 60 },
+};
+
+/* Cobertura de tutores y profesores por grupo: cuántos grupos
+   tienen 1 solo tutor/profesor, cuántos tienen 2, y (solo para
+   tutores) cuántos grupos no tienen tutor asignado. Fuente:
+   reporte "Grupos con 1 tutor y profesor". */
+const GRUPOS_COBERTURA = {
+  "bogota-cundinamarca": { unTutor: 150, sinTutor: 14, dosTutores: 5, unProfesor: 105, dosProfesores: 64 },
+  "santanderes-boyaca":  { unTutor: 11,  sinTutor: 0,  dosTutores: 17, unProfesor: 22,  dosProfesores: 6 },
+  "caribe":              { unTutor: 33,  sinTutor: 0,  dosTutores: 14, unProfesor: 22,  dosProfesores: 25 },
+  "antioquia-eje-cafetero": { unTutor: 58, sinTutor: 7, dosTutores: 31, unProfesor: 26, dosProfesores: 70 },
+  "pacifico":            { unTutor: 0,   sinTutor: 0,  dosTutores: 88, unProfesor: 16,  dosProfesores: 72 },
+  "sur-llanos":          { unTutor: 66,  sinTutor: 12, dosTutores: 25, unProfesor: 62,  dosProfesores: 41 },
 };

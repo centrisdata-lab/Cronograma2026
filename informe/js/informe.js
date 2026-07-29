@@ -117,6 +117,41 @@
         </tbody>
       </table>`;
 
+    const tablaCoberturaGrupos = `
+      <table>
+        <thead>
+          <tr>
+            <th>Zona</th>
+            <th>1 Tutor</th>
+            <th>Sin tutor</th>
+            <th>2 Tutores</th>
+            <th>1 Profesor</th>
+            <th>2 Profesores</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ZONAS.map((z) => {
+            const g = GRUPOS_COBERTURA[z.id];
+            return `<tr>
+              <td>${emojiZona} ${z.nombre}</td>
+              <td>${fmt.format(g.unTutor)}</td>
+              <td>${fmt.format(g.sinTutor)}</td>
+              <td>${fmt.format(g.dosTutores)}</td>
+              <td>${fmt.format(g.unProfesor)}</td>
+              <td>${fmt.format(g.dosProfesores)}</td>
+            </tr>`;
+          }).join("")}
+          <tr class="fila-total">
+            <td>🧮 Total nacional</td>
+            <td>${fmt.format(TOTALES.gruposCobertura.unTutor)}</td>
+            <td>${fmt.format(TOTALES.gruposCobertura.sinTutor)}</td>
+            <td>${fmt.format(TOTALES.gruposCobertura.dosTutores)}</td>
+            <td>${fmt.format(TOTALES.gruposCobertura.unProfesor)}</td>
+            <td>${fmt.format(TOTALES.gruposCobertura.dosProfesores)}</td>
+          </tr>
+        </tbody>
+      </table>`;
+
     const tablaCuposPorZona = `
       <table>
         <thead><tr><th>Composición de grupos</th><th>Cupos</th></tr></thead>
@@ -183,6 +218,17 @@
         value: fmt.format(TOTALES.informadores),
         delta: `${fmt.format(INFORMADORES_SIN_ZONA)} sin departamento asignado`,
         detalle: tablaInformadores,
+      },
+      {
+        icon: "🧑‍🏫",
+        label: "Grupos con 1 solo profesor o tutor",
+        value: `
+          <span class="kpi-card__value-pair">
+            <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unTutor)}</span><span class="kpi-card__value-tag">1 Tutor</span></span>
+            <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unProfesor)}</span><span class="kpi-card__value-tag">1 Profesor</span></span>
+          </span>`,
+        delta: `${fmt.format(TOTALES.gruposCobertura.sinTutor)} grupos sin tutor asignado`,
+        detalle: tablaCoberturaGrupos,
       },
     ];
 

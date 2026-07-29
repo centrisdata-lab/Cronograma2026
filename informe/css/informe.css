@@ -293,7 +293,7 @@ html, body {
    ============================================================ */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 16px;
 }
 
@@ -360,6 +360,34 @@ html, body {
   font-size: 12.5px;
   font-weight: 700;
   color: var(--texto-secundario);
+}
+
+/* Tarjeta con dos cifras lado a lado (ej. "Grupos con 1 solo
+   profesor/tutor"), en vez de un único valor grande. */
+.kpi-card__value-pair {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.kpi-card__value-pair .kpi-card__value-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.kpi-card__value-pair .kpi-card__value-num {
+  font-family: var(--fuente-titulos);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--azul-marino);
+  line-height: 1;
+}
+.kpi-card__value-pair .kpi-card__value-tag {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--texto-muted);
 }
 
 .kpi-card__bar {
