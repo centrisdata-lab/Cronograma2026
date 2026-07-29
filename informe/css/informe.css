@@ -430,18 +430,18 @@ html, body {
   border-radius: 3px 0 0 0;
 }
 
-.kpi-card__detalle-inner {
+.kpi-detalle-panel__inner {
   padding: 4px 22px 22px;
   border-top: 1px solid var(--borde);
   margin-top: 2px;
 }
-.kpi-card__detalle-inner table {
+.kpi-detalle-panel__inner table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13.5px;
   margin-top: 14px;
 }
-.kpi-card__detalle-inner th {
+.kpi-detalle-panel__inner th {
   text-align: left;
   padding: 7px 10px;
   font-size: 11px;
@@ -451,20 +451,20 @@ html, body {
   color: var(--texto-muted);
   border-bottom: 1px solid var(--borde);
 }
-.kpi-card__detalle-inner td {
+.kpi-detalle-panel__inner td {
   padding: 7px 10px;
   border-bottom: 1px solid var(--borde);
   font-weight: 700;
   color: var(--texto-primario);
 }
-.kpi-card__detalle-inner td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
-.kpi-card__detalle-inner tr:last-child td { border-bottom: none; }
-.kpi-card__detalle-inner tr.fila-total td {
+.kpi-detalle-panel__inner td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.kpi-detalle-panel__inner tr:last-child td { border-bottom: none; }
+.kpi-detalle-panel__inner tr.fila-total td {
   color: var(--azul-marino);
   border-top: 2px solid var(--azul-marino);
   border-bottom: none;
 }
-.kpi-card__detalle-inner tr.fila-categoria td {
+.kpi-detalle-panel__inner tr.fila-categoria td {
   padding: 10px 10px !important;
   margin-top: 6px;
   font-size: 13px !important;
@@ -477,20 +477,20 @@ html, body {
   border-top: 2px solid #f5a623 !important;
   text-align: left;
 }
-.kpi-card__detalle-inner tr.fila-categoria:first-child td { border-top: none !important; }
+.kpi-detalle-panel__inner tr.fila-categoria:first-child td { border-top: none !important; }
 
 /* Al abrirse a ancho completo, la lista se reparte en columnas
    (cada fila es un bloque de tabla independiente) para aprovechar
    el espacio horizontal en vez de quedar como una lista larga. */
-.kpi-card__detalle-inner thead { display: none; }
-.kpi-card__detalle-inner tbody {
+.kpi-detalle-panel__inner thead { display: none; }
+.kpi-detalle-panel__inner tbody {
   display: block;
   column-width: 230px;
   column-gap: 24px;
   max-height: 420px;
   overflow-y: auto;
 }
-.kpi-card__detalle-inner tbody tr {
+.kpi-detalle-panel__inner tbody tr {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -498,7 +498,7 @@ html, body {
   break-inside: avoid;
   -webkit-column-break-inside: avoid;
 }
-.kpi-card__detalle-inner tbody tr.fila-total {
+.kpi-detalle-panel__inner tbody tr.fila-total {
   font-family: var(--fuente-titulos);
 }
 
@@ -945,35 +945,35 @@ html, body {
   .zone-card__header { padding: 14px 16px; }
   .zone-card__content { padding: 4px 16px 18px; }
   .data-table { min-width: 760px; }
-  .kpi-card__detalle-inner {
+  .kpi-detalle-panel__inner {
     padding: 4px 16px 18px;
     max-width: 100%;
     overflow-x: hidden;
   }
-  .kpi-card__detalle-inner table {
+  .kpi-detalle-panel__inner table {
     display: block;
     max-width: 100%;
   }
-  .kpi-card__detalle-inner tbody {
+  .kpi-detalle-panel__inner tbody {
     display: block;
     max-width: 100%;
     columns: initial !important;
     column-width: initial !important;
     column-count: initial !important;
   }
-  .kpi-card__detalle-inner tbody tr {
+  .kpi-detalle-panel__inner tbody tr {
     display: flex !important;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
   }
-  .kpi-card__detalle-inner tbody tr td:first-child {
+  .kpi-detalle-panel__inner tbody tr td:first-child {
     flex: 1 1 auto;
     min-width: 0;
     overflow-wrap: break-word;
   }
-  .kpi-card__detalle-inner tbody tr td:not(:first-child) {
+  .kpi-detalle-panel__inner tbody tr td:not(:first-child) {
     flex: 0 0 auto;
     padding-left: 14px;
   }
