@@ -471,10 +471,10 @@ html, body {
   font-weight: 900 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.04em;
-  color: var(--naranja-oscuro) !important;
-  background: color-mix(in srgb, var(--naranja) 22%, white) !important;
+  color: #d9791c !important;
+  background: #fdecd2 !important;
   border-bottom: 1px solid var(--borde);
-  border-top: 2px solid var(--naranja) !important;
+  border-top: 2px solid #f5a623 !important;
   text-align: left;
 }
 .kpi-card__detalle-inner tr.fila-categoria:first-child td { border-top: none !important; }
@@ -851,18 +851,18 @@ html, body {
 /* Encabezado discreto de categoría dentro de la tabla de cursos:
    se nota que agrupa, sin competir con los datos. */
 .data-table tbody tr.fila-categoria td {
-  background: color-mix(in srgb, var(--naranja) 12%, white) !important;
-  color: var(--naranja-oscuro);
+  background: #fdecd2 !important;
+  color: #d9791c;
   font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 9px 10px;
   text-align: left;
-  border-top: 2px solid var(--naranja);
+  border-top: 2px solid #f5a623;
   border-bottom: 1px solid var(--borde);
 }
-.data-table tbody tr.fila-categoria:hover td { background: color-mix(in srgb, var(--naranja) 18%, white) !important; }
+.data-table tbody tr.fila-categoria:hover td { background: #fbdfb0 !important; }
 
 .data-table .cell-total {
   background: rgba(245, 166, 35, 0.16) !important;
