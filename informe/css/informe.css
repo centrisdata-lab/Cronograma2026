@@ -490,8 +490,18 @@ html, body {
 .kpi-detalle-panel__inner tbody tr {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 10px;
+}
+.kpi-detalle-panel__inner tbody tr td:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.kpi-detalle-panel__inner tbody tr td:not(:first-child) {
+  flex: 0 0 70px;
+  text-align: right;
+}
+.kpi-detalle-panel__inner tbody tr.fila-categoria {
+  justify-content: flex-start;
 }
 .kpi-detalle-panel__inner tbody tr.fila-total {
   font-family: var(--fuente-titulos);
@@ -969,8 +979,8 @@ html, body {
     overflow-wrap: break-word;
   }
   .kpi-detalle-panel__inner tbody tr td:not(:first-child) {
-    flex: 0 0 auto;
-    padding-left: 14px;
+    flex: 0 0 60px;
+    padding-left: 8px;
   }
 }
 
