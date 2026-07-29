@@ -150,7 +150,8 @@
             <td>${fmt.format(TOTALES.gruposCobertura.dosProfesores)}</td>
           </tr>
         </tbody>
-      </table>`;
+      </table>
+      <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Los grupos "sin tutor" tienen 2 profesores asignados; uno de ellos hace las veces de tutor en ese grupo.</p>`;
 
     const tablaCuposPorZona = `
       <table>
@@ -227,7 +228,7 @@
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unTutor)}</span><span class="kpi-card__value-tag">1 Tutor</span></span>
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(TOTALES.gruposCobertura.unProfesor)}</span><span class="kpi-card__value-tag">1 Profesor</span></span>
           </span>`,
-        delta: `${fmt.format(TOTALES.gruposCobertura.sinTutor)} grupos sin tutor asignado`,
+        delta: `${fmt.format(TOTALES.gruposCobertura.sinTutor)} grupos sin tutor asignado*`,
         detalle: tablaCoberturaGrupos,
       },
     ];
