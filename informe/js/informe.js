@@ -121,7 +121,7 @@
     // hacer clic se despliega debajo el detalle curso-por-curso-y-
     // grupo de esa zona (fuente: columna "Mi Nube" del reporte).
     const tablaCoberturaGrupos = `
-      <p style="font-size:12.5px;color:var(--azul-marino-2);font-weight:700;margin:0 0 10px;">👉 Haz clic sobre cada zona para ver el detalle por curso y grupo.</p>
+      <p style="font-size:12.5px;color:var(--azul-marino-2);font-weight:700;margin:6px 0 14px;">👉 Haz clic sobre cada zona para ver el detalle por curso y grupo.</p>
       <table class="tabla-cobertura">
         <thead>
           <tr>
