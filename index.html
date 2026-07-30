@@ -1985,6 +1985,12 @@ function renderOrganigramaZona(zona) {
     return nombres.map((n, i) => `<div${i > 0 ? ` style="border-top:1px solid ${borde};padding-top:4px;margin-top:2px;"` : ""}>${n}</div>`).join("");
   };
 
+  // Etiqueta pequeña sobre cada tarjeta, indicando su rol exacto
+  // (ej. "Encargado(a) Pedagógico" / "Apoyo(s) Pedagógico"), para no
+  // depender de un título de columna genérico ni de que el usuario
+  // adivine el rol por color o posición.
+  const etiqueta = (texto) => `<div style="font-size:0.66rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px;">${texto}</div>`;
+
   const columna = (icono, titulo, area, claseBase) => {
     if (!area || (area.encargados.length === 0 && area.apoyos.length === 0)) return "";
     return `
@@ -1993,10 +1999,12 @@ function renderOrganigramaZona(zona) {
         <div class="org-node apoyo" style="width:100%;max-width:190px;text-align:center;">${icono} ${titulo}</div>
         ${area.encargados.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
+          ${etiqueta(`Encargado(a) ${titulo}`)}
           <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados, true)}</div>
         ` : ""}
         ${area.apoyos.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
+          ${etiqueta(`Apoyo(s) ${titulo}`)}
           <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos, false)}</div>
         ` : ""}
       </div>`;
@@ -2014,6 +2022,7 @@ function renderOrganigramaZona(zona) {
       <div class="org-tree">
         <div class="org-node top" style="background:${zona.color};min-width:220px;max-width:340px;text-align:center;">${zona.emoji} ${zona.nombre}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
+        ${etiqueta("Coordinador(a/es) Zonal")}
         <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores, true)}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
         <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
