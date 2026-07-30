@@ -32,6 +32,7 @@
 
     const totalPersonal = TOTALES.personal.totalPersonasUnicas;
     const totalCursos = TOTALES.oferta.cursos;
+    const totalCursosUnicos = new Set(CURSOS_DETALLE.map((c) => c.curso)).size;
     const totalGrupos = TOTALES.oferta.grupos;
     const totalCupos = TOTALES.oferta.cupos;
     const totalDepartamentos = ZONAS.reduce((n, z) => n + z.departamentos.length, 0);
@@ -256,7 +257,11 @@
       {
         icon: "📚",
         label: "Cursos activos",
-        value: fmt.format(totalCursos),
+        value: `
+          <span class="kpi-card__value-pair">
+            <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(totalCursos)}</span><span class="kpi-card__value-tag">Sumando zonas</span></span>
+            <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(totalCursosUnicos)}</span><span class="kpi-card__value-tag">Cursos únicos</span></span>
+          </span>`,
         delta: `${INFORME_META.notaOferta}`,
         detalle: tablaCursos,
       },
