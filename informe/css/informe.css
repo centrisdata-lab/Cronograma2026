@@ -632,6 +632,33 @@ html, body {
   color: var(--naranja-oscuro);
   margin: 8px 0 8px 4px;
 }
+
+/* Toggle "Por categoría" / "Top cursos con más cupos" dentro del
+   detalle de la tarjeta "Cursos activos". */
+.cursos-vista-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.cursos-vista-btn {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--naranja);
+  background: white;
+  color: var(--naranja-oscuro);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.cursos-vista-btn:hover {
+  background: color-mix(in srgb, var(--naranja) 12%, white);
+}
+.cursos-vista-btn.is-active {
+  background: var(--naranja);
+  color: white;
+}
 .cobertura-zona-detalle__table {
   width: 100%;
   max-width: 620px;

@@ -122,15 +122,35 @@
         .join("");
       return `<tr class="fila-categoria"><td colspan="3">${cat.label}</td></tr>${filas}`;
     }).join("");
+    const filasTopCupos = [...CURSOS_DETALLE]
+      .sort((a, b) => totalCuposCurso(b) - totalCuposCurso(a))
+      .map((c) => `<tr><td>${emojiCurso[c.curso] || "📖"} ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`)
+      .join("");
     const tablaCursos = `
-      <table>
-        <thead><tr><th>Curso</th><th>Grupos</th><th>Cupos</th></tr></thead>
-        <tbody>
-          ${filasCursosPorCategoria}
-          <tr class="fila-total"><td>🧮 Total (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td><td>${fmt.format(totalCupos)}</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Incluye 50 cupos de un grupo presencial adicional en Bogotá y Cundinamarca aún sin curso identificado.</p>`;
+      <div class="cursos-vista-toggle">
+        <button type="button" class="cursos-vista-btn is-active" data-cursos-vista="categoria">📚 Por categoría</button>
+        <button type="button" class="cursos-vista-btn" data-cursos-vista="top-cupos">🏆 Top cursos con más cupos</button>
+      </div>
+      <div data-cursos-vista-panel="categoria">
+        <table>
+          <thead><tr><th>Curso</th><th>Grupos</th><th>Cupos</th></tr></thead>
+          <tbody>
+            ${filasCursosPorCategoria}
+            <tr class="fila-total"><td>🧮 Total (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td><td>${fmt.format(totalCupos)}</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Incluye 50 cupos de un grupo presencial adicional en Bogotá y Cundinamarca aún sin curso identificado.</p>
+      </div>
+      <div data-cursos-vista-panel="top-cupos" hidden>
+        <table>
+          <thead><tr><th>Curso</th><th>Grupos</th><th>Cupos</th></tr></thead>
+          <tbody>
+            ${filasTopCupos}
+            <tr class="fila-total"><td>🧮 Total (todos los cursos)</td><td>${fmt.format(totalGrupos)}</td><td>${fmt.format(totalCupos)}</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*Ordenado de mayor a menor cupo, sumando todas las zonas donde se ofrece cada curso.</p>
+      </div>`;
 
     const tablaGruposPorZona = `
       <table>
@@ -349,9 +369,22 @@
       zonaBtn.setAttribute("aria-expanded", String(!abierto));
       if (body) body.hidden = abierto;
     }
+    // Delegado: alterna entre las vistas "Por categoría" / "Top cursos
+    // con más cupos" dentro del detalle de la tarjeta "Cursos activos".
+    function toggleCursosVista(vistaBtn) {
+      const vista = vistaBtn.dataset.cursosVista;
+      panelInner.querySelectorAll("[data-cursos-vista]").forEach((b) => {
+        b.classList.toggle("is-active", b === vistaBtn);
+      });
+      panelInner.querySelectorAll("[data-cursos-vista-panel]").forEach((el) => {
+        el.hidden = el.dataset.cursosVistaPanel !== vista;
+      });
+    }
     panelInner.addEventListener("click", (ev) => {
       const zonaBtn = ev.target.closest("[data-cobertura-zona-toggle]");
       if (zonaBtn) toggleCoberturaZona(zonaBtn);
+      const vistaBtn = ev.target.closest("[data-cursos-vista]");
+      if (vistaBtn) toggleCursosVista(vistaBtn);
     });
     panelInner.addEventListener("keydown", (ev) => {
       if (ev.key !== "Enter" && ev.key !== " ") return;
