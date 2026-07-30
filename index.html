@@ -1996,10 +1996,8 @@ function renderOrganigramaZona(zona) {
     return `
       <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;min-width:160px;">
         <div style="width:2px;height:24px;background:#93c5fd"></div>
-        <div class="org-node apoyo" style="width:100%;max-width:190px;text-align:center;">${icono} ${titulo}</div>
         ${area.encargados.length ? `
-          <div style="width:2px;height:14px;background:#93c5fd"></div>
-          ${etiqueta(`Encargado(a) ${titulo}`)}
+          ${etiqueta(`${icono} Encargado(a) ${titulo}`)}
           <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados, true)}</div>
         ` : ""}
         ${area.apoyos.length ? `
