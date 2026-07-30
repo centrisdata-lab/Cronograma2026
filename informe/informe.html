@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/informe.css?v=20260730f" />
+  <link rel="stylesheet" href="css/informe.css?v=20260730h" />
 </head>
 <body>
 
@@ -78,14 +78,24 @@
       </section>
 
       <!-- ======= DETALLE POR ZONA ======= -->
-      <section class="section" id="zonas" aria-labelledby="zonas-titulo">
-        <div class="section__head">
-          <h2 id="zonas-titulo">Detalle por zona</h2>
-          <p>Composición del cuerpo académico por rol y oferta de cursos, grupos y cupos en cada zona y sus departamentos.</p>
-        </div>
+      <section class="section panel" id="zonas" aria-labelledby="zonas-titulo">
+        <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-zonas">
+          <div class="panel__titles">
+            <h2 id="zonas-titulo">Detalle por zona</h2>
+            <p>Composición del cuerpo académico por rol y oferta de cursos, grupos y cupos en cada zona y sus departamentos.</p>
+          </div>
+          <span class="panel__action">
+            <span class="panel__action-label" aria-hidden="true"></span>
+            <span class="panel__toggle" aria-hidden="true">+</span>
+          </span>
+        </button>
 
-        <div class="zone-list" id="zone-list">
-          <!-- Bloques de zona generados por js/informe.js -->
+        <div class="panel__body" id="panel-zonas">
+          <div class="panel__body-inner">
+            <div class="zone-list" id="zone-list">
+              <!-- Bloques de zona generados por js/informe.js -->
+            </div>
+          </div>
         </div>
       </section>
 
@@ -152,8 +162,8 @@
   </div>
 
   <!-- Datos estructurados por zona -->
-  <script src="js/datos.js?v=20260730f"></script>
+  <script src="js/datos.js?v=20260730h"></script>
   <!-- Lógica de renderizado del informe -->
-  <script src="js/informe.js?v=20260730f"></script>
+  <script src="js/informe.js?v=20260730h"></script>
 </body>
 </html>

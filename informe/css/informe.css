@@ -254,6 +254,8 @@ html, body {
 }
 .panel__action-label::after { content: "Ver tabla"; }
 .panel.is-open .panel__action-label::after { content: "Ocultar"; }
+#zonas .panel__action-label::after { content: "Ver zonas"; }
+#zonas.panel.is-open .panel__action-label::after { content: "Ocultar"; }
 
 .panel__toggle {
   display: flex;
