@@ -168,6 +168,20 @@
     .org-node.est    { background: #f1f5f9; color: #334155; border: 2px solid #cbd5e1; min-width: 320px; max-width: 400px; }
     .org-node.info   { background: #fce7f3; color: #831843; border: 2px solid #f9a8d4; min-width: 320px; max-width: 400px; }
 
+    /* Botón de nombre dentro del organigrama de zonas: abre el
+       modal de contacto (correo/celular) al hacer clic. */
+    .org-nombre-btn {
+      background: none; border: none; padding: 0; margin: 0;
+      font: inherit; color: inherit; font-weight: inherit;
+      cursor: pointer; text-align: inherit; width: 100%;
+      text-decoration: underline; text-decoration-color: transparent;
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.12s ease;
+    }
+    .org-nombre-btn:hover, .org-nombre-btn:focus-visible {
+      text-decoration-color: currentColor;
+    }
+
     /* conectores */
     .org-vline { width: 2px; background: #93c5fd; flex-shrink: 0; }
     .org-hbar  { display: flex; align-items: flex-start; justify-content: center; gap: 0; }
@@ -478,6 +492,42 @@
       padding: 20px;
     }
     .modal-overlay.open { display: flex; }
+
+    /* Modal compacto de contacto (organigrama de zonas) */
+    .contacto-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,20,50,0.5); backdrop-filter: blur(2px);
+      z-index: 200; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .contacto-modal-overlay.open { display: flex; }
+    .contacto-modal {
+      position: relative;
+      background: var(--white); border-radius: 16px;
+      width: 100%; max-width: 340px;
+      padding: 28px 24px 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: slideUp 0.18s ease;
+    }
+    .contacto-modal__close {
+      position: absolute; top: 12px; right: 12px;
+      background: #f0f4f8; border: none; border-radius: 50%;
+      width: 32px; height: 32px; font-size: 1rem; cursor: pointer;
+      color: var(--muted); display: flex; align-items: center; justify-content: center;
+    }
+    .contacto-modal__close:hover { background: #fde8e8; color: var(--red); }
+    .contacto-modal__nombre { font-size: 1.15rem; font-weight: 900; color: var(--blue); margin-bottom: 4px; padding-right: 30px; }
+    .contacto-modal__rol {
+      font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px;
+      color: var(--muted); margin-bottom: 18px;
+    }
+    .contacto-modal__campo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.92rem; font-weight: 700; color: var(--blue);
+      padding: 10px 0; border-top: 1px solid var(--border);
+    }
+    .contacto-modal__campo:first-of-type { border-top: none; }
+    .contacto-modal__icono { flex-shrink: 0; font-size: 1.05rem; }
 
     .modal {
       background: var(--white); border-radius: 20px;
@@ -817,6 +867,23 @@
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModalDirect()">Cancelar</button>
       <button class="btn-save" id="btn-save" onclick="saveNote()">💾 Guardar detalle</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE CONTACTO (organigrama de zonas) -->
+<div class="contacto-modal-overlay" id="contacto-modal-overlay" onclick="if(event.target===this) cerrarContacto()">
+  <div class="contacto-modal">
+    <button class="contacto-modal__close" onclick="cerrarContacto()">✕</button>
+    <div class="contacto-modal__nombre" id="contacto-nombre"></div>
+    <div class="contacto-modal__rol" id="contacto-rol"></div>
+    <div class="contacto-modal__campo">
+      <span class="contacto-modal__icono">✉️</span>
+      <span id="contacto-correo"></span>
+    </div>
+    <div class="contacto-modal__campo">
+      <span class="contacto-modal__icono">📞</span>
+      <span id="contacto-celular"></span>
     </div>
   </div>
 </div>
@@ -1839,6 +1906,110 @@ const zonasOrg = {
   },
 };
 
+// Correo y celular institucional de cada persona del organigrama de
+// zonas (fuente: hoja "BD Zonas Col-2026" y "EQUIPO DE LA ZONA" del
+// consolidado de la Convocatoria 32). Si un dato no está disponible
+// queda en null y se muestra como "Pendiente" en el modal de contacto.
+const contactosZonas = {
+  "Diana Paola Garnica": { correo: null, celular: "3105582786" },
+  "Jennifer Galvis": { correo: "jennifer.galvis@fimlm.education", celular: "3137799873" },
+  "Yasmin Benavidez": { correo: "yasmin.benavides@fimlm.education", celular: "3057046257" },
+  "Jonathan Moreno": { correo: "jhonatan.moreno@fimlm.education", celular: "3133108462" },
+  "Diana Estefanía Caicedo Ospina": { correo: "dianaestefania.caicedo@fimlm.education", celular: "3142483216" },
+  "Edith Estupiñan Corso": { correo: "edith.estupinan@fimlm.education", celular: "3134621788" },
+  "Martha Martinez": { correo: "martha.martinezf@fimlm.education", celular: "3005048881" },
+  "Beleisy Bran": { correo: "beleisy.bran@fimlm.education", celular: "3016898106" },
+  "Nidi Johana González": { correo: "nidy.gonzalez@fimlm.education", celular: "3106931253" },
+  "Maricel Jiménez": { correo: "maricel.jimenez@fimlm.education", celular: "3112162289" },
+  "Silverio Jaime Granados": { correo: "silverio.jaime@fimlm.education", celular: "3107960415" },
+  "Maria Puala Moreno": { correo: "maria.moreno@fimlm.education", celular: "3195695906" },
+  "Cristhian Doncel": { correo: "cristhian.doncel@fimlm.education", celular: "3161860142" },
+  "Lizeth Alejandra Jaime Lizcano": { correo: "alejandra.jaime@fimlm.education", celular: "3105547741" },
+  "Paola Hernandez": { correo: "paola.hernandez@fimlm.education", celular: "3502937668" },
+  "Daniela Velez Montero": { correo: "daniela.velez@fimlm.education", celular: "3122188184" },
+  "Anyi Cortés Gómez": { correo: "anyi.cortes@fimlm.education", celular: "3116143718" },
+  "Sonia Rodriguez": { correo: "sonia.rodriguez@fimlm.education", celular: "3006114261" },
+  "Melissa Quirós": { correo: "melissa.quiroz@fimlm.education", celular: "3126233254" },
+  "Albeiro Vega": { correo: "Albeiro.vega@fimlm.education", celular: null },
+  "Gabriel Andrés Otero": { correo: "gabriel.otero@fimlm.education", celular: null },
+  "Patricia Palacio": { correo: "patricia.palacio@fimlm.education", celular: "313 5821671" },
+  "Lizbeth Beatriz Romero": { correo: "beatriz.romero@fimlm.education", celular: "3014755387" },
+  "Anyi Cortés": { correo: "anyi.cortes@fimlm.education", celular: "3116143718" },
+  "Martha Lina Gonzalez": { correo: "martha.gonzalez@fimlm.education", celular: "3127290530" },
+  "Deisy Alejandra Galeano": { correo: "deisy.galeano@fimlm.education", celular: "3108535516" },
+  "Luis Felipe López": { correo: "luis.lopez@fimlm.education", celular: "3152874814" },
+  "Luz Aleyda Galindo": { correo: "luz.galindo@fimlm.education", celular: "3138889338" },
+  "Alba Rubby Botero": { correo: "alba.botero@fimlm.education", celular: "310 6319908" },
+  "Estefanny Larrota": { correo: "katerina.larrota@fimlm.education", celular: "3012077257" },
+  "Felipe Duarte": { correo: "felipe.duarte@fimlm.education", celular: "3104584879" },
+  "Yolanda Moreno": { correo: "cali.sameco@fimlm.org", celular: "3164937355" },
+  "Diana Escallón": { correo: "diana.escallon@fimlm.education", celular: "3146783487" },
+  "Andrés Ledesma - Cauca": { correo: "andres.ledesma@fimlm.education", celular: "3187236539" },
+  "Betty Machado": { correo: "betty.machado@fimlm.education", celular: "3154136040" },
+  "Nicolas Barona": { correo: null, celular: "3116305506" },
+  "Angie Zulay Moreno Mora": { correo: "g.choco@fundacionmarialuisa.org", celular: "3136808200" },
+  "Yhennifer Andrea Aguilar": { correo: "yhennifer.aguilar@fimlm.education", celular: "3214560770" },
+  "Yajaira Benavides Rodríguez": { correo: "yajaira.benavides@fimlm.education", celular: "3008553296" },
+  "Alejandra Bacca": { correo: "maria.bacca@fimlm.education", celular: "3152860114" },
+  "Zuleima Mosquera": { correo: "zuleima.mosquera@fimlm.education", celular: "3168734131" },
+  "Tulio León": { correo: "tulio.leon@fimlm.education", celular: "3175803188" },
+  "Omar Garzón": { correo: "omar.garzon@fimlm.education", celular: "3154136040" },
+  "Mónica Valencia": { correo: "monica.valencia@fimlm.education", celular: "3127865048" },
+  "Divier Moreno": { correo: "quibdo.medrano@fimlm.org", celular: "3223859023" },
+  "Liset Tatiana Piamba": { correo: null, celular: "3175601434" },
+  "Carolina Bravo": { correo: "irma.bravo@fimlm.education", celular: "3007632298" },
+  "Jackeline Cedano": { correo: "g.meta@fundacionmarialuisa.org", celular: null },
+  "Norfa Rios": { correo: "norfa.rios@fimlm.education", celular: null },
+  "Edna Patricia Leguizamon": { correo: "edna.leguizamon@fimlm.education", celular: "3102460487" },
+  "Gladys Jiménez": { correo: "gladys.jimenez@fimlm.education", celular: "3143498624" },
+  "Ingrid Katerine Dávila": { correo: "ingrid.davila@fimlm.education", celular: null },
+  "Angela Montealegre": { correo: "angela.montealegre@fimlm.education", celular: null },
+  "Denis Yem Martinez Ordoñez": { correo: "huila2@fundacionmarialuisa.org", celular: null },
+  "Yaddy Aguilar González": { correo: "yaddy.aguilar@fimlm.education", celular: null },
+  "Helida Mosquera": { correo: "helida.mosquera@fimlm.education", celular: null },
+  "Shirley Guzman": { correo: "shirley.guzman@fimlm.education", celular: null },
+  "Yuli Granados": { correo: "yuli.granados@fimlm.education", celular: null },
+  "Derlys Acosta": { correo: "derlys.acosta@fimlm.education", celular: null },
+  "Mayra Jaramillo": { correo: "mayra.jaramillo@fimlm.education", celular: null },
+  "Andrea Sanabria": { correo: "andrea.sanabria@fimlm.education", celular: null },
+  "Janeth Manrique": { correo: "janeth.manrique@fimlm.education", celular: null },
+  "Alejandra Delgado Gómez": { correo: "alejandra.delgado@fimlm.education", celular: null },
+  "Lina Torres": { correo: "lina.torres@fimlm.education", celular: null },
+  "Ronal Virgen": { correo: "ronal.virgen@fimlm.education", celular: "3123075662" },
+  "Lizeth Gutierrez": { correo: "lizeth.gutierrez@fimlm.education", celular: null },
+  "Leydy Viviana Torres Zafra": { correo: "leydy.torres@fimlm.education", celular: "3209050972" },
+  "Laura Blanco": { correo: "laura.blanco@fimlm.education", celular: "3107970039" },
+  "Acileana Rincon": { correo: "acileana.rincon@fimlm.education", celular: "3203370025" },
+  "Liliana Alarcon": { correo: "liliana.alarcon@fimlm.education", celular: "3114713456" },
+  "Ivonny Osiris Molina": { correo: "ivonny.molina@fimlm.education", celular: null },
+  "Lizeth Valencia": { correo: "lizeth.valencia@fimlm.education", celular: "323 4985872" },
+  "Liliana Ochoa": { correo: "liliana.ochoa@fimlm.education", celular: "3116006371" },
+  "Cindy Rueda": { correo: "cindy.rueda@fimlm.education", celular: "3113789629" },
+  "Norfa Ríos (apoyo)": { correo: "norfa.rios@fimlm.education", celular: null },
+  "Edna Patricia Leguizamón": { correo: "edna.leguizamon@fimlm.education", celular: null },
+  "Liliana Osorio": { correo: "liliana.osorio@fimlm.education", celular: null },
+  "Nancy Heredia": { correo: "nancy.heredia@fimlm.education", celular: null },
+  "Alejandra Delgado (Santander)": { correo: "alejandra.delgado@fimlm.education", celular: null },
+  "Lizeth Gutierrez (Boyacá)": { correo: "lizeth.gutierrez@fimlm.education", celular: null },
+  "Leydy Viviana Torres Zafra (Santander)": { correo: "leydy.torres@fimlm.education", celular: "3209050972" },
+  "Mirna Mena": { correo: null, celular: null },
+  "Astrid Pino": { correo: null, celular: null },
+  "Andrés Ledesma (Enlace Cauca)": { correo: "andres.ledesma@fimlm.education", celular: "3187236539" },
+  "Diana Escallón (Enlace Valle)": { correo: "diana.escallon@fimlm.education", celular: "3146783487" },
+};
+
+function abrirContacto(nombre, rol) {
+  const c = contactosZonas[nombre] || {};
+  document.getElementById("contacto-nombre").textContent = nombre;
+  document.getElementById("contacto-rol").textContent = rol || "";
+  document.getElementById("contacto-correo").textContent = c.correo || "Pendiente";
+  document.getElementById("contacto-celular").textContent = c.celular || "Pendiente";
+  document.getElementById("contacto-modal-overlay").classList.add("open");
+}
+function cerrarContacto() {
+  document.getElementById("contacto-modal-overlay").classList.remove("open");
+}
+
 // ── ZONAS DATA ────────────────────────────────────────────────────────────────
 const zonas = [
   {
@@ -1975,14 +2146,19 @@ function renderOrganigramaZona(zona) {
   const org = zonasOrg[zona.id];
   if (!org) return `<p style="color:var(--muted)">Sin datos de organigrama para esta zona.</p>`;
 
-  // Cada nombre en su propio bloque, separado por una línea divisoria
-  // entre ellos (evita que un nombre partido en 2 renglones por falta
-  // de espacio parezca una persona distinta a la siguiente). El color
+  // Cada nombre es un botón clickeable (abre el modal de contacto con
+  // correo/celular, vía el listener delegado en #zona-miembros) y va
+  // en su propio bloque, separado por una línea divisoria entre
+  // ellos (evita que un nombre partido en 2 renglones por falta de
+  // espacio parezca una persona distinta a la siguiente). El color
   // del borde se adapta a fondo oscuro (coordinadores/encargados) o
   // claro (apoyos).
-  const nodoLista = (nombres, oscuro) => {
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  const nodoLista = (nombres, oscuro, rolTexto) => {
     const borde = oscuro ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.15)";
-    return nombres.map((n, i) => `<div${i > 0 ? ` style="border-top:1px solid ${borde};padding-top:4px;margin-top:2px;"` : ""}>${n}</div>`).join("");
+    return nombres.map((n, i) => `<div${i > 0 ? ` style="border-top:1px solid ${borde};padding-top:4px;margin-top:2px;"` : ""}>
+        <button type="button" class="org-nombre-btn" data-contacto-nombre="${esc(n)}" data-contacto-rol="${esc(rolTexto || "")}">${n}</button>
+      </div>`).join("");
   };
 
   // Etiqueta pequeña sobre cada tarjeta, indicando su rol exacto
@@ -1998,12 +2174,12 @@ function renderOrganigramaZona(zona) {
         <div style="width:2px;height:24px;background:#93c5fd"></div>
         ${area.encargados.length ? `
           ${etiqueta(`${icono} Encargado(a) ${titulo}`)}
-          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados, true)}</div>
+          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados, true, `Encargado(a) ${titulo}`)}</div>
         ` : ""}
         ${area.apoyos.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           ${etiqueta(`Apoyo(s) ${titulo}`)}
-          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos, false)}</div>
+          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos, false, `Apoyo ${titulo}`)}</div>
         ` : ""}
       </div>`;
   };
@@ -2021,7 +2197,7 @@ function renderOrganigramaZona(zona) {
         <div class="org-node top" style="background:${zona.color};min-width:220px;max-width:340px;text-align:center;">${zona.emoji} ${zona.nombre}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
         ${etiqueta("Coordinador(a/es) Zonal")}
-        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores, true)}</div>
+        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores, true, "Coordinador(a) Zonal")}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
         <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
           <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
@@ -2046,6 +2222,16 @@ function selectZona(id) {
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+// Delegado: cada nombre del organigrama de zonas es un botón que
+// abre el modal de contacto (correo/celular). El HTML se reinyecta
+// cada vez que se selecciona una zona, por eso el listener vive en
+// el contenedor padre fijo en vez de en cada botón.
+document.getElementById("zona-miembros").addEventListener("click", (ev) => {
+  const btn = ev.target.closest("[data-contacto-nombre]");
+  if (!btn) return;
+  abrirContacto(btn.dataset.contactoNombre, btn.dataset.contactoRol);
+});
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
 // ── EDIT MODE ────────────────────────────────────────────────────────────────
