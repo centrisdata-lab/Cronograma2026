@@ -1984,11 +1984,11 @@ function renderOrganigramaZona(zona) {
         <div class="org-node apoyo" style="width:100%;max-width:190px;text-align:center;">${icono} ${titulo}</div>
         ${area.encargados.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;">${nodoLista(area.encargados)}</div>
+          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados)}</div>
         ` : ""}
         ${area.apoyos.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;">${nodoLista(area.apoyos)}</div>
+          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos)}</div>
         ` : ""}
       </div>`;
   };
@@ -2005,7 +2005,7 @@ function renderOrganigramaZona(zona) {
       <div class="org-tree">
         <div class="org-node top" style="background:${zona.color};min-width:220px;max-width:340px;text-align:center;">${zona.emoji} ${zona.nombre}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
-        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;">${nodoLista(org.coordinadores)}</div>
+        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores)}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
         <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
           <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
