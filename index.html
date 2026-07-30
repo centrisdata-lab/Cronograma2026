@@ -1330,7 +1330,7 @@
   <div class="zonas-grid" id="zonas-grid"></div>
   <div class="zona-detalle" id="zona-detalle">
     <h2 id="zona-detalle-title"></h2>
-    <div class="miembros-grid" id="zona-miembros"></div>
+    <div id="zona-miembros"></div>
   </div>
 </main>
 </div>
@@ -1787,6 +1787,57 @@ function closeModalDirect() {
   currentModalKey = null;
 }
 
+// Estructura jerárquica de cada zona (Coordinador, Encargados y
+// Apoyos por área: Pedagógico, Tutores, Informadores, Soporte
+// Técnico/Administradores). Fuente: hoja "BD Zonas Col-2026" del
+// consolidado de la Convocatoria 32, cruzada con los datos ya
+// existentes en "zonas" y corregida donde había discrepancias
+// (ej. rama de Informadores que faltaba en Bogotá y Caribe).
+const zonasOrg = {
+  bogota: {
+    coordinadores: ["Diana Paola Garnica", "Jennifer Galvis"],
+    pedagogico: { encargados: ["Yasmin Benavidez"], apoyos: ["Jonathan Moreno", "Diana Estefanía Caicedo Ospina", "Edith Estupiñan Corso"] },
+    tutores: { encargados: ["Martha Martinez"], apoyos: ["Beleisy Bran", "Nidi Johana González", "Maricel Jiménez"] },
+    informadores: { encargados: ["Silverio Jaime Granados"], apoyos: ["Maria Puala Moreno", "Cristhian Doncel", "Lizeth Alejandra Jaime Lizcano"] },
+    soporte: { encargados: ["Paola Hernandez"], apoyos: ["Daniela Velez Montero"] },
+  },
+  caribe: {
+    coordinadores: ["Anyi Cortés Gómez", "Sonia Rodriguez"],
+    pedagogico: { encargados: ["Melissa Quirós"], apoyos: ["Albeiro Vega", "Gabriel Andrés Otero"] },
+    tutores: { encargados: ["Patricia Palacio"], apoyos: ["Lizbeth Beatriz Romero"] },
+    informadores: { encargados: ["Sonia Rodriguez"], apoyos: [] },
+    soporte: { encargados: ["Anyi Cortés"], apoyos: [] },
+  },
+  antioquia: {
+    coordinadores: ["Felipe Duarte", "Ivonny Osiris Molina"],
+    pedagogico: { encargados: ["Luz Aleyda Galindo", "Alba Rubby Botero", "Estefanny Larrota"], apoyos: [] },
+    tutores: { encargados: ["Martha Lina Gonzalez"], apoyos: ["Deisy Alejandra Galeano", "Luis Felipe López"] },
+    informadores: { encargados: [], apoyos: [] },
+    soporte: { encargados: ["Felipe Duarte"], apoyos: [] },
+  },
+  pacifico: {
+    coordinadores: ["Yolanda Moreno", "Diana Escallón (Enlace Valle)", "Andrés Ledesma (Enlace Cauca)"],
+    pedagogico: { encargados: ["Betty Machado"], apoyos: ["Nicolas Barona", "Angie Zulay Moreno Mora (Enlace Chocó)", "Yhennifer Andrea Aguilar (Enlace Nariño y Putumayo)"] },
+    tutores: { encargados: ["Yajaira Benavides Rodríguez"], apoyos: [] },
+    informadores: { encargados: ["Alejandra Bacca"], apoyos: ["Mónica Valencia (Valle)", "Divier Moreno (Chocó)", "Liset Tatiana Piamba (Cauca)", "Carolina Bravo (Nariño)", "Yhennifer Andrea Aguilar (Putumayo)"] },
+    soporte: { encargados: ["Zuleima Mosquera"], apoyos: ["Tulio León", "Omar Garzón"] },
+  },
+  sur: {
+    coordinadores: ["Denis Yem Martinez", "Norfa Rios"],
+    pedagogico: { encargados: ["Norfa Rios", "Yaddy Aguilar González"], apoyos: ["Edna Patricia Leguizamon", "Helida Mosquera", "Shirley Guzman", "Yuli Granados"] },
+    tutores: { encargados: ["Gladys Jiménez", "Derlys Acosta"], apoyos: ["Mayra Jaramillo", "Andrea Sanabria", "Janeth Manrique"] },
+    informadores: { encargados: [], apoyos: [] },
+    soporte: { encargados: ["Jackeline Cedano", "Angela Montealegre"], apoyos: ["Ingrid Katerine Dávila", "Denis Yem Martinez Ordoñez"] },
+  },
+  santanderes: {
+    coordinadores: ["Lizeth Gutierrez"],
+    pedagogico: { encargados: ["Alejandra Delgado Gómez"], apoyos: ["Leydy Viviana Torres Zafra (Santander)", "Vacante"] },
+    tutores: { encargados: ["Lina Torres"], apoyos: ["Laura Blanco (Santander)", "Acileana Rincon (N. Santander)", "Liliana Alarcon (Boyacá)"] },
+    informadores: { encargados: [], apoyos: [] },
+    soporte: { encargados: [], apoyos: ["Ronal Virgen", "Vacante"] },
+  },
+};
+
 // ── ZONAS DATA ────────────────────────────────────────────────────────────────
 const zonas = [
   {
@@ -1919,6 +1970,51 @@ function renderZonas() {
   `).join("");
 }
 
+function renderOrganigramaZona(zona) {
+  const org = zonasOrg[zona.id];
+  if (!org) return `<p style="color:var(--muted)">Sin datos de organigrama para esta zona.</p>`;
+
+  const nodoLista = (nombres) => nombres.map(n => `<div>${n}</div>`).join("");
+
+  const columna = (icono, titulo, area, claseBase) => {
+    if (!area || (area.encargados.length === 0 && area.apoyos.length === 0)) return "";
+    return `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;min-width:160px;">
+        <div style="width:2px;height:24px;background:#93c5fd"></div>
+        <div class="org-node apoyo" style="width:100%;max-width:190px;text-align:center;">${icono} ${titulo}</div>
+        ${area.encargados.length ? `
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;">${nodoLista(area.encargados)}</div>
+        ` : ""}
+        ${area.apoyos.length ? `
+          <div style="width:2px;height:14px;background:#93c5fd"></div>
+          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;">${nodoLista(area.apoyos)}</div>
+        ` : ""}
+      </div>`;
+  };
+
+  const columnas = [
+    columna("📖", "Pedagógico", org.pedagogico, "base"),
+    columna("🤝", "Tutores", org.tutores, "base"),
+    columna("📣", "Informadores", org.informadores, "info"),
+    columna("🗂️", "Soporte Técnico / Admin.", org.soporte, "est"),
+  ].filter(Boolean).join("");
+
+  return `
+    <div class="org-wrap">
+      <div class="org-tree">
+        <div class="org-node top" style="background:${zona.color};min-width:220px;max-width:340px;text-align:center;">${zona.emoji} ${zona.nombre}</div>
+        <div style="width:2px;height:20px;background:#93c5fd;"></div>
+        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;">${nodoLista(org.coordinadores)}</div>
+        <div style="width:2px;height:20px;background:#93c5fd;"></div>
+        <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
+          <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
+          ${columnas}
+        </div>
+      </div>
+    </div>`;
+}
+
 function selectZona(id) {
   const zona = zonas.find(z => z.id === id);
   if (!zona) return;
@@ -1929,35 +2025,7 @@ function selectZona(id) {
   const detalle = document.getElementById("zona-detalle");
   document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
 
-  const esCoordinador = (rol) => /^coordinador(a)?\b/i.test((rol || "").trim());
-  const coordinadores = zona.equipo.filter(m => esCoordinador(m.rol));
-  const nombresCoordinadores = new Set(coordinadores.map(m => m.nombre));
-  // El resto del equipo excluye tanto las filas de coordinador como
-  // cualquier otra fila que sea la misma persona en otro rol (ya
-  // representada arriba, en su tarjeta de coordinador).
-  const resto = zona.equipo.filter(m => !esCoordinador(m.rol) && !nombresCoordinadores.has(m.nombre));
-
-  const tarjeta = (m, esCoord) => `
-    <div class="miembro-card">
-      <div class="miembro-nombre"${esCoord ? ` style="color:${zona.color};font-weight:900;"` : ""}>${m.nombre}</div>
-      <div class="miembro-rol" style="color:${zona.color}">${m.rol}</div>
-      <div class="miembro-info">
-        ${m.correo ? `<a href="mailto:${m.correo}">✉️ ${m.correo}</a>` : ""}
-        ${m.cel    ? `<a href="tel:${m.cel}">📞 ${m.cel}</a>` : ""}
-      </div>
-    </div>
-  `;
-
-  document.getElementById("zona-miembros").innerHTML = `
-    <div class="org-zona-wrap">
-      ${coordinadores.length ? `
-        <div class="org-coordinadores">${coordinadores.map(m => tarjeta(m, true)).join("")}</div>
-        <div class="org-connector"></div>
-        <div class="org-equipo-label">Equipo de zona</div>
-      ` : ""}
-      <div class="miembros-grid">${resto.map(m => tarjeta(m, false)).join("")}</div>
-    </div>
-  `;
+  document.getElementById("zona-miembros").innerHTML = renderOrganigramaZona(zona);
 
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });
