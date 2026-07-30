@@ -1789,10 +1789,11 @@ function closeModalDirect() {
 
 // Estructura jerárquica de cada zona (Coordinador, Encargados y
 // Apoyos por área: Pedagógico, Tutores, Informadores, Soporte
-// Técnico/Administradores). Fuente: hoja "BD Zonas Col-2026" del
-// consolidado de la Convocatoria 32, cruzada con los datos ya
-// existentes en "zonas" y corregida donde había discrepancias
-// (ej. rama de Informadores que faltaba en Bogotá y Caribe).
+// Técnico/Administradores). Fuente: sección "EQUIPO DE LA ZONA" de
+// cada hoja "Col | [Zona]" del consolidado de la Convocatoria 32
+// (corte 29/07/2026), cruzada con la hoja "BD Zonas Col-2026" donde
+// esta última tenía más detalle (ej. apoyos adicionales de Caribe y
+// Santanderes que "EQUIPO DE LA ZONA" no listaba).
 const zonasOrg = {
   bogota: {
     coordinadores: ["Diana Paola Garnica", "Jennifer Galvis"],
@@ -1810,31 +1811,31 @@ const zonasOrg = {
   },
   antioquia: {
     coordinadores: ["Felipe Duarte", "Ivonny Osiris Molina"],
-    pedagogico: { encargados: ["Luz Aleyda Galindo", "Alba Rubby Botero", "Estefanny Larrota"], apoyos: [] },
-    tutores: { encargados: ["Martha Lina Gonzalez"], apoyos: ["Deisy Alejandra Galeano", "Luis Felipe López"] },
-    informadores: { encargados: [], apoyos: [] },
-    soporte: { encargados: ["Felipe Duarte"], apoyos: [] },
+    pedagogico: { encargados: ["Luz Aleyda Galindo", "Alba Rubby Botero", "Estefanny Larrota"], apoyos: ["Liliana Ochoa"] },
+    tutores: { encargados: ["Martha Lina Gonzalez", "Deisy Alejandra Galeano", "Luis Felipe López"], apoyos: [] },
+    informadores: { encargados: ["Lizeth Valencia"], apoyos: [] },
+    soporte: { encargados: ["Felipe Duarte", "Cindy Rueda"], apoyos: [] },
   },
   pacifico: {
     coordinadores: ["Yolanda Moreno", "Diana Escallón (Enlace Valle)", "Andrés Ledesma (Enlace Cauca)"],
     pedagogico: { encargados: ["Betty Machado"], apoyos: ["Nicolas Barona", "Angie Zulay Moreno Mora (Enlace Chocó)", "Yhennifer Andrea Aguilar (Enlace Nariño y Putumayo)"] },
-    tutores: { encargados: ["Yajaira Benavides Rodríguez"], apoyos: [] },
+    tutores: { encargados: ["Yajaira Benavides Rodríguez"], apoyos: ["Mirna Mena", "Astrid Pino"] },
     informadores: { encargados: ["Alejandra Bacca"], apoyos: ["Mónica Valencia (Valle)", "Divier Moreno (Chocó)", "Liset Tatiana Piamba (Cauca)", "Carolina Bravo (Nariño)", "Yhennifer Andrea Aguilar (Putumayo)"] },
     soporte: { encargados: ["Zuleima Mosquera"], apoyos: ["Tulio León", "Omar Garzón"] },
   },
   sur: {
-    coordinadores: ["Denis Yem Martinez", "Norfa Rios"],
-    pedagogico: { encargados: ["Norfa Rios", "Yaddy Aguilar González"], apoyos: ["Edna Patricia Leguizamon", "Helida Mosquera", "Shirley Guzman", "Yuli Granados"] },
-    tutores: { encargados: ["Gladys Jiménez", "Derlys Acosta"], apoyos: ["Mayra Jaramillo", "Andrea Sanabria", "Janeth Manrique"] },
+    coordinadores: ["Jackeline Cedano", "Norfa Ríos (apoyo)"],
+    pedagogico: { encargados: ["Yaddy Aguilar González"], apoyos: ["Edna Patricia Leguizamón", "Helida Mosquera", "Shirley Guzman", "Yuli Granados"] },
+    tutores: { encargados: ["Liliana Osorio", "Derlys Acosta"], apoyos: ["Nancy Heredia", "Mayra Jaramillo", "Andrea Sanabria", "Janeth Manrique"] },
     informadores: { encargados: [], apoyos: [] },
     soporte: { encargados: ["Jackeline Cedano", "Angela Montealegre"], apoyos: ["Ingrid Katerine Dávila", "Denis Yem Martinez Ordoñez"] },
   },
   santanderes: {
-    coordinadores: ["Lizeth Gutierrez"],
+    coordinadores: ["Alejandra Delgado (Santander)", "Lizeth Gutierrez (Boyacá)"],
     pedagogico: { encargados: ["Alejandra Delgado Gómez"], apoyos: ["Leydy Viviana Torres Zafra (Santander)", "Vacante"] },
     tutores: { encargados: ["Lina Torres"], apoyos: ["Laura Blanco (Santander)", "Acileana Rincon (N. Santander)", "Liliana Alarcon (Boyacá)"] },
     informadores: { encargados: [], apoyos: [] },
-    soporte: { encargados: [], apoyos: ["Ronal Virgen", "Vacante"] },
+    soporte: { encargados: ["Lizeth Gutierrez"], apoyos: ["Ronal Virgen", "Vacante"] },
   },
 };
 
