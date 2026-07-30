@@ -85,6 +85,31 @@
       const cupos = CUPOS_POR_CURSO[c.curso];
       return cupos ? Object.values(cupos).reduce((s, v) => s + v, 0) : 0;
     };
+    // Emoji por curso, para diferenciarlos de un vistazo en vez de
+    // repetir el mismo icono de libro en toda la lista.
+    const emojiCurso = {
+      "Despertar Humano": "🌅", "Comprensión Lectora": "📗", "Economía del Hogar": "🏠",
+      "Bienestar para la persona mayor": "👵", "Sin Límites Virtual": "♿",
+      "Despertar Emprendedor": "💡", "Orientación Emprendedora": "🧭",
+      "Profundización Costos para Emprendedores": "🧮", "Mi Negocio en Internet": "🛒",
+      "Estrategias para la Búsqueda de Empleo": "💼", "Familias Empresarias del Campo": "🌾",
+      "Sistemas Nivel 1": "💻", "Sistemas Nivel 2": "💻",
+      "Inglés Nivel 1": "🇬🇧", "Inglés Nivel 2": "🇬🇧",
+      "Business English 1": "🇬🇧", "Business English 2": "🇬🇧",
+      "English for Kids": "🧒", "English for Teens": "🧑",
+      "Francés Nivel 1": "🇫🇷", "Francés Nivel 2": "🇫🇷",
+      "Italiano Nivel 1": "🇮🇹", "Italiano Nivel 2": "🇮🇹",
+      "Portugués Nivel 1": "🇵🇹", "Portugués Nivel 2": "🇵🇹",
+      "Bisutería": "💍", "Confección: Manejo de Máquinas de Coser": "🧵",
+      "Modistería (Faldas)": "👗", "Modistería: Reparación y Modificación de Prendas de Vestir": "🪡",
+      "Muñecas de Trapo": "🧸", "Pintura en madera 1": "🎨", "Peinados y Trenzas": "💇",
+      "Floristería 1": "💐", "Repostería 1": "🧁", "Repostería 2": "🧁",
+      "El ABC del Reciclaje": "♻️", "Salud y Bienestar para Ovinos y Caprinos": "🐐",
+      "Sistemas e Informática · Sistema Básico": "🖥️", "Sistemas e Informática · Nivel Avanzado": "🖥️",
+      "Huertas Caseras": "🥕", "English Leasing a Conversación": "🗣️",
+      "Bonsái en Alambre y Pedrería": "🪴",
+    };
+
     // Agrupado por categoría (mismo orden que CATEGORIAS_CURSO); dentro
     // de cada categoría se respeta el orden de CURSOS_DETALLE, así los
     // niveles de un mismo curso (Nivel 1, Nivel 2) quedan uno seguido
@@ -93,7 +118,7 @@
       const cursosCat = CURSOS_DETALLE.filter((c) => c.categoria === cat.id);
       if (cursosCat.length === 0) return "";
       const filas = cursosCat
-        .map((c) => `<tr><td>📖 ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`)
+        .map((c) => `<tr><td>${emojiCurso[c.curso] || "📖"} ${c.curso}</td><td>${fmt.format(totalGruposCurso(c))}</td><td>${fmt.format(totalCuposCurso(c))}</td></tr>`)
         .join("");
       return `<tr class="fila-categoria"><td colspan="3">${cat.label}</td></tr>${filas}`;
     }).join("");
@@ -137,7 +162,7 @@
           ${ZONAS.map((z, zi) => {
             const g = GRUPOS_COBERTURA[z.id];
             const grupos = GRUPOS_DETALLE_COBERTURA[z.id] || [];
-            const filasDetalle = grupos.map((d) => `<tr><td>📖 ${d.curso} · Grupo ${d.grupo}</td><td>${fmt.format(d.profesores)}</td><td>${fmt.format(d.tutores)}</td></tr>`).join("");
+            const filasDetalle = grupos.map((d) => `<tr><td>${emojiCurso[d.curso] || "📖"} ${d.curso} · Grupo ${d.grupo}</td><td>${fmt.format(d.profesores)}</td><td>${fmt.format(d.tutores)}</td></tr>`).join("");
             return `<tr class="cobertura-zona-fila" data-cobertura-zona-toggle="${zi}" aria-expanded="false" tabindex="0" role="button">
               <td>${emojiZona} ${z.nombre} <span class="cobertura-zona-fila__caret" aria-hidden="true">▾</span></td>
               <td>${fmt.format(g.unTutor)}</td>
