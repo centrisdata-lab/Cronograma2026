@@ -262,7 +262,7 @@
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(totalCursos)}</span><span class="kpi-card__value-tag">Sumando zonas</span></span>
             <span class="kpi-card__value-item"><span class="kpi-card__value-num">${fmt.format(totalCursosUnicos)}</span><span class="kpi-card__value-tag">Cursos únicos</span></span>
           </span>`,
-        delta: `${INFORME_META.notaOferta}`,
+        delta: "",
         detalle: tablaCursos,
       },
       {
