@@ -1975,7 +1975,15 @@ function renderOrganigramaZona(zona) {
   const org = zonasOrg[zona.id];
   if (!org) return `<p style="color:var(--muted)">Sin datos de organigrama para esta zona.</p>`;
 
-  const nodoLista = (nombres) => nombres.map(n => `<div>${n}</div>`).join("");
+  // Cada nombre en su propio bloque, separado por una línea divisoria
+  // entre ellos (evita que un nombre partido en 2 renglones por falta
+  // de espacio parezca una persona distinta a la siguiente). El color
+  // del borde se adapta a fondo oscuro (coordinadores/encargados) o
+  // claro (apoyos).
+  const nodoLista = (nombres, oscuro) => {
+    const borde = oscuro ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.15)";
+    return nombres.map((n, i) => `<div${i > 0 ? ` style="border-top:1px solid ${borde};padding-top:4px;margin-top:2px;"` : ""}>${n}</div>`).join("");
+  };
 
   const columna = (icono, titulo, area, claseBase) => {
     if (!area || (area.encargados.length === 0 && area.apoyos.length === 0)) return "";
@@ -1985,11 +1993,11 @@ function renderOrganigramaZona(zona) {
         <div class="org-node apoyo" style="width:100%;max-width:190px;text-align:center;">${icono} ${titulo}</div>
         ${area.encargados.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados)}</div>
+          <div class="org-node coord" style="width:100%;max-width:190px;font-size:0.78rem;text-align:center;padding:8px 10px;flex-direction:column;gap:2px;">${nodoLista(area.encargados, true)}</div>
         ` : ""}
         ${area.apoyos.length ? `
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos)}</div>
+          <div class="org-node ${claseBase}" style="width:100%;min-width:0;max-width:190px;font-size:0.75rem;text-align:left;padding:8px 10px;flex-direction:column;align-items:flex-start;gap:2px;">${nodoLista(area.apoyos, false)}</div>
         ` : ""}
       </div>`;
   };
@@ -2006,7 +2014,7 @@ function renderOrganigramaZona(zona) {
       <div class="org-tree">
         <div class="org-node top" style="background:${zona.color};min-width:220px;max-width:340px;text-align:center;">${zona.emoji} ${zona.nombre}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
-        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores)}</div>
+        <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores, true)}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
         <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
           <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
