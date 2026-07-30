@@ -287,7 +287,7 @@
         detalle: tablaInformadores,
       },
       {
-        icon: "🧑‍🏫",
+        icon: "👨‍🏫",
         label: "Grupos con 1 solo profesor o tutor",
         value: `
           <span class="kpi-card__value-pair">
