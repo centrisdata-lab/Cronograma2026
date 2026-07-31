@@ -466,29 +466,23 @@
           </div>
 
           <div class="zone-card__oferta">
-            <div class="zone-oferta-item">
-              <span class="zone-oferta-item__label">Cursos</span>
-              <span class="zone-oferta-item__value">${fmt.format(z.oferta.cursos)}</span>
-            </div>
-            <div class="zone-oferta-item">
-              <span class="zone-oferta-item__label">Grupos</span>
-              <span class="zone-oferta-item__value">${fmt.format(z.oferta.grupos)}</span>
-            </div>
-            <div class="zone-oferta-item">
-              <span class="zone-oferta-item__label">Cupos</span>
-              <span class="zone-oferta-item__value">${fmt.format(z.oferta.cupos)}</span>
-            </div>
-            <div class="zone-oferta-item">
-              <span class="zone-oferta-item__label">Coordinadores zonales</span>
-              <span class="zone-oferta-item__value">${fmt.format(z.coordinadoresZonales)}</span>
-            </div>
-            <div class="zone-oferta-item">
-              <span class="zone-oferta-item__label">
-                Enlace Campus Delegación
-                <small>${z.notaEnlace || "Uno por departamento, asignado por el coordinador zonal"}</small>
-              </span>
-              <span class="zone-oferta-item__value">${fmt.format(z.enlaceDelegacion)}</span>
-            </div>
+            <table class="zone-card__oferta-table">
+              <colgroup><col class="col-rol"><col class="col-cantidad"></colgroup>
+              <thead><tr><th>Concepto</th><th>Valor</th></tr></thead>
+              <tbody>
+                <tr><td>Cursos</td><td>${fmt.format(z.oferta.cursos)}</td></tr>
+                <tr><td>Grupos</td><td>${fmt.format(z.oferta.grupos)}</td></tr>
+                <tr><td>Cupos</td><td>${fmt.format(z.oferta.cupos)}</td></tr>
+                <tr><td>Coordinadores zonales</td><td>${fmt.format(z.coordinadoresZonales)}</td></tr>
+                <tr>
+                  <td>
+                    Enlace Campus Delegación
+                    <small>${z.notaEnlace || "Uno por departamento, asignado por el coordinador zonal"}</small>
+                  </td>
+                  <td>${fmt.format(z.enlaceDelegacion)}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           ${cursosDeZona.length ? `

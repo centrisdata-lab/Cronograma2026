@@ -991,67 +991,79 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 
-.zone-card__table-wrap table {
+/* Tablas "modernas" del detalle de zona (Rol/Cantidad y
+   Concepto/Valor): tarjeta con esquinas redondeadas y sombra suave.
+   border-collapse:separate + border-spacing:0 es lo que permite que
+   el border-radius del contenedor recorte limpiamente el encabezado
+   y las filas, algo que border-collapse:collapse no deja hacer. */
+.zone-card__roles-table,
+.zone-card__oferta-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   table-layout: fixed;
   font-size: 13.5px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-card);
+  overflow: hidden;
 }
-.zone-card__roles-table col.col-rol { width: 70%; }
-.zone-card__roles-table col.col-cantidad { width: 30%; }
-.zone-card__table-wrap th,
-.zone-card__table-wrap td {
+.zone-card__roles-table col.col-rol,
+.zone-card__oferta-table col.col-rol { width: 70%; }
+.zone-card__roles-table col.col-cantidad,
+.zone-card__oferta-table col.col-cantidad { width: 30%; }
+
+.zone-card__roles-table th,
+.zone-card__roles-table td,
+.zone-card__oferta-table th,
+.zone-card__oferta-table td {
   text-align: left;
   padding: 7px 16px;
   border-bottom: 1px solid var(--borde);
 }
 .zone-card__roles-table th:first-child,
-.zone-card__roles-table td:first-child {
+.zone-card__roles-table td:first-child,
+.zone-card__oferta-table th:first-child,
+.zone-card__oferta-table td:first-child {
   padding-left: 18px;
 }
 .zone-card__roles-table th:last-child,
-.zone-card__roles-table td:last-child {
+.zone-card__roles-table td:last-child,
+.zone-card__oferta-table th:last-child,
+.zone-card__oferta-table td:last-child {
   text-align: right;
   padding-right: 20px;
 }
-.zone-card__table-wrap th {
-  color: var(--texto-muted);
+.zone-card__roles-table th,
+.zone-card__oferta-table th {
+  color: #fff;
+  background: var(--zona-color, var(--azul-marino));
   font-weight: 800;
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 0.02em;
+  border-bottom: none;
 }
-.zone-card__table-wrap td { font-weight: 700; color: var(--texto-primario); }
-.zone-card__table-wrap tr:last-child td,
-.zone-card__table-wrap tr:last-child th { border-bottom: none; }
-.zone-card__table-wrap .fila-total td {
+.zone-card__roles-table td,
+.zone-card__oferta-table td {
+  font-weight: 700;
+  color: var(--texto-primario);
+}
+.zone-card__roles-table tbody tr:nth-child(even) td,
+.zone-card__oferta-table tbody tr:nth-child(even) td {
+  background: var(--fondo);
+}
+.zone-card__roles-table tr:last-child td,
+.zone-card__oferta-table tr:last-child td {
+  border-bottom: none;
+}
+.zone-card__roles-table .fila-total td {
   border-top: 2px solid var(--zona-color, var(--azul-marino));
   color: var(--zona-color, var(--azul-marino));
+  background: var(--superficie);
 }
-
-.zone-card__oferta {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.zone-oferta-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  background: var(--fondo);
-  border-radius: var(--radio-sm);
-  padding: 12px 14px;
-}
-.zone-oferta-item__label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--texto-secundario);
-  min-width: 0;
-}
-/* Nota contextual bajo la etiqueta (p. ej. cómo se asignan los enlaces). */
-.zone-oferta-item__label small {
+.zone-card__oferta-table small {
   display: block;
   margin-top: 3px;
   font-size: 11.5px;
@@ -1059,11 +1071,11 @@ html, body {
   line-height: 1.35;
   color: var(--texto-muted);
 }
-.zone-oferta-item__value {
-  font-family: var(--fuente-titulos);
-  font-weight: 800;
-  font-size: 19px;
-  color: var(--zona-color, var(--azul-marino));
+
+.zone-card__oferta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* ============================================================
