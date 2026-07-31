@@ -433,11 +433,82 @@
 
     const zonasOrdenadas = [...ZONAS].sort((a, b) => b.oferta.cupos - a.oferta.cupos);
 
-    const filas = zonasOrdenadas.map((z) => {
+    // Detalle de cada zona (roles + cursos), el mismo contenido que
+    // antes vivía en la sección aparte "Detalle por zona": ahora se
+    // fusiona como fila expandible bajo cada fila de la tabla
+    // comparativa, para no repetir la misma información en dos
+    // paneles distintos.
+    const detalleZona = (z) => {
+      const filasRoles = `<tr><td>Coordinadores Zonales</td><td>${fmt.format(z.coordinadoresZonales)}</td></tr>` + ROLES
+        .filter((r) => r.key !== "coordinadora" && z.personal[r.key] > 0)
+        .map((r) => `<tr><td>${r.label}</td><td>${fmt.format(z.personal[r.key])}</td></tr>`)
+        .join("");
+
+      const cursosDeZona = CURSOS_DETALLE
+        .filter((c) => c[z.id] > 0)
+        .sort((a, b) => b[z.id] - a[z.id]);
+
+      return `
+        <div class="zone-card__content">
+          <div class="zone-card__table-wrap">
+            <div class="zone-card__depts-list">
+              ${z.departamentos.map((d) => `<span class="zone-chip">${d}</span>`).join("")}
+            </div>
+            <table>
+              <thead><tr><th>Rol</th><th>Cantidad</th></tr></thead>
+              <tbody>
+                ${filasRoles}
+                <tr class="fila-total"><td>Total zona</td><td>${fmt.format(z.personal.total)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="zone-card__oferta">
+            <div class="zone-oferta-item">
+              <span class="zone-oferta-item__label">Cursos</span>
+              <span class="zone-oferta-item__value">${fmt.format(z.oferta.cursos)}</span>
+            </div>
+            <div class="zone-oferta-item">
+              <span class="zone-oferta-item__label">Grupos</span>
+              <span class="zone-oferta-item__value">${fmt.format(z.oferta.grupos)}</span>
+            </div>
+            <div class="zone-oferta-item">
+              <span class="zone-oferta-item__label">Cupos</span>
+              <span class="zone-oferta-item__value">${fmt.format(z.oferta.cupos)}</span>
+            </div>
+            <div class="zone-oferta-item">
+              <span class="zone-oferta-item__label">Coordinadores zonales</span>
+              <span class="zone-oferta-item__value">${fmt.format(z.coordinadoresZonales)}</span>
+            </div>
+            <div class="zone-oferta-item">
+              <span class="zone-oferta-item__label">
+                Enlace Campus Delegación
+                <small>${z.notaEnlace || "Uno por departamento, asignado por el coordinador zonal"}</small>
+              </span>
+              <span class="zone-oferta-item__value">${fmt.format(z.enlaceDelegacion)}</span>
+            </div>
+          </div>
+
+          ${cursosDeZona.length ? `
+          <div class="zone-card__cursos">
+            <h4 class="zone-card__cursos-title">
+              Cursos con grupos en la zona (${cursosDeZona.length})
+            </h4>
+            <div class="zone-card__cursos-list">
+              ${cursosDeZona.map((c) => `
+                <span class="curso-chip">${c.curso}<b>${fmt.format(c[z.id])}</b></span>
+              `).join("")}
+            </div>
+          </div>
+          ` : ""}
+        </div>`;
+    };
+
+    const filas = zonasOrdenadas.map((z, zi) => {
       const share = pct(z.oferta.cupos, TOTALES.oferta.cupos);
       return `
-        <tr>
-          <td class="cell-zona"><span class="zona-swatch" style="background:${z.color}"></span>${z.emoji} ${z.nombre}</td>
+        <tr class="fila-zona-comparativo" data-zona-toggle="${zi}" aria-expanded="false" tabindex="0" role="button" style="--zona-color:${z.color}">
+          <td class="cell-zona"><span class="zona-swatch" style="background:${z.color}"></span>${z.emoji} ${z.nombre} <span class="fila-zona-comparativo__caret" aria-hidden="true">▾</span></td>
           <td>${fmt.format(z.personal.total)}</td>
           <td>${fmt.format(z.oferta.cursos)}</td>
           <td>${fmt.format(z.oferta.grupos)}</td>
@@ -448,6 +519,9 @@
           <td>${fmt.format(z.coordinadoresZonales)}</td>
           <td>${fmt.format(z.enlaceDelegacion)}</td>
           <td class="cell-total">${share.toFixed(1)}%</td>
+        </tr>
+        <tr class="fila-zona-comparativo-detalle" data-zona-body="${zi}" hidden style="--zona-color:${z.color}">
+          <td colspan="11">${detalleZona(z)}</td>
         </tr>
       `;
     }).join("");
@@ -469,136 +543,20 @@
     `;
 
     table.innerHTML = thead + `<tbody>${filas}${filaTotal}</tbody>`;
-  }
 
-  /* ---------------------------------------------------------
-     3. BLOQUES DE ZONA (acordeón con tabla de roles + oferta)
-     --------------------------------------------------------- */
-  function renderZonas() {
-    const cont = document.getElementById("zone-list");
-    if (!cont) return;
-
-    cont.innerHTML = ZONAS.map((z) => {
-      // "Coordinadora" (rol de personal) se excluye del recorrido
-      // genérico y se sustituye por "Coordinadores Zonales" (z.coordinadoresZonales),
-      // la misma cifra que ya se muestra en el panel de oferta de esta tarjeta.
-      const filasRoles = `<tr><td>Coordinadores Zonales</td><td>${fmt.format(z.coordinadoresZonales)}</td></tr>` + ROLES
-        .filter((r) => r.key !== "coordinadora" && z.personal[r.key] > 0)
-        .map((r) => `<tr><td>${r.label}</td><td>${fmt.format(z.personal[r.key])}</td></tr>`)
-        .join("");
-
-      const shareCupos = pct(z.oferta.cupos, TOTALES.oferta.cupos);
-      const cursosDeZona = CURSOS_DETALLE
-        .filter((c) => c[z.id] > 0)
-        .sort((a, b) => b[z.id] - a[z.id]);
-
-      return `
-        <article class="zone-card" style="--zona-color:${z.color}">
-          <button class="zone-card__header" type="button" data-zone-toggle aria-expanded="false">
-            <div class="zone-card__title-wrap">
-              <span class="zone-card__dot" aria-hidden="true"></span>
-              <div>
-                <h3 class="zone-card__title">${z.emoji} ${z.nombre}</h3>
-                <p class="zone-card__depts">${z.departamentos.length} departamento${z.departamentos.length > 1 ? "s" : ""}: ${z.departamentos.join(", ")}</p>
-              </div>
-            </div>
-            <div class="zone-card__stats">
-              <div class="zone-stat">
-                <div class="zone-stat__value">${fmt.format(z.personal.total)}</div>
-                <div class="zone-stat__label">Cuerpo académico</div>
-              </div>
-              <div class="zone-stat">
-                <div class="zone-stat__value">${fmt.format(z.oferta.cupos)}</div>
-                <div class="zone-stat__label">Cupos</div>
-              </div>
-              <div class="zone-stat">
-                <div class="zone-stat__value">${fmt.format(z.comunidad.iglesias)}</div>
-                <div class="zone-stat__label">Iglesias</div>
-              </div>
-              <div class="zone-stat">
-                <div class="zone-stat__value">${fmt.format(z.comunidad.creyentes)}</div>
-                <div class="zone-stat__label">Creyentes</div>
-              </div>
-              <div class="zone-stat">
-                <div class="zone-stat__value">${fmt.format(z.informadores)}</div>
-                <div class="zone-stat__label">Informadores</div>
-              </div>
-              <div class="zone-stat">
-                <div class="zone-stat__value">${shareCupos.toFixed(1)}%</div>
-                <div class="zone-stat__label">De los cupos nacionales</div>
-              </div>
-            </div>
-            <span class="zone-card__toggle" aria-hidden="true">+</span>
-          </button>
-
-          <div class="zone-card__body">
-            <div class="zone-card__body-inner">
-              <div class="zone-card__content">
-
-                <div class="zone-card__table-wrap">
-                  <div class="zone-card__depts-list">
-                    ${z.departamentos.map((d) => `<span class="zone-chip">${d}</span>`).join("")}
-                  </div>
-                  <table>
-                    <thead><tr><th>Rol</th><th>Cantidad</th></tr></thead>
-                    <tbody>
-                      ${filasRoles}
-                      <tr class="fila-total"><td>Total zona</td><td>${fmt.format(z.personal.total)}</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div class="zone-card__oferta">
-                  <div class="zone-oferta-item">
-                    <span class="zone-oferta-item__label">Cursos</span>
-                    <span class="zone-oferta-item__value">${fmt.format(z.oferta.cursos)}</span>
-                  </div>
-                  <div class="zone-oferta-item">
-                    <span class="zone-oferta-item__label">Grupos</span>
-                    <span class="zone-oferta-item__value">${fmt.format(z.oferta.grupos)}</span>
-                  </div>
-                  <div class="zone-oferta-item">
-                    <span class="zone-oferta-item__label">Cupos</span>
-                    <span class="zone-oferta-item__value">${fmt.format(z.oferta.cupos)}</span>
-                  </div>
-                  <div class="zone-oferta-item">
-                    <span class="zone-oferta-item__label">Coordinadores zonales</span>
-                    <span class="zone-oferta-item__value">${fmt.format(z.coordinadoresZonales)}</span>
-                  </div>
-                  <div class="zone-oferta-item">
-                    <span class="zone-oferta-item__label">
-                      Enlace Campus Delegación
-                      <small>${z.notaEnlace || "Uno por departamento, asignado por el coordinador zonal"}</small>
-                    </span>
-                    <span class="zone-oferta-item__value">${fmt.format(z.enlaceDelegacion)}</span>
-                  </div>
-                </div>
-
-                ${cursosDeZona.length ? `
-                <div class="zone-card__cursos">
-                  <h4 class="zone-card__cursos-title">
-                    Cursos con grupos en la zona (${cursosDeZona.length})
-                  </h4>
-                  <div class="zone-card__cursos-list">
-                    ${cursosDeZona.map((c) => `
-                      <span class="curso-chip">${c.curso}<b>${fmt.format(c[z.id])}</b></span>
-                    `).join("")}
-                  </div>
-                </div>
-                ` : ""}
-
-              </div>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join("");
-
-    cont.querySelectorAll("[data-zone-toggle]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".zone-card");
-        const abierta = card.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(abierta));
+    function toggleZonaComparativo(zonaBtn) {
+      const idx = zonaBtn.dataset.zonaToggle;
+      const body = table.querySelector(`[data-zona-body="${idx}"]`);
+      const abierto = zonaBtn.getAttribute("aria-expanded") === "true";
+      zonaBtn.setAttribute("aria-expanded", String(!abierto));
+      if (body) body.hidden = abierto;
+    }
+    table.querySelectorAll("[data-zona-toggle]").forEach((fila) => {
+      fila.addEventListener("click", () => toggleZonaComparativo(fila));
+      fila.addEventListener("keydown", (ev) => {
+        if (ev.key !== "Enter" && ev.key !== " ") return;
+        ev.preventDefault();
+        toggleZonaComparativo(fila);
       });
     });
   }
@@ -730,7 +688,6 @@
     renderCobertura();
     renderKpis();
     renderComparativoZonas();
-    renderZonas();
     renderTablaCursos();
     renderTablaConsolidada();
     initPaneles();

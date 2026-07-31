@@ -643,6 +643,44 @@ html, body {
   margin: 8px 0 8px 4px;
 }
 
+/* Filas clickeables de "Comparativo por zona": cada zona se expande
+   para mostrar el detalle por rol y curso (contenido fusionado desde
+   la antigua sección "Detalle por zona"), sin salir de la tabla
+   resumen. */
+#tabla-comparativo-zonas tr.fila-zona-comparativo {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+#tabla-comparativo-zonas tr.fila-zona-comparativo:hover,
+#tabla-comparativo-zonas tr.fila-zona-comparativo:focus-visible {
+  background: color-mix(in srgb, var(--zona-color, var(--naranja)) 10%, white);
+}
+#tabla-comparativo-zonas tr.fila-zona-comparativo:focus-visible {
+  outline: 2px solid var(--zona-color, var(--naranja));
+  outline-offset: -2px;
+}
+.fila-zona-comparativo__caret {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--texto-muted);
+  transition: transform 0.15s ease;
+}
+.fila-zona-comparativo[aria-expanded="true"] .fila-zona-comparativo__caret {
+  transform: rotate(180deg);
+}
+#tabla-comparativo-zonas tr.fila-zona-comparativo-detalle[hidden] {
+  display: none;
+}
+#tabla-comparativo-zonas tr.fila-zona-comparativo-detalle td {
+  padding: 0;
+  background: var(--fondo);
+  border-left: 4px solid var(--zona-color, var(--naranja));
+}
+#tabla-comparativo-zonas tr.fila-zona-comparativo-detalle .zone-card__content {
+  padding: 18px 22px;
+}
+
 /* Toggle "Por categoría" / "Top cursos con más cupos" dentro del
    detalle de la tarjeta "Cursos activos". */
 .cursos-vista-toggle {

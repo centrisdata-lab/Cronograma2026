@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/informe.css?v=20260731f" />
+  <link rel="stylesheet" href="css/informe.css?v=20260731g" />
 </head>
 <body>
 
@@ -51,12 +51,12 @@
         </div>
       </section>
 
-      <!-- ======= COMPARATIVO POR ZONA (TABLA RESUMEN) ======= -->
+      <!-- ======= COMPARATIVO POR ZONA (TABLA RESUMEN + DETALLE) ======= -->
       <section class="section panel" id="comparativo" aria-labelledby="comparativo-titulo">
         <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-comparativo">
           <div class="panel__titles">
             <h2 id="comparativo-titulo">Comparativo por zona</h2>
-            <p>Cuerpo académico y oferta académica de cada zona, con su participación sobre los cupos ofertados a nivel nacional. El <strong>Enlace Campus Delegación</strong> es la persona que el coordinador zonal asigna en cada departamento para acompañarlo; en Bogotá &amp; Cundinamarca se asigna por iglesia.</p>
+            <p>Cuerpo académico y oferta académica de cada zona, con su participación sobre los cupos ofertados a nivel nacional. Haz clic en una zona para ver su detalle por rol y curso. El <strong>Enlace Campus Delegación</strong> es la persona que el coordinador zonal asigna en cada departamento para acompañarlo; en Bogotá &amp; Cundinamarca se asigna por iglesia.</p>
           </div>
           <span class="panel__action">
             <span class="panel__action-label" aria-hidden="true"></span>
@@ -74,28 +74,6 @@
               </div>
             </div>
             <p style="font-size:12px;color:var(--texto-muted);margin-top:10px;">*El total de "Cuerpo académico" de esta tabla suma los roles de cada zona tal cual, y da más que 1.840 porque varias personas cumplen más de un rol a la vez (ej. alguien es profesor y también coordinador zonal). 1.840 es la cifra oficial de personas distintas a nivel nacional (ver tarjeta "Cuerpo académico total").</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= DETALLE POR ZONA ======= -->
-      <section class="section panel" id="zonas" aria-labelledby="zonas-titulo">
-        <button class="panel__head" type="button" data-panel-toggle aria-expanded="false" aria-controls="panel-zonas">
-          <div class="panel__titles">
-            <h2 id="zonas-titulo">Detalle por zona</h2>
-            <p>Composición del cuerpo académico por rol y oferta de cursos, grupos y cupos en cada zona y sus departamentos.</p>
-          </div>
-          <span class="panel__action">
-            <span class="panel__action-label" aria-hidden="true"></span>
-            <span class="panel__toggle" aria-hidden="true">+</span>
-          </span>
-        </button>
-
-        <div class="panel__body" id="panel-zonas">
-          <div class="panel__body-inner">
-            <div class="zone-list" id="zone-list">
-              <!-- Bloques de zona generados por js/informe.js -->
-            </div>
           </div>
         </div>
       </section>
@@ -163,8 +141,8 @@
   </div>
 
   <!-- Datos estructurados por zona -->
-  <script src="js/datos.js?v=20260731f"></script>
+  <script src="js/datos.js?v=20260731g"></script>
   <!-- Lógica de renderizado del informe -->
-  <script src="js/informe.js?v=20260731f"></script>
+  <script src="js/informe.js?v=20260731g"></script>
 </body>
 </html>
