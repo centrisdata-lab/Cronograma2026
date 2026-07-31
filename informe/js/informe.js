@@ -46,7 +46,6 @@
       encargadoInformadoresZonal: "🗣️", encargadoSoporteTecnicoZonal: "💻",
       apoyoInformadores: "📣", apoyoSoporteTecnologico: "🛠️", enlaceSoporteTecnologico: "🔌",
     };
-    const emojiZona = "📍";
 
     // Filas exactas de la tarjeta "Cuerpo académico" (orden y
     // etiquetas curados a mano; no todas las claves de ROLES
@@ -158,7 +157,7 @@
         <thead><tr><th>Zona</th><th>Grupos</th></tr></thead>
         <tbody>
           ${[...ZONAS].sort((a, b) => b.oferta.grupos - a.oferta.grupos)
-            .map((z) => `<tr><td>${emojiZona} ${z.nombre}</td><td>${fmt.format(z.oferta.grupos)}</td></tr>`).join("")}
+            .map((z) => `<tr><td>${z.emoji} ${z.nombre}</td><td>${fmt.format(z.oferta.grupos)}</td></tr>`).join("")}
           <tr class="fila-total"><td>🧮 Total nacional</td><td>${fmt.format(totalGrupos)}</td></tr>
         </tbody>
       </table>`;
@@ -185,7 +184,7 @@
             const grupos = GRUPOS_DETALLE_COBERTURA[z.id] || [];
             const filasDetalle = grupos.map((d) => `<tr><td>${emojiCurso[d.curso] || "📖"} ${d.curso} · Grupo ${d.grupo}</td><td>${fmt.format(d.profesores)}</td><td>${fmt.format(d.tutores)}</td></tr>`).join("");
             return `<tr class="cobertura-zona-fila" data-cobertura-zona-toggle="${zi}" aria-expanded="false" tabindex="0" role="button">
-              <td>${emojiZona} ${z.nombre} <span class="cobertura-zona-fila__caret" aria-hidden="true">▾</span></td>
+              <td>${z.emoji} ${z.nombre} <span class="cobertura-zona-fila__caret" aria-hidden="true">▾</span></td>
               <td>${fmt.format(g.unTutor)}</td>
               <td>${fmt.format(g.sinTutor)}</td>
               <td>${fmt.format(g.dosTutores)}</td>
@@ -230,7 +229,7 @@
         <thead><tr><th>Zona</th><th>Cupos</th></tr></thead>
         <tbody>
           ${[...ZONAS].sort((a, b) => b.oferta.cupos - a.oferta.cupos)
-            .map((z) => `<tr><td>${emojiZona} ${z.nombre}</td><td>${fmt.format(z.oferta.cupos)}</td></tr>`).join("")}
+            .map((z) => `<tr><td>${z.emoji} ${z.nombre}</td><td>${fmt.format(z.oferta.cupos)}</td></tr>`).join("")}
           <tr class="fila-total"><td>🧮 Total nacional</td><td>${fmt.format(totalCupos)}</td></tr>
         </tbody>
       </table>`;
@@ -240,7 +239,7 @@
         <thead><tr><th>Zona</th><th>Informadores</th></tr></thead>
         <tbody>
           ${[...ZONAS].sort((a, b) => b.informadores - a.informadores)
-            .map((z) => `<tr><td>${emojiZona} ${z.nombre}</td><td>${fmt.format(z.informadores)}</td></tr>`).join("")}
+            .map((z) => `<tr><td>${z.emoji} ${z.nombre}</td><td>${fmt.format(z.informadores)}</td></tr>`).join("")}
           <tr><td>❔ Sin departamento asignado</td><td>${fmt.format(INFORMADORES_SIN_ZONA)}</td></tr>
           <tr class="fila-total"><td>🧮 Total nacional</td><td>${fmt.format(TOTALES.informadores)}</td></tr>
         </tbody>
@@ -438,7 +437,7 @@
       const share = pct(z.oferta.cupos, TOTALES.oferta.cupos);
       return `
         <tr>
-          <td class="cell-zona"><span class="zona-swatch" style="background:${z.color}"></span>${z.nombre}</td>
+          <td class="cell-zona"><span class="zona-swatch" style="background:${z.color}"></span>${z.emoji} ${z.nombre}</td>
           <td>${fmt.format(z.personal.total)}</td>
           <td>${fmt.format(z.oferta.cursos)}</td>
           <td>${fmt.format(z.oferta.grupos)}</td>
@@ -499,7 +498,7 @@
             <div class="zone-card__title-wrap">
               <span class="zone-card__dot" aria-hidden="true"></span>
               <div>
-                <h3 class="zone-card__title">${z.nombre}</h3>
+                <h3 class="zone-card__title">${z.emoji} ${z.nombre}</h3>
                 <p class="zone-card__depts">${z.departamentos.length} departamento${z.departamentos.length > 1 ? "s" : ""}: ${z.departamentos.join(", ")}</p>
               </div>
             </div>
@@ -630,7 +629,7 @@
 
     const filasZona = ZONAS.map((z) => `
       <tr>
-        <td>${z.nombre}</td>
+        <td>${z.emoji} ${z.nombre}</td>
         ${rolesUsados.map((r) => `<td>${z.personal[r.key] ? fmt.format(z.personal[r.key]) : "—"}</td>`).join("")}
         <td>${fmt.format(z.coordinadoresZonales)}</td>
         <td>${fmt.format(z.enlacesCurso)}</td>

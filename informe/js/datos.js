@@ -47,6 +47,7 @@ const ZONAS = [
   {
     id: "bogota-cundinamarca",
     nombre: "Bogotá & Cundinamarca",
+    emoji: "🏙️",
     departamentos: ["Bogotá", "Cundinamarca"],
     color: "#1B4DA0",
     personal: {
@@ -70,6 +71,7 @@ const ZONAS = [
   {
     id: "caribe",
     nombre: "Zona Caribe",
+    emoji: "🌊",
     departamentos: ["Atlántico", "La Guajira", "Córdoba", "Sucre", "San Andrés", "Bolívar", "Magdalena"],
     color: "#0090A0",
     personal: {
@@ -91,6 +93,7 @@ const ZONAS = [
   {
     id: "antioquia-eje-cafetero",
     nombre: "Antioquia & Eje Cafetero",
+    emoji: "☕",
     departamentos: ["Antioquia", "Urabá", "Caldas", "Risaralda", "Quindío"],
     color: "#D9791C",
     personal: {
@@ -112,6 +115,7 @@ const ZONAS = [
   {
     id: "pacifico",
     nombre: "Zona Pacífico",
+    emoji: "🌿",
     departamentos: ["Valle del Cauca", "Cauca", "Chocó", "Nariño", "Putumayo"],
     color: "#1A9E6E",
     personal: {
@@ -133,6 +137,7 @@ const ZONAS = [
   {
     id: "sur-llanos",
     nombre: "Zona Sur & Llanos",
+    emoji: "🌾",
     departamentos: ["Meta", "Arauca", "Casanare", "Guainía", "Guaviare", "Vaupés", "Vichada", "Amazonas", "Caquetá", "Huila", "Tolima"],
     color: "#4A3AA7",
     personal: {
@@ -154,6 +159,7 @@ const ZONAS = [
   {
     id: "santanderes-boyaca",
     nombre: "Santanderes & Boyacá",
+    emoji: "⛰️",
     departamentos: ["Santander", "Norte de Santander", "Boyacá", "Cesar"],
     color: "#C0392B",
     personal: {
