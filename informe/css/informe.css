@@ -201,6 +201,14 @@ html, body {
   cursor: pointer;
   transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
 }
+
+/* Borde izquierdo con un color distinto por sección desplegable,
+   para diferenciarlas de un vistazo (línea gráfica: azul marino +
+   naranja de marca, más 2 tonos de la paleta de zonas). */
+#comparativo .panel__head { border-left-color: var(--azul-marino-2); }
+#zonas .panel__head       { border-left-color: var(--naranja); }
+#cursos .panel__head      { border-left-color: var(--zona-4); }
+#consolidado .panel__head { border-left-color: var(--zona-5); }
 .panel__head:hover {
   background: color-mix(in srgb, var(--azul-marino-2) 4%, white);
   box-shadow: var(--sombra-card-hover);
