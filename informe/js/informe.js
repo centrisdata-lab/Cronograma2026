@@ -480,8 +480,11 @@
     if (!cont) return;
 
     cont.innerHTML = ZONAS.map((z) => {
-      const filasRoles = ROLES
-        .filter((r) => z.personal[r.key] > 0)
+      // "Coordinadora" (rol de personal) se excluye del recorrido
+      // genérico y se sustituye por "Coordinadores Zonales" (z.coordinadoresZonales),
+      // la misma cifra que ya se muestra en el panel de oferta de esta tarjeta.
+      const filasRoles = `<tr><td>Coordinadores Zonales</td><td>${fmt.format(z.coordinadoresZonales)}</td></tr>` + ROLES
+        .filter((r) => r.key !== "coordinadora" && z.personal[r.key] > 0)
         .map((r) => `<tr><td>${r.label}</td><td>${fmt.format(z.personal[r.key])}</td></tr>`)
         .join("");
 
