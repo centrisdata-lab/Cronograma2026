@@ -1001,7 +1001,7 @@ html, body {
 .zone-card__table-wrap th,
 .zone-card__table-wrap td {
   text-align: left;
-  padding: 8px 16px;
+  padding: 7px 16px;
   border-bottom: 1px solid var(--borde);
 }
 .zone-card__roles-table th:first-child,
@@ -1090,23 +1090,23 @@ html, body {
 }
 .data-table thead th:first-child { text-align: left; }
 
-.data-table tbody td {
+.data-table > tbody > tr > td {
   text-align: center;
   padding: 10px;
   border-bottom: 1px solid var(--borde);
   font-weight: 700;
   color: var(--texto-primario);
 }
-.data-table tbody td:first-child {
+.data-table > tbody > tr > td:first-child {
   text-align: left;
   font-family: var(--fuente-titulos);
   color: var(--azul-marino);
 }
 
-.data-table tbody tr:nth-child(even) { background: var(--fondo); }
-.data-table tbody tr:hover { background: color-mix(in srgb, var(--naranja) 10%, white); }
+.data-table > tbody > tr:nth-child(even) { background: var(--fondo); }
+.data-table > tbody > tr:hover { background: color-mix(in srgb, var(--naranja) 10%, white); }
 
-.data-table tbody tr.fila-total td {
+.data-table > tbody > tr.fila-total > td {
   background: var(--azul-marino);
   color: #fff;
   font-family: var(--fuente-titulos);
