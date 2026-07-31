@@ -451,6 +451,7 @@
       return `
         <div class="zone-card__content">
           <div class="zone-card__table-wrap">
+            <h4 class="zone-card__depts-title">Departamentos que la conforman</h4>
             <div class="zone-card__depts-list">
               ${z.departamentos.map((d) => `<span class="zone-chip">${d}</span>`).join("")}
             </div>
