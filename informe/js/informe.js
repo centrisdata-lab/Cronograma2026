@@ -454,7 +454,8 @@
             <div class="zone-card__depts-list">
               ${z.departamentos.map((d) => `<span class="zone-chip">${d}</span>`).join("")}
             </div>
-            <table>
+            <table class="zone-card__roles-table">
+              <colgroup><col class="col-rol"><col class="col-cantidad"></colgroup>
               <thead><tr><th>Rol</th><th>Cantidad</th></tr></thead>
               <tbody>
                 ${filasRoles}

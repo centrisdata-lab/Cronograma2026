@@ -675,10 +675,10 @@ html, body {
 #tabla-comparativo-zonas tr.fila-zona-comparativo-detalle td {
   padding: 0;
   background: var(--fondo);
-  border-left: 4px solid var(--zona-color, var(--naranja));
 }
 #tabla-comparativo-zonas tr.fila-zona-comparativo-detalle .zone-card__content {
   padding: 18px 22px;
+  border-left: 4px solid var(--zona-color, var(--naranja));
 }
 
 /* Toggle "Por categoría" / "Top cursos con más cupos" dentro del
@@ -981,13 +981,20 @@ html, body {
 .zone-card__table-wrap table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 13.5px;
 }
+.zone-card__roles-table col.col-rol { width: 70%; }
+.zone-card__roles-table col.col-cantidad { width: 30%; }
 .zone-card__table-wrap th,
 .zone-card__table-wrap td {
   text-align: left;
   padding: 7px 10px;
   border-bottom: 1px solid var(--borde);
+}
+.zone-card__roles-table th:last-child,
+.zone-card__roles-table td:last-child {
+  text-align: right;
 }
 .zone-card__table-wrap th {
   color: var(--texto-muted);
