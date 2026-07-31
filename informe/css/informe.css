@@ -918,6 +918,7 @@ html, body {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 20px;
+  align-items: center;
 }
 
 .zone-card__depts-title {
