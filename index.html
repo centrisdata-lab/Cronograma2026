@@ -964,7 +964,7 @@
         <div style="position:absolute;top:0;left:80px;right:80px;height:2px;background:#93c5fd;"></div>
 
         <!-- Columna Tutores (incluye Informadores, alineado debajo de Tutores por curso) -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:0;" id="org-col-tutores">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
           <div style="width:2px;height:24px;background:#93c5fd"></div>
           <div class="org-node coord">👥 Coordinación Tutores</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
@@ -978,6 +978,7 @@
             <span>📣 Informadores</span>
             <span style="font-weight:600;font-size:0.65rem;">(Activos durante la convocatoria)</span>
           </div>
+          <div style="width:2px;height:22px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Soporte Tecnológico -->
@@ -990,6 +991,7 @@
           <div class="org-node enlace">🔌 Enlace Soporte Tecnológico</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
           <div class="org-node base">💻 Soporte Tecnológico por curso</div>
+          <div style="width:2px;flex:1;min-height:61px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Pedagógica -->
@@ -1002,6 +1004,7 @@
           <div class="org-node enlace">🔗 Enlace de Curso Profesores</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
           <div class="org-node base">👨‍🏫 Profesores por curso</div>
+          <div style="width:2px;flex:1;min-height:95px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Responsable + SWAT -->
@@ -1009,20 +1012,17 @@
           <div style="width:2px;height:24px;background:#93c5fd"></div>
           <div class="org-node swat">⚡ Equipo SWAT</div>
           <div class="org-node resp">🎓 Responsable de Curso</div>
+          <div style="width:2px;flex:1;min-height:259px;background:#93c5fd"></div>
         </div>
       </div>
 
-      <!-- Conector "peine": une las 4 columnas de arriba y converge hacia Estudiantes -->
+      <!-- Conector "peine": une las 4 columnas de arriba (ya niveladas por
+           las líneas de relleno de cada columna) y converge hacia Estudiantes -->
       <div style="width:2px;height:22px;background:#93c5fd;"></div>
       <div style="display:flex;justify-content:center;width:100%;">
-        <div style="position:relative;width:min(100%,700px);height:22px;">
-          <div style="position:absolute;top:0;left:12.2%;right:11.5%;height:2px;background:#93c5fd;"></div>
-          <div style="position:absolute;top:0;left:12.2%;width:2px;height:22px;background:#93c5fd;"></div>
-          <div style="position:absolute;top:0;left:38.1%;width:2px;height:22px;background:#93c5fd;"></div>
-          <div style="position:absolute;top:0;left:63.3%;width:2px;height:22px;background:#93c5fd;"></div>
-          <div style="position:absolute;top:0;left:88.5%;width:2px;height:22px;background:#93c5fd;"></div>
-        </div>
+        <div style="position:relative;width:min(100%,700px);height:2px;background:#93c5fd;"></div>
       </div>
+      <div style="width:2px;height:22px;background:#93c5fd;"></div>
 
       <!-- Estudiantes -->
       <div class="org-node est">🎓 Estudiantes</div>
@@ -1089,12 +1089,12 @@
           <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Apoyo<br>2. Apoyo<br>3. Apoyo</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node base" style="width:100%;max-width:160px;font-size:0.7rem;text-align:left;padding:8px 10px;">
-            · E. profesores Zona Caribe<br>
-            · E. profesores Zona Pacífico<br>
-            · E. profesores Zona Antioquia y Eje Cafetero<br>
-            · E. profesores Zona Sur y Llanos<br>
-            · E. profesores Zona Bogotá y Cundinamarca<br>
-            · E. profesores Zona Santanderes y Boyacá
+            · A. profesores Zona Caribe<br>
+            · A. profesores Zona Pacífico<br>
+            · A. profesores Zona Antioquia y Eje Cafetero<br>
+            · A. profesores Zona Sur y Llanos<br>
+            · A. profesores Zona Bogotá y Cundinamarca<br>
+            · A. profesores Zona Santanderes y Boyacá
           </div>
         </div>
 
@@ -1105,15 +1105,15 @@
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node coord" style="width:100%;max-width:160px;text-align:center;">🧑‍💻 Tutor</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Apoyo<br>2. Apoyo<br>3. Apoyo</div>
+          <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Martha Lina González</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node base" style="width:100%;max-width:160px;font-size:0.7rem;text-align:left;padding:8px 10px;">
-            · E. Tutores Zona Caribe<br>
-            · E. Tutores Zona Pacífico<br>
-            · E. Tutores Zona Antioquia y Eje Cafetero<br>
-            · E. Tutores Zona Sur y Llanos<br>
-            · E. Tutores Zona Bogotá y Cundinamarca<br>
-            · E. Tutores Zona Santanderes y Boyacá
+            · A. Tutores Zona Caribe<br>
+            · A. Tutores Zona Pacífico<br>
+            · A. Tutores Zona Antioquia y Eje Cafetero<br>
+            · A. Tutores Zona Sur y Llanos<br>
+            · A. Tutores Zona Bogotá y Cundinamarca<br>
+            · A. Tutores Zona Santanderes y Boyacá
           </div>
         </div>
 
@@ -1124,15 +1124,15 @@
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node coord" style="width:100%;max-width:160px;text-align:center;">📣 Informador</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
-          <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Apoyo<br>2. Apoyo<br>3. Apoyo</div>
+          <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Maria Alejandra Bacca</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node info" style="width:100%;max-width:160px;font-size:0.7rem;text-align:left;padding:8px 10px;">
-            · E. informadores Zona Caribe<br>
-            · E. informadores Zona Pacífico<br>
-            · E. informadores Zona Antioquia y Eje Cafetero<br>
-            · E. informadores Zona Sur y Llanos<br>
-            · E. informadores Zona Bogotá y Cundinamarca<br>
-            · E. informadores Zona Santanderes y Boyacá
+            · A. informadores Zona Caribe<br>
+            · A. informadores Zona Pacífico<br>
+            · A. informadores Zona Antioquia y Eje Cafetero<br>
+            · A. informadores Zona Sur y Llanos<br>
+            · A. informadores Zona Bogotá y Cundinamarca<br>
+            · A. informadores Zona Santanderes y Boyacá
           </div>
         </div>
 
@@ -1146,12 +1146,12 @@
           <div class="org-node enlace" style="width:100%;max-width:160px;font-size:0.72rem;text-align:left;padding:8px 10px;">1. Apoyo<br>2. Apoyo<br>3. Apoyo</div>
           <div style="width:2px;height:14px;background:#93c5fd"></div>
           <div class="org-node est" style="width:100%;max-width:160px;font-size:0.7rem;text-align:left;padding:8px 10px;">
-            · E. admins Zona Caribe<br>
-            · E. admins Zona Pacífico<br>
-            · E. admins Zona Antioquia y Eje Cafetero<br>
-            · E. admins Zona Sur y Llanos<br>
-            · E. admins Zona Bogotá y Cundinamarca<br>
-            · E. admins Zona Santanderes y Boyacá
+            · A. admins Zona Caribe<br>
+            · A. admins Zona Pacífico<br>
+            · A. admins Zona Antioquia y Eje Cafetero<br>
+            · A. admins Zona Sur y Llanos<br>
+            · A. admins Zona Bogotá y Cundinamarca<br>
+            · A. admins Zona Santanderes y Boyacá
           </div>
         </div>
 
