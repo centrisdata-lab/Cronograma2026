@@ -963,8 +963,8 @@
       <div style="display:flex;align-items:flex-start;gap:16px;position:relative;">
         <div style="position:absolute;top:0;left:80px;right:80px;height:2px;background:#93c5fd;"></div>
 
-        <!-- Columna Tutores -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <!-- Columna Tutores (incluye Informadores, alineado debajo de Tutores por curso) -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;" id="org-col-tutores">
           <div style="width:2px;height:24px;background:#93c5fd"></div>
           <div class="org-node coord">👥 Coordinación Tutores</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
@@ -973,6 +973,11 @@
           <div class="org-node enlace">📎 Enlace de Curso Tutores</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
           <div class="org-node base">🧑‍💻 Tutores por curso</div>
+          <div style="width:2px;height:20px;background:#93c5fd"></div>
+          <div class="org-node info" style="min-width:160px;max-width:180px;flex-direction:column;gap:2px;">
+            <span>📣 Informadores</span>
+            <span style="font-weight:600;font-size:0.65rem;">(Activos durante la convocatoria)</span>
+          </div>
         </div>
 
         <!-- Columna Soporte Tecnológico -->
@@ -1007,12 +1012,17 @@
         </div>
       </div>
 
-      <!-- Línea hacia abajo -->
-      <div style="width:2px;height:24px;background:#93c5fd;margin-top:20px;"></div>
-
-      <!-- Informadores -->
-      <div class="org-node info">📣 Informadores <span style="font-weight:600;font-size:0.72rem;">(Activos durante la convocatoria)</span></div>
-      <div style="width:2px;height:20px;background:#93c5fd"></div>
+      <!-- Conector "peine": une las 4 columnas de arriba y converge hacia Estudiantes -->
+      <div style="width:2px;height:22px;background:#93c5fd;"></div>
+      <div style="display:flex;justify-content:center;width:100%;">
+        <div style="position:relative;width:min(100%,700px);height:22px;">
+          <div style="position:absolute;top:0;left:12.2%;right:11.5%;height:2px;background:#93c5fd;"></div>
+          <div style="position:absolute;top:0;left:12.2%;width:2px;height:22px;background:#93c5fd;"></div>
+          <div style="position:absolute;top:0;left:38.1%;width:2px;height:22px;background:#93c5fd;"></div>
+          <div style="position:absolute;top:0;left:63.3%;width:2px;height:22px;background:#93c5fd;"></div>
+          <div style="position:absolute;top:0;left:88.5%;width:2px;height:22px;background:#93c5fd;"></div>
+        </div>
+      </div>
 
       <!-- Estudiantes -->
       <div class="org-node est">🎓 Estudiantes</div>
