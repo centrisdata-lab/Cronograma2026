@@ -40,7 +40,7 @@
     // Emoji por rol/concepto, para reconocer cada fila de un vistazo.
     const emojiRol = {
       profesores: "👩‍🏫", tutores: "🧑‍🏫", administradores: "🗂️", coordinadora: "🧭",
-      enlaceTutores: "🔗", apoyoPedagogico: "🧑‍🎓", coordinadorTutores: "🧑‍💼",
+      enlaceTutores: "🔗", apoyoPedagogico: "🧑‍🎓",
       apoyoTutores: "🤝", responsableCurso: "📌",
       encargadoPedagogicoZonal: "🎓", encargadoTutoresZonal: "👔",
       encargadoInformadoresZonal: "🗣️", encargadoSoporteTecnicoZonal: "💻",
