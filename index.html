@@ -978,7 +978,6 @@
             <span>📣 Informadores</span>
             <span style="font-weight:600;font-size:0.65rem;">(Activos durante la convocatoria)</span>
           </div>
-          <div style="width:2px;height:22px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Soporte Tecnológico -->
@@ -991,7 +990,6 @@
           <div class="org-node enlace">🔌 Enlace Soporte Tecnológico</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
           <div class="org-node base">💻 Soporte Tecnológico por curso</div>
-          <div style="width:2px;flex:1;min-height:61px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Pedagógica -->
@@ -1004,7 +1002,6 @@
           <div class="org-node enlace">🔗 Enlace de Curso Profesores</div>
           <div style="width:2px;height:20px;background:#93c5fd"></div>
           <div class="org-node base">👨‍🏫 Profesores por curso</div>
-          <div style="width:2px;flex:1;min-height:95px;background:#93c5fd"></div>
         </div>
 
         <!-- Columna Responsable + SWAT -->
@@ -1012,17 +1009,14 @@
           <div style="width:2px;height:24px;background:#93c5fd"></div>
           <div class="org-node swat">⚡ Equipo SWAT</div>
           <div class="org-node resp">🎓 Responsable de Curso</div>
-          <div style="width:2px;flex:1;min-height:259px;background:#93c5fd"></div>
         </div>
       </div>
 
-      <!-- Conector "peine": une las 4 columnas de arriba (ya niveladas por
-           las líneas de relleno de cada columna) y converge hacia Estudiantes -->
-      <div style="width:2px;height:22px;background:#93c5fd;"></div>
-      <div style="display:flex;justify-content:center;width:100%;">
-        <div style="position:relative;width:min(100%,700px);height:2px;background:#93c5fd;"></div>
-      </div>
-      <div style="width:2px;height:22px;background:#93c5fd;"></div>
+      <!-- Conector "peine" hacia Estudiantes: JS calcula, tras el render,
+           la línea vertical de cada columna para que llegue exactamente
+           al punto más bajo de las 4 (evita depender de alturas fijas en
+           px, que se desalineaban al cambiar el ancho de la ventana). -->
+      <div id="org-comb-wrap" style="position:relative;width:100%;"></div>
 
       <!-- Estudiantes -->
       <div class="org-node est">🎓 Estudiantes</div>
@@ -2286,15 +2280,69 @@ function showOrg(idx, btn) {
   document.querySelectorAll(".org-sel-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   localStorage.setItem("activeOrgPanel", String(idx));
+  if (idx === 0) requestAnimationFrame(drawCampusVirtualComb);
 }
 
 function restoreOrgPanel() {
   const saved = localStorage.getItem("activeOrgPanel");
-  if (saved === null) return;
+  if (saved === null) { requestAnimationFrame(drawCampusVirtualComb); return; }
   const idx = Number(saved);
   const btns = document.querySelectorAll(".org-sel-btn");
   if (btns[idx]) showOrg(idx, btns[idx]);
 }
+
+// Dibuja el conector "peine" que une las 4 columnas del nivel 2 del
+// organigrama de Campus Virtual (Tutores, Soporte Tecnológico,
+// Pedagógica, Responsable/SWAT) hacia "Estudiantes". Se calcula por
+// JS en vez de con alturas fijas en CSS porque las columnas tienen
+// distinto número de nodos y el ancho de línea varía con el viewport
+// (el texto de los nodos envuelve distinto), así que una altura fija
+// se desalinea en cuanto cambia el ancho de la ventana.
+function drawCampusVirtualComb() {
+  const panel = document.getElementById("org-panel-0");
+  if (!panel || panel.style.display === "none") return;
+  const wrap = document.getElementById("org-comb-wrap");
+  const rowContainer = panel.querySelector('.org-tree > div[style*="flex-start"]');
+  const estNode = panel.querySelector(".org-node.est");
+  if (!wrap || !rowContainer || !estNode) return;
+
+  // Reinicia la altura antes de medir para no arrastrar un valor
+  // calculado en un layout/ancho anterior.
+  wrap.style.height = "0px";
+  wrap.innerHTML = "";
+
+  const cols = Array.from(rowContainer.children).filter(c => c.style.position !== "absolute");
+  // Todas las coordenadas se calculan relativas al propio wrap (no a
+  // .org-tree), porque los <div> de las líneas se posicionan de forma
+  // absoluta dentro de #org-comb-wrap, no dentro de .org-tree.
+  const wrapRect = wrap.getBoundingClientRect();
+  const colBottoms = cols.map(c => c.getBoundingClientRect().bottom - wrapRect.top);
+  const maxBottom = Math.max(...colBottoms, 0);
+  const barY = maxBottom + 22;
+  const gapToEst = 20;
+
+  const firstRect = cols[0].getBoundingClientRect();
+  const lastRect = cols[cols.length - 1].getBoundingClientRect();
+  const firstX = firstRect.left + firstRect.width / 2 - wrapRect.left;
+  const lastX = lastRect.left + lastRect.width / 2 - wrapRect.left;
+
+  wrap.style.height = (barY + gapToEst) + "px";
+  wrap.innerHTML = cols.map(c => {
+    const r = c.getBoundingClientRect();
+    const x = r.left + r.width / 2 - wrapRect.left;
+    const bottom = r.bottom - wrapRect.top;
+    return `<div style="position:absolute;top:${bottom}px;left:${x}px;width:2px;height:${barY - bottom}px;background:#93c5fd;"></div>`;
+  }).join("") + `
+    <div style="position:absolute;top:${barY}px;left:${firstX}px;width:${lastX - firstX}px;height:2px;background:#93c5fd;"></div>
+    <div style="position:absolute;top:${barY}px;left:${(firstX + lastX) / 2}px;width:2px;height:${gapToEst}px;background:#93c5fd;"></div>
+  `;
+}
+
+let _combResizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(_combResizeTimer);
+  _combResizeTimer = setTimeout(drawCampusVirtualComb, 150);
+});
 
 function exitEditMode() {
   editMode = false;
