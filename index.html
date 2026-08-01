@@ -960,8 +960,8 @@
       <div style="width:2px;height:24px;background:#93c5fd"></div>
 
       <!-- Línea horizontal nivel 2 -->
-      <div style="display:flex;align-items:flex-start;gap:16px;position:relative;">
-        <div style="position:absolute;top:0;left:80px;right:80px;height:2px;background:#93c5fd;"></div>
+      <div class="org-fila-columnas" style="display:flex;align-items:flex-start;gap:16px;position:relative;">
+        <div class="org-linea-horizontal" style="position:absolute;top:0;height:2px;background:#93c5fd;"></div>
 
         <!-- Columna Tutores (incluye Informadores, alineado debajo de Tutores por curso) -->
         <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
@@ -1070,8 +1070,8 @@
       <div style="width:2px;height:20px;background:#93c5fd;"></div>
 
       <!-- Línea horizontal nivel 4 -->
-      <div style="display:flex;align-items:flex-start;gap:16px;position:relative;">
-        <div style="position:absolute;top:0;left:80px;right:80px;height:2px;background:#93c5fd;"></div>
+      <div class="org-fila-columnas" style="display:flex;align-items:flex-start;gap:16px;position:relative;">
+        <div class="org-linea-horizontal" style="position:absolute;top:0;height:2px;background:#93c5fd;"></div>
 
         <!-- Wilber Peña → Profesor -->
         <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
@@ -1178,8 +1178,8 @@
       <div style="width:2px;height:20px;background:#93c5fd;"></div>
 
       <!-- 4 columnas -->
-      <div style="display:flex;align-items:flex-start;gap:16px;position:relative;">
-        <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
+      <div class="org-fila-columnas" style="display:flex;align-items:flex-start;gap:16px;position:relative;">
+        <div class="org-linea-horizontal" style="position:absolute;top:0;height:2px;background:#93c5fd;"></div>
 
         <!-- Pedagógico -->
         <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
@@ -1248,8 +1248,8 @@
       <div style="width:2px;height:20px;background:#93c5fd;"></div>
 
       <!-- 3 columnas -->
-      <div style="display:flex;align-items:flex-start;gap:16px;position:relative;">
-        <div style="position:absolute;top:0;left:80px;right:80px;height:2px;background:#93c5fd;"></div>
+      <div class="org-fila-columnas" style="display:flex;align-items:flex-start;gap:16px;position:relative;">
+        <div class="org-linea-horizontal" style="position:absolute;top:0;height:2px;background:#93c5fd;"></div>
 
         <!-- Pedagógico -->
         <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex:1;">
@@ -2371,22 +2371,24 @@ function selectZona(id) {
   document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
 
   document.getElementById("zona-miembros").innerHTML = renderOrganigramaZona(zona);
-  requestAnimationFrame(ajustarLineasHorizontalesZona);
+  requestAnimationFrame(ajustarLineasHorizontalesOrg);
 
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// La línea horizontal que conecta las columnas (Pedagógico/Tutores/
-// Informadores/Soporte) tenía un ancho fijo (left:60px;right:60px)
-// que no siempre coincide con la posición real de la primera y
-// última columna —algunas zonas tienen menos de 4 columnas, o el
-// ancho disponible cambia—, dejando una "punta suelta" que sugiere
-// más contenido del que hay. Se recalcula midiendo el centro real de
-// la primera y última columna visible.
-function ajustarLineasHorizontalesZona() {
-  document.querySelectorAll("#zona-miembros .org-fila-columnas").forEach((fila) => {
-    const linea = fila.querySelector(".org-linea-horizontal");
+// La línea horizontal que conecta las columnas de cada organigrama
+// (Pedagógico/Tutores/Informadores/Soporte, o Profesor/Tutor/
+// Informador/Administrador en Equipo Colombia, etc.) tenía un ancho
+// fijo (left:60px/80px;right:60px/80px) que no siempre coincide con
+// la posición real de la primera y última columna —algunas zonas
+// tienen menos columnas, o las tarjetas tienen distinto ancho—,
+// dejando una "punta suelta" que sugiere más contenido del que hay.
+// Se recalcula en todo el documento (no solo el panel de zonas)
+// midiendo el centro real de la primera y última columna visible.
+function ajustarLineasHorizontalesOrg() {
+  document.querySelectorAll(".org-fila-columnas").forEach((fila) => {
+    const linea = fila.querySelector(":scope > .org-linea-horizontal");
     const cols = Array.from(fila.children).filter((c) => c !== linea);
     if (!linea || cols.length < 2) { if (linea) linea.style.display = "none"; return; }
     const filaRect = fila.getBoundingClientRect();
@@ -2400,8 +2402,8 @@ function ajustarLineasHorizontalesZona() {
   });
 }
 window.addEventListener("resize", () => {
-  clearTimeout(window._zonaLineaResizeTimer);
-  window._zonaLineaResizeTimer = setTimeout(ajustarLineasHorizontalesZona, 150);
+  clearTimeout(window._orgLineaResizeTimer);
+  window._orgLineaResizeTimer = setTimeout(ajustarLineasHorizontalesOrg, 150);
 });
 
 // Delegado: cada nombre del organigrama de zonas es un botón que
@@ -2458,11 +2460,12 @@ function showOrg(idx, btn) {
   btn.classList.add("active");
   localStorage.setItem("activeOrgPanel", String(idx));
   if (idx === 0) requestAnimationFrame(drawCampusVirtualComb);
+  requestAnimationFrame(ajustarLineasHorizontalesOrg);
 }
 
 function restoreOrgPanel() {
   const saved = localStorage.getItem("activeOrgPanel");
-  if (saved === null) { requestAnimationFrame(drawCampusVirtualComb); return; }
+  if (saved === null) { requestAnimationFrame(drawCampusVirtualComb); requestAnimationFrame(ajustarLineasHorizontalesOrg); return; }
   const idx = Number(saved);
   const btns = document.querySelectorAll(".org-sel-btn");
   if (btns[idx]) showOrg(idx, btns[idx]);
