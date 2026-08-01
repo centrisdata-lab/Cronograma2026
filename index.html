@@ -2281,10 +2281,18 @@ function renderOrganigramaZona(zona) {
   // del borde se adapta a fondo oscuro (coordinadores/encargados) o
   // claro (apoyos).
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  // Recorta nombres de 4+ palabras (nombre + 2 apellidos, o 2 nombres
+  // + 2 apellidos) a solo 3, quitando el último apellido, para que
+  // quepan en una línea dentro de la tarjeta angosta. El nombre
+  // completo sigue disponible al hacer clic (modal de contacto).
+  const nombreCorto = (n) => {
+    const partes = n.trim().split(/\s+/);
+    return partes.length > 3 ? partes.slice(0, 3).join(" ") : n;
+  };
   const nodoLista = (nombres, oscuro, rolTexto) => {
     const borde = oscuro ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.15)";
     return nombres.map((n, i) => `<div${i > 0 ? ` style="border-top:1px solid ${borde};padding-top:4px;margin-top:2px;"` : ""}>
-        <button type="button" class="org-nombre-btn" data-contacto-nombre="${esc(n)}" data-contacto-rol="${esc(rolTexto || "")}">${n}</button>
+        <button type="button" class="org-nombre-btn" data-contacto-nombre="${esc(n)}" data-contacto-rol="${esc(rolTexto || "")}">${nombreCorto(n)}</button>
       </div>`).join("");
   };
 
@@ -2298,7 +2306,7 @@ function renderOrganigramaZona(zona) {
     return apoyos.map((a, i) => {
       const rolTexto = a.depto ? `Apoyo departamental (${a.depto}) de ${titulo} (apoyo del zonal)` : `Apoyo de ${titulo} (apoyo del zonal)`;
       return `<div${i > 0 ? ` style="border-top:1px solid rgba(0,0,0,0.15);padding-top:5px;margin-top:4px;"` : ""}>
-        <button type="button" class="org-nombre-btn" data-contacto-nombre="${esc(a.nombre)}" data-contacto-rol="${esc(rolTexto)}">${a.nombre}</button>
+        <button type="button" class="org-nombre-btn" data-contacto-nombre="${esc(a.nombre)}" data-contacto-rol="${esc(rolTexto)}">${nombreCorto(a.nombre)}</button>
         <div style="font-size:0.62rem;font-weight:700;color:var(--muted);margin-top:1px;">${a.depto ? `Apoyo departamental (${a.depto})` : "Apoyo"} <span style="opacity:0.8;">(apoyo del zonal)</span></div>
       </div>`;
     }).join("");
@@ -2344,8 +2352,8 @@ function renderOrganigramaZona(zona) {
         ${etiqueta("Coordinador(a/es) Zonal")}
         <div class="org-node coord" style="min-width:200px;max-width:320px;text-align:center;flex-direction:column;gap:2px;">${nodoLista(org.coordinadores, true, "Coordinador(a) Zonal")}</div>
         <div style="width:2px;height:20px;background:#93c5fd;"></div>
-        <div style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
-          <div style="position:absolute;top:0;left:60px;right:60px;height:2px;background:#93c5fd;"></div>
+        <div class="org-fila-columnas" style="display:flex;align-items:flex-start;gap:16px;position:relative;flex-wrap:wrap;justify-content:center;">
+          <div class="org-linea-horizontal" style="position:absolute;top:0;height:2px;background:#93c5fd;"></div>
           ${columnas}
         </div>
       </div>
@@ -2363,10 +2371,38 @@ function selectZona(id) {
   document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
 
   document.getElementById("zona-miembros").innerHTML = renderOrganigramaZona(zona);
+  requestAnimationFrame(ajustarLineasHorizontalesZona);
 
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+// La línea horizontal que conecta las columnas (Pedagógico/Tutores/
+// Informadores/Soporte) tenía un ancho fijo (left:60px;right:60px)
+// que no siempre coincide con la posición real de la primera y
+// última columna —algunas zonas tienen menos de 4 columnas, o el
+// ancho disponible cambia—, dejando una "punta suelta" que sugiere
+// más contenido del que hay. Se recalcula midiendo el centro real de
+// la primera y última columna visible.
+function ajustarLineasHorizontalesZona() {
+  document.querySelectorAll("#zona-miembros .org-fila-columnas").forEach((fila) => {
+    const linea = fila.querySelector(".org-linea-horizontal");
+    const cols = Array.from(fila.children).filter((c) => c !== linea);
+    if (!linea || cols.length < 2) { if (linea) linea.style.display = "none"; return; }
+    const filaRect = fila.getBoundingClientRect();
+    const primera = cols[0].getBoundingClientRect();
+    const ultima = cols[cols.length - 1].getBoundingClientRect();
+    const left = primera.left + primera.width / 2 - filaRect.left;
+    const right = filaRect.right - (ultima.left + ultima.width / 2);
+    linea.style.left = `${left}px`;
+    linea.style.right = `${right}px`;
+    linea.style.display = "";
+  });
+}
+window.addEventListener("resize", () => {
+  clearTimeout(window._zonaLineaResizeTimer);
+  window._zonaLineaResizeTimer = setTimeout(ajustarLineasHorizontalesZona, 150);
+});
 
 // Delegado: cada nombre del organigrama de zonas es un botón que
 // abre el modal de contacto (correo/celular). El HTML se reinyecta
