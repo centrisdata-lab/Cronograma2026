@@ -1418,49 +1418,77 @@ const _t = new Date();
 const TODAY = new Date(_t.getFullYear(), _t.getMonth(), _t.getDate());
 
 const activities = [
-  { emoji:"📩", label:"Cuerpo Académico Zonal",
-    start:"2026-06-03", end:"2026-06-23", color:"#28a745" },
+  { emoji:"🚀", label:"Anuncio de Lanzamiento de Convocatoria",
+    start:"2026-08-02", end:null, color:"#28a745" },
 
-  { emoji:"📌", label:"Acompañamiento pedagógico a las áreas de formación",
-    start:"2026-06-11", end:"2026-06-30", color:"#1a3c6e" },
+  { emoji:"📝", label:"Proceso de Inscripciones — Asignación de Correos Equipo Académico",
+    start:"2026-08-03", end:"2026-08-07", color:"#f5a623" },
 
-  { emoji:"🎥", label:"Micro-Pitchs Zonales — Profesores nuevos",
-    start:"2026-06-17", end:"2026-06-29", color:"#28a745" },
+  { emoji:"🤝", label:"Articulación de cursos Tutores y Profesores",
+    start:"2026-08-10", end:null, color:"#1a3c6e" },
 
-  { emoji:"📌", label:"Reuniones de alineación y planeación: Responsables de curso, Profesores y Enlaces",
-    start:"2026-06-22", end:"2026-07-31", color:"#1a3c6e",
-    note:"Entregables: Valoraciones · Monitores de Clases" },
+  { emoji:"📝", label:"Proceso de Inscripciones",
+    start:"2026-08-10", end:"2026-08-14", color:"#f5a623" },
 
-  { emoji:"📩", label:"Consolidar listado de cursos ofertados para Colombia por zona",
-    start:"2026-06-24", end:"2026-06-28", color:"#28a745" },
+  { emoji:"📱", label:"Revisión de Inscripciones",
+    start:"2026-08-15", end:null, color:"#0dcaf0" },
 
-  { emoji:"📌", label:"Responsables de curso — Profesores — Co-creación",
-    start:"2026-06-24", end:null, color:"#f5a623",
-    note:"Pendiente: solicitar cronograma" },
+  { emoji:"📝", label:"Proceso de Inscripciones",
+    start:"2026-08-17", end:"2026-08-21", color:"#f5a623" },
 
-  { emoji:"👥", label:"Sesión Coach pedagógico: Equipos Zonales",
-    start:"2026-06-27", end:null, color:"#7c3aed" },
+  { emoji:"💻", label:"Revisión Técnica y fin de cargue de Cursos",
+    start:"2026-08-24", end:"2026-08-28", color:"#4a3aa7" },
 
-  { emoji:"💡", label:"Sesión Coach pedagógico: Profesores de Curso y Tutores",
-    start:"2026-06-27", end:null, color:"#7c3aed" },
+  { emoji:"📧", label:"Correo inicio de clases",
+    start:"2026-08-31", end:null, color:"#6c757d" },
 
-  { emoji:"🤝", label:"Lanzamiento convocatoria — Estudiantes en la Iglesia",
-    start:"2026-07-05", end:null, color:"#f5a623" },
+  { emoji:"📋", label:"Perfilamiento de Estudiantes (Prerrequisitos / Discapacidad)",
+    start:"2026-09-01", end:"2026-09-04", color:"#f5a623" },
 
-  { emoji:"📊", label:"Índices de Estudiantes sin conectarse la 1ra semana",
-    start:"2026-08-15", end:null, color:"#6c757d" },
+  { emoji:"✨", label:"Clase de Bienvenida Mundial al Campus",
+    start:"2026-09-05", end:null, color:"#1a3c6e" },
 
-  { emoji:"📘", label:"Semana de refuerzo por Curso",
-    start:"2026-09-05", end:"2026-09-12", color:"#1a3c6e" },
+  { emoji:"💻", label:"Semana #1 de clases (Navegación Campus / Tutores) (*Cátedra FIMLM / Profesores)",
+    start:"2026-09-07", end:"2026-09-11", color:"#f5a623" },
 
-  { emoji:"🎓", label:"Apertura Ciclo: Formación continua — Profesores y Tutores",
-    start:"2026-09-05", end:null, color:"#7c3aed" },
+  { emoji:"💻", label:"Semana #2 de clases (1ra clase de contenido)",
+    start:"2026-09-14", end:"2026-09-18", color:"#f5a623" },
 
-  { emoji:"🏁", label:"Clase final de Curso",
-    start:"2026-11-01", end:null, color:"#dc3545" },
+  { emoji:"💻", label:"Semana #3 Activación y vinculación de lista de espera (2da clase de contenido)",
+    start:"2026-09-21", end:"2026-09-25", color:"#a08c7d" },
 
-  { emoji:"📋", label:"Reporte de aprobaciones — Estudiantes por Curso",
-    start:"2026-11-14", end:null, color:"#dc3545" },
+  { emoji:"📖", label:"Semana #4: 1er Refuerzo de tareas por el Tutor (3ra clase de contenido)",
+    start:"2026-09-28", end:"2026-10-01", color:"#0f9d8f" },
+
+  { emoji:"💻", label:"Semana #5 de clases (4ta clase de contenido)",
+    start:"2026-10-05", end:"2026-10-09", color:"#f5a623" },
+
+  { emoji:"💻", label:"Semana #6 de clases (5ta clase de contenido)",
+    start:"2026-10-12", end:"2026-10-16", color:"#f5a623" },
+
+  { emoji:"💻", label:"Semana #7 de clases (6ta clase de contenido)",
+    start:"2026-10-19", end:"2026-10-23", color:"#f5a623" },
+
+  { emoji:"📖", label:"Semana #8: 2do Refuerzo de tareas / Tarea final (acompañamiento del Tutor)",
+    start:"2026-10-26", end:"2026-10-30", color:"#0f9d8f" },
+
+  { emoji:"💻", label:"Semana #9 (8va clase de contenido) — Fin de clases en Campus",
+    start:"2026-11-02", end:"2026-11-06", color:"#f5a623" },
+
+  { emoji:"🎓", label:"Semana #10 Clase de Birrete",
+    start:"2026-11-09", end:"2026-11-13", color:"#f5a623" },
+
+  { emoji:"📌", label:"Semana #11 Ensayo de Clausura / Casos Exitosos de Tutores / Cierre de Cursos",
+    start:"2026-11-16", end:"2026-11-20", color:"#f5a623" },
+
+  { emoji:"🎥", label:"Reunión reportes por Áreas de Formación — Reporte de resultados con Países y Zonas",
+    start:"2026-11-23", end:null, color:"#7c3aed" },
+
+  { emoji:"📝", label:"Alistamiento Informe Final / Alistamiento Clausura",
+    start:"2026-12-01", end:"2026-12-04", color:"#f5a623" },
+
+  { emoji:"🎓", label:"Ceremonia de Clausura y Graduación",
+    start:"2026-12-05", end:null, color:"#1a3c6e" },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
