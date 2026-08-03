@@ -369,6 +369,66 @@
       #btn-all { font-size: 0.72rem; padding: 5px 14px; }
     }
 
+    /* ── TOGGLE VISTA (Timeline / Tarjetas) ── */
+    .vista-toggle { display: flex; gap: 8px; margin: 18px 0 16px; }
+    .vista-toggle-btn {
+      font-size: 0.8rem; font-weight: 800; padding: 8px 16px; border-radius: 999px;
+      border: 1.5px solid var(--blue); background: white; color: var(--blue);
+      cursor: pointer; transition: background .12s ease, color .12s ease;
+    }
+    .vista-toggle-btn:hover { background: #eef3fb; }
+    .vista-toggle-btn.is-active { background: var(--blue); color: white; }
+
+    /* ── TIMELINE (Gantt horizontal) ── */
+    .timeline-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow-x: auto; margin-bottom: 20px; }
+    .timeline-inner { min-width: 900px; position: relative; }
+    .timeline-months {
+      display: flex; position: sticky; top: 0; z-index: 2; background: var(--white);
+      border-bottom: 2px solid var(--border);
+    }
+    .timeline-month {
+      flex-shrink: 0; text-align: center; font-size: 0.72rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+      padding: 8px 0; border-right: 1px solid var(--border);
+    }
+    .timeline-month:last-child { border-right: none; }
+    .timeline-today-line {
+      position: absolute; top: 0; width: 2px; background: var(--red);
+      z-index: 3; pointer-events: none;
+    }
+    .timeline-today-label {
+      position: absolute; top: -2px; transform: translateX(-50%);
+      background: var(--red); color: white; font-size: 0.62rem; font-weight: 800;
+      padding: 2px 6px; border-radius: 6px; white-space: nowrap; z-index: 4;
+    }
+    .timeline-row {
+      display: flex; align-items: center; position: relative;
+      height: 40px; border-bottom: 1px solid #f0f2f7;
+    }
+    .timeline-row:hover { background: #fafbfd; }
+    .timeline-bar {
+      position: absolute; height: 24px; border-radius: 7px; cursor: pointer;
+      display: flex; align-items: center; padding: 0 10px; gap: 6px;
+      font-size: 0.74rem; font-weight: 800; color: white; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .timeline-bar:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.22); z-index: 5; }
+    .timeline-bar.is-puntual { min-width: 24px; border-radius: 50%; padding: 0; justify-content: center; }
+    .timeline-label-fuera {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 0.74rem; font-weight: 700; color: var(--text); white-space: nowrap;
+      cursor: pointer; padding: 2px 4px;
+    }
+    .timeline-label-fuera:hover { text-decoration: underline; }
+    .timeline-bar.is-past { opacity: 0.45; }
+    .timeline-label-fixed {
+      position: sticky; left: 0; z-index: 1; background: inherit;
+    }
+    .timeline-legend { display: flex; flex-wrap: wrap; gap: 14px; padding: 10px 14px; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
+    .timeline-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .timeline-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
     /* ── CARDS GRID ── */
     .cards-grid {
       display: grid;
@@ -924,6 +984,15 @@
     Mostrando: <span id="filter-name">Todas las actividades</span>
     <button id="btn-all" onclick="setFilter('all')">Ver todas las actividades</button>
   </div>
+
+  <!-- Toggle Timeline / Tarjetas -->
+  <div class="vista-toggle" id="vista-toggle">
+    <button type="button" class="vista-toggle-btn is-active" data-vista="timeline" onclick="setVista('timeline')">📊 Línea de tiempo</button>
+    <button type="button" class="vista-toggle-btn" data-vista="cards" onclick="setVista('cards')">🗂️ Tarjetas</button>
+  </div>
+
+  <!-- Timeline -->
+  <div id="timeline-root"></div>
 
   <!-- Cards -->
   <div id="cards-root"></div>
@@ -1708,6 +1777,7 @@ function setFilter(key) {
   if (key === "all") { renderAll(); }
   else if (key === "active") { renderActiveGroup("all"); }
   else renderFiltered(key);
+  renderCurrentTimeline();
 }
 
 function setSubFilter(sub, render = true) {
@@ -1715,6 +1785,7 @@ function setSubFilter(sub, render = true) {
   document.getElementById("sf-all").className   = "subfiltro-btn" + (sub === "all"   ? " all-active"   : "");
   document.getElementById("sf-vence").className = "subfiltro-btn" + (sub === "vence" ? " vence-active"  : "");
   if (render) renderActiveGroup(sub);
+  renderCurrentTimeline();
 }
 
 function renderActiveGroup(sub) {
@@ -1729,8 +1800,138 @@ function renderActiveGroup(sub) {
   root.innerHTML = `<div class="cards-grid">${items.map(item => buildCard(item, isVencePronto(item) ? "vence" : "active")).join("")}</div>`;
 }
 
+// ── TIMELINE (vista Gantt horizontal) ────────────────────────────────────────
+// Vista alternativa a las tarjetas: una fila por actividad, con una
+// barra posicionada en un eje de fechas continuo (agrupado por mes).
+// Pensada para que se note de un vistazo la duración real y los
+// solapamientos entre actividades, algo que el grid de tarjetas no
+// comunica bien cuando hay muchas actividades semanales seguidas.
+let currentVista = "timeline";
+const DIA_PX = 26; // ancho de un día en el eje del timeline
+
+function mesesDelRango(items) {
+  if (!items.length) return [];
+  const inicios = items.map(a => parseDate(a.start));
+  const fines   = items.map(a => endRef(a));
+  let min = new Date(Math.min(...inicios));
+  let max = new Date(Math.max(...fines));
+  const meses = [];
+  let cursor = new Date(min.getFullYear(), min.getMonth(), 1);
+  const limite = new Date(max.getFullYear(), max.getMonth(), 1);
+  while (cursor <= limite) {
+    const diasEnMes = new Date(cursor.getFullYear(), cursor.getMonth()+1, 0).getDate();
+    meses.push({ year: cursor.getFullYear(), month: cursor.getMonth(), dias: diasEnMes });
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth()+1, 1);
+  }
+  return meses;
+}
+
+function offsetDesdeInicio(fecha, primerMes) {
+  const inicioEje = new Date(primerMes.year, primerMes.month, 1);
+  return diffDays(inicioEje, fecha);
+}
+
+function renderTimeline(items) {
+  const root = document.getElementById("timeline-root");
+  if (!root) return;
+  if (!items.length) {
+    root.innerHTML = `<div class="empty"><div class="e-icon">🎉</div>No hay actividades en esta categoría.</div>`;
+    return;
+  }
+
+  const ordenadas = [...items].sort((a,b) => a.start.localeCompare(b.start));
+  const meses = mesesDelRango(ordenadas);
+  if (!meses.length) { root.innerHTML = ""; return; }
+  const primerMes = meses[0];
+  const anchoTotal = meses.reduce((s,m) => s + m.dias, 0) * DIA_PX;
+  const nombresMes = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+  const mesesHtml = meses.map(m => `<div class="timeline-month" style="width:${m.dias * DIA_PX}px">${nombresMes[m.month]} ${m.year}</div>`).join("");
+
+  // Umbral de ancho (px) por debajo del cual el texto ya no cabe
+  // dentro de la barra: en vez de truncarlo con "…" (que oculta el
+  // nombre completo), se muestra como etiqueta flotante junto a la
+  // barra, para que la actividad siempre sea legible de un vistazo.
+  const ANCHO_MIN_TEXTO_DENTRO = 130;
+
+  const filasHtml = ordenadas.map(item => {
+    const inicio = parseDate(item.start);
+    const fin = endRef(item);
+    const offsetIni = offsetDesdeInicio(inicio, primerMes);
+    const duracionDias = Math.max(diffDays(inicio, fin) + 1, 1);
+    const left = offsetIni * DIA_PX;
+    const width = item.end ? duracionDias * DIA_PX - 6 : 24;
+    const puntual = !item.end;
+    const past = isPast(item);
+    const rolTexto = fmt(item.start) + (item.end ? " – " + fmt(item.end) : " (evento puntual)");
+    const textoFuera = puntual || width < ANCHO_MIN_TEXTO_DENTRO;
+    const labelFlotante = textoFuera
+      ? `<div class="timeline-label-fuera" style="left:${left + width + 8}px;" onclick="openModal('${item.label.replace(/'/g,"\\'")}')">${item.label}</div>`
+      : "";
+    return `
+      <div class="timeline-row" style="width:${anchoTotal}px">
+        <div class="timeline-bar${puntual ? " is-puntual" : ""}${past ? " is-past" : ""}"
+             style="left:${left}px;width:${width}px;background:${item.color};"
+             title="${item.label} · ${rolTexto}"
+             onclick="openModal('${item.label.replace(/'/g,"\\'")}')">
+          ${puntual ? item.emoji : (textoFuera ? `<span>${item.emoji}</span>` : `<span>${item.emoji}</span><span>${item.label}</span>`)}
+        </div>
+        ${labelFlotante}
+      </div>`;
+  }).join("");
+
+  // Línea de "hoy", si cae dentro del rango visible
+  const offsetHoy = offsetDesdeInicio(TODAY, primerMes);
+  const hoyVisible = offsetHoy >= 0 && offsetHoy * DIA_PX <= anchoTotal;
+
+  root.innerHTML = `
+    <div class="timeline-wrap">
+      <div class="timeline-inner" style="width:${anchoTotal}px;">
+        <div class="timeline-months">${mesesHtml}</div>
+        <div style="position:relative;">
+          ${filasHtml}
+          ${hoyVisible ? `<div class="timeline-today-line" style="left:${offsetHoy * DIA_PX}px;height:${ordenadas.length * 40}px;"><div class="timeline-today-label">Hoy</div></div>` : ""}
+        </div>
+      </div>
+      <div class="timeline-legend">
+        <span><i style="background:var(--red)"></i> Actividad vencida (opaca)</span>
+        <span>🔴 Línea roja = hoy</span>
+        <span>👉 Haz clic en una barra para ver el detalle</span>
+      </div>
+    </div>`;
+}
+
+function setVista(vista) {
+  currentVista = vista;
+  document.querySelectorAll(".vista-toggle-btn").forEach(b => b.classList.toggle("is-active", b.dataset.vista === vista));
+  document.getElementById("timeline-root").style.display = vista === "timeline" ? "" : "none";
+  document.getElementById("cards-root").style.display = vista === "cards" ? "" : "none";
+  if (vista === "timeline") renderCurrentTimeline();
+}
+
+// Determina qué lista de actividades corresponde al filtro activo
+// (mismo criterio que renderAll/renderFiltered/renderActiveGroup) y
+// dibuja el timeline con esa lista.
+function renderCurrentTimeline() {
+  if (currentVista !== "timeline") return;
+  let items;
+  if (currentFilter === "all") {
+    const seen = new Set();
+    items = [];
+    sectionDefs.forEach(sec => {
+      lists[sec.key].forEach(item => { if (!seen.has(item.label)) { seen.add(item.label); items.push(item); } });
+    });
+  } else if (currentFilter === "active") {
+    items = currentSubFilter === "vence" ? lists.vence : [...lists.vence, ...lists.active];
+  } else {
+    items = lists[currentFilter];
+  }
+  renderTimeline(items);
+}
+
 // Init
 setFilter("all");
+setVista("timeline");
 
 // ── SHEET NOTES ──────────────────────────────────────────────────────────────
 const SHEET_ID  = "1jAyK-6G2Ixc6IqqNkucspXVMbeqC2nxY-Nnp0z0l2_g";
