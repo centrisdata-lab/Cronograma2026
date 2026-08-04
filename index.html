@@ -392,6 +392,18 @@
       padding: 8px 0; border-right: 1px solid var(--border);
     }
     .timeline-month:last-child { border-right: none; }
+    .timeline-days {
+      position: sticky; top: 30px; z-index: 2; background: var(--white);
+      border-bottom: 1px solid var(--border); overflow: hidden;
+    }
+    .timeline-day-tick {
+      text-align: left; font-size: 0.62rem; font-weight: 700;
+      color: var(--muted); padding: 4px 0 4px 4px; box-sizing: border-box;
+      border-left: 1px solid #eef0f5;
+    }
+    .timeline-day-guide {
+      position: absolute; top: 0; width: 1px; background: #eef0f5; z-index: 0; pointer-events: none;
+    }
     .timeline-today-line {
       position: absolute; top: 0; width: 2px; background: var(--red);
       z-index: 3; pointer-events: none;
@@ -1848,6 +1860,22 @@ function renderTimeline(items) {
 
   const mesesHtml = meses.map(m => `<div class="timeline-month" style="width:${m.dias * DIA_PX}px">${nombresMes[m.month]} ${m.year}</div>`).join("");
 
+  // Marcas de fecha cada 7 días (números de día del mes), para poder
+  // ubicar a qué fecha exacta corresponde una barra sin tener que
+  // abrir el detalle. Las líneas guía verticales usan el mismo offset
+  // para que la marca de arriba quede alineada con la fila de abajo.
+  const diasHtml = [];
+  const guiasOffsets = [];
+  let acumDias = 0;
+  meses.forEach(m => {
+    for (let d = 1; d <= m.dias; d += 7) {
+      const offset = acumDias + (d - 1);
+      diasHtml.push(`<div class="timeline-day-tick" style="position:absolute;left:${offset * DIA_PX}px;width:${DIA_PX * 7}px;">${d}</div>`);
+      guiasOffsets.push(offset * DIA_PX);
+    }
+    acumDias += m.dias;
+  });
+
   // Umbral de ancho (px) por debajo del cual el texto ya no cabe
   // dentro de la barra: en vez de truncarlo con "…" (que oculta el
   // nombre completo), se muestra como etiqueta flotante junto a la
@@ -1888,7 +1916,9 @@ function renderTimeline(items) {
     <div class="timeline-wrap">
       <div class="timeline-inner" style="width:${anchoTotal}px;">
         <div class="timeline-months">${mesesHtml}</div>
+        <div class="timeline-days" style="position:relative;height:20px;">${diasHtml.join("")}</div>
         <div style="position:relative;">
+          ${guiasOffsets.map(offset => `<div class="timeline-day-guide" style="left:${offset}px;height:${ordenadas.length * 40}px;"></div>`).join("")}
           ${filasHtml}
           ${hoyVisible ? `<div class="timeline-today-line" style="left:${offsetHoy * DIA_PX}px;height:${ordenadas.length * 40}px;"><div class="timeline-today-label">Hoy</div></div>` : ""}
         </div>
