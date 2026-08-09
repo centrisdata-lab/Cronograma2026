@@ -1147,14 +1147,20 @@ function showDetail(kind, btnEl){
   }
   box.classList.remove('open'); void box.offsetWidth; box.classList.add('open');
   positionKdArrow(btnEl);
-  requestAnimationFrame(()=>{
-    const rect = box.getBoundingClientRect();
-    const margin = 90;
-    if(rect.top < margin || rect.top > window.innerHeight - 120){
-      const target = window.scrollY + rect.top - margin;
-      window.scrollTo({top: target, behavior: 'smooth'});
-    }
-  });
+  // En desktop la tarjeta clicada se queda fija donde está — el panel
+  // aparece debajo y es el usuario quien decide si baja a verlo. En
+  // móvil sí conviene el auto-scroll porque el panel puede aparecer
+  // fuera de la pantalla (grid de 1 columna, tarjetas muy altas).
+  if(isMobileKpi()){
+    requestAnimationFrame(()=>{
+      const rect = box.getBoundingClientRect();
+      const margin = 90;
+      if(rect.top < margin || rect.top > window.innerHeight - 120){
+        const target = window.scrollY + rect.top - margin;
+        window.scrollTo({top: target, behavior: 'smooth'});
+      }
+    });
+  }
 }
 function refreshDetail(){
   if(!activeDetailKind) return;
