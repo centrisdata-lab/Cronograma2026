@@ -46,11 +46,13 @@
     box-shadow:0 4px 14px rgba(26,60,110,0.28);
   }
   @media (max-width:560px){
-    .header-logo{width:46px; height:46px; font-size:1.4rem;}
-    .bell-label{display:none;}
-    .bell-btn{padding:9px; border-radius:12px;}
-    .header-text{order:1; flex-basis:100%; width:100%;}
-    h1.title{font-size:1.5rem; line-height:1.22; margin-top:10px;}
+    .header-inner{gap:12px;}
+    .header-logo{width:44px; height:44px; font-size:1.3rem; order:1;}
+    .header-text{order:2; flex:1; min-width:0;}
+    .bell-btn{order:3; margin-left:0; flex-basis:100%; justify-content:center; padding:10px; margin-top:4px;}
+    .bell-label{display:inline;}
+    h1.title{font-size:1.35rem; line-height:1.22;}
+    .meta-row{flex-direction:column; gap:8px; margin-top:14px;}
   }
   .bell-btn{
     -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
@@ -1112,6 +1114,12 @@ function withScrollLock(fn){
   window.scrollTo(0, y);
 }
 let activeDetailKind = null;
+const isMobileKpi = () => window.matchMedia('(max-width:560px)').matches;
+// En móvil (grid de 1 columna) el detalle se mueve dentro de .kpis, justo
+// después del botón activo, para que se despliegue ahí mismo empujando las
+// demás tarjetas hacia abajo — en vez de aparecer al final de todo el grid,
+// que en una sola columna queda fuera de la pantalla y obliga a saltar.
+const kpiDetailHome = document.getElementById('kd-arrow');
 function positionKdArrow(btnEl){
   const arrow = document.getElementById('kd-arrow');
   const parent = document.getElementById('resumen');
@@ -1131,6 +1139,12 @@ function showDetail(kind, btnEl){
   btnEl.classList.add('active');
   activeDetailKind = kind;
   box.innerHTML = buildDetail(kind);
+  if(isMobileKpi()){
+    if(arrow) arrow.hidden = true;
+    btnEl.insertAdjacentElement('afterend', box);
+  } else if(kpiDetailHome){
+    kpiDetailHome.insertAdjacentElement('afterend', box);
+  }
   box.classList.remove('open'); void box.offsetWidth; box.classList.add('open');
   positionKdArrow(btnEl);
   requestAnimationFrame(()=>{
