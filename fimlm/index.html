@@ -209,7 +209,7 @@
 
   /* ---------- Alerts ---------- */
   .alert{
-    display:grid; grid-template-columns:6px 1fr; background:var(--white);
+    display:grid; grid-template-columns:6px minmax(0,1fr); background:var(--white);
     border:2px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
     margin-bottom:16px; overflow:hidden;
   }
@@ -217,7 +217,7 @@
   .alert.crit .stripe{background:var(--red);}
   .alert.warn .stripe{background:var(--yellow);}
   .alert.info .stripe{background:var(--blue-mid);}
-  .alert .body{padding:20px 24px 22px;}
+  .alert .body{padding:20px 24px 22px; min-width:0;}
   .alert-top{display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
   .badge{
     font-size:.68rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase;
@@ -313,18 +313,26 @@
   .code-cell{font-family:var(--font-mono); font-size:.78rem; color:var(--muted); font-weight:400;}
   .table-scroll{overflow-x:auto; overflow-y:auto; max-width:100%; max-height:520px; border:1.5px solid var(--border); border-radius:12px; -webkit-overflow-scrolling:touch;}
   .table-scroll table.data{min-width:720px;}
+  /* Variante sin límite/scroll vertical, para tablas cortas que solo
+     necesitan el overflow-x (p.ej. las mini-tablas de las alertas). */
+  .table-scroll.no-vscroll{overflow-y:visible; max-height:none; border:none; border-radius:0;}
+  .table-scroll .alert-mini-table{min-width:520px;}
   @media (max-width:560px){
     /* Todas las columnas se mantienen, pero más compactas — el scroll
        horizontal queda contenido dentro de .table-scroll (no se sale
        a la página), y el mínimo de ancho baja para que la tabla quepa
        casi entera en el viewport sin exigir tanto deslizamiento. */
     .table-scroll table.data{min-width:520px; font-size:.76rem;}
+    .table-scroll .alert-mini-table{min-width:480px; font-size:.76rem;}
     table.data th{padding:8px 8px; font-size:.6rem;}
     table.data td{padding:7px 8px;}
+    .alert-mini-table th{padding:6px 7px; font-size:.6rem;}
+    .alert-mini-table td{padding:6px 7px;}
     .groups-inline{padding:10px 8px 10px 22px;}
     .groups-inline table.data.mini{min-width:460px;}
     .bar-cell{min-width:80px;}
     .zone-icon-badge{width:26px; height:26px; font-size:.85rem;}
+    .alert .body{padding:14px 14px 16px;}
   }
   .bar-cell{display:flex; align-items:center; gap:8px; min-width:110px;}
   .bar-cell .track{flex:1; height:7px; background:var(--bg); border-radius:4px; overflow:hidden;}
@@ -716,12 +724,12 @@ function renderAlerts(){
   <div class="alert crit"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge crit">Crítico · capacidad</span></div>
     <h3>Inglés Nivel 1 no tiene un solo cupo libre en ninguna de las 6 zonas</h3>
-    <table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Grupos</th><th>Capacidad</th><th>En espera</th></tr></thead>
+    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Grupos</th><th>Capacidad</th><th>En espera</th></tr></thead>
     <tbody>${a.ingRows.map(c=>{
       const open = expandedCursos.has(c.z+'|'+c.cod);
       return `<tr class="clickable-row" onclick="toggleCursoInline('${c.z}','${c.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${c.zn}</td><td class="num">${c.grp}</td><td class="num">${fmt(c.cap)}</td><td class="num"><b>${c.esp}</b></td></tr>`
         + courseGroupsInlineHtml(c.z, c.cod, 5);
-    }).join('')}</tbody></table>
+    }).join('')}</tbody></table></div>
     <div class="rec" hidden><b>Acción sugerida —</b> abrir grupos nuevos de Inglés Nivel 1 en cada zona. Reorganizar horarios no libera cupo porque no sobra en ninguno.</div>
   </div></div>`);
 
@@ -729,12 +737,12 @@ function renderAlerts(){
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · diseño de programa</span></div>
     <h3>${a.chronic.length} programas con baja ocupación crónica, repetidos en casi todas las zonas</h3>
-    <table class="alert-mini-table"><thead><tr><th></th><th>Curso</th><th>Zonas afectadas</th><th>Ocupación combinada</th></tr></thead>
+    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Curso</th><th>Zonas afectadas</th><th>Ocupación combinada</th></tr></thead>
     <tbody>${a.chronic.map(c=>{
       const open = expandedChronic.has(c.key);
       return `<tr class="clickable-row" onclick="toggleChronicCourse('${c.key}')" title="Ver las zonas donde aparece este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${c.nombre}</td><td class="num">${c.n} de 6</td><td class="num">${pct(c.ocu)}</td></tr>`
         + chronicZonesInlineHtml(c.key, 4);
-    }).join('')}</tbody></table>
+    }).join('')}</tbody></table></div>
     <div class="rec" hidden><b>Acción sugerida —</b> revisar formato/contenido de estos programas a nivel nacional, o reducir el número de grupos ofrecidos para liberar instructores y presupuesto hacia cursos saturados como Inglés.</div>
   </div></div>`);
 
@@ -742,12 +750,12 @@ function renderAlerts(){
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · cupos inmovilizados</span></div>
     <h3>${a.vacCount} grupos abiertos sin un solo inscrito — ${fmt(a.vacCap)} cupos sin usar</h3>
-    <table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th>Cap.</th></tr></thead>
+    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th>Cap.</th></tr></thead>
     <tbody>${a.vacRows.map(g=>{
       const open = expandedCursos.has(g.z+'|'+g.cod);
       return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}</td><td>${g.h}</td><td class="num">${g.cap}</td></tr>`
         + courseGroupsInlineHtml(g.z, g.cod, 5);
-    }).join('')}</tbody></table>
+    }).join('')}</tbody></table></div>
     <div class="rec" hidden><b>Acción sugerida —</b> confirmar con los coordinadores de zona si estas cohortes van a abrir o deben cerrarse para liberar el cupo reportado como disponible.</div>
   </div></div>`);
 
