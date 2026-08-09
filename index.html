@@ -913,6 +913,7 @@
   <button class="tab-btn" onclick="switchTab('organigrama')">🏛️ Organigrama</button>
   <button class="tab-btn" onclick="switchTab('zonas')">🗺️ Zonas</button>
   <button class="tab-btn" onclick="switchTab('informe')">📊 Informe Nacional</button>
+  <button class="tab-btn" onclick="switchTab('matriculas')">📈 Matrículas</button>
 </nav>
 
 
@@ -1492,6 +1493,11 @@
 <!-- TAB INFORME NACIONAL -->
 <div id="tab-informe" class="tab-section">
   <iframe src="informe/informe.html?v=20260801b" title="Informe Nacional del Cuerpo Académico" style="width:100%;height:calc(100vh - 140px);border:0;display:block;"></iframe>
+</div>
+
+<!-- TAB MATRICULAS (Campus 360 Live) -->
+<div id="tab-matriculas" class="tab-section">
+  <iframe src="fimlm/index.html?v=20260808a" title="Informe y gestión de alertas — Colombia" style="width:100%;height:calc(100vh - 140px);border:0;display:block;"></iframe>
 </div>
 
 <script>
@@ -3079,7 +3085,7 @@ function switchTab(name, btnEl) {
   if (activeBtn) activeBtn.classList.add("active");
   currentTab = name;
   const header = document.getElementById("app-header");
-  if (header) header.style.display = name === "informe" ? "none" : "";
+  if (header) header.style.display = (name === "informe" || name === "matriculas") ? "none" : "";
   if (name === "equipo") renderEquipo();
   if (name === "zonas") renderZonas();
   if (name === "organigrama") restoreOrgPanel();

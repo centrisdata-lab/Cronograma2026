@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-08T20:56:26.915611-05:00",
+  "novedades": [
+    {
+      "z": "Santanderes & Boyaca",
+      "cod": "C-2443",
+      "nom": "Despertar Humano",
+      "g": "G-5066",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    }
+  ]
+}

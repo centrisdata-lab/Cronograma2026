@@ -1,0 +1,50 @@
+{
+  "corte": "2026-08-08T21:08:51.011779-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2502",
+      "nom": "Reposteria 2",
+      "g": "G-4961",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2619",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4805",
+      "matAntes": 29,
+      "matAhora": 30,
+      "delta": 1
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5022",
+      "matAntes": 9,
+      "matAhora": 10,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4283",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4305",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    }
+  ]
+}
