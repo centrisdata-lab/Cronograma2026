@@ -232,7 +232,7 @@
 
     .zona-detalle {
       display: none; background: var(--white); border-radius: 16px;
-      border: 1.5px solid var(--border); padding: 28px 32px;
+      border: 1.5px solid var(--border); padding: 28px 32px; min-width: 0;
       box-shadow: 0 4px 20px rgba(26,60,110,0.07);
     }
     .zona-detalle.open { display: block; }
@@ -2642,13 +2642,24 @@ function selectZona(id) {
   if (!zona) return;
 
   document.querySelectorAll(".zona-card").forEach(c => c.classList.remove("selected"));
-  document.getElementById("zcard-" + id).classList.add("selected");
+  const card = document.getElementById("zcard-" + id);
+  card.classList.add("selected");
 
   const detalle = document.getElementById("zona-detalle");
   document.getElementById("zona-detalle-title").textContent = zona.emoji + "  " + zona.nombre;
 
   document.getElementById("zona-miembros").innerHTML = renderOrganigramaZona(zona);
   requestAnimationFrame(ajustarLineasHorizontalesOrg);
+
+  // En móvil (grid de 1 columna) el detalle se mueve justo después de
+  // la tarjeta clicada, para que se despliegue ahí mismo empujando las
+  // demás tarjetas hacia abajo — en vez de aparecer al final de todo
+  // el grid, que en una sola columna queda lejos y obliga a saltar.
+  if (window.matchMedia("(max-width:600px)").matches) {
+    card.insertAdjacentElement("afterend", detalle);
+  } else {
+    document.getElementById("zonas-grid").insertAdjacentElement("afterend", detalle);
+  }
 
   detalle.classList.add("open");
   detalle.scrollIntoView({ behavior: "smooth", block: "start" });

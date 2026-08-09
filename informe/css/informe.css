@@ -439,6 +439,7 @@ html, body {
   overflow: hidden;
   max-height: 0;
   margin-top: -20px;
+  min-width: 0;
   transition: max-height 0.35s ease, margin-top 0.35s ease;
 }
 .kpi-detalle-panel.is-open {

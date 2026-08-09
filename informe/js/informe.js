@@ -313,13 +313,34 @@
 
     const panel = document.getElementById("kpi-detalle-panel");
     const panelInner = document.getElementById("kpi-detalle-panel-inner");
+    const panelHomeParent = panel.parentElement;
+    const panelHomeNext = panel.nextElementSibling;
     const botones = Array.from(cont.querySelectorAll("[data-kpi-toggle]"));
+    const esGridDeUnaColumna = () => window.matchMedia("(max-width:420px)").matches;
 
     function posicionarCaret(card) {
       // Centra el triángulo conector bajo la tarjeta activa, para que
       // el panel se vea "pegado" a esa tarjeta y no como un bloque suelto.
       const centroCard = card.offsetLeft + card.offsetWidth / 2;
       panelInner.style.setProperty("--caret-left", `${centroCard}px`);
+    }
+
+    // En pantallas muy angostas el grid de KPIs colapsa a 1 columna
+    // (@media max-width:420px). Ahí el panel único "debajo de toda la
+    // fila" queda lejos de la tarjeta que se tocó, obligando a un
+    // salto grande de scroll. En ese caso se mueve el panel dentro
+    // del grid, justo después de la tarjeta activa, para que se
+    // despliegue ahí mismo empujando las demás tarjetas hacia abajo.
+    // En pantallas más anchas se mantiene el diseño original (panel
+    // fijo debajo de toda la fila, con el caret apuntando a la activa).
+    function reubicarPanel(card) {
+      if (esGridDeUnaColumna()) {
+        card.insertAdjacentElement("afterend", panel);
+      } else if (panelHomeNext) {
+        panelHomeParent.insertBefore(panel, panelHomeNext);
+      } else {
+        panelHomeParent.appendChild(panel);
+      }
     }
 
     function cerrarPanel() {
@@ -346,6 +367,7 @@
         botones.forEach((b) => b.setAttribute("aria-expanded", String(b === btn)));
 
         panelInner.innerHTML = kpis[idx].detalle;
+        reubicarPanel(card);
         posicionarCaret(card);
         panel.classList.add("is-open");
       });
@@ -400,7 +422,9 @@
 
     window.addEventListener("resize", () => {
       const cardActiva = cont.querySelector(".kpi-card.is-active");
-      if (cardActiva) posicionarCaret(cardActiva);
+      if (!cardActiva) return;
+      reubicarPanel(cardActiva);
+      posicionarCaret(cardActiva);
     });
   }
 
