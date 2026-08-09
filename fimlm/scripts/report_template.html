@@ -177,7 +177,7 @@
   .kpi.flag2.active{border-color:var(--red);}
 
   /* ---------- Detalle inline de tarjeta ---------- */
-  .kpi-detail{display:none; margin-top:18px; overflow-anchor:none;}
+  .kpi-detail{display:none; margin-top:18px; overflow-anchor:none; min-width:0;}
   .kpi-detail.open{display:block; animation:detailIn .38s cubic-bezier(0.16,1,0.3,1);}
   @keyframes detailIn{from{opacity:0; transform:translateY(-22px);} to{opacity:1; transform:translateY(0);}}
   @media (prefers-reduced-motion:reduce){ .kpi-detail.open{animation:none;} }
@@ -311,8 +311,21 @@
   table.data .num-cell{text-align:right; font-variant-numeric:tabular-nums;}
   table.data .zone-tag{font-size:.72rem; font-weight:800; color:var(--muted);}
   .code-cell{font-family:var(--font-mono); font-size:.78rem; color:var(--muted); font-weight:400;}
-  .table-scroll{overflow-x:auto; overflow-y:auto; max-height:520px; border:1.5px solid var(--border); border-radius:12px;}
+  .table-scroll{overflow-x:auto; overflow-y:auto; max-width:100%; max-height:520px; border:1.5px solid var(--border); border-radius:12px; -webkit-overflow-scrolling:touch;}
   .table-scroll table.data{min-width:720px;}
+  @media (max-width:560px){
+    /* Todas las columnas se mantienen, pero más compactas — el scroll
+       horizontal queda contenido dentro de .table-scroll (no se sale
+       a la página), y el mínimo de ancho baja para que la tabla quepa
+       casi entera en el viewport sin exigir tanto deslizamiento. */
+    .table-scroll table.data{min-width:520px; font-size:.76rem;}
+    table.data th{padding:8px 8px; font-size:.6rem;}
+    table.data td{padding:7px 8px;}
+    .groups-inline{padding:10px 8px 10px 22px;}
+    .groups-inline table.data.mini{min-width:460px;}
+    .bar-cell{min-width:80px;}
+    .zone-icon-badge{width:26px; height:26px; font-size:.85rem;}
+  }
   .bar-cell{display:flex; align-items:center; gap:8px; min-width:110px;}
   .bar-cell .track{flex:1; height:7px; background:var(--bg); border-radius:4px; overflow:hidden;}
   .bar-cell .fill{height:100%; border-radius:4px; background:var(--blue-mid);}
