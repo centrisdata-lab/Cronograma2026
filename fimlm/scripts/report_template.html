@@ -129,8 +129,29 @@
   .section-note{color:var(--muted); font-weight:600; font-size:.83rem; max-width:90ch; white-space:nowrap;}
   @media (max-width:900px){ .section-note{white-space:normal;} }
 
+  /* ---------- Buscador siempre visible ---------- */
+  .quick-search{position:relative; margin-bottom:18px;}
+  .quick-search input{
+    width:100%; padding:12px 16px 12px 42px; border-radius:12px; border:1.5px solid var(--border);
+    font-family:var(--font); font-size:.88rem; font-weight:600; color:var(--text); background:var(--white);
+    box-shadow:var(--shadow);
+  }
+  .quick-search input:focus{outline:none; border-color:var(--blue-mid); box-shadow:0 0 0 3px var(--blue-light);}
+  .quick-search-icon{position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--faint); font-size:.95rem; pointer-events:none;}
+
   /* ---------- KPI strip (dash-card) ---------- */
   #resumen{position:relative;}
+  /* Clasificación de las tarjetas en dos grupos ("estado general" son
+     las 2 primeras, "requiere tu atención" las 4 siguientes), sin
+     partir la fila de tarjetas en dos: los rótulos van en su propia
+     fila arriba, alineados en columnas con el mismo grid-template-
+     columns que .kpis, ocupando cada uno el ancho de su subgrupo. */
+  .kpi-group-labels{display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:8px;}
+  .kpi-group-label{
+    font-size:.72rem; font-weight:900; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); grid-column:span 2;
+  }
+  .kpi-group-label.is-action{color:var(--red); grid-column:span 4;}
   .kpis{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
   .kd-arrow{
     width:0; height:0; margin:10px 0 8px 0; position:relative; left:0;
@@ -163,7 +184,17 @@
   .kpi.flag .hint{color:var(--yellow);}
   .kpi.flag2 .hint{color:var(--red);}
   @media (max-width:1300px){ .kpis{grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:900px){ .kpis{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:900px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    /* Con 2 (o 1) tarjetas por fila, los rótulos ya no pueden alinearse
+       por columna con el subgrupo exacto de tarjetas (2+4 no reparte
+       limpio en filas de 2 ni de 1) — se muestran apilados como una
+       leyenda simple arriba de todo el bloque en vez de fingir una
+       alineación que ya no es cierta. El color/borde de cada tarjeta
+       sigue comunicando a qué grupo pertenece.  */
+    .kpi-group-labels{grid-template-columns:1fr; gap:4px;}
+    .kpi-group-label, .kpi-group-label.is-action{grid-column:1/-1;}
+  }
   @media (max-width:560px){ .kpis{grid-template-columns:repeat(1,1fr);} }
   .panel.flash, .kpi.flash{animation:flashHighlight 1.3s ease;}
   @keyframes flashHighlight{
@@ -455,8 +486,18 @@
       <h2>Resumen general</h2>
       <div class="section-note">Toca una tarjeta para ver su detalle — zonas, cursos, grupos, alertas e iglesias salen todos de aquí.</div>
     </div>
+
+    <div class="quick-search">
+      <span class="quick-search-icon">🔍</span>
+      <input type="search" id="quick-search-input" placeholder="Buscar curso o código en las 6 zonas… (ej. Inglés Nivel 1)" oninput="onQuickSearch(this.value)">
+    </div>
+
+    <div class="kpi-group-labels">
+      <div class="kpi-group-label">📊 Estado general</div>
+      <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
+    </div>
     <div class="kpis">
-      <button type="button" class="kpi" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
+      <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
       <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
       <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
       <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
@@ -972,6 +1013,22 @@ function onZonasSearch(val){
   expandedCursos.clear();
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
+  const quick = document.getElementById('quick-search-input');
+  if(quick && quick.value !== val) quick.value = val;
+}
+// Buscador siempre visible del resumen: si el detalle de Zonas ya
+// está abierto, reutiliza su misma lógica de filtro (onZonasSearch).
+// Si no está abierto, lo abre primero (simulando el clic en esa
+// tarjeta) y luego aplica el término, para no duplicar la tabla ni
+// el estado de búsqueda entre dos buscadores independientes.
+function onQuickSearch(val){
+  if(activeDetailKind !== 'zonas'){
+    const zonasBtn = document.getElementById('kpi-btn-zonas');
+    if(zonasBtn) showDetail('zonas', zonasBtn);
+  }
+  onZonasSearch(val);
+  const inner = document.getElementById('zonas-search');
+  if(inner && inner.value !== val) inner.value = val;
 }
 function toggleZonaEstadoFilter(state, btnEl){
   zonasStateFilter = (zonasStateFilter===state) ? null : state;
