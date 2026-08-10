@@ -509,7 +509,7 @@
     <div id="alerts-wrap" hidden></div>
   </section>
 
-  <section id="explorar" hidden>
+  <section id="explorar">
     <details class="explorer explorer-main" id="explorar-details">
       <summary>
         <span class="acc-title">📚 Explorador de cursos y grupos</span>
@@ -1013,22 +1013,20 @@ function onZonasSearch(val){
   expandedCursos.clear();
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
-  const quick = document.getElementById('quick-search-input');
-  if(quick && quick.value !== val) quick.value = val;
 }
-// Buscador siempre visible del resumen: si el detalle de Zonas ya
-// está abierto, reutiliza su misma lógica de filtro (onZonasSearch).
-// Si no está abierto, lo abre primero (simulando el clic en esa
-// tarjeta) y luego aplica el término, para no duplicar la tabla ni
-// el estado de búsqueda entre dos buscadores independientes.
+// Buscador siempre visible del resumen: en vez de abrir el detalle
+// anidado de "Zonas" (curso dentro de zona dentro de tabla), abre el
+// Explorador de cursos y grupos — una tabla plana, una fila por
+// curso, mucho más fácil de escanear para ubicar un curso específico
+// sin tener que expandir zonas una por una.
 function onQuickSearch(val){
-  if(activeDetailKind !== 'zonas'){
-    const zonasBtn = document.getElementById('kpi-btn-zonas');
-    if(zonasBtn) showDetail('zonas', zonasBtn);
-  }
-  onZonasSearch(val);
-  const inner = document.getElementById('zonas-search');
-  if(inner && inner.value !== val) inner.value = val;
+  const det = document.getElementById('explorar-details');
+  const search = document.getElementById('cursos-search');
+  if(!det || !search) return;
+  if(!det.open) det.open = true;
+  if(search.value !== val) search.value = val;
+  cursosRefresh();
+  if(val) det.scrollIntoView({behavior:'smooth', block:'start'});
 }
 function toggleZonaEstadoFilter(state, btnEl){
   zonasStateFilter = (zonasStateFilter===state) ? null : state;
