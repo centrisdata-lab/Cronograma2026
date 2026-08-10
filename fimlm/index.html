@@ -129,15 +129,30 @@
   .section-note{color:var(--muted); font-weight:600; font-size:.83rem; max-width:90ch; white-space:nowrap;}
   @media (max-width:900px){ .section-note{white-space:normal;} }
 
-  /* ---------- Buscador siempre visible ---------- */
-  .quick-search{position:relative; margin-bottom:18px;}
+  /* ---------- Buscador siempre visible (bajo las tarjetas KPI) ---------- */
+  .quick-search{position:relative; margin-top:22px; margin-bottom:0;}
   .quick-search input{
-    width:100%; padding:12px 16px 12px 42px; border-radius:12px; border:1.5px solid var(--border);
+    width:100%; padding:12px 44px 12px 42px; border-radius:12px; border:1.5px solid var(--border);
     font-family:var(--font); font-size:.88rem; font-weight:600; color:var(--text); background:var(--white);
     box-shadow:var(--shadow);
   }
   .quick-search input:focus{outline:none; border-color:var(--blue-mid); box-shadow:0 0 0 3px var(--blue-light);}
   .quick-search-icon{position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--faint); font-size:.95rem; pointer-events:none;}
+  .quick-search-clear{
+    -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
+    position:absolute; right:8px; top:50%; transform:translateY(-50%); border:none; background:var(--bg);
+    color:var(--muted); width:26px; height:26px; border-radius:50%; cursor:pointer; font-size:.8rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .quick-search-clear:hover{background:var(--border); color:var(--text);}
+
+  /* Panel de resultados del buscador — solo existe en el DOM visible
+     mientras hay texto de búsqueda; se oculta por completo (hidden)
+     al borrar el texto o cerrarlo con la ✕. */
+  #quick-search-results{margin-top:14px;}
+  .qsr-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .qsr-head h3{font-size:1.02rem; flex-shrink:0;}
+  .qsr-head .count-tag{margin-right:auto;}
 
   /* ---------- KPI strip (dash-card) ---------- */
   #resumen{position:relative;}
@@ -487,11 +502,6 @@
       <div class="section-note">Toca una tarjeta para ver su detalle — zonas, cursos, grupos, alertas e iglesias salen todos de aquí.</div>
     </div>
 
-    <div class="quick-search">
-      <span class="quick-search-icon">🔍</span>
-      <input type="search" id="quick-search-input" placeholder="Buscar curso o código en las 6 zonas… (ej. Inglés Nivel 1)" oninput="onQuickSearch(this.value)">
-    </div>
-
     <div class="kpi-group-labels">
       <div class="kpi-group-label">📊 Estado general</div>
       <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
@@ -507,45 +517,39 @@
     <div class="kd-arrow" id="kd-arrow" hidden></div>
     <div class="kpi-detail panel" id="kpi-detail"></div>
     <div id="alerts-wrap" hidden></div>
-  </section>
 
-  <section id="explorar">
-    <details class="explorer explorer-main" id="explorar-details">
-      <summary>
-        <span class="acc-title">📚 Explorador de cursos y grupos</span>
-        <span class="acc-desc">147 cursos de las 6 zonas — toca un curso para ver sus grupos con horario, capacidad y lista de espera.</span>
-        <span class="acc-toggle-tag">Toca para abrir ▾</span>
-      </summary>
-      <div class="panel" id="panel-cursos">
-        <div class="controls">
-          <input type="search" id="cursos-search" placeholder="Buscar curso, código u horario de grupo…">
-          <div class="chip-group" id="cursos-zone-chips"></div>
-          <div class="state-filter-group">
-            <span class="chip-label">Estado</span>
-            <button type="button" class="chip chip-crit" data-state="baja" title="Al hacer clic, filtra la tabla para mostrar solo los cursos con menos del 30% de ocupación.">⚠️ Baja ocupación</button>
-            <button type="button" class="chip chip-info" data-state="saturado" title="Al hacer clic, filtra la tabla para mostrar solo los cursos llenos (0 cupos) con gente en lista de espera.">🔒 Saturados</button>
-          </div>
-          <span class="count-tag" id="cursos-count"></span>
-        </div>
-        <div class="table-scroll">
-          <table class="data" id="cursos-table">
-            <thead><tr>
-              <th></th>
-              <th data-key="z">Zona</th>
-              <th data-key="cod">Código</th>
-              <th data-key="nom">Curso</th>
-              <th data-key="grp" class="num-cell">Grupos</th>
-              <th data-key="cap" class="num-cell">Capacidad</th>
-              <th data-key="mat" class="num-cell">Matriculados</th>
-              <th data-key="ocu" class="num-cell">Ocupación</th>
-              <th data-key="llenos" class="num-cell">Grupos llenos</th>
-              <th data-key="esp" class="num-cell">En espera</th>
-            </tr></thead>
-            <tbody id="cursos-tbody"></tbody>
-          </table>
-        </div>
+    <div class="quick-search">
+      <span class="quick-search-icon">🔍</span>
+      <input type="search" id="quick-search-input" placeholder="Buscar curso, código o zona… (ej. Inglés Nivel 1, o Pacífico)" oninput="onQuickSearch(this.value)">
+      <button type="button" class="quick-search-clear" id="quick-search-clear" onclick="clearQuickSearch()" hidden title="Borrar búsqueda">✕</button>
+    </div>
+
+    <!-- Resultados del buscador de arriba: solo existen mientras hay
+         texto en el buscador. Se cierran solos al borrar el texto. -->
+    <div class="panel" id="quick-search-results" hidden>
+      <div class="qsr-head">
+        <h3>📚 Resultados de la búsqueda</h3>
+        <span class="count-tag" id="qsr-count"></span>
+        <button type="button" class="kd-close" onclick="clearQuickSearch()" title="Cerrar resultados">✕</button>
       </div>
-    </details>
+      <div class="table-scroll">
+        <table class="data" id="cursos-table">
+          <thead><tr>
+            <th></th>
+            <th data-key="z">Zona</th>
+            <th data-key="cod">Código</th>
+            <th data-key="nom">Curso</th>
+            <th data-key="grp" class="num-cell">Grupos</th>
+            <th data-key="cap" class="num-cell">Capacidad</th>
+            <th data-key="mat" class="num-cell">Matriculados</th>
+            <th data-key="ocu" class="num-cell">Ocupación</th>
+            <th data-key="llenos" class="num-cell">Grupos llenos</th>
+            <th data-key="esp" class="num-cell">En espera</th>
+          </tr></thead>
+          <tbody id="cursos-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </section>
 
   <section id="otros-seccion">
@@ -1014,20 +1018,6 @@ function onZonasSearch(val){
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
 }
-// Buscador siempre visible del resumen: en vez de abrir el detalle
-// anidado de "Zonas" (curso dentro de zona dentro de tabla), abre el
-// Explorador de cursos y grupos — una tabla plana, una fila por
-// curso, mucho más fácil de escanear para ubicar un curso específico
-// sin tener que expandir zonas una por una.
-function onQuickSearch(val){
-  const det = document.getElementById('explorar-details');
-  const search = document.getElementById('cursos-search');
-  if(!det || !search) return;
-  if(!det.open) det.open = true;
-  if(search.value !== val) search.value = val;
-  cursosRefresh();
-  if(val) det.scrollIntoView({behavior:'smooth', block:'start'});
-}
 function toggleZonaEstadoFilter(state, btnEl){
   zonasStateFilter = (zonasStateFilter===state) ? null : state;
   expandedCursos.clear(); // el filtro solo debe mostrar cursos por zona, no grupos que hayan quedado abiertos antes
@@ -1332,38 +1322,35 @@ const cursoRow = c => {
 };
 const cursosCtl = makeTable({rows:CURSOS, tbody:cursosTbody, thead:document.querySelector('#cursos-table thead'), renderRow:cursoRow, defaultSort:'mat'});
 
-let cursoZoneFilter = null, cursoStateFilter = null;
-function cursosRefresh(){
-  const q = normKey(document.getElementById('cursos-search').value);
+// Buscador único del resumen: busca por curso, código de curso o
+// nombre de zona (ej. "Pacífico" muestra todos los cursos de esa
+// zona). Los resultados solo se muestran mientras hay texto — al
+// borrar la búsqueda, el panel de resultados se oculta por completo.
+function cursosRefresh(q){
   const filters = [];
-  if(q) filters.push(c=>normKey(c.nom).includes(q) || normKey(c.cod).includes(q) || courseGroups(c).some(g=>normKey(g.h).includes(q) || normKey(g.g).includes(q)));
-  if(cursoZoneFilter) filters.push(c=>c.z===cursoZoneFilter);
-  if(cursoStateFilter==='baja') filters.push(c=>c.ocu<30);
-  if(cursoStateFilter==='saturado') filters.push(c=>c.disp===0 && c.esp>0);
+  if(q) filters.push(c=>normKey(c.nom).includes(q) || normKey(c.cod).includes(q) || normKey(c.zn).includes(q));
   const n = cursosCtl.setFilters(filters);
-  document.getElementById('cursos-count').textContent = n+' de '+CURSOS.length+' cursos';
+  document.getElementById('qsr-count').textContent = n+' de '+CURSOS.length+' cursos';
 }
-document.getElementById('cursos-search').addEventListener('input', cursosRefresh);
-(function(){
-  const wrap = document.getElementById('cursos-zone-chips');
-  const all = document.createElement('button'); all.className='chip active'; all.textContent='Todas las zonas';
-  all.addEventListener('click', ()=>{ cursoZoneFilter=null; [...wrap.children].forEach(c=>c.classList.remove('active')); all.classList.add('active'); cursosRefresh(); });
-  wrap.appendChild(all);
-  ZONAS.forEach(z=>{
-    const b = document.createElement('button'); b.className='chip'; b.textContent=z.name; b.dataset.zone=z.code;
-    b.addEventListener('click', ()=>{ cursoZoneFilter=z.code; [...wrap.children].forEach(c=>c.classList.remove('active')); b.classList.add('active'); cursosRefresh(); });
-    wrap.appendChild(b);
-  });
-})();
-document.querySelectorAll('#panel-cursos [data-state]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const s = btn.dataset.state;
-    if(cursoStateFilter===s){ cursoStateFilter=null; btn.classList.remove('active'); }
-    else { cursoStateFilter=s; document.querySelectorAll('#panel-cursos [data-state]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
-    cursosRefresh();
-  });
-});
-cursosRefresh();
+function onQuickSearch(val){
+  const term = normKey(val.trim());
+  const results = document.getElementById('quick-search-results');
+  const clearBtn = document.getElementById('quick-search-clear');
+  clearBtn.hidden = !val;
+  if(!term){
+    results.hidden = true;
+    return;
+  }
+  expandedCursos.clear();
+  cursosRefresh(term);
+  results.hidden = false;
+}
+function clearQuickSearch(){
+  const input = document.getElementById('quick-search-input');
+  input.value = '';
+  onQuickSearch('');
+  input.focus();
+}
 
 /* ---------- Scrollspy ---------- */
 (function(){
@@ -1388,18 +1375,10 @@ renderAlerts();
   if(slot) slot.innerHTML = otrosGruposHtml();
 })();
 
-(function(){
-  const det = document.getElementById('explorar-details');
-  const tag = det ? det.querySelector('.acc-toggle-tag') : null;
-  if(det && tag) det.addEventListener('toggle', ()=>{ tag.textContent = det.open ? 'Toca para cerrar ▴' : 'Toca para abrir ▾'; });
-})();
-
 /* ---------- Recordar en qué quedaste al recargar la página ---------- */
 const STATE_KEY = 'fimlmDiagnosticoState';
 function captureState(){
-  const search = document.getElementById('cursos-search');
   const innerScroller = document.querySelector('#kpi-detail .table-scroll');
-  const explorarDet = document.getElementById('explorar-details');
   const otrosDet = document.getElementById('otros-details');
   return {
     activeDetailKind,
@@ -1408,10 +1387,7 @@ function captureState(){
     expandedZonas: [...expandedZonas],
     expandedCursos: [...expandedCursos],
     expandedChronic: [...expandedChronic],
-    cursoZoneFilter,
-    cursoStateFilter,
-    cursosSearch: search ? search.value : '',
-    explorarOpen: explorarDet ? explorarDet.open : false,
+    quickSearch: document.getElementById('quick-search-input').value,
     otrosOpen: otrosDet ? otrosDet.open : false,
     scrollY: window.scrollY,
     innerScrollTop: innerScroller ? innerScroller.scrollTop : null
@@ -1437,27 +1413,14 @@ function restoreState(){
   (s.expandedCursos||[]).forEach(k=>expandedCursos.add(k));
   (s.expandedChronic||[]).forEach(k=>expandedChronic.add(k));
 
-  if(s.explorarOpen){
-    const det = document.getElementById('explorar-details');
-    if(det) det.open = true;
-  }
   if(s.otrosOpen){
     const det = document.getElementById('otros-details');
     if(det) det.open = true;
   }
-  if(s.cursoZoneFilter){
-    const zbtn = document.querySelector(`#cursos-zone-chips [data-zone="${s.cursoZoneFilter}"]`);
-    if(zbtn) zbtn.click();
+  if(s.quickSearch){
+    const input = document.getElementById('quick-search-input');
+    if(input){ input.value = s.quickSearch; onQuickSearch(s.quickSearch); }
   }
-  if(s.cursoStateFilter){
-    const sbtn = document.querySelector(`#panel-cursos [data-state="${s.cursoStateFilter}"]`);
-    if(sbtn) sbtn.click();
-  }
-  if(s.cursosSearch){
-    const search = document.getElementById('cursos-search');
-    if(search){ search.value = s.cursosSearch; search.dispatchEvent(new Event('input')); }
-  }
-  cursosCtl.apply();
 
   if(s.activeDetailKind){
     const btn = [...document.querySelectorAll('.kpi')].find(b=>{
