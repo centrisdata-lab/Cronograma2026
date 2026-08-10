@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestión Actividades Campus 2026</title>
+  <title>Gestión Campus 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,12 +47,10 @@
     }
     .header-inner { display: flex; align-items: center; gap: 16px; }
     .header-logo {
-      background: var(--blue);
       display: flex; align-items: center; justify-content: center;
-      width: 56px; height: 56px; flex-shrink: 0;
-      font-size: 1.6rem; border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(26,60,110,0.25);
+      flex-shrink: 0;
     }
+    .header-logo img { height: 56px; width: auto; display: block; }
     .header-text { flex: 1; }
     .header-text .supertitle {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
@@ -723,7 +721,7 @@
     }
     @media (max-width: 600px) {
       header { padding: 12px 14px; }
-      .header-logo { width: 44px; height: 44px; font-size: 1.3rem; border-radius: 10px; }
+      .header-logo img { height: 40px; }
       .header-text h1 { font-size: 1.1rem; }
       .header-text p  { font-size: 0.72rem; }
       main   { padding: 14px 12px 40px; }
@@ -862,10 +860,10 @@
 
 <header id="app-header">
   <div class="header-inner">
-    <div class="header-logo">📅</div>
+    <div class="header-logo"><img src="informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
     <div class="header-text">
       <div class="supertitle">FIMLM · Campus Virtual</div>
-      <h1>Gestión Actividades Campus 2026</h1>
+      <h1>Gestión Campus 2026</h1>
       <p>Ruta de Actividades Pedagógicas</p>
     </div>
     <button class="btn-edit-mode" id="btn-edit-mode" onclick="toggleEditMode()">✏️ Editar contenido</button>
