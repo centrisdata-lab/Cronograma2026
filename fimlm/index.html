@@ -156,18 +156,30 @@
 
   /* ---------- KPI strip (dash-card) ---------- */
   #resumen{position:relative;}
-  /* Clasificación de las tarjetas en dos grupos ("estado general" son
-     las 2 primeras, "requiere tu atención" las 4 siguientes), sin
-     partir la fila de tarjetas en dos: los rótulos van en su propia
-     fila arriba, alineados en columnas con el mismo grid-template-
-     columns que .kpis, ocupando cada uno el ancho de su subgrupo. */
-  .kpi-group-labels{display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:8px;}
+  /* Clasificación de las tarjetas en dos grupos ("estado general":
+     matriculados + lista de espera; "requiere tu atención": baja
+     ocupación, vacíos, alertas, iglesias). Cada grupo es su propia
+     caja con fondo y borde sutiles — no un simple rótulo suelto
+     arriba de las tarjetas — para que se note de un vistazo que
+     agrupa varias, no solo la primera. El fondo es neutro (no usa
+     los mismos colores rojo/naranja/amarillo de las tarjetas) para
+     no competir con las alertas individuales. Al ser cajas separadas
+     (en vez de un único grid de 6 columnas), cada una define su
+     propio grid interno y colapsa de forma independiente en móvil.  */
+  .kpi-groups{display:flex; flex-wrap:wrap; gap:14px; align-items:stretch;}
+  .kpi-group{
+    flex:1 1 260px; background:var(--bg); border:1.5px solid var(--border);
+    border-radius:16px; padding:14px 14px 16px; min-width:0;
+  }
+  .kpi-group.is-action{flex-grow:2;}
   .kpi-group-label{
     font-size:.72rem; font-weight:900; text-transform:uppercase; letter-spacing:.05em;
-    color:var(--muted); grid-column:span 2;
+    color:var(--muted); margin:2px 4px 12px;
   }
-  .kpi-group-label.is-action{color:var(--red); grid-column:span 4;}
+  .kpi-group-label.is-action{color:var(--red);}
   .kpis{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
+  .kpis-status{grid-template-columns:repeat(2,1fr);}
+  .kpis-action{grid-template-columns:repeat(4,1fr);}
   .kd-arrow{
     width:0; height:0; margin:10px 0 8px 0; position:relative; left:0;
     border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:12px solid var(--white);
@@ -192,25 +204,15 @@
   }
   .kpi.active .kpi-arrow{ transform:rotate(180deg); color:var(--blue); }
   .kpi .icon{font-size:1.4rem; margin-bottom:7px;}
-  .kpi .v{font-size:1.9rem; font-weight:900; line-height:1.05; color:var(--blue); font-variant-numeric:tabular-nums;}
+  .kpi .v{font-size:1.9rem; font-weight:900; line-height:1.05; color:var(--blue); font-variant-numeric:tabular-nums; white-space:nowrap;}
   .kpi .l{font-size:.68rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); margin-top:6px; line-height:1.3;}
   .kpi .hint{font-size:.64rem; font-weight:800; color:var(--blue-mid); margin-top:10px; opacity:.85;}
   .kpi-sub{display:block; font-size:.66rem; font-weight:700; letter-spacing:normal; text-transform:none; color:var(--faint); margin-top:3px;}
   .kpi.flag .hint{color:var(--yellow);}
   .kpi.flag2 .hint{color:var(--red);}
-  @media (max-width:1300px){ .kpis{grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:900px){
-    .kpis{grid-template-columns:repeat(2,1fr);}
-    /* Con 2 (o 1) tarjetas por fila, los rótulos ya no pueden alinearse
-       por columna con el subgrupo exacto de tarjetas (2+4 no reparte
-       limpio en filas de 2 ni de 1) — se muestran apilados como una
-       leyenda simple arriba de todo el bloque en vez de fingir una
-       alineación que ya no es cierta. El color/borde de cada tarjeta
-       sigue comunicando a qué grupo pertenece.  */
-    .kpi-group-labels{grid-template-columns:1fr; gap:4px;}
-    .kpi-group-label, .kpi-group-label.is-action{grid-column:1/-1;}
-  }
-  @media (max-width:560px){ .kpis{grid-template-columns:repeat(1,1fr);} }
+  @media (max-width:1300px){ .kpis-action{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:900px){ .kpi-group{flex-basis:100%;} }
+  @media (max-width:560px){ .kpis-status, .kpis-action{grid-template-columns:repeat(1,1fr);} }
   .panel.flash, .kpi.flash{animation:flashHighlight 1.3s ease;}
   @keyframes flashHighlight{
     0%{box-shadow:0 0 0 4px var(--orange);}
@@ -502,17 +504,23 @@
       <div class="section-note">Toca una tarjeta para ver su detalle — zonas, cursos, grupos, alertas e iglesias salen todos de aquí.</div>
     </div>
 
-    <div class="kpi-group-labels">
-      <div class="kpi-group-label">📊 Estado general</div>
-      <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
-    </div>
-    <div class="kpis">
-      <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
-      <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
-      <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
-      <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
-      <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
-      <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias sin matrícula</div><div class="hint">Ver listado y con inscripción →</div></button>
+    <div class="kpi-groups">
+      <div class="kpi-group">
+        <div class="kpi-group-label">📊 Estado general</div>
+        <div class="kpis kpis-status">
+          <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
+          <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
+        </div>
+      </div>
+      <div class="kpi-group is-action">
+        <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
+        <div class="kpis kpis-action">
+          <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
+          <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
+          <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
+          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias sin matrícula</div><div class="hint">Ver listado y con inscripción →</div></button>
+        </div>
+      </div>
     </div>
     <div class="kd-arrow" id="kd-arrow" hidden></div>
     <div class="kpi-detail panel" id="kpi-detail"></div>
