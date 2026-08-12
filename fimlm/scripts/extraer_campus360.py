@@ -95,12 +95,21 @@ async def fetch_dashboard_data():
                     captured["error"] = str(e)
 
         page.on("response", on_response)
-        await page.reload(wait_until="networkidle", timeout=45000)
-        await page.wait_for_timeout(2000)
+        # "networkidle" nunca se alcanza en este dashboard (tiene polling/
+        # websockets de fondo), así que el reload esperaba con el criterio
+        # equivocado y expiraba a los 45s aunque la respuesta que nos
+        # importa (POST /api/campus/dashboard) ya hubiera llegado. Se usa
+        # "load" (carga inicial del documento) y luego se espera
+        # activamente a que el listener capture esa respuesta puntual.
+        await page.reload(wait_until="load", timeout=45000)
+        for _ in range(60):
+            if "data" in captured or "error" in captured:
+                break
+            await page.wait_for_timeout(500)
         await browser.close()
 
         if "data" not in captured:
-            err = captured.get("error", "respuesta del API no capturada")
+            err = captured.get("error", "respuesta del API no capturada (timeout esperando POST /api/campus/dashboard)")
             raise RuntimeError(f"No se pudo obtener datos del dashboard: {err}")
         return captured["data"]
 
