@@ -1,0 +1,41 @@
+{
+  "corte": "2026-08-12T17:38:55.090905-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4967",
+      "matAntes": 32,
+      "matAhora": 34,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2502",
+      "nom": "Reposteria 2",
+      "g": "G-4960",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Santanderes & Boyaca",
+      "cod": "C-2537",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4372",
+      "matAntes": 36,
+      "matAhora": 37,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2456",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4875",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    }
+  ]
+}
