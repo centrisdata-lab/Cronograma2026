@@ -780,7 +780,7 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   document.getElementById('kpi-vacios').textContent = fmt(vacios);
   document.getElementById('kpi-vacios-sub').textContent = 'repartidos en '+fmt(cursosConGrupoVacio.size)+' curso'+(cursosConGrupoVacio.size===1?'':'s');
   document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length + IGLESIAS_INSC.length);
-  document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin matrícula';
+  document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin personas matriculadas';
 
   const corteEl = document.getElementById('corte-datos');
   if(corteEl) corteEl.textContent = formatCorte(CORTE_DATOS);
@@ -1107,7 +1107,7 @@ function iglesiasTableHtml(){
   // urgente de gestionar primero), y dentro del grupo, sin matrícula antes
   // que con matrícula y luego por nombre.
   const badgeDe = i => i.mat===0
-    ? `<span class="badge crit">Sin matrícula</span>`
+    ? `<span class="badge crit">Sin personas matriculadas</span>`
     : `<span class="badge ok">${fmt(i.mat)} matriculado${i.mat===1?'':'s'}</span>`;
 
   const filaIglesia = i => {
@@ -1136,7 +1136,7 @@ function iglesiasTableHtml(){
       const iglesias = byDep[dep].slice().sort((a,b)=> (a.mat===0?0:1) - (b.mat===0?0:1) || b.mat-a.mat || a.nom.localeCompare(b.nom,'es'));
       const abierto = expandedDeps.has(dep) || !!term;
       const nSin = nSinDe(iglesias);
-      const resumen = `${fmt(iglesias.length)} iglesias` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin matrícula</span>` : '');
+      const resumen = `${fmt(iglesias.length)} iglesias` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin personas matriculadas</span>` : '');
       const sangria = nivelZona ? 'padding-left:26px;' : '';
       const depLabel = nombreDepartamento(dep);
       const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
@@ -1166,7 +1166,7 @@ function iglesiasTableHtml(){
       : '';
     const abierta = expandedZonasIgl.has(zona) || !!term;
     const nSin = nSinDe(items);
-    const resumen = `${fmt(items.length)} iglesias · ${fmt(matTotalDe(items))} matriculados` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin matrícula</span>` : '');
+    const resumen = `${fmt(items.length)} iglesias · ${fmt(matTotalDe(items))} matriculados` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin personas matriculadas</span>` : '');
     const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasZona('${zona.replace(/'/g,"\\'")}')" title="Ver los departamentos de ${nombre}">
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
         <td colspan="2"><div style="display:flex; align-items:center; gap:10px;">${icono}<span>${nombre} <span class="badge info" style="margin-left:6px;">${resumen}</span></span></div></td>
@@ -1386,8 +1386,8 @@ function buildDetail(kind){
       `<div class="state-filter-group" style="margin-bottom:14px;">
         <span class="chip-label">Estado</span>
         <button type="button" class="chip${iglesiasEstadoFiltro==='todas'?' active':''}" onclick="setIglesiasFiltro('todas')">Todas (${fmt(nTodas)})</button>
-        <button type="button" class="chip chip-crit${iglesiasEstadoFiltro==='sin'?' active':''}" onclick="setIglesiasFiltro('sin')">📍 Sin matrícula (${fmt(nSin)})</button>
-        <button type="button" class="chip chip-info${iglesiasEstadoFiltro==='con'?' active':''}" onclick="setIglesiasFiltro('con')">📈 Con inscripción (${fmt(nCon)})</button>
+        <button type="button" class="chip chip-crit${iglesiasEstadoFiltro==='sin'?' active':''}" onclick="setIglesiasFiltro('sin')">📍 Sin personas matriculadas (${fmt(nSin)})</button>
+        <button type="button" class="chip chip-info${iglesiasEstadoFiltro==='con'?' active':''}" onclick="setIglesiasFiltro('con')">📈 Con personas matriculadas (${fmt(nCon)})</button>
       </div>
       <input type="search" id="iglesias-search" placeholder="Buscar iglesia, departamento o zona…" oninput="onIglesiasSearch(this.value)" style="margin-bottom:12px; width:100%;">
       <div class="table-scroll no-vscroll"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
