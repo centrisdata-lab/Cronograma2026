@@ -414,6 +414,7 @@
   .count-tag{font-size:.78rem; color:var(--muted); font-weight:700; margin-left:auto;}
 
   table.data{width:100%; border-collapse:collapse; font-size:.83rem;}
+  #iglesias-detail-table{table-layout:fixed;}
   table.data th{
     text-align:left; padding:10px 12px; border-bottom:2px solid var(--border);
     font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; font-weight:800; color:var(--muted);
@@ -1110,7 +1111,20 @@ function iglesiasTableHtml(){
   // Encabezado fijo con las columnas numéricas, en vez de repetir
   // "N iglesias · N matriculados · N sin matrícula" como texto dentro de
   // cada fila de zona/departamento.
-  const head = `<thead><tr>
+  // table-layout:fixed + colgroup: sin esto, el ancho de cada columna se
+  // recalcula según el contenido de las filas visibles en cada momento, y
+  // como la fila de iglesia fusiona las 3 columnas numéricas en una sola
+  // celda (colspan) para el badge de estado, ese recálculo hacía que las
+  // columnas "temblaran" hacia la derecha cada vez que se abría o cerraba
+  // un departamento. Con columnas de ancho fijo eso ya no puede pasar.
+  const head = `<colgroup>
+      <col style="width:26px;">
+      <col>
+      <col style="width:110px;">
+      <col style="width:130px;">
+      <col style="width:120px;">
+    </colgroup>
+    <thead><tr>
       <th></th>
       <th>Zona / Departamento / Iglesia</th>
       <th class="num-cell">Iglesias</th>
