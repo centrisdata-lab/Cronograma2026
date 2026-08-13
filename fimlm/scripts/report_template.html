@@ -353,6 +353,9 @@
     background:var(--blue-light);
     box-shadow:0 4px 12px -4px rgba(26,60,110,0.35), inset 3px 0 0 var(--blue-mid);
   }
+  /* tr.group-head pinta su fondo en el <td> (no en el <tr>), así que sin
+     esta regla el hover de zona-row quedaría tapado por ese fondo propio. */
+  tr.zona-row.group-head:hover td{background:var(--blue-light);}
   tr.zona-row:hover .zona-nombre{color:var(--blue-mid);}
 
   .context-divider{
@@ -1091,14 +1094,23 @@ function nombreDepartamento(dep){
 function iglesiasTableHtml(){
   const term = normKey(iglesiasSearchTerm);
   const filtro = iglesiasEstadoFiltro; // 'todas' | 'sin' | 'con'
-  const head = `<thead><tr><th></th><th>Zona / Departamento / Iglesia</th><th class="num-cell">Matriculados</th></tr></thead>`;
+  // Encabezado fijo con las columnas numéricas, en vez de repetir
+  // "N iglesias · N matriculados · N sin matrícula" como texto dentro de
+  // cada fila de zona/departamento.
+  const head = `<thead><tr>
+      <th></th>
+      <th>Zona / Departamento / Iglesia</th>
+      <th class="num-cell">Iglesias</th>
+      <th class="num-cell">Matriculados</th>
+      <th class="num-cell">Sin matrícula</th>
+    </tr></thead>`;
 
   let rows = IGLESIAS_TODAS;
   if(filtro==='sin') rows = rows.filter(i=>i.mat===0);
   if(filtro==='con') rows = rows.filter(i=>i.mat>0);
   if(term) rows = rows.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term) || normKey(i.zona||'').includes(term));
   if(!rows.length){
-    return `${head}<tbody><tr><td colspan="3" class="empty-note">Ninguna iglesia coincide con la búsqueda o el filtro.</td></tr></tbody>`;
+    return `${head}<tbody><tr><td colspan="5" class="empty-note">Ninguna iglesia coincide con la búsqueda o el filtro.</td></tr></tbody>`;
   }
 
   const nSinDe = items => items.filter(i=>i.mat===0).length;
@@ -1116,9 +1128,9 @@ function iglesiasTableHtml(){
     const cab = `<tr class="clickable-row igl-row" onclick="toggleIglesiaRow('${key.replace(/'/g,"\\'")}')" title="Ver el detalle de ${i.nom}">
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
         <td style="padding-left:38px;">${i.nom}</td>
-        <td class="num-cell">${badgeDe(i)}</td>
+        <td class="num-cell" colspan="3">${badgeDe(i)}</td>
       </tr>`;
-    const det = abierta ? `<tr class="curso-groups-row"><td colspan="3"><div class="groups-inline" style="padding-left:50px;">
+    const det = abierta ? `<tr class="curso-groups-row"><td colspan="5"><div class="groups-inline" style="padding-left:50px;">
         <div style="font-size:.8rem; font-weight:600; color:var(--muted); line-height:1.7;">
           <b style="color:var(--text);">Departamento:</b> ${nombreDepartamento(i.dep)}<br>
           <b style="color:var(--text);">Zona:</b> ${(metaDeZona(i.zona)||{}).name || i.zona || 'Sin zona asignada'}<br>
@@ -1136,12 +1148,14 @@ function iglesiasTableHtml(){
       const iglesias = byDep[dep].slice().sort((a,b)=> (a.mat===0?0:1) - (b.mat===0?0:1) || b.mat-a.mat || a.nom.localeCompare(b.nom,'es'));
       const abierto = expandedDeps.has(dep) || !!term;
       const nSin = nSinDe(iglesias);
-      const resumen = `${fmt(iglesias.length)} iglesias` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin personas matriculadas</span>` : '');
       const sangria = nivelZona ? 'padding-left:26px;' : '';
       const depLabel = nombreDepartamento(dep);
-      const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
+      const cabecera = `<tr class="group-head clickable-row zona-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
           <td class="expand-cell">${abierto?'▾':'▸'}</td>
-          <td colspan="2" style="${sangria}">${depLabel} <span class="badge info" style="margin-left:6px;">${resumen}</span></td>
+          <td style="${sangria}"><span class="zona-nombre">${depLabel}</span></td>
+          <td class="num-cell">${fmt(iglesias.length)}</td>
+          <td class="num-cell">${fmt(matTotalDe(iglesias))}</td>
+          <td class="num-cell">${nSin ? `<span style="color:var(--red); font-weight:800;">${fmt(nSin)}</span>` : '0'}</td>
         </tr>`;
       const detalle = abierto ? iglesias.map(filaIglesia).join('') : '';
       return cabecera + detalle;
@@ -1166,10 +1180,12 @@ function iglesiasTableHtml(){
       : '';
     const abierta = expandedZonasIgl.has(zona) || !!term;
     const nSin = nSinDe(items);
-    const resumen = `${fmt(items.length)} iglesias · ${fmt(matTotalDe(items))} matriculados` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin personas matriculadas</span>` : '');
-    const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasZona('${zona.replace(/'/g,"\\'")}')" title="Ver los departamentos de ${nombre}">
+    const cabecera = `<tr class="group-head clickable-row zona-row" onclick="toggleIglesiasZona('${zona.replace(/'/g,"\\'")}')" title="Ver los departamentos de ${nombre}">
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
-        <td colspan="2"><div style="display:flex; align-items:center; gap:10px;">${icono}<span>${nombre} <span class="badge info" style="margin-left:6px;">${resumen}</span></span></div></td>
+        <td><div style="display:flex; align-items:center; gap:10px;">${icono}<span class="zona-nombre">${nombre}</span></div></td>
+        <td class="num-cell">${fmt(items.length)}</td>
+        <td class="num-cell">${fmt(matTotalDe(items))}</td>
+        <td class="num-cell">${nSin ? `<span style="color:var(--red); font-weight:800;">${fmt(nSin)}</span>` : '0'}</td>
       </tr>`;
     return cabecera + (abierta ? filasDeDepartamentos(items, true) : '');
   }).join('');
