@@ -323,6 +323,7 @@
   .badge.crit{background:var(--red-bg); color:var(--red);}
   .badge.warn{background:var(--yellow-bg); color:var(--yellow);}
   .badge.info{background:var(--blue-light); color:var(--blue-mid);}
+  .badge.ok{background:var(--green-bg); color:var(--green);}
   .alert h3{font-size:1.08rem; font-weight:900; color:var(--blue);}
   .alert p{margin:8px 0 0; color:var(--text); font-weight:500; max-width:75ch;}
   .alert p strong{color:var(--blue); font-weight:800;}
@@ -592,7 +593,7 @@
           <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
-          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias sin matrícula</div><div class="hint">Ver listado y con inscripción →</div></button>
+          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias sin matrícula</div><div class="hint">Gestionar todas las iglesias →</div></button>
         </div>
       </div>
     </div>
@@ -685,6 +686,16 @@ const GRUPOS = %%GRUPOS_JSON%%;
 const IGLESIAS = %%IGLESIAS_JSON%%;
 const OTROS = %%OTROS_JSON%%;
 const IGLESIAS_INSC = %%IGLESIAS_INSC_JSON%%;
+// Lista maestra para la gestión de iglesias: une "sin matrícula" (mat=0,
+// tal como llega) y "con inscripción" (su total de inscritos) en un solo
+// registro por iglesia con su estado. El dashboard de origen las entrega
+// como dos reportes separados pero son mutuamente excluyentes -- una
+// iglesia con 0 matriculados no puede tener inscritos y viceversa -- así
+// que la unión es directa, sin riesgo de duplicados ni de cruces dudosos.
+const IGLESIAS_TODAS = [
+  ...IGLESIAS.map(i => ({ zona:i.zona, dep:i.dep, nom:i.nom, mat:0 })),
+  ...IGLESIAS_INSC.map(i => ({ zona:i.zona, dep:i.dep, nom:i.nom, mat:i.ins })),
+];
 const CORTE_DATOS = %%CORTE_DATOS_JSON%%;
 const BOLETINES = %%BOLETINES_JSON%%;
 const CORTE_ANTERIOR = %%CORTE_ANTERIOR_JSON%%;
@@ -1017,22 +1028,34 @@ function refreshActiveDetailScoped(){
   if(fn) withScrollLock(fn); else refreshDetail();
 }
 let iglesiasSearchTerm = '';
-let iglesiasTab = 'sin';
+// 'todas' | 'sin' | 'con' — filtro de estado sobre la misma lista unificada
+// (antes eran dos pestañas con dos listas separadas; el dashboard de origen
+// las entrega así, pero para gestionar es más cómodo verlas juntas).
+let iglesiasEstadoFiltro = 'todas';
 const expandedDeps = new Set();
-const expandedDepsInsc = new Set();
 const expandedZonasIgl = new Set();
-const expandedZonasIglInsc = new Set();
+const expandedIglesias = new Set();
 function toggleIglesiasDep(dep){
-  const set = iglesiasTab==='con' ? expandedDepsInsc : expandedDeps;
-  if(set.has(dep)) set.delete(dep); else set.add(dep);
+  if(expandedDeps.has(dep)) expandedDeps.delete(dep); else expandedDeps.add(dep);
   const t = document.getElementById('iglesias-detail-table');
   withScrollLock(()=>{ if(t) t.innerHTML = iglesiasTableHtml(); });
 }
 function toggleIglesiasZona(zona){
-  const set = iglesiasTab==='con' ? expandedZonasIglInsc : expandedZonasIgl;
-  if(set.has(zona)) set.delete(zona); else set.add(zona);
+  if(expandedZonasIgl.has(zona)) expandedZonasIgl.delete(zona); else expandedZonasIgl.add(zona);
   const t = document.getElementById('iglesias-detail-table');
   withScrollLock(()=>{ if(t) t.innerHTML = iglesiasTableHtml(); });
+}
+// Clave única de iglesia: nombre+departamento (el dato de origen no trae id).
+function iglesiaKey(i){ return i.dep + '|' + i.nom; }
+function toggleIglesiaRow(key){
+  if(expandedIglesias.has(key)) expandedIglesias.delete(key); else expandedIglesias.add(key);
+  const t = document.getElementById('iglesias-detail-table');
+  withScrollLock(()=>{ if(t) t.innerHTML = iglesiasTableHtml(); });
+}
+function setIglesiasFiltro(v){
+  iglesiasEstadoFiltro = v;
+  const box = document.getElementById('kpi-detail');
+  withScrollLock(()=>{ box.innerHTML = buildDetail('iglesias'); });
 }
 // Icono y color de cada zona, para que las filas de zona de esta tabla se
 // vean igual que en el resto del informe. Se busca por nombre normalizado
@@ -1060,76 +1083,74 @@ const DEPARTAMENTO_CON_TILDE = {
 function nombreDepartamento(dep){
   return DEPARTAMENTO_CON_TILDE[normKey(dep)] || dep;
 }
-function switchIglesiasTab(tab){
-  iglesiasTab = tab;
-  iglesiasSearchTerm = '';
-  const box = document.getElementById('kpi-detail');
-  withScrollLock(()=>{ box.innerHTML = buildDetail('iglesias'); });
-}
-// Tabla de iglesias en tres niveles: zona → departamento → iglesias.
-// Las dos pestañas (sin matrícula / con inscripción) comparten la misma
-// estructura y solo cambian en qué dato resumen ("N iglesias" vs "N
-// inscritos") y en cómo se ordenan, así que se resuelven con la misma
-// función en vez de duplicar el armado del HTML.
+// Tabla de gestión de iglesias en tres niveles: zona → departamento →
+// iglesias, sobre la lista unificada IGLESIAS_TODAS. Cada iglesia se ve
+// con su estado (sin matrícula / N matriculados) directamente en la fila,
+// sin tener que cambiar de vista, y es expandible para ver su detalle.
 function iglesiasTableHtml(){
   const term = normKey(iglesiasSearchTerm);
-  const esInsc = iglesiasTab === 'con';
-  const fuente = esInsc ? IGLESIAS_INSC : IGLESIAS;
-  const setZonas = esInsc ? expandedZonasIglInsc : expandedZonasIgl;
-  const setDeps  = esInsc ? expandedDepsInsc : expandedDeps;
-  const head = `<thead><tr><th></th><th>Zona / Departamento</th></tr></thead>`;
+  const filtro = iglesiasEstadoFiltro; // 'todas' | 'sin' | 'con'
+  const head = `<thead><tr><th></th><th>Zona / Departamento / Iglesia</th><th class="num-cell">Matriculados</th></tr></thead>`;
 
-  const rows = term
-    ? fuente.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term) || normKey(i.zona||'').includes(term))
-    : fuente;
+  let rows = IGLESIAS_TODAS;
+  if(filtro==='sin') rows = rows.filter(i=>i.mat===0);
+  if(filtro==='con') rows = rows.filter(i=>i.mat>0);
+  if(term) rows = rows.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term) || normKey(i.zona||'').includes(term));
   if(!rows.length){
-    return `${head}<tbody><tr><td colspan="2" class="empty-note">Ninguna iglesia coincide con la búsqueda.</td></tr></tbody>`;
+    return `${head}<tbody><tr><td colspan="3" class="empty-note">Ninguna iglesia coincide con la búsqueda o el filtro.</td></tr></tbody>`;
   }
 
-  const totalDe = items => esInsc ? items.reduce((s,i)=>s+i.ins,0) : items.length;
+  const nSinDe = items => items.filter(i=>i.mat===0).length;
+  const matTotalDe = items => items.reduce((s,i)=>s+i.mat,0);
+  // Se ordena por cuántas iglesias sin matrícula tiene cada grupo (lo más
+  // urgente de gestionar primero), y dentro del grupo, sin matrícula antes
+  // que con matrícula y luego por nombre.
+  const badgeDe = i => i.mat===0
+    ? `<span class="badge crit">Sin matrícula</span>`
+    : `<span class="badge ok">${fmt(i.mat)} matriculado${i.mat===1?'':'s'}</span>`;
 
-  // Agrupar por zona y, dentro de cada zona, por departamento. Si el CSV
-  // todavía no trae la columna de zona (corrida vieja), se agrupa todo
-  // bajo una sola zona sin nombre, que se dibuja sin la fila de zona —
-  // el informe sigue funcionando igual que antes del cambio.
-  const byZona = {};
-  rows.forEach(i => {
-    const z = i.zona || '';
-    (byZona[z] = byZona[z] || []).push(i);
-  });
-  const zonas = Object.keys(byZona).sort((a,b)=>totalDe(byZona[b])-totalDe(byZona[a]));
-  const sinZona = zonas.length === 1 && zonas[0] === '';
+  const filaIglesia = i => {
+    const key = iglesiaKey(i);
+    const abierta = expandedIglesias.has(key);
+    const cab = `<tr class="clickable-row igl-row" onclick="toggleIglesiaRow('${key.replace(/'/g,"\\'")}')" title="Ver el detalle de ${i.nom}">
+        <td class="expand-cell">${abierta?'▾':'▸'}</td>
+        <td style="padding-left:38px;">${i.nom}</td>
+        <td class="num-cell">${badgeDe(i)}</td>
+      </tr>`;
+    const det = abierta ? `<tr class="curso-groups-row"><td colspan="3"><div class="groups-inline" style="padding-left:50px;">
+        <div style="font-size:.8rem; font-weight:600; color:var(--muted); line-height:1.7;">
+          <b style="color:var(--text);">Departamento:</b> ${nombreDepartamento(i.dep)}<br>
+          <b style="color:var(--text);">Zona:</b> ${(metaDeZona(i.zona)||{}).name || i.zona || 'Sin zona asignada'}<br>
+          <b style="color:var(--text);">Estado:</b> ${i.mat===0 ? 'Sin ningún matriculado en Campus 360' : `${fmt(i.mat)} persona${i.mat===1?'':'s'} matriculada${i.mat===1?'':'s'}`}
+        </div>
+      </div></td></tr>` : '';
+    return cab + det;
+  };
 
   const filasDeDepartamentos = (items, nivelZona) => {
     const byDep = {};
     items.forEach(i=>{ (byDep[i.dep] = byDep[i.dep] || []).push(i); });
-    const deps = Object.keys(byDep).sort((a,b)=> esInsc
-      ? totalDe(byDep[b]) - totalDe(byDep[a])
-      : a.localeCompare(b,'es'));
+    const deps = Object.keys(byDep).sort((a,b)=> nSinDe(byDep[b]) - nSinDe(byDep[a]) || a.localeCompare(b,'es'));
     return deps.map(dep=>{
-      const iglesias = byDep[dep].slice().sort((a,b)=> esInsc
-        ? b.ins - a.ins
-        : a.nom.localeCompare(b.nom,'es'));
-      const abierto = setDeps.has(dep) || !!term;
-      const resumen = esInsc
-        ? `${fmt(totalDe(iglesias))} inscritos · ${fmt(iglesias.length)} iglesias`
-        : fmt(iglesias.length);
+      const iglesias = byDep[dep].slice().sort((a,b)=> (a.mat===0?0:1) - (b.mat===0?0:1) || b.mat-a.mat || a.nom.localeCompare(b.nom,'es'));
+      const abierto = expandedDeps.has(dep) || !!term;
+      const nSin = nSinDe(iglesias);
+      const resumen = `${fmt(iglesias.length)} iglesias` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin matrícula</span>` : '');
       const sangria = nivelZona ? 'padding-left:26px;' : '';
       const depLabel = nombreDepartamento(dep);
       const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
           <td class="expand-cell">${abierto?'▾':'▸'}</td>
-          <td style="${sangria}">${depLabel} <span class="badge info" style="margin-left:6px;">${resumen}</span></td>
+          <td colspan="2" style="${sangria}">${depLabel} <span class="badge info" style="margin-left:6px;">${resumen}</span></td>
         </tr>`;
-      const detalle = abierto ? `<tr class="curso-groups-row"><td colspan="2"><div class="groups-inline">
-          <table class="data mini">
-            <tbody>${iglesias.map(i=> esInsc
-              ? `<tr><td>${i.nom}</td><td class="num-cell">${fmt(i.ins)}</td></tr>`
-              : `<tr><td colspan="2">${i.nom}</td></tr>`).join('')}</tbody>
-          </table>
-        </div></td></tr>` : '';
+      const detalle = abierto ? iglesias.map(filaIglesia).join('') : '';
       return cabecera + detalle;
     }).join('');
   };
+
+  const byZona = {};
+  rows.forEach(i => { const z = i.zona || ''; (byZona[z] = byZona[z] || []).push(i); });
+  const zonas = Object.keys(byZona).sort((a,b)=>nSinDe(byZona[b])-nSinDe(byZona[a]));
+  const sinZona = zonas.length === 1 && zonas[0] === '';
 
   if(sinZona){
     return `${head}<tbody>${filasDeDepartamentos(byZona[''], false)}</tbody>`;
@@ -1142,13 +1163,12 @@ function iglesiasTableHtml(){
     const icono = meta
       ? `<span class="zone-icon-badge" style="background:${meta.color}">${meta.icon}</span>`
       : '';
-    const abierta = setZonas.has(zona) || !!term;
-    const resumen = esInsc
-      ? `${fmt(totalDe(items))} inscritos · ${fmt(items.length)} iglesias`
-      : `${fmt(items.length)} iglesias`;
+    const abierta = expandedZonasIgl.has(zona) || !!term;
+    const nSin = nSinDe(items);
+    const resumen = `${fmt(items.length)} iglesias · ${fmt(matTotalDe(items))} matriculados` + (nSin ? ` · <span style="color:var(--red);">${fmt(nSin)} sin matrícula</span>` : '');
     const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasZona('${zona.replace(/'/g,"\\'")}')" title="Ver los departamentos de ${nombre}">
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
-        <td><div style="display:flex; align-items:center; gap:10px;">${icono}<span>${nombre} <span class="badge info" style="margin-left:6px;">${resumen}</span></span></div></td>
+        <td colspan="2"><div style="display:flex; align-items:center; gap:10px;">${icono}<span>${nombre} <span class="badge info" style="margin-left:6px;">${resumen}</span></span></div></td>
       </tr>`;
     return cabecera + (abierta ? filasDeDepartamentos(items, true) : '');
   }).join('');
@@ -1359,15 +1379,16 @@ function buildDetail(kind){
       `<div id="alertas-detail-body">${document.getElementById('alerts-wrap').innerHTML}</div>`;
   }
   if(kind==='iglesias'){
-    const subSin = `${fmt(IGLESIAS.length)} iglesias/sedes registradas en el sistema que hoy no tienen ningún matriculado en Campus 360. El dashboard las entrega solo por departamento; aquí se agrupan por zona según el departamento al que pertenece cada una. Toca una zona para ver sus departamentos.`;
-    const subCon = `${fmt(IGLESIAS_INSC.length)} iglesias/sedes con al menos una persona inscrita, con el total de inscritos por iglesia. Es un dato <b>global de Colombia</b> (todo el país), agrupado por zona según el departamento de cada iglesia.`;
-    return kdHead('Iglesias', iglesiasTab==='con' ? subCon : subSin) +
+    const nSin = IGLESIAS.length, nCon = IGLESIAS_INSC.length, nTodas = nSin + nCon;
+    return kdHead('Iglesias',
+      `${fmt(nTodas)} iglesias/sedes registradas en el sistema, con su estado de matrícula en Campus 360. El dashboard las entrega solo por departamento; aquí se agrupan por zona según el departamento de cada una. Toca una zona o un departamento para desplegar, y toca una iglesia para ver su detalle.`) +
       `<div class="state-filter-group" style="margin-bottom:14px;">
-        <span class="chip-label">Vista</span>
-        <button type="button" class="chip${iglesiasTab==='sin'?' active':''}" onclick="switchIglesiasTab('sin')">📍 Sin matrícula (${fmt(IGLESIAS.length)})</button>
-        <button type="button" class="chip${iglesiasTab==='con'?' active':''}" onclick="switchIglesiasTab('con')">📈 Con inscripción (${fmt(IGLESIAS_INSC.length)})</button>
+        <span class="chip-label">Estado</span>
+        <button type="button" class="chip${iglesiasEstadoFiltro==='todas'?' active':''}" onclick="setIglesiasFiltro('todas')">Todas (${fmt(nTodas)})</button>
+        <button type="button" class="chip chip-crit${iglesiasEstadoFiltro==='sin'?' active':''}" onclick="setIglesiasFiltro('sin')">📍 Sin matrícula (${fmt(nSin)})</button>
+        <button type="button" class="chip chip-info${iglesiasEstadoFiltro==='con'?' active':''}" onclick="setIglesiasFiltro('con')">📈 Con inscripción (${fmt(nCon)})</button>
       </div>
-      <input type="search" id="iglesias-search" placeholder="Buscar iglesia o departamento…" oninput="onIglesiasSearch(this.value)" style="margin-bottom:12px; width:100%;">
+      <input type="search" id="iglesias-search" placeholder="Buscar iglesia, departamento o zona…" oninput="onIglesiasSearch(this.value)" style="margin-bottom:12px; width:100%;">
       <div class="table-scroll" style="max-height:420px;"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
   }
   return '';
