@@ -419,6 +419,12 @@
     font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; font-weight:800; color:var(--muted);
     cursor:pointer; user-select:none; white-space:nowrap; position:sticky; top:0; background:var(--white);
   }
+  /* .no-vscroll no tiene scroll vertical propio (crece con la página), así
+     que el "sticky" del encabezado no tiene contenedor del cual pegarse:
+     termina anclándose contra el scroll general de la página y saltando
+     cada vez que la tabla cambia de alto (p.ej. al abrir un departamento).
+     Ahí el encabezado va fijo en su lugar, como una fila normal. */
+  .table-scroll.no-vscroll table.data th{position:static;}
   table.data th:hover{color:var(--blue);}
   table.data th.sorted{color:var(--blue-mid);}
   table.data th .arrow{font-size:.65em; opacity:.7;}
