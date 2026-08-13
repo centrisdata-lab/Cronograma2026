@@ -83,7 +83,7 @@ html, body {
   position: relative;
   background: var(--superficie);
   color: var(--texto-primario);
-  padding: 32px 24px 26px;
+  padding: 14px 24px;
   border-bottom: 3px solid var(--naranja);
   box-shadow: var(--sombra-card);
 }
@@ -99,7 +99,7 @@ html, body {
 }
 
 .report-header__logo {
-  height: 60px;
+  height: 46px;
   width: auto;
 }
 
@@ -114,12 +114,16 @@ html, body {
   color: var(--naranja-oscuro);
 }
 
+/* Tamaño fijo (no clamp con vw): este header se muestra dentro de un iframe
+   más angosto que la app, así que con vw el mismo título se veía de otro
+   tamaño y el cambio de pestaña se notaba como un salto. 25px ≈ 1.55rem,
+   que es el tamaño que usan el header de la app y el de Cupos y Matrículas. */
 .report-header h1 {
   font-family: var(--fuente-titulos);
   font-weight: 800;
-  font-size: clamp(26px, 4vw, 38px);
+  font-size: 25px;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.2;
   color: var(--azul-marino);
 }
 
