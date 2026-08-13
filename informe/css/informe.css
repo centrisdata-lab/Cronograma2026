@@ -321,16 +321,30 @@ html, body {
   gap: 12px;
 }
 
+/* Mismos valores que la tarjeta KPI de Cupos y Matrículas: borde
+   transparente de 2px (para que al activarse no cambie de tamaño),
+   radio de 14px y franja de color de 4px arriba. */
 .kpi-card {
   position: relative;
   background: var(--superficie);
-  border: 1px solid var(--borde);
-  border-radius: var(--radio-md);
+  border: 2px solid transparent;
+  border-radius: 14px;
   box-shadow: var(--sombra-card);
   overflow: hidden;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
-.kpi-card:hover { transform: translateY(-3px); box-shadow: var(--sombra-card-hover); }
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--azul-marino);
+}
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-card-hover);
+  background-color: #e8f0fb; /* --blue-light de la app */
+}
 .kpi-card.is-active:hover { transform: none; }
 /* La tarjeta activa se resalta pero mantiene su posición y tamaño
    en el grid; el detalle se muestra en un panel único debajo de
@@ -341,58 +355,71 @@ html, body {
   outline-offset: -2px;
 }
 
+/* Mismo padding que .kpi de Cupos y Matrículas. El espaciado entre
+   elementos no usa gap: cada uno lleva su margen, como allá (el ícono
+   separa 7px de la cifra y la etiqueta 6px del número). */
 .kpi-card__toggle {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   width: 100%;
-  padding: 16px 14px 14px;
+  padding: 18px 18px 16px;
   background: none;
   border: none;
   font: inherit;
   text-align: left;
   cursor: pointer;
 }
+.kpi-card__icon { margin-bottom: 7px; }
+.kpi-card__label { margin-top: 6px; }
+.kpi-card__delta { margin-top: 3px; }
+.kpi-card__hint { margin-top: 10px; }
 
+/* Ícono, cifra y etiqueta con los mismos valores que .kpi .icon /
+   .kpi .v / .kpi .l de Cupos y Matrículas. */
 .kpi-card__icon {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  font-size: 20px;
+  font-size: 22.4px; /* = 1.4rem */
   line-height: 1;
-}
-
-.kpi-card__label {
-  font-size: 11.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--texto-muted);
 }
 
 .kpi-card__value {
   font-family: var(--fuente-titulos);
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 30.4px; /* = 1.9rem */
+  font-weight: 900;
   color: var(--azul-marino);
-  line-height: 1;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-card__label {
+  font-size: 10.9px; /* = 0.68rem */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--texto-secundario);
+  line-height: 1.3;
 }
 
 .kpi-card__delta {
-  font-size: 11px;
+  font-size: 10.6px; /* = 0.66rem */
   font-weight: 700;
-  color: var(--texto-secundario);
+  color: var(--texto-muted);
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 /* Tarjeta con dos cifras lado a lado (ej. "Grupos con 1 solo
    profesor/tutor"), en vez de un único valor grande. */
+/* Las dos cifras van lado a lado; sin nowrap se apilaban en las
+   tarjetas más angostas y la etiqueta de la tarjeta quedaba muy lejos
+   de su número. En pantallas pequeñas sí se permite que bajen. */
 .kpi-card__value-pair {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 .kpi-card__value-pair .kpi-card__value-item {
   display: flex;
@@ -400,38 +427,29 @@ html, body {
   align-items: flex-start;
   gap: 2px;
 }
+/* Las tarjetas de dos cifras usan el mismo peso que la cifra única,
+   solo un poco más pequeñas para que quepan las dos. */
 .kpi-card__value-pair .kpi-card__value-num {
   font-family: var(--fuente-titulos);
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 22.4px; /* = 1.4rem; más chica que la cifra única para que
+                        las dos quepan en una fila sin desbordar */
+  font-weight: 900;
   color: var(--azul-marino);
-  line-height: 1;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .kpi-card__value-pair .kpi-card__value-tag {
   font-size: 9.5px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--texto-muted);
-}
-
-.kpi-card__bar {
-  height: 4px;
-  border-radius: 4px;
-  background: var(--borde);
-  overflow: hidden;
-  margin-top: 4px;
-}
-.kpi-card__bar span {
-  display: block;
-  height: 100%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, var(--naranja), var(--naranja-oscuro));
+  letter-spacing: 0.03em;
+  color: var(--texto-secundario);
 }
 
 .kpi-card__hint {
-  font-size: 11.5px;
-  font-weight: 700;
+  font-size: 10.2px; /* = 0.64rem, igual que .kpi .hint */
+  font-weight: 800;
   color: var(--azul-marino-2);
   opacity: 0;
   transition: opacity 0.15s ease;

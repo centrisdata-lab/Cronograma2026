@@ -298,14 +298,16 @@
       },
     ];
 
+    // Mismo orden que las tarjetas de Cupos y Matrículas: ícono, cifra
+    // grande y debajo la etiqueta. La franja de color va arriba (por CSS,
+    // ::before de .kpi-card), no como barra al pie.
     cont.innerHTML = kpis.map((k, idx) => `
       <article class="kpi-card">
         <button class="kpi-card__toggle" type="button" data-kpi-toggle="${idx}" aria-expanded="false" aria-controls="kpi-detalle-panel">
           <div class="kpi-card__icon" aria-hidden="true">${k.icon}</div>
-          <span class="kpi-card__label">${k.label}</span>
           <span class="kpi-card__value">${k.value}</span>
+          <span class="kpi-card__label">${k.label}</span>
           <span class="kpi-card__delta">${k.delta}</span>
-          <div class="kpi-card__bar"><span style="width:100%"></span></div>
           <span class="kpi-card__hint">Ver el detalle que sustenta esta cifra</span>
         </button>
       </article>
