@@ -8,6 +8,13 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Reserva siempre el ancho de la barra de scroll vertical, aunque
+       la sección activa no tenga suficiente contenido para mostrarla.
+       Sin esto, al entrar a una pestaña corta (p.ej. Zonas) la barra
+       de scroll desaparece y todo el contenido se corre a la derecha
+       esos pixeles frente a las demás pestañas. */
+    html { scrollbar-gutter: stable; }
+
     :root {
       --blue:       #1a3c6e;
       --blue-mid:   #1e4d8c;

@@ -508,7 +508,6 @@
 </head>
 <body>
 
-<div class="topbar"></div>
 <header class="masthead">
   <div class="wrap header-inner">
     <div class="header-logo"><img src="../informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
@@ -1318,7 +1317,7 @@ function buildDetail(kind){
         <button type="button" class="chip chip-warn2${zonasStateFilter==='vacio'?' active':''}" data-state="vacio" onclick="toggleZonaEstadoFilter('vacio', this)" title="Al hacer clic, se abren las 6 zonas y en cada una se muestran solo los cursos que tienen al menos un horario/grupo con 0 inscritos (aunque el curso, en conjunto, sí tenga gente en otros horarios).">🚫 Con algún grupo vacío (${fmt(cursosConGrupoVacio.size)})</button>
         <button type="button" class="chip chip-clear" onclick="clearZonaEstadoFilter()" title="Quita el filtro de estado y deja las zonas como estaban.">✕ Quitar filtro</button>
       </div>
-      <div class="table-scroll" style="max-height:420px;"><table class="data" id="zonas-detail-table">${zonasTableHtml()}</table></div>`;
+      <div class="table-scroll no-vscroll"><table class="data" id="zonas-detail-table">${zonasTableHtml()}</table></div>`;
   }
   if(kind==='espera'){
     return kdHead('Grupos con mayor lista de espera',
