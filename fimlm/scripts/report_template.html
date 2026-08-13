@@ -460,6 +460,11 @@
   tr.row-info{background:var(--blue-light);}
   tr.group-head td{background:var(--bg); font-weight:900; color:var(--blue); font-size:.82rem; padding-top:12px; padding-bottom:8px; border-bottom:1.5px solid var(--border-strong);}
   tr.group-head:first-child td{padding-top:8px;}
+  /* Departamento dentro de una zona: fondo blanco (no el gris de la
+     cabecera de zona) y letra más chica/menos gruesa, para que se lea
+     como un desglose subordinado y no como otra fila del mismo nivel. */
+  tr.group-head.dep-row td{background:var(--white); font-weight:700; font-size:.78rem; padding-top:9px; padding-bottom:7px; border-bottom:1px solid var(--border);}
+  tr.group-head.dep-row .zona-nombre{font-weight:700; color:var(--blue-mid);}
 
   .otros-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   @media (max-width:800px){ .otros-grid{grid-template-columns:1fr;} }
@@ -1148,9 +1153,10 @@ function iglesiasTableHtml(){
       const iglesias = byDep[dep].slice().sort((a,b)=> (a.mat===0?0:1) - (b.mat===0?0:1) || b.mat-a.mat || a.nom.localeCompare(b.nom,'es'));
       const abierto = expandedDeps.has(dep) || !!term;
       const nSin = nSinDe(iglesias);
-      const sangria = nivelZona ? 'padding-left:26px;' : '';
+      const sangria = nivelZona ? 'padding-left:44px;' : '';
+      const depClase = nivelZona ? ' dep-row' : '';
       const depLabel = nombreDepartamento(dep);
-      const cabecera = `<tr class="group-head clickable-row zona-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
+      const cabecera = `<tr class="group-head clickable-row zona-row${depClase}" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
           <td class="expand-cell">${abierto?'▾':'▸'}</td>
           <td style="${sangria}"><span class="zona-nombre">${depLabel}</span></td>
           <td class="num-cell">${fmt(iglesias.length)}</td>
