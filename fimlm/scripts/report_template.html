@@ -466,15 +466,7 @@
   tr.group-head.dep-row td{background:var(--white); font-weight:700; font-size:.78rem; padding-top:9px; padding-bottom:7px; border-bottom:1px solid var(--border);}
   tr.group-head.dep-row .zona-nombre{font-weight:700; color:var(--blue-mid);}
 
-  /* Estado de iglesia por color, no por badge de texto repetido: un
-     punto relleno junto al nombre. Rojo si no tiene matrícula (nada más
-     que decir, el filtro de arriba ya lo explica); verde con su cifra
-     al lado si sí tiene, porque ese número sí aporta información. */
   .igl-nombre{font-weight:600;}
-  .igl-dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:8px; vertical-align:middle;}
-  .igl-dot--sin{background:var(--red);}
-  .igl-dot--con{background:var(--green);}
-  .igl-mat-num{font-weight:800; color:var(--green); font-variant-numeric:tabular-nums;}
 
   .otros-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   @media (max-width:800px){ .otros-grid{grid-template-columns:1fr;} }
@@ -1141,8 +1133,8 @@ function iglesiasTableHtml(){
   // hay algo que decir (el número de matriculados); "sin matrícula" ya
   // lo dice el punto rojo y el propio filtro de arriba.
   const estadoDe = i => i.mat===0
-    ? `<span class="igl-dot igl-dot--sin" title="Sin personas matriculadas"></span>`
-    : `<span class="igl-dot igl-dot--con" title="${fmt(i.mat)} matriculado${i.mat===1?'':'s'}"></span><span class="igl-mat-num">${fmt(i.mat)}</span>`;
+    ? `<span class="badge crit">Sin matrícula</span>`
+    : `<span class="badge ok">${fmt(i.mat)} matriculado${i.mat===1?'':'s'}</span>`;
 
   const filaIglesia = i => {
     const key = iglesiaKey(i);
