@@ -2664,9 +2664,20 @@ function selectZona(id) {
   // La tarjeta clicada se queda fija donde está — el panel se despliega
   // suavemente debajo y es el usuario quien decide si baja a verlo, en
   // vez de saltar la vista automáticamente hacia el detalle.
+  //
+  // Reiniciar la animación quitando y volviendo a poner "open" hace que
+  // el panel pierda display:block por un instante (vía el CSS
+  // .zona-detalle{display:none} / .open{display:block}). Si el usuario
+  // ya estaba scrolleado más abajo de lo que mide la página sin ese
+  // panel, el navegador clampa el scroll a la nueva altura menor en
+  // ese instante — y no lo restaura solo al volver a mostrarlo. Se
+  // guarda y se repone el scroll alrededor de ese parpadeo para que no
+  // se pierda.
+  const scrollAntes = window.scrollY;
   detalle.classList.remove("open");
   void detalle.offsetWidth;
   detalle.classList.add("open");
+  window.scrollTo(window.scrollX, scrollAntes);
 }
 
 // La línea horizontal que conecta las columnas de cada organigrama
