@@ -122,7 +122,7 @@ html, body {
    que es el tamaño que usan el header de la app y el de Cupos y Matrículas. */
 .report-header h1 {
   font-family: var(--fuente-titulos);
-  font-weight: 800;
+  font-weight: 900; /* igual que la app y Cupos y Matrículas */
   font-size: 25px;
   margin: 0;
   line-height: 1.2;
@@ -169,7 +169,7 @@ html, body {
 
 .section__head h2 {
   font-family: var(--fuente-titulos);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 21.6px; /* = 1.35rem, igual que Cupos y Matriculas */
   color: var(--azul-marino);
   margin: 0 0 4px;
@@ -236,7 +236,7 @@ html, body {
 
 .panel__titles h2 {
   font-family: var(--fuente-titulos);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 21.6px; /* = 1.35rem, igual que Cupos y Matriculas */
   color: var(--azul-marino);
   margin: 0 0 4px;
