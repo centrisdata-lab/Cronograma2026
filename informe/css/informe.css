@@ -107,11 +107,13 @@ html, body {
 
 .report-header__brand { display: flex; flex-direction: column; gap: 4px; }
 
+/* Mismos valores que el supertítulo de la app y de Cupos y Matrículas
+   (0.7rem = 11.2px). Antes era 13px con otro espaciado y se notaba. */
 .report-header__eyebrow {
   font-family: var(--fuente-texto);
   font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 11.2px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--naranja-oscuro);
 }
@@ -129,10 +131,12 @@ html, body {
   color: var(--azul-marino);
 }
 
+/* Mismos valores que el subtítulo del header de la app (0.85rem = 13.6px,
+   peso 600). Antes era 15px con peso 700. */
 .report-header__subtitle {
-  margin: 2px 0 0;
-  font-weight: 700;
-  font-size: 15px;
+  margin: 4px 0 0;
+  font-weight: 600;
+  font-size: 13.6px;
   color: var(--texto-secundario);
 }
 
@@ -154,12 +158,16 @@ html, body {
   font-size: 12.5px;
   font-weight: 600;
 }
-.pill strong { font-weight: 700; color: var(--texto-secundario); }
+/* Mismo tratamiento que .meta-row strong de Cupos y Matrículas: la
+   etiqueta ("Corte:", "Cobertura:") va en azul y más marcada que el valor. */
+.pill strong { font-weight: 800; color: var(--azul-marino); }
+/* El valor de cada metadato va en el gris medio, igual que la fila de
+   metadatos de Cupos y Matrículas; antes usaba el gris más claro. */
 .pill--light {
-  color: var(--texto-muted);
+  color: var(--texto-secundario);
 }
 .pill--accent {
-  color: var(--texto-muted);
+  color: var(--texto-secundario);
 }
 
 /* ============================================================
