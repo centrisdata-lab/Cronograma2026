@@ -40,24 +40,30 @@
     .topbar { background: var(--blue); height: 5px; }
 
     /* ── HEADER ── */
+    /* Mismo tratamiento que el header de los informes embebidos
+       (informe/ y fimlm/), para que al cambiar de pestaña el bloque
+       del título no cambie de aspecto ni de posición. */
     header {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
-      padding: 18px 32px;
+      padding: 20px 32px;
     }
-    .header-inner { display: flex; align-items: center; gap: 16px; }
+    .header-inner { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
     .header-logo {
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .header-logo img { height: 56px; width: auto; display: block; }
-    .header-text { flex: 1; }
+    .header-logo img { height: 58px; width: auto; display: block; }
+    .header-text { flex: 1; min-width: 0; }
     .header-text .supertitle {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--orange); margin-bottom: 2px;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--orange-dk, var(--orange)); margin-bottom: 3px;
     }
-    .header-text h1 { font-size: 1.4rem; font-weight: 900; color: var(--blue); }
-    .header-text p  { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+    .header-text h1 {
+      font-size: clamp(1.5rem, 2.6vw, 2.05rem); font-weight: 900;
+      color: var(--blue); line-height: 1.18;
+    }
+    .header-text p  { font-size: 0.9rem; color: var(--muted); font-weight: 600; margin-top: 8px; }
 
     /* ── LEGEND ── */
     .legend {
@@ -722,10 +728,10 @@
       .dashboard { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      header { padding: 12px 14px; }
-      .header-logo img { height: 40px; }
-      .header-text h1 { font-size: 1.1rem; }
-      .header-text p  { font-size: 0.72rem; }
+      header { padding: 14px 16px; }
+      .header-logo img { height: 44px; }
+      .header-text h1 { font-size: 1.35rem; line-height: 1.22; }
+      .header-text p  { font-size: 0.8rem; margin-top: 6px; }
       main   { padding: 14px 12px 40px; }
       .legend { padding: 8px 12px; }
       .tabs { padding: 0 8px; }
@@ -739,6 +745,11 @@
       .cards-grid { grid-template-columns: 1fr; }
     }
     /* ── EDIT MODE ── */
+    /* El botón de entrar al modo edición está oculto por pedido del
+       usuario (2026-08-13). No se elimina: es la única forma de entrar
+       a ese modo y el resto del código lo referencia, así que basta
+       quitar este display:none para volver a mostrarlo. */
+    .btn-edit-mode { display: none !important; }
     .btn-edit-mode {
       margin-left: auto; padding: 9px 20px; border-radius: 20px;
       border: 2px solid var(--border); background: var(--white);
@@ -860,18 +871,6 @@
 
 <div class="topbar"></div>
 
-<header id="app-header">
-  <div class="header-inner">
-    <div class="header-logo"><img src="informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
-    <div class="header-text">
-      <div class="supertitle">FIMLM · Campus Virtual</div>
-      <h1>Gestión Campus 2026</h1>
-      <p>Ruta de Actividades Pedagógicas</p>
-    </div>
-    <button class="btn-edit-mode" id="btn-edit-mode" onclick="toggleEditMode()">✏️ Editar contenido</button>
-  </div>
-</header>
-
 <!-- Barra de edición -->
 <div class="edit-bar" id="edit-bar">
   <span>✏️ MODO EDICIÓN ACTIVO</span>
@@ -915,6 +914,18 @@
   <button class="tab-btn" onclick="switchTab('informe')">📊 Informe Nacional</button>
   <button class="tab-btn" onclick="switchTab('matriculas')">🎯 Cupos y Matrículas</button>
 </nav>
+
+<header id="app-header">
+  <div class="header-inner">
+    <div class="header-logo"><img src="informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
+    <div class="header-text">
+      <div class="supertitle">FIMLM · Campus Virtual</div>
+      <h1>Gestión Campus 2026</h1>
+      <p>Ruta de Actividades Pedagógicas</p>
+    </div>
+    <button class="btn-edit-mode" id="btn-edit-mode" onclick="toggleEditMode()">✏️ Editar contenido</button>
+  </div>
+</header>
 
 
 <!-- MODAL -->
@@ -3131,6 +3142,9 @@ function switchTab(name, btnEl) {
   const activeBtn = btnEl || (typeof event !== "undefined" && event.currentTarget) || document.querySelector(`.tab-btn[onclick*="'${name}'"]`);
   if (activeBtn) activeBtn.classList.add("active");
   currentTab = name;
+  // Informe Nacional y Cupos y Matrículas son iframes que traen su propio
+  // header (mismo diseño que el de la app), así que el de la app se oculta
+  // para no mostrar dos títulos seguidos.
   const header = document.getElementById("app-header");
   if (header) header.style.display = (name === "informe" || name === "matriculas") ? "none" : "";
   if (name === "equipo") renderEquipo();
