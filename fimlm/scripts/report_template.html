@@ -466,6 +466,16 @@
   tr.group-head.dep-row td{background:var(--white); font-weight:700; font-size:.78rem; padding-top:9px; padding-bottom:7px; border-bottom:1px solid var(--border);}
   tr.group-head.dep-row .zona-nombre{font-weight:700; color:var(--blue-mid);}
 
+  /* Estado de iglesia por color, no por badge de texto repetido: un
+     punto relleno junto al nombre. Rojo si no tiene matrícula (nada más
+     que decir, el filtro de arriba ya lo explica); verde con su cifra
+     al lado si sí tiene, porque ese número sí aporta información. */
+  .igl-nombre{font-weight:600;}
+  .igl-dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:8px; vertical-align:middle;}
+  .igl-dot--sin{background:var(--red);}
+  .igl-dot--con{background:var(--green);}
+  .igl-mat-num{font-weight:800; color:var(--green); font-variant-numeric:tabular-nums;}
+
   .otros-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   @media (max-width:800px){ .otros-grid{grid-template-columns:1fr;} }
   .otros-group h4{font-size:.88rem; color:var(--blue); margin-bottom:12px;}
@@ -1123,19 +1133,26 @@ function iglesiasTableHtml(){
   // Se ordena por cuántas iglesias sin matrícula tiene cada grupo (lo más
   // urgente de gestionar primero), y dentro del grupo, sin matrícula antes
   // que con matrícula y luego por nombre.
-  const badgeDe = i => i.mat===0
-    ? `<span class="badge crit">Sin personas matriculadas</span>`
-    : `<span class="badge ok">${fmt(i.mat)} matriculado${i.mat===1?'':'s'}</span>`;
+  // Indentación progresiva por nivel jerárquico: zona 0px, departamento
+  // 22px, iglesia 44px — cada nivel se nota más adentro que su padre.
+  const IND_DEP = 22, IND_IGL = 44;
+  // El estado de cada iglesia se lee por color (punto rojo/verde), sin
+  // repetir un badge de texto en cada fila. Solo se imprime texto cuando
+  // hay algo que decir (el número de matriculados); "sin matrícula" ya
+  // lo dice el punto rojo y el propio filtro de arriba.
+  const estadoDe = i => i.mat===0
+    ? `<span class="igl-dot igl-dot--sin" title="Sin personas matriculadas"></span>`
+    : `<span class="igl-dot igl-dot--con" title="${fmt(i.mat)} matriculado${i.mat===1?'':'s'}"></span><span class="igl-mat-num">${fmt(i.mat)}</span>`;
 
   const filaIglesia = i => {
     const key = iglesiaKey(i);
     const abierta = expandedIglesias.has(key);
     const cab = `<tr class="clickable-row igl-row" onclick="toggleIglesiaRow('${key.replace(/'/g,"\\'")}')" title="Ver el detalle de ${i.nom}">
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
-        <td style="padding-left:38px;">${i.nom}</td>
-        <td class="num-cell" colspan="3">${badgeDe(i)}</td>
+        <td style="padding-left:${IND_IGL}px;"><span class="igl-nombre">${i.nom}</span></td>
+        <td class="num-cell" colspan="3">${estadoDe(i)}</td>
       </tr>`;
-    const det = abierta ? `<tr class="curso-groups-row"><td colspan="5"><div class="groups-inline" style="padding-left:50px;">
+    const det = abierta ? `<tr class="curso-groups-row"><td colspan="5"><div class="groups-inline" style="padding-left:${IND_IGL+12}px;">
         <div style="font-size:.8rem; font-weight:600; color:var(--muted); line-height:1.7;">
           <b style="color:var(--text);">Departamento:</b> ${nombreDepartamento(i.dep)}<br>
           <b style="color:var(--text);">Zona:</b> ${(metaDeZona(i.zona)||{}).name || i.zona || 'Sin zona asignada'}<br>
@@ -1153,7 +1170,7 @@ function iglesiasTableHtml(){
       const iglesias = byDep[dep].slice().sort((a,b)=> (a.mat===0?0:1) - (b.mat===0?0:1) || b.mat-a.mat || a.nom.localeCompare(b.nom,'es'));
       const abierto = expandedDeps.has(dep) || !!term;
       const nSin = nSinDe(iglesias);
-      const sangria = nivelZona ? 'padding-left:44px;' : '';
+      const sangria = nivelZona ? `padding-left:${IND_DEP}px;` : '';
       const depClase = nivelZona ? ' dep-row' : '';
       const depLabel = nombreDepartamento(dep);
       const cabecera = `<tr class="group-head clickable-row zona-row${depClase}" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
