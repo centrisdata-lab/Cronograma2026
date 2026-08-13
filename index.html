@@ -60,8 +60,12 @@
        distancia del borde en todas las secciones. */
     .header-inner {
       max-width: 1180px; margin: 0 auto;
-      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap;
     }
+    /* El logo se alinea con las 2 primeras líneas del bloque de texto
+       (eyebrow + título), que son las que existen siempre. Si se centrara
+       contra la altura total del bloque, su posición cambiaría según si
+       la sección tiene o no un subtítulo visible en la tercera línea. */
     .header-logo {
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;

@@ -95,7 +95,10 @@ html, body {
   max-width: 1180px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  /* flex-start, no center: así el logo queda anclado a la altura del
+     eyebrow + título (las 2 líneas que siempre existen) y no se mueve
+     según si el subtítulo de la sección ocupa una tercera línea o no. */
+  align-items: flex-start;
   gap: 20px;
   flex-wrap: wrap;
 }

@@ -44,7 +44,7 @@
   header.masthead{background:var(--white); border-bottom:3px solid var(--orange); padding:14px 28px;}
   header.masthead > .wrap{padding-left:0; padding-right:0;}
   @media (max-width:600px){ header.masthead{padding:14px 16px;} }
-  .header-inner{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .header-inner{display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap;}
   .header-logo{
     flex-shrink:0; display:flex; align-items:center; justify-content:center;
   }
@@ -336,6 +336,14 @@
   tr.clickable-row:hover{background:var(--blue-light);}
   tr.clickable-row:hover td:first-child{color:var(--blue-mid); text-decoration:underline;}
 
+  .zona-nombre{font-weight:800; color:var(--text);}
+  tr.zona-row{ transition:background-color .15s, box-shadow .15s; }
+  tr.zona-row:hover{
+    background:var(--blue-light);
+    box-shadow:0 4px 12px -4px rgba(26,60,110,0.35), inset 3px 0 0 var(--blue-mid);
+  }
+  tr.zona-row:hover .zona-nombre{color:var(--blue-mid);}
+
   .context-divider{
     display:flex; align-items:baseline; gap:10px; margin:22px 0 14px; padding-top:6px;
     border-top:1.5px dashed var(--border);
@@ -512,7 +520,7 @@
   <div class="wrap header-inner">
     <div class="header-logo"><img src="../informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
     <div class="header-text">
-      <div class="supertitle">FIMLM · Campus 360 Live</div>
+      <div class="supertitle">FIMLM · Campus Virtual</div>
       <h1 class="title">Informe y gestión de alertas — Colombia</h1>
       <p class="subtitle" hidden>Lectura de las alertas que arroja el cruce de datos de zona, curso y grupo (con horario) del Periodo 1&nbsp;-&nbsp;2026, Convocatoria Mundial. Cada alerta explica qué muestra el dato, por qué importa y qué acción se desprende.</p>
     </div>
@@ -1236,9 +1244,9 @@ function zonasTableHtml(){
         <span style="color:var(--blue-mid)">${zSaturado} saturados</span>
         <span style="color:var(--red)">${zVacio} con algún grupo vacío</span>
       </span>`;
-    let row = `<tr class="clickable-row" onclick="toggleZonaCursos('${z.code}')" title="Ver los cursos de ${z.name}">
+    let row = `<tr class="clickable-row zona-row" onclick="toggleZonaCursos('${z.code}')" title="Ver los cursos de ${z.name}">
         <td class="expand-cell">${isOpen?'▾':'▸'}</td>
-        <td><div style="display:flex; align-items:center; gap:10px;"><span class="zone-icon-badge" style="background:${z.color}">${z.icon}</span><span>${z.name}${zoneFilterBadge}<span class="sub" style="display:block;font-weight:600;color:var(--faint);font-size:.72rem;">${fmt(z.cur)} cursos · ${fmt(z.grp)} grupos · ${zoneStatusLine}</span></span></div></td>
+        <td><div style="display:flex; align-items:center; gap:10px;"><span class="zone-icon-badge" style="background:${z.color}">${z.icon}</span><span><span class="zona-nombre">${z.name}</span>${zoneFilterBadge}<span class="sub" style="display:block;font-weight:600;color:var(--faint);font-size:.72rem;">${fmt(z.cur)} cursos · ${fmt(z.grp)} grupos · ${zoneStatusLine}</span></span></div></td>
         <td class="num-cell">${fmt(z.mat)}</td>
         <td class="num-cell">${fmt(z.cap)}</td>
         <td class="num-cell"><div class="bar-cell" title="${fmt(z.mat)} / ${fmt(z.cap)} matriculados/capacidad"><div class="track"><div class="fill" style="width:${z.ocu}%"></div></div><span class="pct">${pct(z.ocu)}</span></div></td>
