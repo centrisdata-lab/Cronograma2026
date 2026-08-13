@@ -1,0 +1,65 @@
+{
+  "_comentario": "FUENTE UNICA de las 6 zonas de Colombia y sus departamentos. La leen: informe/js/datos.js (via data/zonas.js), index.html (via data/zonas.js), fimlm/scripts/extraer_campus360.py y fimlm/scripts/build_report.ps1. Al editar este archivo hay que regenerar data/zonas.js con: py scripts/generar_zonas_js.py",
+  "_nombreDashboard": "La clave que envia el dashboard FIMLM para cada zona; no se cambia, es como llega el dato de origen.",
+  "zonas": [
+    {
+      "id": "bogota-cundinamarca",
+      "nombre": "Bogotá & Cundinamarca",
+      "emoji": "🏙️",
+      "color": "#1a3c6e",
+      "departamentos": ["Bogotá", "Cundinamarca"],
+      "codigoFimlm": "BOG",
+      "nombreDashboard": "ZONA BOGOTÁ & CUNDINAMARCA 2026"
+    },
+    {
+      "id": "caribe",
+      "nombre": "Zona Caribe",
+      "emoji": "🌊",
+      "color": "#0891b2",
+      "departamentos": ["Atlántico", "La Guajira", "Córdoba", "Sucre", "San Andrés", "Bolívar", "Magdalena"],
+      "codigoFimlm": "CAR",
+      "nombreDashboard": "ZONA CARIBE 2026"
+    },
+    {
+      "id": "antioquia-eje-cafetero",
+      "nombre": "Antioquia & Eje Cafetero",
+      "emoji": "☕",
+      "color": "#7c3aed",
+      "departamentos": ["Antioquia", "Urabá", "Caldas", "Risaralda", "Quindío"],
+      "codigoFimlm": "ANT",
+      "nombreDashboard": "ZONA ANTIOQUIA EJE CAFETERO 2026"
+    },
+    {
+      "id": "pacifico",
+      "nombre": "Zona Pacífico",
+      "emoji": "🌿",
+      "color": "#059669",
+      "departamentos": ["Valle del Cauca", "Cauca", "Chocó", "Nariño", "Putumayo"],
+      "codigoFimlm": "PAC",
+      "nombreDashboard": "ZONA PACIFICO 2026"
+    },
+    {
+      "id": "sur-llanos",
+      "nombre": "Zona Sur & Llanos",
+      "emoji": "🌾",
+      "color": "#d97706",
+      "departamentos": ["Meta", "Arauca", "Casanare", "Guainía", "Guaviare", "Vaupés", "Vichada", "Amazonas", "Caquetá", "Huila", "Tolima"],
+      "codigoFimlm": "SUR",
+      "nombreDashboard": "ZONA SUR Y LLANOS 2026"
+    },
+    {
+      "id": "santanderes-boyaca",
+      "nombre": "Santanderes, Boyacá y Cesar",
+      "emoji": "⛰️",
+      "color": "#dc2626",
+      "departamentos": ["Santander", "Norte de Santander", "Boyacá", "Cesar"],
+      "codigoFimlm": "SAN",
+      "nombreDashboard": "ZONA SANTANDERES & BOYACA 2026"
+    }
+  ],
+  "_aliasDepartamento": "Variantes con las que el dashboard FIMLM nombra un mismo departamento. La clave es la variante; el valor, el departamento tal como aparece arriba.",
+  "aliasDepartamento": {
+    "Archipielago de San Andres": "San Andrés",
+    "Archipielago de San Andres, Providencia y Santa Catalina": "San Andrés"
+  }
+}

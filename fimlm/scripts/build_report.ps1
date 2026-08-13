@@ -18,38 +18,58 @@ foreach ($p in @($dataPath, $templatePath)) {
   if (-not (Test-Path $p)) { throw "No se encontró el archivo esperado: $p" }
 }
 
-# Nombres de zona construidos con códigos de carácter (no tildes literales en el
-# archivo .ps1): así el texto no se corrompe si el script se guarda/edita sin BOM UTF-8,
-# algo que ya pasó una vez (PowerShell 5.1 sin BOM lee el .ps1 con el codepage ANSI).
-$iAcute = [char]0x00ED  # í
-$aAcute = [char]0x00E1  # á
-$zoneNames = @{
-  "ANT"="Antioquia Eje Cafetero"; "SUR"="Sur y Llanos"; "BOG"="Bogot$aAcute & Cundinamarca"
-  "CAR"="Caribe"; "PAC"="Pac${iAcute}fico"; "SAN"="Santanderes, Boyac$aAcute y Cesar"
-}
-# Iconos y colores tomados de la pagina de referencia (DISEÑOREFERENCIA.html, arreglo "zonas").
-$varSel16 = [char]0xFE0F  # variation selector (fuerza estilo emoji a color)
-$zoneIcon = @{
-  "ANT" = [char]0x2615                                  # ☕
-  "SUR" = [char]::ConvertFromUtf32(0x1F33E)              # 🌾
-  "BOG" = [char]::ConvertFromUtf32(0x1F3D9) + $varSel16  # 🏙️
-  "CAR" = [char]::ConvertFromUtf32(0x1F30A)              # 🌊
-  "PAC" = [char]::ConvertFromUtf32(0x1F33F)              # 🌿
-  "SAN" = [char]0x26F0 + $varSel16                       # ⛰️
-}
-$zoneColor = @{ "ANT"="#7c3aed"; "SUR"="#d97706"; "BOG"="#1a3c6e"; "CAR"="#0891b2"; "PAC"="#059669"; "SAN"="#dc2626" }
+# Nombre, icono y color de cada zona salen de la fuente unica compartida con la
+# app y el Informe Nacional (data/zonas.json en la raiz del repo). Antes estaban
+# escritos aqui a mano y se desincronizaban con el resto de la app.
+$zonasJsonPath = Join-Path (Split-Path -Parent $root) "data\zonas.json"
+if (-not (Test-Path $zonasJsonPath)) { throw "No se encontró la fuente de zonas: $zonasJsonPath" }
+$zonasCanonicas = (Get-Content -Path $zonasJsonPath -Raw -Encoding UTF8 | ConvertFrom-Json).zonas
 
-function Get-ZoneCode([string]$raw) {
+$zoneNames = @{}
+$zoneIcon  = @{}
+$zoneColor = @{}
+foreach ($z in $zonasCanonicas) {
+  $zoneNames[$z.codigoFimlm] = $z.nombre
+  $zoneIcon[$z.codigoFimlm]  = $z.emoji
+  $zoneColor[$z.codigoFimlm] = $z.color
+}
+
+function Normalize-Key([string]$raw) {
   # Comparación robusta ante tildes/codificación: quita diacríticos y deja solo A-Z0-9.
   $formD = $raw.Normalize([System.Text.NormalizationForm]::FormD)
   $stripped = -join ($formD.ToCharArray() | Where-Object { [System.Globalization.CharUnicodeInfo]::GetUnicodeCategory($_) -ne [System.Globalization.UnicodeCategory]::NonSpacingMark })
-  $key = ($stripped.ToUpperInvariant() -replace '[^A-Z0-9]', '')
-  if ($key -like '*ANTIOQUIA*') { return 'ANT' }
-  if ($key -like '*SURYLLANOS*' -or $key -like '*SURLLANOS*') { return 'SUR' }
-  if ($key -like '*BOGOTA*' -or $key -like '*CUNDINAMARCA*') { return 'BOG' }
-  if ($key -like '*CARIBE*') { return 'CAR' }
-  if ($key -like '*PACIFICO*') { return 'PAC' }
-  if ($key -like '*SANTANDERES*' -or $key -like '*BOYACA*') { return 'SAN' }
+  return ($stripped.ToUpperInvariant() -replace '[^A-Z0-9]', '')
+}
+
+# Palabras que identifican a cada zona, derivadas de su nombre y sus
+# departamentos en data/zonas.json. Sirven para reconocer la zona sin importar
+# como venga escrita en el CSV (con o sin tildes, con "Zona" adelante, con el
+# nombre anterior de una zona que se renombro, etc.).
+$zonePatterns = @{}
+foreach ($z in $zonasCanonicas) {
+  $claves = New-Object System.Collections.Generic.List[string]
+  # Del nombre: cada palabra significativa (descarta "Zona", "y", "&", "de"...).
+  foreach ($palabra in ($z.nombre -split '[\s&,]+')) {
+    $k = Normalize-Key $palabra
+    if ($k.Length -ge 4 -and $k -ne 'ZONA') { $claves.Add($k) }
+  }
+  # De los departamentos: los nombres compuestos ayudan a desambiguar.
+  foreach ($dep in $z.departamentos) {
+    $k = Normalize-Key $dep
+    if ($k.Length -ge 5) { $claves.Add($k) }
+  }
+  $zonePatterns[$z.codigoFimlm] = $claves
+}
+
+function Get-ZoneCode([string]$raw) {
+  $key = Normalize-Key $raw
+  if (-not $key) { return $null }
+  # Primero, coincidencia por nombre/departamento propio de cada zona.
+  foreach ($codigo in $zonePatterns.Keys) {
+    foreach ($patron in $zonePatterns[$codigo]) {
+      if ($key -like "*$patron*") { return $codigo }
+    }
+  }
   return $null
 }
 
@@ -173,12 +193,22 @@ $novedades = if ($boletines.Count -gt 0) { @($boletines[0].novedades) } else { @
 # caso se deja vacia para que el informe agrupe solo por departamento, en vez
 # de inventar una zona falsa. Asi una corrida automatica con el CSV viejo no
 # rompe el informe mientras se despliega el cambio.
+# Normaliza el nombre de zona del CSV al nombre canonico de data/zonas.json.
+# El CSV puede traer una variante anterior ("Caribe" en vez de "Zona Caribe",
+# "Santanderes & Boyaca" antes del renombre); Get-ZoneCode las reconoce todas,
+# y asi el informe recibe siempre el nombre actual y no tiene que adivinar.
+function Get-ZonaCanonica([string]$raw) {
+  if (-not $raw -or $raw -like "Todas*") { return "" }
+  $codigo = Get-ZoneCode $raw
+  if ($codigo -and $zoneNames.ContainsKey($codigo)) { return $zoneNames[$codigo] }
+  return $raw
+}
+
 $iglesiasRaw = $iglesiasLines | ConvertFrom-Csv
 $iglesias = @()
 foreach ($i in $iglesiasRaw) {
-  $zonaIgl = if ($i.Zona -and $i.Zona -notlike "Todas*") { $i.Zona } else { "" }
   $iglesias += [ordered]@{
-    zona=$zonaIgl; dep=$i.Departamento; nom=$i.Iglesia; mat=[int]$i.Matriculados
+    zona=(Get-ZonaCanonica $i.Zona); dep=$i.Departamento; nom=$i.Iglesia; mat=[int]$i.Matriculados
   }
 }
 
@@ -198,7 +228,7 @@ $iglesiasInsc = @()
 if ($iglInscLines.Count -gt 0) {
   $iglInscRaw = $iglInscLines | ConvertFrom-Csv
   foreach ($i in $iglInscRaw) {
-    $zonaInsc = if ($i.PSObject.Properties.Name -contains "Zona" -and $i.Zona) { $i.Zona } else { "" }
+    $zonaInsc = if ($i.PSObject.Properties.Name -contains "Zona") { Get-ZonaCanonica $i.Zona } else { "" }
     $iglesiasInsc += [ordered]@{ zona=$zonaInsc; dep=$i.Departamento; nom=$i.Iglesia; ins=[int]$i.Inscritos }
   }
 }

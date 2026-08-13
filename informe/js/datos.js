@@ -37,18 +37,18 @@ const ROLES = [
   { key: "enlaceSoporteTecnologico", label: "Enlace soporte tecnológico" },
 ];
 
-/* Cada zona agrupa: departamentos que la componen, personal por
-   rol (con total), oferta académica (cursos, grupos, cupos),
-   datos de comunidad (iglesias, creyentes) e informadores
-   inscritos al proyecto. Para agregar un departamento nuevo a
-   una zona, solo hay que añadirlo al arreglo "departamentos". */
-const ZONAS = [
+/* Cada zona agrupa: personal por rol (con total), oferta académica
+   (cursos, grupos, cupos), datos de comunidad (iglesias, creyentes)
+   e informadores inscritos al proyecto.
+
+   El nombre, emoji, color y los departamentos de cada zona NO se
+   definen aquí: vienen de data/zonas.json (fuente única compartida
+   con la app y con el informe de Cupos y Matrículas) y se fusionan
+   más abajo por "id". Para cambiar a qué zona pertenece un
+   departamento, o renombrar una zona, se edita ese archivo. */
+const ZONAS_DATOS = [
   {
     id: "bogota-cundinamarca",
-    nombre: "Bogotá & Cundinamarca",
-    emoji: "🏙️",
-    departamentos: ["Bogotá", "Cundinamarca"],
-    color: "#1B4DA0",
     personal: {
       profesores: 238, tutores: 158, administradores: 74, coordinadora: 1,
       enlaceProfesores: 1, enlaceTutores: 0,
@@ -69,10 +69,6 @@ const ZONAS = [
   },
   {
     id: "caribe",
-    nombre: "Zona Caribe",
-    emoji: "🌊",
-    departamentos: ["Atlántico", "La Guajira", "Córdoba", "Sucre", "San Andrés", "Bolívar", "Magdalena"],
-    color: "#0090A0",
     personal: {
       profesores: 74, tutores: 59, administradores: 34, coordinadora: 0,
       enlaceProfesores: 3, enlaceTutores: 0,
@@ -91,10 +87,6 @@ const ZONAS = [
   },
   {
     id: "antioquia-eje-cafetero",
-    nombre: "Antioquia & Eje Cafetero",
-    emoji: "☕",
-    departamentos: ["Antioquia", "Urabá", "Caldas", "Risaralda", "Quindío"],
-    color: "#D9791C",
     personal: {
       profesores: 180, tutores: 108, administradores: 9, coordinadora: 0,
       enlaceProfesores: 0, enlaceTutores: 0,
@@ -113,10 +105,6 @@ const ZONAS = [
   },
   {
     id: "pacifico",
-    nombre: "Zona Pacífico",
-    emoji: "🌿",
-    departamentos: ["Valle del Cauca", "Cauca", "Chocó", "Nariño", "Putumayo"],
-    color: "#1A9E6E",
     personal: {
       profesores: 172, tutores: 193, administradores: 45, coordinadora: 1,
       enlaceProfesores: 16, enlaceTutores: 1,
@@ -135,10 +123,6 @@ const ZONAS = [
   },
   {
     id: "sur-llanos",
-    nombre: "Zona Sur & Llanos",
-    emoji: "🌾",
-    departamentos: ["Meta", "Arauca", "Casanare", "Guainía", "Guaviare", "Vaupés", "Vichada", "Amazonas", "Caquetá", "Huila", "Tolima"],
-    color: "#4A3AA7",
     personal: {
       profesores: 157, tutores: 110, administradores: 23, coordinadora: 0,
       enlaceProfesores: 4, enlaceTutores: 0,
@@ -157,10 +141,6 @@ const ZONAS = [
   },
   {
     id: "santanderes-boyaca",
-    nombre: "Santanderes, Boyacá y Cesar",
-    emoji: "⛰️",
-    departamentos: ["Santander", "Norte de Santander", "Boyacá", "Cesar"],
-    color: "#C0392B",
     personal: {
       profesores: 36, tutores: 40, administradores: 8, coordinadora: 0,
       enlaceProfesores: 1, enlaceTutores: 0,
@@ -178,6 +158,25 @@ const ZONAS = [
     enlaceDelegacion: 4,
   },
 ];
+
+/* Fusiona la identidad de cada zona (nombre, emoji, color y
+   departamentos, definidos una sola vez en data/zonas.json) con los
+   datos operativos de arriba. El orden lo marca la fuente única, para
+   que todas las vistas listen las zonas igual. */
+const ZONAS = ZONAS_CANONICAS.map(canonica => {
+  const datos = ZONAS_DATOS.find(d => d.id === canonica.id);
+  if (!datos) {
+    console.warn(`Zona "${canonica.id}" está en data/zonas.json pero no tiene datos en datos.js`);
+  }
+  return {
+    ...datos,
+    id: canonica.id,
+    nombre: canonica.nombre,
+    emoji: canonica.emoji,
+    color: canonica.color,
+    departamentos: canonica.departamentos,
+  };
+});
 
 /* Informadores inscritos sin departamento asignado (no se
    reparten a ninguna zona; se suman aparte al total nacional). */

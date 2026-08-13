@@ -30,48 +30,17 @@ PREV_CSV = ROOT / "data" / "FIMLM_Colombia_6_zonas_anterior.csv"
 BOLETINES_DIR = ROOT / "data" / "boletines"
 DEBUG_URL = "http://localhost:9222"
 
-ZONA_MAP = {
-    "ZONA ANTIOQUIA EJE CAFETERO 2026": "Antioquia Eje Cafetero",
-    "ZONA SUR Y LLANOS 2026": "Sur y Llanos",
-    "ZONA BOGOTÁ & CUNDINAMARCA 2026": "Bogota & Cundinamarca",
-    "ZONA CARIBE 2026": "Caribe",
-    "ZONA PACIFICO 2026": "Pacifico",
-    # La clave es el nombre tal como lo envia el dashboard (no se toca);
-    # el valor es el nombre con el que la zona se muestra en el informe.
-    "ZONA SANTANDERES & BOYACA 2026": "Santanderes, Boyaca y Cesar",
-}
-
 EDAD_LABELS = {18: "18-25", 26: "26-35", 36: "36-45", 46: "46-60", 61: "61+"}
 
-# Departamentos que componen cada zona. El dashboard entrega las iglesias
-# (secciones 4 y 6) agrupadas solo por departamento, sin decir a que zona
-# pertenecen; esta tabla es la que permite agruparlas por zona en el informe.
-# La fuente es la misma que usa el Informe Nacional (informe/js/datos.js) —
-# si alli se agrega un departamento a una zona, hay que reflejarlo aqui.
-ZONA_POR_DEPARTAMENTO = {
-    "Bogota & Cundinamarca": ["Bogota", "Cundinamarca"],
-    "Caribe": [
-        "Atlantico", "La Guajira", "Cordoba", "Sucre", "San Andres",
-        # El dashboard nombra este departamento de varias formas; se listan
-        # las conocidas y ademas zona_de_departamento() cae a una comparacion
-        # por prefijo, para que una variante nueva tampoco quede sin zona.
-        "Archipielago de San Andres",
-        "Archipielago de San Andres, Providencia y Santa Catalina",
-        "Bolivar", "Magdalena",
-    ],
-    "Antioquia Eje Cafetero": ["Antioquia", "Uraba", "Caldas", "Risaralda", "Quindio"],
-    "Pacifico": ["Valle del Cauca", "Cauca", "Choco", "Narino", "Putumayo"],
-    "Sur y Llanos": [
-        "Meta", "Arauca", "Casanare", "Guainia", "Guaviare", "Vaupes",
-        "Vichada", "Amazonas", "Caqueta", "Huila", "Tolima",
-    ],
-    "Santanderes, Boyaca y Cesar": ["Santander", "Norte de Santander", "Boyaca", "Cesar"],
-}
-
-# Zona a usar cuando un departamento no esta en la tabla de arriba. No deberia
+# Zona a usar cuando un departamento no esta en la tabla de zonas. No deberia
 # pasar, pero si el dashboard empieza a reportar un departamento nuevo es
 # preferible mostrarlo agrupado aparte que perderlo o romper el informe.
 ZONA_DESCONOCIDA = "Sin zona asignada"
+
+# Fuente unica de zonas y departamentos, compartida con la app y el Informe
+# Nacional. Si hay que corregir a que zona pertenece un departamento, se edita
+# alli y no aqui.
+ZONAS_JSON = ROOT.parent / "data" / "zonas.json"
 
 
 def strip_accents(s):
@@ -82,6 +51,32 @@ def strip_accents(s):
     return stripped.replace("Ñ", "N").replace("ñ", "n")
 
 
+def _cargar_zonas():
+    """Lee data/zonas.json y arma las tablas que usa el resto del script.
+
+    Los nombres se guardan sin tildes porque asi es como viajan por todo el
+    pipeline de FIMLM (ver strip_accents): el CSV se escribe sin ellas para
+    que no se corrompa segun la codificacion con que se abra."""
+    datos = json.loads(ZONAS_JSON.read_text(encoding="utf-8"))
+    zona_map = {}
+    dep_a_zona = {}
+    for z in datos["zonas"]:
+        nombre = strip_accents(z["nombre"])
+        zona_map[z["nombreDashboard"]] = nombre
+        for dep in z["departamentos"]:
+            dep_a_zona[strip_accents(dep)] = nombre
+    # Variantes con las que el dashboard nombra un mismo departamento.
+    for variante, real in datos.get("aliasDepartamento", {}).items():
+        zona = dep_a_zona.get(strip_accents(real))
+        if zona:
+            dep_a_zona[strip_accents(variante)] = zona
+    return zona_map, dep_a_zona
+
+
+# ZONA_MAP: nombre tal como lo envia el dashboard -> nombre a mostrar.
+ZONA_MAP, _DEP_A_ZONA_RAW = _cargar_zonas()
+
+
 def _dep_key(nombre):
     """Clave normalizada para comparar departamentos sin que estorben
     tildes, mayusculas ni signos: el dashboard manda 'Narino'/'Boyaca'
@@ -89,11 +84,7 @@ def _dep_key(nombre):
     return "".join(c for c in strip_accents(nombre or "").lower() if c.isalnum())
 
 
-_DEP_A_ZONA = {
-    _dep_key(dep): zona
-    for zona, deps in ZONA_POR_DEPARTAMENTO.items()
-    for dep in deps
-}
+_DEP_A_ZONA = {_dep_key(dep): zona for dep, zona in _DEP_A_ZONA_RAW.items()}
 
 
 def zona_de_departamento(departamento):

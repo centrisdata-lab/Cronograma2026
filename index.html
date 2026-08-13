@@ -1500,6 +1500,11 @@
   <iframe src="fimlm/index.html?v=20260808a" title="Informe y gestión de alertas — Colombia" style="width:100%;height:calc(100vh - 140px);border:0;display:block;"></iframe>
 </div>
 
+<!-- Fuente única de zonas y departamentos (generada desde data/zonas.json
+     con: py scripts/generar_zonas_js.py). Debe cargarse antes del script
+     de abajo, que la usa para armar el array "zonas". -->
+<script src="data/zonas.js?v=20260813a"></script>
+
 <script>
 // ── Data ─────────────────────────────────────────────────────────────────────
 const _t = new Date();
@@ -2415,10 +2420,11 @@ function cerrarContacto() {
 }
 
 // ── ZONAS DATA ────────────────────────────────────────────────────────────────
-const zonas = [
+// Equipo de cada zona. La identidad (nombre, emoji, color, departamentos) se
+// fusiona más abajo desde ZONAS_CANONICAS (data/zonas.json).
+const zonasEquipo = [
   {
-    id: "bogota", nombre: "Bogotá / Cundinamarca", emoji: "🏙️", color: "#1a3c6e",
-    departamentos: "Bogotá D.C. · Cundinamarca",
+    id: "bogota", idCanonico: "bogota-cundinamarca",
     equipo: [
       { nombre: "Jennifer Gálvez", rol: "Coordinadora Bogotá-Cundinamarca", correo: "", cel: "" },
       { nombre: "Diana Paola Garnica", rol: "Coordinadora Bogotá-Cundinamarca", correo: "", cel: "" },
@@ -2435,8 +2441,7 @@ const zonas = [
     ]
   },
   {
-    id: "caribe", nombre: "Zona Caribe", emoji: "🌊", color: "#0891b2",
-    departamentos: "Atlántico · Guajira · Córdoba · Sucre · San Andrés",
+    id: "caribe", idCanonico: "caribe",
     equipo: [
       { nombre: "Anyi Cortés", rol: "Coordinadora Zonal", correo: "anyi.cortes@fimlm.education", cel: "3116143718" },
       { nombre: "Melissa Quirós", rol: "Apoyo Pedagógico", correo: "melissa.quiroz@fimlm.education", cel: "3126233254" },
@@ -2447,8 +2452,7 @@ const zonas = [
     ]
   },
   {
-    id: "antioquia", nombre: "Antioquia / Eje Cafetero", emoji: "☕", color: "#7c3aed",
-    departamentos: "Antioquia · Caldas · Risaralda · Quindío · Urabá",
+    id: "antioquia", idCanonico: "antioquia-eje-cafetero",
     equipo: [
       { nombre: "Felipe Duarte", rol: "Coordinador Zonal", correo: "felipe.duarte@fimlm.education", cel: "3104584879" },
       { nombre: "Ivoony Molina", rol: "Coordinadora Zonal", correo: "", cel: "" },
@@ -2462,8 +2466,7 @@ const zonas = [
     ]
   },
   {
-    id: "pacifico", nombre: "Zona Pacífico", emoji: "🌿", color: "#059669",
-    departamentos: "Valle del Cauca · Cauca · Chocó · Nariño · Putumayo",
+    id: "pacifico", idCanonico: "pacifico",
     equipo: [
       { nombre: "Yolanda Moreno", rol: "Coordinadora Zonal / Enlace Valle del Cauca", correo: "cali.sameco@fimlm.org", cel: "3164937355" },
       { nombre: "Diana Escallón", rol: "Coordinadora Zonal / Enlace Valle", correo: "diana.escallon@fimlm.education", cel: "3146783487" },
@@ -2485,8 +2488,7 @@ const zonas = [
     ]
   },
   {
-    id: "sur", nombre: "Sur y Llanos", emoji: "🌾", color: "#d97706",
-    departamentos: "Meta · Huila · Tolima · Caquetá · Llanos Orientales",
+    id: "sur", idCanonico: "sur-llanos",
     equipo: [
       { nombre: "Denis Yem Martinez", rol: "Coordinador Zonal", correo: "huila2@fundacionmarialuisa.org", cel: "3202625087" },
       { nombre: "Norfa Rios", rol: "Coordinadora Zonal", correo: "norfa.rios@fimlm.education", cel: "3104588903" },
@@ -2507,8 +2509,7 @@ const zonas = [
     ]
   },
   {
-    id: "santanderes", nombre: "Santanderes, Boyacá y Cesar", emoji: "⛰️", color: "#dc2626",
-    departamentos: "Santander · Norte de Santander · Boyacá · Cesar",
+    id: "santanderes", idCanonico: "santanderes-boyaca",
     equipo: [
       { nombre: "Lizeth Gutierrez", rol: "Coordinadora Zonal", correo: "lizeth.gutierrez@fimlm.education", cel: "3114979345" },
       { nombre: "Alejandra Delgado Gómez", rol: "Encargada Pedagógica", correo: "alejandra.delgado@fimlm.education", cel: "3124145981" },
@@ -2521,6 +2522,26 @@ const zonas = [
     ]
   },
 ];
+
+// El nombre, emoji, color y departamentos de cada zona vienen de
+// data/zonas.json (fuente única compartida con el Informe Nacional y con
+// Cupos y Matrículas); aquí solo vive el equipo de cada una. Se enlazan por
+// "idCanonico" porque el id corto de esta vista ("bogota", "sur"...) es
+// además la clave de zonasOrg y no conviene cambiarlo.
+const zonas = zonasEquipo.map(z => {
+  const canonica = ZONAS_CANONICAS.find(c => c.id === z.idCanonico);
+  if (!canonica) {
+    console.warn(`Zona "${z.id}" apunta a idCanonico "${z.idCanonico}", que no existe en data/zonas.json`);
+    return z;
+  }
+  return {
+    ...z,
+    nombre: canonica.nombre,
+    emoji: canonica.emoji,
+    color: canonica.color,
+    departamentos: canonica.departamentos.join(" · "),
+  };
+});
 
 let zonasRendered = false;
 let zonaSeleccionada = null;
