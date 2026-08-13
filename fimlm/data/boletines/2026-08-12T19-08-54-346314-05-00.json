@@ -1,0 +1,113 @@
+{
+  "corte": "2026-08-12T19:08:54.346314-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4963",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4991",
+      "matAntes": 36,
+      "matAhora": 37,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4993",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4774",
+      "matAntes": 37,
+      "matAhora": 38,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4777",
+      "matAntes": 21,
+      "matAhora": 22,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4825",
+      "matAntes": 8,
+      "matAhora": 9,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4828",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4794",
+      "matAntes": 22,
+      "matAhora": 24,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4908",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Santanderes & Boyaca",
+      "cod": "C-2537",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4372",
+      "matAntes": 37,
+      "matAhora": 40,
+      "delta": 3
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4297",
+      "matAntes": 11,
+      "matAhora": 12,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4879",
+      "matAntes": 13,
+      "matAhora": 14,
+      "delta": 1
+    }
+  ]
+}
