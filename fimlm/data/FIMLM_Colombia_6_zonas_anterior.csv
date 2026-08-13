@@ -874,10 +874,10 @@ Zona Pacifico,Valle del Cauca,Pasoancho,150
 Bogota & Cundinamarca,Cundinamarca,Sosiego,147
 Zona Caribe,Bolivar,Avenida Pedro de Heredia,144
 Bogota & Cundinamarca,Cundinamarca,Suba Rincon,138
-Zona Caribe,Bolivar,Portales,133
 Bogota & Cundinamarca,Cundinamarca,Kennedy central,133
-Zona Pacifico,Narino,Fatima,132
+Zona Caribe,Bolivar,Portales,133
 Zona Pacifico,Cauca,Popayan Sur,132
+Zona Pacifico,Narino,Fatima,132
 Bogota & Cundinamarca,Cundinamarca,Fusagasuga,129
 Zona Sur & Llanos,Meta,San Marcos,123
 Bogota & Cundinamarca,Cundinamarca,Facatativa,115
@@ -885,19 +885,19 @@ Zona Pacifico,Valle del Cauca,El Troncal,115
 Zona Caribe,Cordoba,Monteria Barrio Sucre,112
 Bogota & Cundinamarca,Cundinamarca,Suba Pinar,111
 Bogota & Cundinamarca,Cundinamarca,Prado Veraniego,108
-Antioquia & Eje Cafetero,Antioquia,San Diego,107
 Bogota & Cundinamarca,Cundinamarca,Carvajal,107
+Antioquia & Eje Cafetero,Antioquia,San Diego,107
 Antioquia & Eje Cafetero,Caldas,Manizales Norte,106
-Antioquia & Eje Cafetero,Antioquia,Apartado,103
 Bogota & Cundinamarca,Cundinamarca,Chia,103
-Antioquia & Eje Cafetero,Antioquia,Bello,100
+Antioquia & Eje Cafetero,Antioquia,Apartado,103
 "Santanderes, Boyaca y Cesar",Boyaca,Tunja,100
 "Santanderes, Boyaca y Cesar",Boyaca,Sogamoso,100
+Antioquia & Eje Cafetero,Antioquia,Bello,100
 Zona Caribe,Atlantico,Villa Estadio,96
 Zona Pacifico,Cauca,Popayan Norte,95
 Zona Sur & Llanos,Casanare,Vencedores,95
-Zona Sur & Llanos,Huila,SUR,92
 Antioquia & Eje Cafetero,Antioquia,Caribe,92
+Zona Sur & Llanos,Huila,SUR,92
 Bogota & Cundinamarca,Cundinamarca,La Alqueria,89
 Zona Pacifico,Valle del Cauca,El Cambio,88
 Zona Sur & Llanos,Caqueta,Florencia Sur,87
@@ -905,538 +905,538 @@ Bogota & Cundinamarca,Cundinamarca,Valladolid,85
 Bogota & Cundinamarca,Cundinamarca,Suba Lisboa,84
 Zona Pacifico,Valle del Cauca,Piloto,83
 Antioquia & Eje Cafetero,Risaralda,Pereira Cuba,83
-Zona Sur & Llanos,Tolima,Picalena,82
 Bogota & Cundinamarca,Cundinamarca,Bosa Estacion,82
+Zona Sur & Llanos,Tolima,Picalena,82
+Bogota & Cundinamarca,Cundinamarca,Madrid,81
 Bogota & Cundinamarca,Cundinamarca,Lucero Bajo,81
 Zona Sur & Llanos,Meta,EL TERMINAL,81
-Bogota & Cundinamarca,Cundinamarca,Madrid,81
 Bogota & Cundinamarca,Cundinamarca,Lijaca,79
 Zona Sur & Llanos,Arauca,Saravena,78
 Zona Pacifico,Choco,Medrano,78
-Zona Sur & Llanos,Meta,Acacias,77
-Zona Pacifico,Valle del Cauca,Los Lagos,77
 Zona Caribe,Bolivar,IGLESIA DE DIOS MINISTERIAL DE JESUCRISTO INTERNACIONAL,77
 "Santanderes, Boyaca y Cesar",Boyaca,Duitama,77
+Zona Pacifico,Valle del Cauca,Los Lagos,77
+Zona Sur & Llanos,Meta,Acacias,77
 Zona Caribe,Bolivar,Del Castillo,75
-Antioquia & Eje Cafetero,Risaralda,Guadalupe,74
 Bogota & Cundinamarca,Cundinamarca,Serrezuelita,74
-Zona Pacifico,Narino,Centro,73
+Antioquia & Eje Cafetero,Risaralda,Guadalupe,74
 Bogota & Cundinamarca,Cundinamarca,Santa Librada,73
-Bogota & Cundinamarca,Cundinamarca,Chapinero,72
+Zona Pacifico,Narino,Centro,73
 Zona Pacifico,Narino,Heroes,72
+Bogota & Cundinamarca,Cundinamarca,Chapinero,72
 Bogota & Cundinamarca,Cundinamarca,Cajica,72
 Antioquia & Eje Cafetero,Risaralda,Pereira Centro,72
-"Santanderes, Boyaca y Cesar",Santander,Barrancabermeja,71
-Bogota & Cundinamarca,Cundinamarca,Class Roma,71
-Zona Pacifico,Choco,Centro,71
 Bogota & Cundinamarca,Cundinamarca,Parque de las Aguas,71
+Zona Pacifico,Choco,Centro,71
+Bogota & Cundinamarca,Cundinamarca,Class Roma,71
+"Santanderes, Boyaca y Cesar",Santander,Barrancabermeja,71
 Bogota & Cundinamarca,Cundinamarca,Zipaquira,70
 Antioquia & Eje Cafetero,Quindio,Postobon,70
-Zona Pacifico,Valle del Cauca,12 de Octubre,69
 Bogota & Cundinamarca,Cundinamarca,La Victoria,69
+Zona Pacifico,Valle del Cauca,12 de Octubre,69
+Bogota & Cundinamarca,Cundinamarca,Cedritos,68
 Bogota & Cundinamarca,Cundinamarca,Ubate,68
 Antioquia & Eje Cafetero,Quindio,Armenia Norte,68
-Bogota & Cundinamarca,Cundinamarca,Cedritos,68
 Zona Caribe,Atlantico,Boston,67
 Bogota & Cundinamarca,Cundinamarca,Patio Bonito,66
-Zona Pacifico,Cauca,Ciudad Jardin,65
-Zona Sur & Llanos,Huila,norte,65
 Bogota & Cundinamarca,Cundinamarca,San Vicente Ferrer,65
-Zona Pacifico,Cauca,Popayan Occidente,64
+Zona Sur & Llanos,Huila,norte,65
+Zona Pacifico,Cauca,Ciudad Jardin,65
 Bogota & Cundinamarca,Cundinamarca,Silvania,64
+Zona Pacifico,Cauca,Popayan Occidente,64
 Zona Caribe,Magdalena,Avenida Libertador,64
-"Santanderes, Boyaca y Cesar",Santander,Exito,63
 Zona Caribe,Atlantico,La Pradera,63
+"Santanderes, Boyaca y Cesar",Santander,Exito,63
 Zona Sur & Llanos,Tolima,LA QUINTA,63
 Zona Caribe,Bolivar,Ceballos,62
 Bogota & Cundinamarca,Cundinamarca,Bosa Recreo,62
-Zona Pacifico,Valle del Cauca,Popular,61
 Zona Sur & Llanos,Meta,Ciudad Milenio,61
+Zona Pacifico,Valle del Cauca,Popular,61
 Zona Caribe,Atlantico,Puerto Colombia,60
 Antioquia & Eje Cafetero,Caldas,Centro- Linares,59
-Zona Sur & Llanos,Meta,Puerto Gaitan,58
 Zona Pacifico,Valle del Cauca,Terranova,58
+Zona Sur & Llanos,Meta,Puerto Gaitan,58
 Zona Sur & Llanos,Tolima,Las Ferias,57
-Zona Sur & Llanos,Tolima,El Jardin,56
 Zona Sur & Llanos,Tolima,La Floresta,56
-Zona Sur & Llanos,Meta,Dos Mil,55
+Zona Sur & Llanos,Tolima,El Jardin,56
 Zona Pacifico,Valle del Cauca,Centro,55
+Zona Sur & Llanos,Meta,Dos Mil,55
 Antioquia & Eje Cafetero,Antioquia,Villanueva,54
 Bogota & Cundinamarca,Cundinamarca,Usme,53
 Antioquia & Eje Cafetero,Antioquia,CALASANZ,53
-Zona Pacifico,Narino,La Taguera,52
 Zona Pacifico,Cauca,Santander de Quilichao,52
+Zona Pacifico,Narino,La Taguera,52
 Zona Caribe,Magdalena,Fundacion,52
-Zona Pacifico,Valle del Cauca,Independencia,51
+Zona Caribe,Bolivar,El Carmen de Bolivar,51
 Zona Sur & Llanos,Arauca,Arauca Cristo Rey,51
 Zona Pacifico,Valle del Cauca,La 10,51
-Zona Caribe,Bolivar,El Carmen de Bolivar,51
+Zona Pacifico,Valle del Cauca,Independencia,51
 Antioquia & Eje Cafetero,Antioquia,Rionegro,51
-Zona Pacifico,Valle del Cauca,Llanogrande,49
-Zona Caribe,Atlantico,Riomar,49
-Bogota & Cundinamarca,Cundinamarca,Girardot,49
 Bogota & Cundinamarca,Cundinamarca,Tocancipa,49
+Bogota & Cundinamarca,Cundinamarca,Girardot,49
+Zona Caribe,Atlantico,Riomar,49
+Zona Pacifico,Valle del Cauca,Llanogrande,49
 "Santanderes, Boyaca y Cesar",Santander,Floridablanca,48
 Zona Pacifico,Valle del Cauca,Libertadores,47
+Zona Sur & Llanos,Caqueta,Florencia -Centro,47
 Bogota & Cundinamarca,Cundinamarca,Las Mercedes,47
 Zona Caribe,La Guajira,Riohacha,47
-Zona Sur & Llanos,Caqueta,Florencia -Centro,47
 "Santanderes, Boyaca y Cesar",Cesar,Mayales,45
-Zona Sur & Llanos,Meta,Puerto Lopez,44
 Zona Sur & Llanos,Arauca,Tame,44
-Zona Pacifico,Narino,Ipiales,43
+Zona Sur & Llanos,Meta,Puerto Lopez,44
 Bogota & Cundinamarca,Cundinamarca,funza,43
+Zona Pacifico,Narino,Ipiales,43
 "Santanderes, Boyaca y Cesar",Santander,Piedecuesta,42
 Zona Caribe,Magdalena,Ferrocarril,41
-Zona Pacifico,Valle del Cauca,Yumbo,41
 "Santanderes, Boyaca y Cesar",Norte de Santander,Aeropuerto,41
-Antioquia & Eje Cafetero,Antioquia,Marinilla,40
-Antioquia & Eje Cafetero,Antioquia,Necocli,40
+Zona Pacifico,Valle del Cauca,Yumbo,41
 Zona Sur & Llanos,Meta,Doce de Octubre,40
-Zona Sur & Llanos,Tolima,Melgar,40
+Antioquia & Eje Cafetero,Antioquia,Marinilla,40
 Antioquia & Eje Cafetero,Quindio,La Pista,40
-Bogota & Cundinamarca,Cundinamarca,Sesquile,39
+Antioquia & Eje Cafetero,Antioquia,Necocli,40
+Zona Sur & Llanos,Tolima,Melgar,40
 "Santanderes, Boyaca y Cesar",Boyaca,Paipa,39
+Bogota & Cundinamarca,Cundinamarca,Sesquile,39
 Zona Pacifico,Valle del Cauca,Florida,39
 Bogota & Cundinamarca,Cundinamarca,Suba Fontanar,38
 Zona Pacifico,Valle del Cauca,Puebo Nuevo,38
-Antioquia & Eje Cafetero,Antioquia,SABANETA,37
 Antioquia & Eje Cafetero,Caldas,centro,37
 Zona Caribe,Magdalena,Pivijay,37
+Antioquia & Eje Cafetero,Antioquia,SABANETA,37
 Zona Caribe,Cordoba,Cerete,36
 Bogota & Cundinamarca,Cundinamarca,Cota,36
-Zona Caribe,Cordoba,Villa Fatima,36
 Zona Sur & Llanos,Huila,Rivera,36
+Zona Caribe,Cordoba,Villa Fatima,36
 Zona Caribe,Magdalena,CIENAGA,35
 Zona Sur & Llanos,Huila,Centro,34
 "Santanderes, Boyaca y Cesar",Boyaca,Chiquinquira,34
-Zona Sur & Llanos,Tolima,Cerca a la la estacion de gasolina Mendoza,33
-Zona Sur & Llanos,Tolima,GAVIOTA,33
-Zona Sur & Llanos,Huila,Las Palmas,33
 Antioquia & Eje Cafetero,Antioquia,Copacabana,33
-Zona Pacifico,Narino,"Samaniego, Narino",32
-Zona Pacifico,Putumayo,Mocoa,32
+Zona Sur & Llanos,Tolima,GAVIOTA,33
+Zona Sur & Llanos,Tolima,Cerca a la la estacion de gasolina Mendoza,33
+Zona Sur & Llanos,Huila,Las Palmas,33
+Zona Pacifico,Putumayo,Puerto Asis,32
 Bogota & Cundinamarca,Cundinamarca,El Rosal,32
 Zona Sur & Llanos,Caqueta,LA ORIENTAL,32
+Zona Pacifico,Narino,"Samaniego, Narino",32
+Zona Pacifico,Putumayo,Mocoa,32
 Zona Pacifico,Valle del Cauca,Zamorano,32
-Zona Pacifico,Putumayo,Puerto Asis,32
-Antioquia & Eje Cafetero,Quindio,Calarca Norte,31
-Zona Sur & Llanos,Meta,BRISAS DEL LLANO,31
 Zona Sur & Llanos,Huila,Garzon,31
+Zona Sur & Llanos,Meta,BRISAS DEL LLANO,31
 Zona Caribe,Atlantico,La Loma,31
-Zona Sur & Llanos,Arauca,Fortul,30
-Antioquia & Eje Cafetero,Antioquia,Manrique,30
-Zona Sur & Llanos,Tolima,Flandes quintas,30
+Antioquia & Eje Cafetero,Quindio,Calarca Norte,31
 Antioquia & Eje Cafetero,Quindio,Circasia,30
+Zona Sur & Llanos,Tolima,Flandes quintas,30
+Antioquia & Eje Cafetero,Antioquia,Manrique,30
+Zona Sur & Llanos,Arauca,Fortul,30
 Antioquia & Eje Cafetero,Caldas,Chinchina,29
-"Santanderes, Boyaca y Cesar",Boyaca,Puerto Boyaca,29
-Bogota & Cundinamarca,Cundinamarca,Tenjo,29
 Zona Pacifico,Cauca,El Bordo,29
 Zona Sur & Llanos,Tolima,El Salado,29
+Bogota & Cundinamarca,Cundinamarca,Tenjo,29
+"Santanderes, Boyaca y Cesar",Boyaca,Puerto Boyaca,29
 Zona Caribe,Bolivar,Turbaco,28
+Zona Caribe,Magdalena,Rodadero,28
 Zona Sur & Llanos,Caqueta,San Vicente del Caguan,28
 Zona Pacifico,Valle del Cauca,BUGA,28
-Zona Caribe,Magdalena,Rodadero,28
+Zona Pacifico,Putumayo,La Hormiga,27
+Antioquia & Eje Cafetero,Antioquia,El Carmen de Viboral,27
+Antioquia & Eje Cafetero,Quindio,Calle 30,27
 Zona Pacifico,Valle del Cauca,Villagorgona,27
 Zona Sur & Llanos,Meta,Vistahermosa,27
-Zona Pacifico,Putumayo,La Hormiga,27
-Antioquia & Eje Cafetero,Quindio,Calle 30,27
-Antioquia & Eje Cafetero,Antioquia,El Carmen de Viboral,27
 Zona Sur & Llanos,Huila,Tello,27
-Zona Sur & Llanos,Huila,Trinidad - centro,26
-Zona Caribe,"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,26
-Zona Pacifico,Choco,Huapango,26
-Zona Caribe,Atlantico,La Ceiba,26
-Antioquia & Eje Cafetero,Caldas,Villamaria,26
 Bogota & Cundinamarca,Cundinamarca,Mesitas de El Colegio,26
-Antioquia & Eje Cafetero,Risaralda,El Poblado,26
-Bogota & Cundinamarca,Cundinamarca,Soacha Compartir,26
-Antioquia & Eje Cafetero,Quindio,Sur,26
+Zona Caribe,Atlantico,La Ceiba,26
 Zona Sur & Llanos,Meta,Iglesia Cubarral,26
+Antioquia & Eje Cafetero,Risaralda,El Poblado,26
+Zona Pacifico,Choco,Huapango,26
+Antioquia & Eje Cafetero,Quindio,Sur,26
+Zona Caribe,"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,26
+Zona Sur & Llanos,Huila,Trinidad - centro,26
+Bogota & Cundinamarca,Cundinamarca,Soacha Compartir,26
+Antioquia & Eje Cafetero,Caldas,Villamaria,26
+Zona Sur & Llanos,Casanare,Sector Llano Lindo,25
+Zona Pacifico,Valle del Cauca,Guacari,25
 Zona Sur & Llanos,Casanare,Paz de Ariporo,25
 Zona Pacifico,Cauca,Vereda de Torres,25
-Bogota & Cundinamarca,Cundinamarca,La Calera,25
-Zona Pacifico,Valle del Cauca,Guacari,25
-Zona Sur & Llanos,Casanare,Sector Llano Lindo,25
-Antioquia & Eje Cafetero,Antioquia,La Ceja,25
-Zona Sur & Llanos,Meta,Iglesia de Cumaral,25
-"Santanderes, Boyaca y Cesar",Santander,Giron,25
 Zona Sur & Llanos,Meta,Granada,25
-Antioquia & Eje Cafetero,Risaralda,2500 lotes,24
-Antioquia & Eje Cafetero,Antioquia,Caldas,24
-Antioquia & Eje Cafetero,Antioquia,Sopetran,24
-Zona Sur & Llanos,Meta,Castilla la Nueva,24
-Zona Pacifico,Cauca,Puerto Tejada,24
-Zona Pacifico,Cauca,Piendamo,24
-Zona Pacifico,Cauca,"Timbio, Cauca",24
+Antioquia & Eje Cafetero,Antioquia,La Ceja,25
+"Santanderes, Boyaca y Cesar",Santander,Giron,25
+Bogota & Cundinamarca,Cundinamarca,La Calera,25
+Zona Sur & Llanos,Meta,Iglesia de Cumaral,25
 Zona Pacifico,Choco,Istmina,24
-Zona Pacifico,Cauca,Caloto,23
-Bogota & Cundinamarca,Cundinamarca,VILLETA,23
-Zona Sur & Llanos,Huila,campoalegre,23
-Bogota & Cundinamarca,Cundinamarca,Al lado del Club La Riviera,23
+Zona Pacifico,Cauca,Puerto Tejada,24
+Antioquia & Eje Cafetero,Antioquia,Caldas,24
+Zona Sur & Llanos,Meta,Castilla la Nueva,24
+Zona Pacifico,Cauca,Piendamo,24
+Antioquia & Eje Cafetero,Antioquia,Sopetran,24
+Zona Pacifico,Cauca,"Timbio, Cauca",24
+Antioquia & Eje Cafetero,Risaralda,2500 lotes,24
 "Santanderes, Boyaca y Cesar",Norte de Santander,Los Patios,23
-Zona Sur & Llanos,Arauca,San Isidro,23
 Zona Caribe,Sucre,Centro,23
-Antioquia & Eje Cafetero,Caldas,supia,23
+Zona Sur & Llanos,Huila,campoalegre,23
 Zona Pacifico,Valle del Cauca,Darien,23
+Bogota & Cundinamarca,Cundinamarca,Al lado del Club La Riviera,23
+Zona Pacifico,Cauca,Caloto,23
 Zona Pacifico,Valle del Cauca,Bella Suiza,23
-Antioquia & Eje Cafetero,Antioquia,Chigorodo,22
-"Santanderes, Boyaca y Cesar",Norte de Santander,Comuneros,22
+Zona Sur & Llanos,Arauca,San Isidro,23
+Antioquia & Eje Cafetero,Caldas,supia,23
+Bogota & Cundinamarca,Cundinamarca,VILLETA,23
 Zona Sur & Llanos,Tolima,Purificacion,22
-Antioquia & Eje Cafetero,Caldas,Las Ferias,22
-Zona Pacifico,Narino,Catambuco,22
-Antioquia & Eje Cafetero,Risaralda,La Virginia,22
-Antioquia & Eje Cafetero,Risaralda,Barrio Villavicencio,22
+"Santanderes, Boyaca y Cesar",Norte de Santander,Comuneros,22
 Zona Pacifico,Valle del Cauca,Poblado,22
 Antioquia & Eje Cafetero,Antioquia,Centro,22
+Antioquia & Eje Cafetero,Antioquia,Chigorodo,22
+Antioquia & Eje Cafetero,Risaralda,La Virginia,22
+Antioquia & Eje Cafetero,Risaralda,Barrio Villavicencio,22
+Zona Pacifico,Narino,Catambuco,22
+Antioquia & Eje Cafetero,Caldas,Las Ferias,22
+Zona Caribe,Cordoba,CARRILLO,21
 Zona Pacifico,Valle del Cauca,Americas,21
 Zona Pacifico,Valle del Cauca,corregimiento Rozo,21
+Bogota & Cundinamarca,Cundinamarca,Guasca,21
 "Santanderes, Boyaca y Cesar",Norte de Santander,Aguas Calientes,21
 Antioquia & Eje Cafetero,Risaralda,Belen de umbria,21
-Zona Caribe,Cordoba,CARRILLO,21
-Bogota & Cundinamarca,Cundinamarca,Guasca,21
-Zona Sur & Llanos,Meta,Copecal,20
-Zona Caribe,Atlantico,Las Nieves,20
-"Santanderes, Boyaca y Cesar",Norte de Santander,Atalalaya,20
-Zona Sur & Llanos,Tolima,Miramar,20
 Bogota & Cundinamarca,Cundinamarca,Viota,20
-Zona Pacifico,Narino,Buesaco,20
-Antioquia & Eje Cafetero,Antioquia,Carepa,20
 Zona Sur & Llanos,Casanare,Villanueva,20
+Zona Sur & Llanos,Meta,Copecal,20
 Zona Sur & Llanos,Huila,Suaza,20
 Zona Sur & Llanos,Tolima,San Sebastian de Mariquita,20
+Zona Caribe,Atlantico,Las Nieves,20
+Zona Sur & Llanos,Tolima,Miramar,20
+"Santanderes, Boyaca y Cesar",Norte de Santander,Atalalaya,20
+Antioquia & Eje Cafetero,Antioquia,Carepa,20
+Zona Pacifico,Narino,Buesaco,20
 Zona Pacifico,Valle del Cauca,Pradera,20
-Zona Pacifico,Narino,Tuquerres,19
 Zona Caribe,Atlantico,Sabanagrande,19
-Zona Caribe,Bolivar,Bocagrande,19
 Zona Pacifico,Valle del Cauca,Roldanillo,19
 Zona Pacifico,Valle del Cauca,Pavas,19
-"Santanderes, Boyaca y Cesar",Cesar,Bosconia,18
-Zona Pacifico,Valle del Cauca,Vijes,18
-Zona Pacifico,Cauca,Corinto,18
-Zona Sur & Llanos,Tolima,Honda,18
-Antioquia & Eje Cafetero,Antioquia,Envigado,18
-"Santanderes, Boyaca y Cesar",Boyaca,Otanche,18
-"Santanderes, Boyaca y Cesar",Cesar,Villalba,18
-Bogota & Cundinamarca,Cundinamarca,Guacheta,18
+Zona Caribe,Bolivar,Bocagrande,19
+Zona Pacifico,Narino,Tuquerres,19
+Zona Sur & Llanos,Caqueta,Puerto Rico,18
 Zona Pacifico,Valle del Cauca,El Cerrito,18
 Zona Sur & Llanos,Tolima,Espinal,18
-Zona Sur & Llanos,Caqueta,Puerto Rico,18
-Zona Pacifico,Valle del Cauca,Montebello,17
-Antioquia & Eje Cafetero,Antioquia,Girardota,17
-Antioquia & Eje Cafetero,Antioquia,El Poblado,17
-Zona Caribe,Cordoba,Tierralta,17
-Bogota & Cundinamarca,Cundinamarca,Sopo,17
-Zona Sur & Llanos,Huila,La Plata,17
-Antioquia & Eje Cafetero,Risaralda,Centro,17
+Antioquia & Eje Cafetero,Antioquia,Envigado,18
+Zona Pacifico,Valle del Cauca,Vijes,18
+"Santanderes, Boyaca y Cesar",Cesar,Villalba,18
+Bogota & Cundinamarca,Cundinamarca,Guacheta,18
+"Santanderes, Boyaca y Cesar",Cesar,Bosconia,18
+Zona Pacifico,Cauca,Corinto,18
+Zona Sur & Llanos,Tolima,Honda,18
+"Santanderes, Boyaca y Cesar",Boyaca,Otanche,18
 "Santanderes, Boyaca y Cesar",Norte de Santander,Cucuta,17
-Zona Pacifico,Valle del Cauca,Calle Real,17
-Antioquia & Eje Cafetero,Caldas,Viterbo,17
 Antioquia & Eje Cafetero,Antioquia,Guarne,17
+Zona Sur & Llanos,Huila,La Plata,17
+Antioquia & Eje Cafetero,Antioquia,El Poblado,17
+Antioquia & Eje Cafetero,Caldas,Viterbo,17
+Antioquia & Eje Cafetero,Antioquia,Girardota,17
+Zona Pacifico,Valle del Cauca,Calle Real,17
 "Santanderes, Boyaca y Cesar",Norte de Santander,Pamplona,17
+Bogota & Cundinamarca,Cundinamarca,Sopo,17
 Zona Sur & Llanos,Huila,Isnos,17
-Zona Caribe,La Guajira,Rancheria Pulitchamana,16
-Bogota & Cundinamarca,Cundinamarca,Subachoque,16
-Zona Sur & Llanos,Huila,Algeciras,16
-Zona Pacifico,Valle del Cauca,Los Alpes,16
-Bogota & Cundinamarca,Cundinamarca,San Antonio Del Tequendama.,16
-Zona Pacifico,Valle del Cauca,Kennedy,16
-Antioquia & Eje Cafetero,Risaralda,Santuario,16
-Antioquia & Eje Cafetero,Antioquia,El Totumo,16
-Antioquia & Eje Cafetero,Risaralda,Alameda,16
-Zona Pacifico,Narino,La Cruz,16
+Antioquia & Eje Cafetero,Risaralda,Centro,17
+Zona Caribe,Cordoba,Tierralta,17
+Zona Pacifico,Valle del Cauca,Montebello,17
 Bogota & Cundinamarca,Cundinamarca,La Mesa,16
-Zona Sur & Llanos,Meta,Guamal,16
+Bogota & Cundinamarca,Cundinamarca,San Antonio Del Tequendama.,16
+Zona Pacifico,Valle del Cauca,Los Alpes,16
+Antioquia & Eje Cafetero,Risaralda,Alameda,16
 Antioquia & Eje Cafetero,Caldas,Palestina,16
-Zona Sur & Llanos,Meta,San Martin,16
+Bogota & Cundinamarca,Cundinamarca,Subachoque,16
+Antioquia & Eje Cafetero,Risaralda,Santuario,16
+Zona Pacifico,Valle del Cauca,Kennedy,16
+Zona Caribe,La Guajira,Rancheria Pulitchamana,16
 Zona Sur & Llanos,Huila,San Agustin,16
-Zona Pacifico,Putumayo,Sibundoy,15
+Antioquia & Eje Cafetero,Antioquia,El Totumo,16
+Zona Sur & Llanos,Meta,San Martin,16
+Zona Sur & Llanos,Meta,Guamal,16
+Zona Sur & Llanos,Huila,Algeciras,16
+Zona Pacifico,Narino,La Cruz,16
+Bogota & Cundinamarca,Cundinamarca,Choachi,15
 Zona Sur & Llanos,Caqueta,Albania,15
+Bogota & Cundinamarca,Cundinamarca,Puerto Salgar,15
+Zona Pacifico,Putumayo,Sibundoy,15
 Zona Caribe,Sucre,San Onofre,15
 Antioquia & Eje Cafetero,Caldas,Filadelfia,15
-Bogota & Cundinamarca,Cundinamarca,Choachi,15
-Bogota & Cundinamarca,Cundinamarca,Puerto Salgar,15
+Zona Pacifico,Putumayo,Orito,15
+"Santanderes, Boyaca y Cesar",Santander,Malaga,15
 "Santanderes, Boyaca y Cesar",Norte de Santander,Villa del Rosario,15
 Zona Pacifico,Cauca,Miranda,15
-Zona Pacifico,Putumayo,Orito,15
-Bogota & Cundinamarca,Cundinamarca,Pacho,15
 Zona Caribe,La Guajira,San Jose,15
+Bogota & Cundinamarca,Cundinamarca,Pacho,15
 Zona Sur & Llanos,Casanare,Tauramena,15
-"Santanderes, Boyaca y Cesar",Santander,Malaga,15
-"Santanderes, Boyaca y Cesar",Boyaca,Sachica,14
 "Santanderes, Boyaca y Cesar",Santander,Barbosa,14
+Zona Pacifico,Choco,Pizarro,14
+Antioquia & Eje Cafetero,Risaralda,PEREIRA GALICIA,14
+"Santanderes, Boyaca y Cesar",Boyaca,Sachica,14
+Zona Pacifico,Putumayo,Puerto Leguizamo,14
+Bogota & Cundinamarca,Cundinamarca,Simijaca,14
+Antioquia & Eje Cafetero,Caldas,Anserma,14
 Zona Sur & Llanos,Caqueta,Cartagena del chaira,14
 Zona Pacifico,Valle del Cauca,Terron Colorado,14
-Zona Pacifico,Putumayo,Puerto Leguizamo,14
-Antioquia & Eje Cafetero,Caldas,Anserma,14
-Antioquia & Eje Cafetero,Risaralda,PEREIRA GALICIA,14
-Bogota & Cundinamarca,Cundinamarca,Simijaca,14
-Zona Pacifico,Choco,Pizarro,14
-Zona Caribe,Atlantico,Malambo,13
-Zona Pacifico,Valle del Cauca,Ginebra,13
-Bogota & Cundinamarca,Cundinamarca,Grupo de reunion de Subia,13
-Zona Sur & Llanos,Meta,La reliquia,13
-Zona Sur & Llanos,Tolima,Palocabildo,13
-Antioquia & Eje Cafetero,Caldas,Risaralda,13
 Zona Pacifico,Valle del Cauca,Zarzal,13
-Antioquia & Eje Cafetero,Antioquia,Nueva Colonia,13
-"Santanderes, Boyaca y Cesar",Norte de Santander,Ocana,13
-"Santanderes, Boyaca y Cesar",Norte de Santander,Santa clara,13
+Antioquia & Eje Cafetero,Caldas,Risaralda,13
 Zona Sur & Llanos,Meta,Fuente de Oro,13
-Zona Pacifico,Valle del Cauca,Andalucia la Estacion,13
-Antioquia & Eje Cafetero,Quindio,Quimbaya,13
 "Santanderes, Boyaca y Cesar",Norte de Santander,Chinacota,13
+Zona Sur & Llanos,Meta,La reliquia,13
 "Santanderes, Boyaca y Cesar",Santander,San Gil,13
-Zona Sur & Llanos,Guaviare,La Esperanza,12
-Zona Sur & Llanos,Tolima,Alvarado,12
-Zona Caribe,Magdalena,El Banco,12
-Zona Sur & Llanos,Guaviare,El Retorno,12
-Zona Sur & Llanos,Vichada,Puerto Carreno,12
-Antioquia & Eje Cafetero,Risaralda,La Popa,12
-Bogota & Cundinamarca,Cundinamarca,salida a Cajica,12
-Antioquia & Eje Cafetero,Caldas,Aguadas,12
-"Santanderes, Boyaca y Cesar",Cesar,La Jagua de Ibirico,12
+Zona Caribe,Atlantico,Malambo,13
+Antioquia & Eje Cafetero,Quindio,Quimbaya,13
+"Santanderes, Boyaca y Cesar",Norte de Santander,Ocana,13
+Bogota & Cundinamarca,Cundinamarca,Grupo de reunion de Subia,13
+Zona Sur & Llanos,Tolima,Palocabildo,13
+"Santanderes, Boyaca y Cesar",Norte de Santander,Santa clara,13
+Zona Pacifico,Valle del Cauca,Ginebra,13
+Antioquia & Eje Cafetero,Antioquia,Nueva Colonia,13
+Zona Pacifico,Valle del Cauca,Andalucia la Estacion,13
 "Santanderes, Boyaca y Cesar",Cesar,Aguachica,12
 Zona Sur & Llanos,Tolima,Natagaima,12
+"Santanderes, Boyaca y Cesar",Cesar,La Jagua de Ibirico,12
+Bogota & Cundinamarca,Cundinamarca,salida a Cajica,12
+Zona Sur & Llanos,Vichada,Puerto Carreno,12
+Zona Caribe,Magdalena,El Banco,12
+Antioquia & Eje Cafetero,Caldas,Aguadas,12
+Antioquia & Eje Cafetero,Risaralda,La Popa,12
 Zona Pacifico,Choco,Acandi,12
+Zona Sur & Llanos,Guaviare,La Esperanza,12
 Zona Sur & Llanos,Huila,Barrio Villa Matilde,12
-"Santanderes, Boyaca y Cesar",Santander,Puente Nacional,11
-Zona Sur & Llanos,Meta,Lejanias,11
-Zona Sur & Llanos,Huila,Neiva Caguan,11
-Antioquia & Eje Cafetero,Caldas,Corregimiento Samaria,11
-Zona Sur & Llanos,Guainia,Inirida,11
-Zona Caribe,Cordoba,Centenario,11
-Zona Pacifico,Putumayo,Villagarzon,11
-Zona Sur & Llanos,Caqueta,Belen de Los Andaquies,11
-Zona Pacifico,Valle del Cauca,La Union Barrio Belen,11
-Zona Pacifico,Choco,IGLESIA DE TADO,11
-"Santanderes, Boyaca y Cesar",Cesar,Agustin Codazzi,11
-"Santanderes, Boyaca y Cesar",Santander,Socorro,11
-Bogota & Cundinamarca,Cundinamarca,San Bernardo,11
+Zona Sur & Llanos,Guaviare,El Retorno,12
+Zona Sur & Llanos,Tolima,Alvarado,12
 Zona Sur & Llanos,Tolima,Fresno,11
-Zona Pacifico,Narino,Carlos Lleras,10
-Zona Sur & Llanos,Caqueta,Paujil,10
-Zona Sur & Llanos,Huila,Palermo,10
-Zona Caribe,Cordoba,Montelibano,10
-Zona Sur & Llanos,Casanare,Monterrey,10
-Bogota & Cundinamarca,Cundinamarca,La Vega,10
-Zona Sur & Llanos,Huila,AIPE,10
-Antioquia & Eje Cafetero,Quindio,Genova,10
-Antioquia & Eje Cafetero,Caldas,La Enea,10
+"Santanderes, Boyaca y Cesar",Santander,Socorro,11
+Antioquia & Eje Cafetero,Caldas,Corregimiento Samaria,11
+"Santanderes, Boyaca y Cesar",Santander,Puente Nacional,11
+Zona Pacifico,Choco,IGLESIA DE TADO,11
+Zona Sur & Llanos,Huila,Neiva Caguan,11
+Zona Sur & Llanos,Caqueta,Belen de Los Andaquies,11
+Zona Sur & Llanos,Guainia,Inirida,11
+Bogota & Cundinamarca,Cundinamarca,San Bernardo,11
+Zona Pacifico,Valle del Cauca,La Union Barrio Belen,11
+"Santanderes, Boyaca y Cesar",Cesar,Agustin Codazzi,11
+Zona Caribe,Cordoba,Centenario,11
+Zona Sur & Llanos,Meta,Lejanias,11
+Zona Pacifico,Putumayo,Villagarzon,11
 Bogota & Cundinamarca,Cundinamarca,Ricaurte,10
 Zona Pacifico,Valle del Cauca,La 40 Alvernia Tulua,10
-Antioquia & Eje Cafetero,Quindio,Barcelona,10
+Antioquia & Eje Cafetero,Quindio,Genova,10
+Zona Sur & Llanos,Casanare,Monterrey,10
+Bogota & Cundinamarca,Cundinamarca,La Vega,10
 Zona Pacifico,Valle del Cauca,Caicedonia,10
-Antioquia & Eje Cafetero,Antioquia,Caucasia,10
+Zona Sur & Llanos,Huila,AIPE,10
+Zona Sur & Llanos,Caqueta,Paujil,10
+Antioquia & Eje Cafetero,Caldas,La Enea,10
+Zona Caribe,Cordoba,Montelibano,10
+Antioquia & Eje Cafetero,Quindio,Barcelona,10
 Zona Caribe,Bolivar,Arjona,10
 Zona Pacifico,Cauca,El Tambo,10
+Antioquia & Eje Cafetero,Antioquia,Caucasia,10
+Zona Sur & Llanos,Huila,Palermo,10
+Zona Pacifico,Narino,Carlos Lleras,10
 "Santanderes, Boyaca y Cesar",Boyaca,Guateque,9
 "Santanderes, Boyaca y Cesar",Santander,San Vicente de Chucuri,9
-Antioquia & Eje Cafetero,Risaralda,Puerto Caldas,9
-Zona Sur & Llanos,Guaviare,Primero de Mayo,9
-Zona Sur & Llanos,Meta,San Juan de Arama,9
-"Santanderes, Boyaca y Cesar",Cesar,Curumani,9
 "Santanderes, Boyaca y Cesar",Santander,El Centro de Ecopetrol,9
+Zona Sur & Llanos,Guaviare,Primero de Mayo,9
+Antioquia & Eje Cafetero,Risaralda,Puerto Caldas,9
+"Santanderes, Boyaca y Cesar",Cesar,Curumani,9
+Zona Sur & Llanos,Meta,San Juan de Arama,9
+"Santanderes, Boyaca y Cesar",Boyaca,Saboya,8
 "Santanderes, Boyaca y Cesar",Boyaca,Garagoa,8
+Zona Sur & Llanos,Huila,Amborco,8
 "Santanderes, Boyaca y Cesar",Santander,Velez,8
 Zona Pacifico,Valle del Cauca,obando,8
-Antioquia & Eje Cafetero,Antioquia,Cisneros,8
-Zona Sur & Llanos,Tolima,Flandes San Luis,8
-Zona Sur & Llanos,Huila,TERUEL,8
-Antioquia & Eje Cafetero,Quindio,La Tebaida,8
-Zona Sur & Llanos,Huila,Amborco,8
-"Santanderes, Boyaca y Cesar",Santander,Bucaramanga Norte,8
 Bogota & Cundinamarca,Cundinamarca,Tocaima,8
+Zona Sur & Llanos,Huila,NEIVA CENTRO,8
+Antioquia & Eje Cafetero,Quindio,La Tebaida,8
+Zona Sur & Llanos,Huila,TERUEL,8
 "Santanderes, Boyaca y Cesar",Santander,Puerto Wilches,8
-"Santanderes, Boyaca y Cesar",Boyaca,Saboya,8
+"Santanderes, Boyaca y Cesar",Santander,Bucaramanga Norte,8
 Zona Pacifico,Narino,San Pablo,8
 "Santanderes, Boyaca y Cesar",Boyaca,Tasco,8
-Zona Sur & Llanos,Huila,NEIVA CENTRO,8
-Zona Pacifico,Valle del Cauca,Cartago Santana,7
-Zona Pacifico,Choco,Capurgana,7
-Zona Pacifico,Choco,Iglesia De Condoto,7
-Zona Sur & Llanos,Amazonas,LETICIA,7
-Zona Sur & Llanos,Caqueta,Curillo,7
-Zona Pacifico,Valle del Cauca,Riofrio,7
-Zona Pacifico,Choco,Bahia Solano,7
-Zona Pacifico,Cauca,Guachene,7
-Zona Pacifico,Valle del Cauca,Ansermanuevo,7
-Zona Pacifico,Narino,Guaitarilla,7
-"Santanderes, Boyaca y Cesar",Boyaca,Turmeque,7
-Antioquia & Eje Cafetero,Caldas,Pacora,7
-Zona Pacifico,Cauca,Rosas,7
+Zona Sur & Llanos,Tolima,Flandes San Luis,8
+Antioquia & Eje Cafetero,Antioquia,Cisneros,8
 Zona Sur & Llanos,Caqueta,El Doncello,7
-Zona Pacifico,Cauca,Villarica,7
-Bogota & Cundinamarca,Cundinamarca,Guaduas,7
-Zona Sur & Llanos,Huila,Tesalia,7
+Zona Pacifico,Valle del Cauca,Ansermanuevo,7
 Zona Sur & Llanos,Tolima,Ortega,7
+Zona Sur & Llanos,Huila,Tesalia,7
+Zona Pacifico,Choco,Iglesia De Condoto,7
 Zona Sur & Llanos,Huila,La Argentina,7
-Bogota & Cundinamarca,Cundinamarca,Ubaque,6
-"Santanderes, Boyaca y Cesar",Boyaca,Samaca,6
+Bogota & Cundinamarca,Cundinamarca,Guaduas,7
+Zona Pacifico,Choco,Capurgana,7
+Zona Sur & Llanos,Amazonas,LETICIA,7
+Zona Pacifico,Choco,Bahia Solano,7
+Zona Pacifico,Valle del Cauca,Cartago Santana,7
+Zona Pacifico,Valle del Cauca,Riofrio,7
+Zona Pacifico,Cauca,Guachene,7
+Zona Pacifico,Narino,Guaitarilla,7
+Antioquia & Eje Cafetero,Caldas,Pacora,7
+Zona Pacifico,Cauca,Villarica,7
+"Santanderes, Boyaca y Cesar",Boyaca,Turmeque,7
+Zona Pacifico,Cauca,Rosas,7
+Zona Sur & Llanos,Caqueta,Curillo,7
 Zona Caribe,Cordoba,CALLE CHINU,6
-Bogota & Cundinamarca,Cundinamarca,Arbelaez,6
-Zona Pacifico,Cauca,Timbiqui,6
-Zona Caribe,Magdalena,El Reten,6
-"Santanderes, Boyaca y Cesar",Boyaca,Tibana,6
-Zona Pacifico,Valle del Cauca,TARRAGONA,6
-Zona Pacifico,Choco,Certegui,6
-Antioquia & Eje Cafetero,Antioquia,Amaga,6
-Zona Sur & Llanos,Huila,Elias,6
 Zona Sur & Llanos,Caqueta,la montanita,6
-Antioquia & Eje Cafetero,Risaralda,Marsella,6
+Zona Caribe,Magdalena,El Reten,6
+Antioquia & Eje Cafetero,Antioquia,Amaga,6
 Zona Caribe,Sucre,Sampues,6
 Zona Pacifico,Valle del Cauca,Corregimiento la Marina,6
-Zona Sur & Llanos,Tolima,Saldana,5
-Zona Sur & Llanos,Caqueta,OCCIDENTAL,5
-"Santanderes, Boyaca y Cesar",Santander,Lebrija,5
-Zona Pacifico,Cauca,Caldono,5
-Zona Pacifico,Valle del Cauca,Belhorizonte,5
-Zona Sur & Llanos,Caqueta,Morelia,5
-Antioquia & Eje Cafetero,Caldas,Neira,5
-Zona Sur & Llanos,Tolima,Guamo,5
-Antioquia & Eje Cafetero,Quindio,Pueblo Tapao,5
-Antioquia & Eje Cafetero,Antioquia,Andes,5
-Antioquia & Eje Cafetero,Antioquia,Segovia,5
+Bogota & Cundinamarca,Cundinamarca,Arbelaez,6
+Bogota & Cundinamarca,Cundinamarca,Ubaque,6
+Zona Pacifico,Cauca,Timbiqui,6
+Antioquia & Eje Cafetero,Risaralda,Marsella,6
+Zona Sur & Llanos,Huila,Elias,6
+"Santanderes, Boyaca y Cesar",Boyaca,Samaca,6
+Zona Pacifico,Valle del Cauca,TARRAGONA,6
+Zona Pacifico,Choco,Certegui,6
+"Santanderes, Boyaca y Cesar",Boyaca,Tibana,6
 Zona Caribe,Atlantico,Santa Lucia,5
-Zona Caribe,Sucre,Santiago de Tolu,5
-Zona Caribe,Cordoba,Valencia,5
-Zona Pacifico,Valle del Cauca,BUGALAGRANDE,5
-Zona Caribe,Sucre,Corozal,5
-Bogota & Cundinamarca,Cundinamarca,Guayabal de Siquima,5
-Zona Sur & Llanos,Tolima,Lerida Centro,5
+"Santanderes, Boyaca y Cesar",Santander,Lebrija,5
 Zona Sur & Llanos,Huila,acevedo,5
-Antioquia & Eje Cafetero,Quindio,Cordoba,4
-Zona Sur & Llanos,Caqueta,Valparaiso,4
-Antioquia & Eje Cafetero,Antioquia,Zaragoza,4
-Zona Pacifico,Valle del Cauca,Salida la union,4
+Zona Sur & Llanos,Tolima,Lerida Centro,5
+Antioquia & Eje Cafetero,Quindio,Pueblo Tapao,5
+Zona Pacifico,Valle del Cauca,BUGALAGRANDE,5
+Zona Sur & Llanos,Caqueta,Morelia,5
+Bogota & Cundinamarca,Cundinamarca,Guayabal de Siquima,5
+Antioquia & Eje Cafetero,Antioquia,Andes,5
+Zona Sur & Llanos,Caqueta,OCCIDENTAL,5
+Zona Caribe,Sucre,Santiago de Tolu,5
+Zona Caribe,Sucre,Corozal,5
+Antioquia & Eje Cafetero,Antioquia,Segovia,5
+Zona Pacifico,Valle del Cauca,Belhorizonte,5
+Zona Sur & Llanos,Tolima,Saldana,5
+Zona Pacifico,Cauca,Caldono,5
+Zona Sur & Llanos,Tolima,Guamo,5
+Antioquia & Eje Cafetero,Caldas,Neira,5
+Zona Caribe,Cordoba,Valencia,5
 Zona Pacifico,Choco,Bajira,4
-"Santanderes, Boyaca y Cesar",Santander,Sabana de Torres,4
+"Santanderes, Boyaca y Cesar",Cesar,El Copey,4
+Zona Pacifico,Valle del Cauca,Salida la union,4
+Antioquia & Eje Cafetero,Quindio,Cordoba,4
 Zona Pacifico,Narino,"Sandona, Narino",4
-Zona Sur & Llanos,Meta,la ministerial,4
 Zona Caribe,Bolivar,Iglesia de Bayunca,4
+Zona Sur & Llanos,Meta,la ministerial,4
+Antioquia & Eje Cafetero,Antioquia,Zaragoza,4
+Zona Caribe,La Guajira,CUESTECITAS,4
+Zona Sur & Llanos,Caqueta,Valparaiso,4
+Bogota & Cundinamarca,Cundinamarca,Cambao,4
 Antioquia & Eje Cafetero,Caldas,Salamina,4
-Bogota & Cundinamarca,Cundinamarca,Choconta,4
+"Santanderes, Boyaca y Cesar",Santander,Sabana de Torres,4
 Zona Sur & Llanos,Tolima,Iglesia de Rovira,4
 Bogota & Cundinamarca,Cundinamarca,San Francisco,4
-Zona Caribe,La Guajira,CUESTECITAS,4
-Bogota & Cundinamarca,Cundinamarca,Cambao,4
-"Santanderes, Boyaca y Cesar",Cesar,El Copey,4
-"Santanderes, Boyaca y Cesar",Boyaca,Villa de Leyva,3
-Antioquia & Eje Cafetero,Risaralda,LA CELIA,3
-Zona Pacifico,Cauca,La Sierra,3
-Antioquia & Eje Cafetero,Risaralda,Apia,3
-Zona Pacifico,Choco,Bojaya,3
-Zona Pacifico,Cauca,Piamonte,3
-Antioquia & Eje Cafetero,Quindio,Salento,3
+Bogota & Cundinamarca,Cundinamarca,Choconta,4
 Antioquia & Eje Cafetero,Antioquia,Colegio 20 de Julio,3
-"Santanderes, Boyaca y Cesar",Santander,Charala,3
-Zona Sur & Llanos,Caqueta,san jose,3
+Zona Pacifico,Cauca,Piamonte,3
+Antioquia & Eje Cafetero,Risaralda,LA CELIA,3
+Zona Sur & Llanos,Caqueta,Solano,3
+Bogota & Cundinamarca,Cundinamarca,Porvenir Rio,3
+Zona Sur & Llanos,Tolima,San Luis,3
+"Santanderes, Boyaca y Cesar",Boyaca,Villa de Leyva,3
+"Santanderes, Boyaca y Cesar",Cesar,San Alberto,3
 Zona Caribe,Cordoba,IDMJI CIENAGA DE ORO,3
+Zona Pacifico,Choco,Bojaya,3
 Zona Sur & Llanos,Tolima,Villarrica,3
 Zona Caribe,Cordoba,La Apartada,3
-Zona Sur & Llanos,Caqueta,Solano,3
+Zona Pacifico,Cauca,La Sierra,3
+Antioquia & Eje Cafetero,Risaralda,Apia,3
+Zona Sur & Llanos,Caqueta,san jose,3
+Antioquia & Eje Cafetero,Quindio,Salento,3
+"Santanderes, Boyaca y Cesar",Santander,Charala,3
 Zona Caribe,Bolivar,Pasacaballos,3
+Zona Pacifico,Choco,Yuto,3
 Zona Sur & Llanos,Vaupes,Colombia • Vaupes • Mitu • Av 15 # 5 - 136 - Br. San Jose - Via Malecon - Contacto: 3135927379 ,3
 Zona Sur & Llanos,Casanare,Aguazul,3
-Bogota & Cundinamarca,Cundinamarca,Porvenir Rio,3
-Zona Pacifico,Choco,Yuto,3
-"Santanderes, Boyaca y Cesar",Cesar,San Alberto,3
-Zona Sur & Llanos,Tolima,San Luis,3
-Zona Pacifico,Cauca,Cuarto Esquinas,2
-"Santanderes, Boyaca y Cesar",Boyaca,Moniquira,2
-Antioquia & Eje Cafetero,Antioquia,Santa fe de Antioquia,2
-Antioquia & Eje Cafetero,Caldas,"La Merced, Caldas",2
-Zona Caribe,Bolivar,Santa Rosa,2
+Zona Caribe,Magdalena,Isla del Rosario,2
+"Santanderes, Boyaca y Cesar",Cesar,PUEBLO BELLO,2
+Zona Caribe,Cordoba,IDMJI Colegio lacides,2
+Zona Pacifico,Valle del Cauca,Alcala,2
+Bogota & Cundinamarca,Cundinamarca,San Juan de Rio Seco,2
+Antioquia & Eje Cafetero,Caldas,Belalcazar,2
+Antioquia & Eje Cafetero,Antioquia,Caseta comunal 28 de octubre,2
+Zona Caribe,Sucre,SAN MARCOS,2
+Zona Sur & Llanos,Tolima,San Antonio,2
+Zona Pacifico,Putumayo,"La Tagua,",2
+Bogota & Cundinamarca,Cundinamarca,Caparrapi,2
+Zona Caribe,Sucre,Laguna flor,2
+"Santanderes, Boyaca y Cesar",Cesar,La Paz,2
+Antioquia & Eje Cafetero,Antioquia,San Pedro de Uraba,2
 Zona Caribe,La Guajira,Rancheria Jonjoncito,2
 Zona Pacifico,Cauca,Mondomo,2
-Zona Caribe,Sucre,Laguna flor,2
-Antioquia & Eje Cafetero,Caldas,Pensilvania,2
-Antioquia & Eje Cafetero,Antioquia,Caseta comunal 28 de octubre,2
-Zona Caribe,Magdalena,Isla del Rosario,2
-Zona Sur & Llanos,Tolima,San Antonio,2
-Zona Sur & Llanos,Tolima,Carmen de Apicala,2
-Zona Pacifico,Putumayo,"La Tagua,",2
-Zona Pacifico,Narino,Taminango,2
-Bogota & Cundinamarca,Cundinamarca,Caparrapi,2
-Zona Caribe,Sucre,SAN MARCOS,2
 Zona Pacifico,Valle del Cauca,Corregimiento de Bitaco,2
-Zona Caribe,Cordoba,IDMJI Colegio lacides,2
-"Santanderes, Boyaca y Cesar",Cesar,PUEBLO BELLO,2
-"Santanderes, Boyaca y Cesar",Boyaca,Muzo,2
-Antioquia & Eje Cafetero,Antioquia,San Pedro de Uraba,2
-"Santanderes, Boyaca y Cesar",Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
+Antioquia & Eje Cafetero,Caldas,"La Merced, Caldas",2
+Zona Caribe,Bolivar,Santa Rosa,2
 "Santanderes, Boyaca y Cesar",Boyaca,Tenza,2
-Bogota & Cundinamarca,Cundinamarca,Fomeque,2
-Zona Caribe,Magdalena,Aracataca,2
+"Santanderes, Boyaca y Cesar",Boyaca,Moniquira,2
 Antioquia & Eje Cafetero,Quindio,IGLESIA PIJAO,2
-Zona Caribe,Magdalena,Iglesia Ministerial,2
 Zona Caribe,Atlantico,Centro,2
-Bogota & Cundinamarca,Cundinamarca,San Juan de Rio Seco,2
-Zona Pacifico,Valle del Cauca,Alcala,2
-Antioquia & Eje Cafetero,Caldas,Belalcazar,2
+Zona Pacifico,Narino,Taminango,2
+Zona Pacifico,Cauca,Cuarto Esquinas,2
 Antioquia & Eje Cafetero,Antioquia,Santa Barbara,2
-"Santanderes, Boyaca y Cesar",Cesar,La Paz,2
+Antioquia & Eje Cafetero,Antioquia,Santa fe de Antioquia,2
+Zona Caribe,Magdalena,Aracataca,2
+Zona Sur & Llanos,Tolima,Carmen de Apicala,2
+Bogota & Cundinamarca,Cundinamarca,Fomeque,2
+Antioquia & Eje Cafetero,Caldas,Pensilvania,2
+"Santanderes, Boyaca y Cesar",Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
+"Santanderes, Boyaca y Cesar",Boyaca,Muzo,2
+Zona Caribe,Magdalena,Iglesia Ministerial,2
 Antioquia & Eje Cafetero,Risaralda,Caimalito,2
-Zona Pacifico,Cauca,Cajibio,1
-Zona Caribe,Atlantico,TUBARA,1
-Zona Sur & Llanos,Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
-Zona Caribe,Magdalena,Colombia • Magdalena • Plato • Calle 13 No. 16A-44 Barrio El Carmen  (frente a la Biblioteca municipal),1
-Zona Pacifico,Narino,Ancuya,1
-Zona Sur & Llanos,Tolima,El Tablazo,1
-"Santanderes, Boyaca y Cesar",Boyaca,Aquitania,1
-Zona Sur & Llanos,Tolima,Planadas,1
-Antioquia & Eje Cafetero,Antioquia,La Union,1
-Zona Pacifico,Valle del Cauca,Panamericano,1
 Bogota & Cundinamarca,Cundinamarca,San Carlos,1
-Zona Sur & Llanos,Guaviare,Calamar,1
-"Santanderes, Boyaca y Cesar",Santander,Jesus Maria,1
-Zona Sur & Llanos,Tolima,IGLESIA DE COYAIMA,1
-Zona Sur & Llanos,Caqueta,Solita,1
-Zona Pacifico,Valle del Cauca,La Cumbre,1
-Zona Pacifico,Valle del Cauca,Salonica,1
-Antioquia & Eje Cafetero,Risaralda,La Hermosa,1
-Zona Pacifico,Valle del Cauca,Prado,1
-Antioquia & Eje Cafetero,Quindio,Escuela la Cascada,1
-Antioquia & Eje Cafetero,Quindio,La Virginia,1
-Zona Pacifico,Valle del Cauca,San Pedro,1
-Zona Pacifico,Valle del Cauca,Robledo,1
-Bogota & Cundinamarca,Cundinamarca,La Palma,1
-Antioquia & Eje Cafetero,Caldas,Riosucio,1
-Antioquia & Eje Cafetero,Antioquia,San Antonio de Prado,1
-Zona Pacifico,Valle del Cauca,Vallejuelo,1
-Zona Caribe,Magdalena,Rio Frio,1
-Zona Pacifico,Valle del Cauca,Obelisco,1
-Zona Sur & Llanos,Huila,Bruselas,1
-Antioquia & Eje Cafetero,Antioquia,Ciudad Bolivar,1
-Antioquia & Eje Cafetero,Caldas,Manzanares,1
-Zona Sur & Llanos,Huila,Guadalupe,1
-"Santanderes, Boyaca y Cesar",Santander,Cimitarra,1
-Bogota & Cundinamarca,Cundinamarca,Chipaque,1
-Antioquia & Eje Cafetero,Risaralda,QUINCHIA,1
-"Santanderes, Boyaca y Cesar",Norte de Santander,La Gabarra,1
-Zona Pacifico,Valle del Cauca,Ciudad del Campo,1
-Antioquia & Eje Cafetero,Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
-Zona Pacifico,Valle del Cauca,La Fresneda,1
-Zona Pacifico,Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
 Bogota & Cundinamarca,Cundinamarca,Cachipay,1
-Zona Caribe,La Guajira,Uribia,1
-Zona Caribe,Bolivar,IDMJI DE MOMPOX,1
-Antioquia & Eje Cafetero,Quindio,Filandia,1
-Zona Caribe,Bolivar,La Boquilla,1
-"Santanderes, Boyaca y Cesar",Boyaca,Santana,1
-Zona Pacifico,Cauca,Sucre,1
-"Santanderes, Boyaca y Cesar",Santander,Capitanejo,1
-"Santanderes, Boyaca y Cesar",Boyaca,Vereda Jaraquira,1
 Antioquia & Eje Cafetero,Risaralda,Mistrato,1
+Zona Caribe,Bolivar,IDMJI DE MOMPOX,1
+Zona Pacifico,Valle del Cauca,Vallejuelo,1
+Zona Sur & Llanos,Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
+Zona Sur & Llanos,Caqueta,Solita,1
+Zona Pacifico,Valle del Cauca,Robledo,1
 Antioquia & Eje Cafetero,Antioquia,BARBOSA,1
-Antioquia & Eje Cafetero,Antioquia,IDMJI,1
-Zona Caribe,Atlantico,ponedera,1
 Zona Pacifico,Narino,Ricaurte,1
-"Santanderes, Boyaca y Cesar",Boyaca,Nuevo Colon,1
-"Santanderes, Boyaca y Cesar",Norte de Santander,Las Delicias,1
+Zona Caribe,Atlantico,ponedera,1
+Zona Pacifico,Valle del Cauca,San Pedro,1
+Zona Pacifico,Valle del Cauca,Ciudad del Campo,1
+"Santanderes, Boyaca y Cesar",Boyaca,Vereda Jaraquira,1
 Zona Pacifico,Cauca,Buenos Aires,1
+Antioquia & Eje Cafetero,Risaralda,La Hermosa,1
+Zona Sur & Llanos,Huila,Guadalupe,1
+Zona Pacifico,Valle del Cauca,La Fresneda,1
+Antioquia & Eje Cafetero,Caldas,Riosucio,1
+Bogota & Cundinamarca,Cundinamarca,La Palma,1
+"Santanderes, Boyaca y Cesar",Boyaca,Nuevo Colon,1
+Zona Pacifico,Valle del Cauca,Obelisco,1
+Antioquia & Eje Cafetero,Caldas,Manzanares,1
+Antioquia & Eje Cafetero,Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
+Antioquia & Eje Cafetero,Quindio,Escuela la Cascada,1
+Antioquia & Eje Cafetero,Antioquia,San Antonio de Prado,1
+Antioquia & Eje Cafetero,Antioquia,IDMJI,1
+Zona Sur & Llanos,Tolima,IGLESIA DE COYAIMA,1
+Zona Pacifico,Narino,Ancuya,1
+Zona Pacifico,Valle del Cauca,Panamericano,1
+Zona Caribe,Magdalena,Colombia • Magdalena • Plato • Calle 13 No. 16A-44 Barrio El Carmen  (frente a la Biblioteca municipal),1
+"Santanderes, Boyaca y Cesar",Santander,Capitanejo,1
+Zona Sur & Llanos,Tolima,El Tablazo,1
+Zona Sur & Llanos,Tolima,Planadas,1
+Zona Pacifico,Valle del Cauca,La Cumbre,1
+"Santanderes, Boyaca y Cesar",Santander,Cimitarra,1
+Zona Sur & Llanos,Guaviare,Calamar,1
+Zona Pacifico,Valle del Cauca,Prado,1
+Zona Pacifico,Cauca,Sucre,1
+Zona Pacifico,Cauca,Cajibio,1
+Bogota & Cundinamarca,Cundinamarca,Chipaque,1
+"Santanderes, Boyaca y Cesar",Santander,Jesus Maria,1
+Zona Sur & Llanos,Huila,Bruselas,1
+Zona Caribe,La Guajira,Uribia,1
+Zona Caribe,Magdalena,Rio Frio,1
+Antioquia & Eje Cafetero,Antioquia,La Union,1
+Zona Pacifico,Valle del Cauca,Salonica,1
+Zona Pacifico,Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
+"Santanderes, Boyaca y Cesar",Norte de Santander,Las Delicias,1
+"Santanderes, Boyaca y Cesar",Boyaca,Santana,1
+"Santanderes, Boyaca y Cesar",Norte de Santander,La Gabarra,1
+Zona Caribe,Bolivar,La Boquilla,1
+Antioquia & Eje Cafetero,Risaralda,QUINCHIA,1
+Antioquia & Eje Cafetero,Quindio,La Virginia,1
+Antioquia & Eje Cafetero,Quindio,Filandia,1
+Zona Caribe,Atlantico,TUBARA,1
+Antioquia & Eje Cafetero,Antioquia,Ciudad Bolivar,1
+"Santanderes, Boyaca y Cesar",Boyaca,Aquitania,1
 
 SECCION 7 - METADATOS
 
 "Clave","Valor"
-corte_datos,2026-08-13T16:40:18.995333-05:00
+corte_datos,2026-08-13T16:54:46.114018-05:00
