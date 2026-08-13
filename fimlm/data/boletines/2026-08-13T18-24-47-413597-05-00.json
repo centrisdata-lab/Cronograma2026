@@ -1,0 +1,32 @@
+{
+  "corte": "2026-08-13T18:24:47.413597-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4967",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4997",
+      "matAntes": 22,
+      "matAhora": 23,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4282",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    }
+  ]
+}
