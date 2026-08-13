@@ -995,11 +995,41 @@ let iglesiasSearchTerm = '';
 let iglesiasTab = 'sin';
 const expandedDeps = new Set();
 const expandedDepsInsc = new Set();
+const expandedZonasIgl = new Set();
+const expandedZonasIglInsc = new Set();
 function toggleIglesiasDep(dep){
   const set = iglesiasTab==='con' ? expandedDepsInsc : expandedDeps;
   if(set.has(dep)) set.delete(dep); else set.add(dep);
   const t = document.getElementById('iglesias-detail-table');
   withScrollLock(()=>{ if(t) t.innerHTML = iglesiasTableHtml(); });
+}
+function toggleIglesiasZona(zona){
+  const set = iglesiasTab==='con' ? expandedZonasIglInsc : expandedZonasIgl;
+  if(set.has(zona)) set.delete(zona); else set.add(zona);
+  const t = document.getElementById('iglesias-detail-table');
+  withScrollLock(()=>{ if(t) t.innerHTML = iglesiasTableHtml(); });
+}
+// Icono y color de cada zona, para que las filas de zona de esta tabla se
+// vean igual que en el resto del informe. Se busca por nombre normalizado
+// porque el CSV escribe la zona sin tildes ("Pacifico", "Santanderes &
+// Boyaca") mientras que ZONAS las trae con tilde.
+const zonaMetaPorNombre = {};
+ZONAS.forEach(z => { zonaMetaPorNombre[normKey(z.name)] = z; });
+function metaDeZona(nombre){
+  return zonaMetaPorNombre[normKey(nombre)] || null;
+}
+// El CSV llega sin tildes (el extractor las quita para que el archivo no se
+// corrompa según la codificación con que se guarde). Para mostrar, se repone
+// la grafía correcta de los departamentos que la necesitan.
+const DEPARTAMENTO_CON_TILDE = {
+  atlantico:'Atlántico', bolivar:'Bolívar', boyaca:'Boyacá', caqueta:'Caquetá',
+  choco:'Chocó', cordoba:'Córdoba', guainia:'Guainía', narino:'Nariño',
+  quindio:'Quindío', vaupes:'Vaupés', bogota:'Bogotá', uraba:'Urabá',
+  'sanandres':'San Andrés', 'archipielagodesanandres':'Archipiélago de San Andrés',
+  'archipielagodesanandresprovidenciaysantacatalina':'Archipiélago de San Andrés, Providencia y Santa Catalina'
+};
+function nombreDepartamento(dep){
+  return DEPARTAMENTO_CON_TILDE[normKey(dep)] || dep;
 }
 function switchIglesiasTab(tab){
   iglesiasTab = tab;
@@ -1007,61 +1037,93 @@ function switchIglesiasTab(tab){
   const box = document.getElementById('kpi-detail');
   withScrollLock(()=>{ box.innerHTML = buildDetail('iglesias'); });
 }
+// Tabla de iglesias en tres niveles: zona → departamento → iglesias.
+// Las dos pestañas (sin matrícula / con inscripción) comparten la misma
+// estructura y solo cambian en qué dato resumen ("N iglesias" vs "N
+// inscritos") y en cómo se ordenan, así que se resuelven con la misma
+// función en vez de duplicar el armado del HTML.
 function iglesiasTableHtml(){
   const term = normKey(iglesiasSearchTerm);
-  if(iglesiasTab==='con'){
-    const rows = term
-      ? IGLESIAS_INSC.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term))
-      : IGLESIAS_INSC;
-    if(!rows.length){
-      return `<thead><tr><th></th><th>Departamento</th></tr></thead>
-        <tbody><tr><td colspan="2" class="empty-note">Ninguna iglesia coincide con la búsqueda.</td></tr></tbody>`;
-    }
+  const esInsc = iglesiasTab === 'con';
+  const fuente = esInsc ? IGLESIAS_INSC : IGLESIAS;
+  const setZonas = esInsc ? expandedZonasIglInsc : expandedZonasIgl;
+  const setDeps  = esInsc ? expandedDepsInsc : expandedDeps;
+  const head = `<thead><tr><th></th><th>Zona / Departamento</th></tr></thead>`;
+
+  const rows = term
+    ? fuente.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term) || normKey(i.zona||'').includes(term))
+    : fuente;
+  if(!rows.length){
+    return `${head}<tbody><tr><td colspan="2" class="empty-note">Ninguna iglesia coincide con la búsqueda.</td></tr></tbody>`;
+  }
+
+  const totalDe = items => esInsc ? items.reduce((s,i)=>s+i.ins,0) : items.length;
+
+  // Agrupar por zona y, dentro de cada zona, por departamento. Si el CSV
+  // todavía no trae la columna de zona (corrida vieja), se agrupa todo
+  // bajo una sola zona sin nombre, que se dibuja sin la fila de zona —
+  // el informe sigue funcionando igual que antes del cambio.
+  const byZona = {};
+  rows.forEach(i => {
+    const z = i.zona || '';
+    (byZona[z] = byZona[z] || []).push(i);
+  });
+  const zonas = Object.keys(byZona).sort((a,b)=>totalDe(byZona[b])-totalDe(byZona[a]));
+  const sinZona = zonas.length === 1 && zonas[0] === '';
+
+  const filasDeDepartamentos = (items, nivelZona) => {
     const byDep = {};
-    rows.forEach(i=>{ (byDep[i.dep] = byDep[i.dep] || []).push(i); });
-    const deps = Object.keys(byDep).sort((a,b)=>(byDep[b].reduce((s,i)=>s+i.ins,0))-(byDep[a].reduce((s,i)=>s+i.ins,0)));
-    const body = deps.map(dep=>{
-      const items = byDep[dep].slice().sort((a,b)=>b.ins-a.ins);
-      const depTotal = items.reduce((s,i)=>s+i.ins,0);
-      const isOpen = expandedDepsInsc.has(dep) || !!term;
-      const groupHead = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${dep}">
-          <td class="expand-cell">${isOpen?'▾':'▸'}</td>
-          <td>${dep} <span class="badge info" style="margin-left:6px;">${fmt(depTotal)} inscritos · ${fmt(items.length)} iglesias</span></td>
+    items.forEach(i=>{ (byDep[i.dep] = byDep[i.dep] || []).push(i); });
+    const deps = Object.keys(byDep).sort((a,b)=> esInsc
+      ? totalDe(byDep[b]) - totalDe(byDep[a])
+      : a.localeCompare(b,'es'));
+    return deps.map(dep=>{
+      const iglesias = byDep[dep].slice().sort((a,b)=> esInsc
+        ? b.ins - a.ins
+        : a.nom.localeCompare(b.nom,'es'));
+      const abierto = setDeps.has(dep) || !!term;
+      const resumen = esInsc
+        ? `${fmt(totalDe(iglesias))} inscritos · ${fmt(iglesias.length)} iglesias`
+        : fmt(iglesias.length);
+      const sangria = nivelZona ? 'padding-left:26px;' : '';
+      const depLabel = nombreDepartamento(dep);
+      const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${depLabel}">
+          <td class="expand-cell">${abierto?'▾':'▸'}</td>
+          <td style="${sangria}">${depLabel} <span class="badge info" style="margin-left:6px;">${resumen}</span></td>
         </tr>`;
-      const itemRows = isOpen ? `<tr class="curso-groups-row"><td colspan="2"><div class="groups-inline">
+      const detalle = abierto ? `<tr class="curso-groups-row"><td colspan="2"><div class="groups-inline">
           <table class="data mini">
-            <tbody>${items.map(i=>`<tr><td>${i.nom}</td><td class="num-cell">${fmt(i.ins)}</td></tr>`).join('')}</tbody>
+            <tbody>${iglesias.map(i=> esInsc
+              ? `<tr><td>${i.nom}</td><td class="num-cell">${fmt(i.ins)}</td></tr>`
+              : `<tr><td colspan="2">${i.nom}</td></tr>`).join('')}</tbody>
           </table>
         </div></td></tr>` : '';
-      return groupHead + itemRows;
+      return cabecera + detalle;
     }).join('');
-    return `<thead><tr><th></th><th>Departamento</th></tr></thead><tbody>${body}</tbody>`;
+  };
+
+  if(sinZona){
+    return `${head}<tbody>${filasDeDepartamentos(byZona[''], false)}</tbody>`;
   }
-  const rows = term
-    ? IGLESIAS.filter(i => normKey(i.nom).includes(term) || normKey(i.dep).includes(term))
-    : IGLESIAS;
-  if(!rows.length){
-    return `<thead><tr><th></th><th>Departamento</th></tr></thead>
-      <tbody><tr><td colspan="2" class="empty-note">Ninguna iglesia coincide con la búsqueda.</td></tr></tbody>`;
-  }
-  const byDep = {};
-  rows.forEach(i=>{ (byDep[i.dep] = byDep[i.dep] || []).push(i); });
-  const deps = Object.keys(byDep).sort((a,b)=>a.localeCompare(b,'es'));
-  const body = deps.map(dep=>{
-    const items = byDep[dep].slice().sort((a,b)=>a.nom.localeCompare(b.nom,'es'));
-    const isOpen = expandedDeps.has(dep) || !!term;
-    const groupHead = `<tr class="group-head clickable-row" onclick="toggleIglesiasDep('${dep.replace(/'/g,"\\'")}')" title="Ver las iglesias de ${dep}">
-        <td class="expand-cell">${isOpen?'▾':'▸'}</td>
-        <td>${dep} <span class="badge info" style="margin-left:6px;">${fmt(items.length)}</span></td>
+
+  const body = zonas.map(zona=>{
+    const items = byZona[zona];
+    const meta = metaDeZona(zona);
+    const nombre = meta ? meta.name : (zona || 'Sin zona asignada');
+    const icono = meta
+      ? `<span class="zone-icon-badge" style="background:${meta.color}">${meta.icon}</span>`
+      : '';
+    const abierta = setZonas.has(zona) || !!term;
+    const resumen = esInsc
+      ? `${fmt(totalDe(items))} inscritos · ${fmt(items.length)} iglesias`
+      : `${fmt(items.length)} iglesias`;
+    const cabecera = `<tr class="group-head clickable-row" onclick="toggleIglesiasZona('${zona.replace(/'/g,"\\'")}')" title="Ver los departamentos de ${nombre}">
+        <td class="expand-cell">${abierta?'▾':'▸'}</td>
+        <td><div style="display:flex; align-items:center; gap:10px;">${icono}<span>${nombre} <span class="badge info" style="margin-left:6px;">${resumen}</span></span></div></td>
       </tr>`;
-    const itemRows = isOpen ? `<tr class="curso-groups-row"><td colspan="2"><div class="groups-inline">
-        <table class="data mini">
-          <tbody>${items.map(i=>`<tr><td colspan="2">${i.nom}</td></tr>`).join('')}</tbody>
-        </table>
-      </div></td></tr>` : '';
-    return groupHead + itemRows;
+    return cabecera + (abierta ? filasDeDepartamentos(items, true) : '');
   }).join('');
-  return `<thead><tr><th></th><th>Departamento</th></tr></thead><tbody>${body}</tbody>`;
+  return `${head}<tbody>${body}</tbody>`;
 }
 function onIglesiasSearch(val){
   iglesiasSearchTerm = val;
@@ -1268,8 +1330,8 @@ function buildDetail(kind){
       `<div id="alertas-detail-body">${document.getElementById('alerts-wrap').innerHTML}</div>`;
   }
   if(kind==='iglesias'){
-    const subSin = `${fmt(IGLESIAS.length)} iglesias/sedes registradas en el sistema que hoy no tienen ningún matriculado en Campus 360. No están asociadas a una zona de las 6 de este informe — el dashboard las agrupa aparte, a nivel nacional.`;
-    const subCon = `${fmt(IGLESIAS_INSC.length)} iglesias/sedes con al menos una persona inscrita, con el total de inscritos por iglesia. Es un dato <b>global de Colombia</b> (todo el país), no solo de las 6 zonas de este informe.`;
+    const subSin = `${fmt(IGLESIAS.length)} iglesias/sedes registradas en el sistema que hoy no tienen ningún matriculado en Campus 360. El dashboard las entrega solo por departamento; aquí se agrupan por zona según el departamento al que pertenece cada una. Toca una zona para ver sus departamentos.`;
+    const subCon = `${fmt(IGLESIAS_INSC.length)} iglesias/sedes con al menos una persona inscrita, con el total de inscritos por iglesia. Es un dato <b>global de Colombia</b> (todo el país), agrupado por zona según el departamento de cada iglesia.`;
     return kdHead('Iglesias', iglesiasTab==='con' ? subCon : subSin) +
       `<div class="state-filter-group" style="margin-bottom:14px;">
         <span class="chip-label">Vista</span>

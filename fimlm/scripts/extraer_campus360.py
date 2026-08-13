@@ -41,6 +41,36 @@ ZONA_MAP = {
 
 EDAD_LABELS = {18: "18-25", 26: "26-35", 36: "36-45", 46: "46-60", 61: "61+"}
 
+# Departamentos que componen cada zona. El dashboard entrega las iglesias
+# (secciones 4 y 6) agrupadas solo por departamento, sin decir a que zona
+# pertenecen; esta tabla es la que permite agruparlas por zona en el informe.
+# La fuente es la misma que usa el Informe Nacional (informe/js/datos.js) —
+# si alli se agrega un departamento a una zona, hay que reflejarlo aqui.
+ZONA_POR_DEPARTAMENTO = {
+    "Bogota & Cundinamarca": ["Bogota", "Cundinamarca"],
+    "Caribe": [
+        "Atlantico", "La Guajira", "Cordoba", "Sucre", "San Andres",
+        # El dashboard nombra este departamento de varias formas; se listan
+        # las conocidas y ademas zona_de_departamento() cae a una comparacion
+        # por prefijo, para que una variante nueva tampoco quede sin zona.
+        "Archipielago de San Andres",
+        "Archipielago de San Andres, Providencia y Santa Catalina",
+        "Bolivar", "Magdalena",
+    ],
+    "Antioquia Eje Cafetero": ["Antioquia", "Uraba", "Caldas", "Risaralda", "Quindio"],
+    "Pacifico": ["Valle del Cauca", "Cauca", "Choco", "Narino", "Putumayo"],
+    "Sur y Llanos": [
+        "Meta", "Arauca", "Casanare", "Guainia", "Guaviare", "Vaupes",
+        "Vichada", "Amazonas", "Caqueta", "Huila", "Tolima",
+    ],
+    "Santanderes & Boyaca": ["Santander", "Norte de Santander", "Boyaca", "Cesar"],
+}
+
+# Zona a usar cuando un departamento no esta en la tabla de arriba. No deberia
+# pasar, pero si el dashboard empieza a reportar un departamento nuevo es
+# preferible mostrarlo agrupado aparte que perderlo o romper el informe.
+ZONA_DESCONOCIDA = "Sin zona asignada"
+
 
 def strip_accents(s):
     if s is None:
@@ -48,6 +78,36 @@ def strip_accents(s):
     formD = unicodedata.normalize("NFD", s)
     stripped = "".join(c for c in formD if unicodedata.category(c) != "Mn")
     return stripped.replace("Ñ", "N").replace("ñ", "n")
+
+
+def _dep_key(nombre):
+    """Clave normalizada para comparar departamentos sin que estorben
+    tildes, mayusculas ni signos: el dashboard manda 'Narino'/'Boyaca'
+    mientras que la tabla de zonas se escribe 'Nariño'/'Boyacá'."""
+    return "".join(c for c in strip_accents(nombre or "").lower() if c.isalnum())
+
+
+_DEP_A_ZONA = {
+    _dep_key(dep): zona
+    for zona, deps in ZONA_POR_DEPARTAMENTO.items()
+    for dep in deps
+}
+
+
+def zona_de_departamento(departamento):
+    clave = _dep_key(departamento)
+    if not clave:
+        return ZONA_DESCONOCIDA
+    zona = _DEP_A_ZONA.get(clave)
+    if zona:
+        return zona
+    # Coincidencia por prefijo: el dashboard a veces alarga el nombre de un
+    # departamento ("Archipielago de San Andres" -> "... , Providencia y Santa
+    # Catalina"). Sin esto, una variante nueva quedaria sin zona asignada.
+    for dep_clave, dep_zona in _DEP_A_ZONA.items():
+        if clave.startswith(dep_clave) or dep_clave.startswith(clave):
+            return dep_zona
+    return ZONA_DESCONOCIDA
 
 
 def csv_field(val):
@@ -192,7 +252,8 @@ def build_csv(data):
     lines.append("")
     lines.append('"Zona","Departamento","Iglesia","Matriculados"')
     for i in data["iglesias"]["sin_co_departamentos"]:
-        lines.append(csv_row("Todas (6 zonas)", strip_accents(i["departamento"]), strip_accents(i["iglesia"]), 0))
+        dep = strip_accents(i["departamento"])
+        lines.append(csv_row(zona_de_departamento(dep), dep, strip_accents(i["iglesia"]), 0))
     lines.append("")
 
     # ---------- Seccion 5: otros datos globales ----------
@@ -216,9 +277,10 @@ def build_csv(data):
     # ---------- Seccion 6: iglesias con inscripcion ----------
     lines.append("SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)")
     lines.append("")
-    lines.append('"Departamento","Iglesia","Inscritos"')
+    lines.append('"Zona","Departamento","Iglesia","Inscritos"')
     for i in data["demanda"]["iglesia_co_departamentos"]:
-        lines.append(csv_row(strip_accents(i["departamento"]), strip_accents(i["iglesia"]), i["n"]))
+        dep = strip_accents(i["departamento"])
+        lines.append(csv_row(zona_de_departamento(dep), dep, strip_accents(i["iglesia"]), i["n"]))
     lines.append("")
 
     # ---------- Seccion 7: metadatos de la extraccion ----------

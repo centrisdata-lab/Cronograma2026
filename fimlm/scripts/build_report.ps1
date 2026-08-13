@@ -168,11 +168,17 @@ if (Test-Path $boletinesDir) {
 $novedades = if ($boletines.Count -gt 0) { @($boletines[0].novedades) } else { @() }
 
 # --- Iglesias sin matricula ---
+# La columna "Zona" trae la zona real desde extraer_campus360.py. Los CSV
+# generados antes de ese cambio traen el texto fijo "Todas (6 zonas)": en ese
+# caso se deja vacia para que el informe agrupe solo por departamento, en vez
+# de inventar una zona falsa. Asi una corrida automatica con el CSV viejo no
+# rompe el informe mientras se despliega el cambio.
 $iglesiasRaw = $iglesiasLines | ConvertFrom-Csv
 $iglesias = @()
 foreach ($i in $iglesiasRaw) {
+  $zonaIgl = if ($i.Zona -and $i.Zona -notlike "Todas*") { $i.Zona } else { "" }
   $iglesias += [ordered]@{
-    zona=$i.Zona; dep=$i.Departamento; nom=$i.Iglesia; mat=[int]$i.Matriculados
+    zona=$zonaIgl; dep=$i.Departamento; nom=$i.Iglesia; mat=[int]$i.Matriculados
   }
 }
 
@@ -186,11 +192,14 @@ if ($otrosLines.Count -gt 0) {
 }
 
 # --- Iglesias con inscripcion (Colombia, global - no filtrado a 6 zonas) ---
+# La columna "Zona" se agrego junto con la de la seccion 4; los CSV anteriores
+# no la traen (ConvertFrom-Csv devuelve $null) y en ese caso queda vacia.
 $iglesiasInsc = @()
 if ($iglInscLines.Count -gt 0) {
   $iglInscRaw = $iglInscLines | ConvertFrom-Csv
   foreach ($i in $iglInscRaw) {
-    $iglesiasInsc += [ordered]@{ dep=$i.Departamento; nom=$i.Iglesia; ins=[int]$i.Inscritos }
+    $zonaInsc = if ($i.PSObject.Properties.Name -contains "Zona" -and $i.Zona) { $i.Zona } else { "" }
+    $iglesiasInsc += [ordered]@{ zona=$zonaInsc; dep=$i.Departamento; nom=$i.Iglesia; ins=[int]$i.Inscritos }
   }
 }
 
