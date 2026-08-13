@@ -1,0 +1,203 @@
+{
+  "corte": "2026-08-12T20:38:54.432669-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4844",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4991",
+      "matAntes": 37,
+      "matAhora": 38,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4774",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4820",
+      "matAntes": 16,
+      "matAhora": 17,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4827",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4794",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-5063",
+      "matAntes": 46,
+      "matAhora": 48,
+      "delta": 2
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2649",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4781",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4668",
+      "matAntes": 30,
+      "matAhora": 32,
+      "delta": 2
+    },
+    {
+      "z": "Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5022",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Pacifico",
+      "cod": "C-2439",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4219",
+      "matAntes": 21,
+      "matAhora": 23,
+      "delta": 2
+    },
+    {
+      "z": "Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4509",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    },
+    {
+      "z": "Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4512",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4262",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4285",
+      "matAntes": 38,
+      "matAhora": 40,
+      "delta": 2
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4286",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4866",
+      "matAntes": 47,
+      "matAhora": 49,
+      "delta": 2
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4872",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4282",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4880",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Sur y Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-4924",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    }
+  ]
+}
