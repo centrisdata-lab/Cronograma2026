@@ -154,8 +154,11 @@ async def fetch_dashboard_data():
         # importa (POST /api/campus/dashboard) ya hubiera llegado. Se usa
         # "load" (carga inicial del documento) y luego se espera
         # activamente a que el listener capture esa respuesta puntual.
+        # El propio POST puede tardar 30s+ en responder cuando el dashboard
+        # de origen está lento (medido hasta ~33s en pruebas), así que se
+        # espera hasta 90s en vez de los 30s originales.
         await page.reload(wait_until="load", timeout=45000)
-        for _ in range(60):
+        for _ in range(180):
             if "data" in captured or "error" in captured:
                 break
             await page.wait_for_timeout(500)

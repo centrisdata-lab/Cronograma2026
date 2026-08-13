@@ -1,0 +1,86 @@
+{
+  "corte": "2026-08-13T16:40:18.995333-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2559",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4767",
+      "matAntes": 54,
+      "matAhora": 56,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-4639",
+      "matAntes": 27,
+      "matAhora": 29,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2649",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4644",
+      "matAntes": 46,
+      "matAhora": 47,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2630",
+      "nom": "Profundizacion Costos para Emprendedores",
+      "g": "G-4660",
+      "matAntes": 4,
+      "matAhora": 5,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4715",
+      "matAntes": 5,
+      "matAhora": 6,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2650",
+      "nom": "Ingles 2",
+      "g": "G-4466",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4823",
+      "matAntes": 9,
+      "matAhora": 10,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4290",
+      "matAntes": 29,
+      "matAhora": 30,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4866",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    }
+  ]
+}
