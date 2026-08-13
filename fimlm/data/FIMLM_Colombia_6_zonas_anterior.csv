@@ -1,13 +1,13 @@
 SECCION 1 - RESUMEN POR ZONA
 
 "Zona","Matriculas","Personas","Capacidad (meta)","Cupos disponibles","Ocupacion (%)","Cursos","Grupos","En espera","Cursos baja ocupacion (<30%)"
-Bogota & Cundinamarca,6006,6006,8750,2744,68.6,36,168,106,8
+Bogota & Cundinamarca,6008,6008,8750,2742,68.7,36,168,106,8
 Antioquia Eje Cafetero,2602,2602,4900,2298,53.1,25,95,16,8
 Caribe,1856,1856,2400,544,77.3,23,47,13,3
 Santanderes & Boyaca,1372,1372,1470,98,93.3,16,28,11,2
 Pacifico,3628,3628,4550,922,79.7,27,88,49,3
 Sur y Llanos,3070,3070,5150,2080,59.6,20,103,42,4
-Total 6 zonas,18534,18534,27220,8686,68.1,,529,237,28
+Total 6 zonas,18536,18536,27220,8684,68.1,,529,237,28
 
 SECCION 2 - DETALLE DE CURSOS POR ZONA
 
@@ -45,7 +45,7 @@ Bogota & Cundinamarca,C-2566,Mi Negocio en Internet,4,200,22,178,0,0
 Bogota & Cundinamarca,C-2539,Floristeria 1,2,120,120,0,2,2
 Bogota & Cundinamarca,C-2617,Despertar Humano,10,500,249,251,0,0
 Bogota & Cundinamarca,C-2581,Ingles Nivel 1,15,750,750,0,15,22
-Bogota & Cundinamarca,C-2491,Comprension Lectora,10,500,453,47,8,2
+Bogota & Cundinamarca,C-2491,Comprension Lectora,10,500,455,45,8,2
 Bogota & Cundinamarca,C-2619,Despertar Emprendedor,8,400,400,0,8,3
 Bogota & Cundinamarca,C-2612,El ABC del Reciclaje,5,250,41,209,0,0
 Antioquia Eje Cafetero,C-2690,Bienestar para la Persona Mayor,4,200,86,114,0,0
@@ -315,7 +315,7 @@ Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4789,Sabado 8:00 - 9:30 a.m,5
 Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4790,Sabado 8:00 - 9:30 a.m,50,50,0
 Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4791,Sabado 9:00 - 10:30 a.m,50,50,0
 Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4792,Sabado 9:00 - 10:30 a.m,50,50,0
-Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4794,Sabado 9:00 - 10:30 a.m,50,32,0
+Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4794,Sabado 9:00 - 10:30 a.m,50,34,0
 Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4797,Sabado 10:00 - 11:30 a.m,50,50,0
 Bogota & Cundinamarca,C-2491,Comprension Lectora,G-4908,Sabado 9:00 - 10:30 a.m,50,21,0
 Bogota & Cundinamarca,C-2619,Despertar Emprendedor,G-4802,Martes 16:00 - 17:30 p.m,50,50,0
@@ -696,154 +696,154 @@ Sur y Llanos,C-2463,Modisteria 1 (Faldas),G-4943,Martes 20:00 - 21:30 p.m,50,50,
 SECCION 4 - IGLESIAS SIN MATRICULA
 
 "Zona","Departamento","Iglesia","Matriculados"
-Todas (6 zonas),Caldas,San Jose,0
-Todas (6 zonas),Antioquia,San Pedro de los Milagros,0
-Todas (6 zonas),Cundinamarca,Gacheta,0
-Todas (6 zonas),Boyaca,Pauna,0
-Todas (6 zonas),Antioquia,Amalfi,0
-Todas (6 zonas),Cundinamarca,Cr 6 #2-119 Br Florilandia al lado Plaza de Mercado,0
-Todas (6 zonas),Boyaca,Soraca,0
-Todas (6 zonas),Antioquia,San Carlos,0
-Todas (6 zonas),Cauca,Silvia,0
-Todas (6 zonas),Cundinamarca,Yacopi,0
-Todas (6 zonas),Atlantico,Baranoa,0
-Todas (6 zonas),Boyaca,Buenavista,0
-Todas (6 zonas),Cauca,Guapi,0
-Todas (6 zonas),Atlantico,Calle 6 # 13A-23,0
-Todas (6 zonas),Caldas,Norcasia,0
-Todas (6 zonas),Cundinamarca,Apulo,0
-Todas (6 zonas),Antioquia,Carrera 21 No. 17-46,0
-Todas (6 zonas),Boyaca,Miraflores,0
-Todas (6 zonas),Boyaca,Raquira,0
-Todas (6 zonas),Cordoba,IDMJI Planeta,0
-Todas (6 zonas),Cauca,Padilla,0
-Todas (6 zonas),Cesar,Becerril,0
-Todas (6 zonas),Cesar,Mandinguilla,0
-Todas (6 zonas),Cundinamarca,Calle 5 #4-42 Villa Lulu Inspeccion La Magdalena,0
-Todas (6 zonas),Antioquia,Arboletes,0
-Todas (6 zonas),Antioquia,Vereda San Agustin Via Principal Tercera Casa A Mano Izquierda Casa De Familia - Aldemar Montoya,0
-Todas (6 zonas),Cundinamarca,Agua de Dios,0
-Todas (6 zonas),Cundinamarca,Anapoima,0
-Todas (6 zonas),Boyaca,Calle 5 N° 5- 15,0
-Todas (6 zonas),Cauca,Morales,0
-Todas (6 zonas),Boyaca,Quipama,0
-Todas (6 zonas),Boyaca,Ramiriqui,0
-Todas (6 zonas),Antioquia,Puerto Berrio,0
-Todas (6 zonas),Caqueta,Milan,0
-Todas (6 zonas),Caldas,Aranzazu,0
-Todas (6 zonas),Cauca,Coconuco,0
-Todas (6 zonas),Antioquia,Dabeiba,0
-Todas (6 zonas),Boyaca,Arcabuco,0
-Todas (6 zonas),Arauca,Aguachica Arauca,0
-Todas (6 zonas),Cesar,Chimichagua,0
-Todas (6 zonas),Cauca,Argelia,0
-Todas (6 zonas),Huila,Baraya,0
-Todas (6 zonas),Cundinamarca,Tudela,0
-Todas (6 zonas),Boyaca,GRUPO REUNION,0
-Todas (6 zonas),Amazonas,Puerto Narno,0
-Todas (6 zonas),Atlantico,calle 4 No 9-34 Barrio Centro,0
-Todas (6 zonas),Caldas,Victoria,0
-Todas (6 zonas),Cundinamarca,Anolaima,0
-Todas (6 zonas),Bolivar,Grupo de reunion de Guaymaral,0
-Todas (6 zonas),Antioquia,Anza,0
-Todas (6 zonas),Choco,Calle Santander (Antigua casa del Sr David),0
-Todas (6 zonas),Cauca,Mercaderes,0
-Todas (6 zonas),Antioquia,San Jeronimo,0
-Todas (6 zonas),Cundinamarca,Viani,0
-Todas (6 zonas),Putumayo,Puerto Guzman,0
-Todas (6 zonas),Santander,Florian,0
-Todas (6 zonas),Valle del Cauca,La Tulia,0
-Todas (6 zonas),Sucre,"La Union, vereda Los Conguitos",0
-Todas (6 zonas),Huila,Tarqui,0
-Todas (6 zonas),Valle del Cauca,Corregimiento de Cisneros - Quebrada Balsitas,0
-Todas (6 zonas),Putumayo,Colon,0
-Todas (6 zonas),Meta,El Castillo Meta,0
-Todas (6 zonas),Meta,Vereda Costa Rica,0
-Todas (6 zonas),Tolima,Iglesia del Cairo Socorro,0
-Todas (6 zonas),Tolima,barrio caracoli,0
-Todas (6 zonas),Huila,Iglesia de Iquira,0
-Todas (6 zonas),Santander,Curiti,0
-Todas (6 zonas),Tolima,Cunday,0
-Todas (6 zonas),Narino,EL TAMBO,0
-Todas (6 zonas),Narino,Consaca,0
-Todas (6 zonas),Norte de Santander,Salazar,0
-Todas (6 zonas),Tolima,Armero-Guyabal,0
-Todas (6 zonas),Meta,La Iglesia de Mira,0
-Todas (6 zonas),Valle del Cauca,Vereda el Venado,0
-Todas (6 zonas),Magdalena,El Pinon,0
-Todas (6 zonas),Meta,"Cll 12 # 4 - 65 , Barrio Primero de Mayo- Cel: 3162778580",0
-Todas (6 zonas),Tolima,Alpujarra,0
-Todas (6 zonas),Valle del Cauca,Yotoco,0
-Todas (6 zonas),Putumayo,La Dorada,0
-Todas (6 zonas),Tolima,Falan,0
-Todas (6 zonas),Valle del Cauca,GALICIA,0
-Todas (6 zonas),Risaralda,Pueblo Rico,0
-Todas (6 zonas),Huila,Hobo,0
-Todas (6 zonas),Magdalena,Nueva Granada,0
-Todas (6 zonas),Narino,imues,0
-Todas (6 zonas),Huila,Vegalarga,0
-Todas (6 zonas),Santander,La belleza,0
-Todas (6 zonas),Norte de Santander,DURANIA,0
-Todas (6 zonas),La Guajira,Urumita,0
-Todas (6 zonas),Valle del Cauca,Chorreras,0
-Todas (6 zonas),Narino,Barbacoas,0
-Todas (6 zonas),Sucre,"vereda el Charcon,  Al lado del colegio",0
-Todas (6 zonas),Tolima,Rioblanco,0
-Todas (6 zonas),Valle del Cauca,BOLIVAR,0
-Todas (6 zonas),Tolima,Convenio,0
-Todas (6 zonas),Valle del Cauca,IDMJI Argelia Valle,0
-Todas (6 zonas),Narino,Puerres,0
-Todas (6 zonas),Valle del Cauca,Centro,0
-Todas (6 zonas),Meta,Centro Poblado La Julia,0
-Todas (6 zonas),Narino,Sapuyes,0
-Todas (6 zonas),Valle del Cauca,El Placer,0
-Todas (6 zonas),Valle del Cauca,Iglesia Ministerial,0
-Todas (6 zonas),Narino,La Llanada,0
-Todas (6 zonas),Narino,Pupiales,0
-Todas (6 zonas),Huila,Guadalupe,0
-Todas (6 zonas),Valle del Cauca,Buitrera Cali,0
-Todas (6 zonas),Tolima,Herveo,0
-Todas (6 zonas),Valle del Cauca,Fatima 1,0
-Todas (6 zonas),Meta,Mesetas,0
-Todas (6 zonas),Santander,Rionegro,0
-Todas (6 zonas),Narino,Guachavez,0
-Todas (6 zonas),Huila,El Agrado,0
-Todas (6 zonas),Narino,Chachagui,0
-Todas (6 zonas),Valle del Cauca,Grupo de reunion Sonso,0
-Todas (6 zonas),Narino,San Bernardo,0
-Todas (6 zonas),Putumayo,Puerto Caicedo,0
-Todas (6 zonas),Quindio,Buenavista,0
-Todas (6 zonas),Santander,Oiba,0
-Todas (6 zonas),Putumayo,El Tigre,0
-Todas (6 zonas),Magdalena,Calle 3 # 5 - 43 Corregimiento de Palermo,0
-Todas (6 zonas),Vichada,La Iglesia Ministerial,0
-Todas (6 zonas),Valle del Cauca,Corregimiento Zaragoza,0
-Todas (6 zonas),Sucre,Corregimiento de Segovia Calle 2 Carrera 7-8,0
-Todas (6 zonas),Risaralda,Irra,0
-Todas (6 zonas),Huila,Naranjal,0
-Todas (6 zonas),Meta,Primavera,0
-Todas (6 zonas),Tolima,Barrio Las Palmas,0
-Todas (6 zonas),Valle del Cauca,"Celian, Via puerto frazadas",0
-Todas (6 zonas),Tolima,Iglesia de dolores,0
-Todas (6 zonas),Norte de Santander,Salon de la casa de la cultura del corregimiento de Agua Clara.,0
-Todas (6 zonas),Vichada,Cumaribo,0
-Todas (6 zonas),Narino,Barrio el Centro,0
-Todas (6 zonas),Tolima,Iglesia chicoral,0
-Todas (6 zonas),Valle del Cauca,Andalucia,0
-Todas (6 zonas),Valle del Cauca,El Carmelo,0
-Todas (6 zonas),Risaralda,Guatica,0
+Antioquia Eje Cafetero,Caldas,San Jose,0
+Antioquia Eje Cafetero,Antioquia,San Pedro de los Milagros,0
+Bogota & Cundinamarca,Cundinamarca,Gacheta,0
+Santanderes & Boyaca,Boyaca,Pauna,0
+Antioquia Eje Cafetero,Antioquia,Amalfi,0
+Bogota & Cundinamarca,Cundinamarca,Cr 6 #2-119 Br Florilandia al lado Plaza de Mercado,0
+Santanderes & Boyaca,Boyaca,Soraca,0
+Antioquia Eje Cafetero,Antioquia,San Carlos,0
+Pacifico,Cauca,Silvia,0
+Bogota & Cundinamarca,Cundinamarca,Yacopi,0
+Caribe,Atlantico,Baranoa,0
+Santanderes & Boyaca,Boyaca,Buenavista,0
+Pacifico,Cauca,Guapi,0
+Caribe,Atlantico,Calle 6 # 13A-23,0
+Antioquia Eje Cafetero,Caldas,Norcasia,0
+Bogota & Cundinamarca,Cundinamarca,Apulo,0
+Antioquia Eje Cafetero,Antioquia,Carrera 21 No. 17-46,0
+Santanderes & Boyaca,Boyaca,Miraflores,0
+Santanderes & Boyaca,Boyaca,Raquira,0
+Caribe,Cordoba,IDMJI Planeta,0
+Pacifico,Cauca,Padilla,0
+Santanderes & Boyaca,Cesar,Becerril,0
+Santanderes & Boyaca,Cesar,Mandinguilla,0
+Bogota & Cundinamarca,Cundinamarca,Calle 5 #4-42 Villa Lulu Inspeccion La Magdalena,0
+Antioquia Eje Cafetero,Antioquia,Arboletes,0
+Antioquia Eje Cafetero,Antioquia,Vereda San Agustin Via Principal Tercera Casa A Mano Izquierda Casa De Familia - Aldemar Montoya,0
+Bogota & Cundinamarca,Cundinamarca,Agua de Dios,0
+Bogota & Cundinamarca,Cundinamarca,Anapoima,0
+Santanderes & Boyaca,Boyaca,Calle 5 N° 5- 15,0
+Pacifico,Cauca,Morales,0
+Santanderes & Boyaca,Boyaca,Quipama,0
+Santanderes & Boyaca,Boyaca,Ramiriqui,0
+Antioquia Eje Cafetero,Antioquia,Puerto Berrio,0
+Sur y Llanos,Caqueta,Milan,0
+Antioquia Eje Cafetero,Caldas,Aranzazu,0
+Pacifico,Cauca,Coconuco,0
+Antioquia Eje Cafetero,Antioquia,Dabeiba,0
+Santanderes & Boyaca,Boyaca,Arcabuco,0
+Sur y Llanos,Arauca,Aguachica Arauca,0
+Santanderes & Boyaca,Cesar,Chimichagua,0
+Pacifico,Cauca,Argelia,0
+Sur y Llanos,Huila,Baraya,0
+Bogota & Cundinamarca,Cundinamarca,Tudela,0
+Santanderes & Boyaca,Boyaca,GRUPO REUNION,0
+Sur y Llanos,Amazonas,Puerto Narno,0
+Caribe,Atlantico,calle 4 No 9-34 Barrio Centro,0
+Antioquia Eje Cafetero,Caldas,Victoria,0
+Bogota & Cundinamarca,Cundinamarca,Anolaima,0
+Caribe,Bolivar,Grupo de reunion de Guaymaral,0
+Antioquia Eje Cafetero,Antioquia,Anza,0
+Pacifico,Choco,Calle Santander (Antigua casa del Sr David),0
+Pacifico,Cauca,Mercaderes,0
+Antioquia Eje Cafetero,Antioquia,San Jeronimo,0
+Bogota & Cundinamarca,Cundinamarca,Viani,0
+Pacifico,Putumayo,Puerto Guzman,0
+Santanderes & Boyaca,Santander,Florian,0
+Pacifico,Valle del Cauca,La Tulia,0
+Caribe,Sucre,"La Union, vereda Los Conguitos",0
+Sur y Llanos,Huila,Tarqui,0
+Pacifico,Valle del Cauca,Corregimiento de Cisneros - Quebrada Balsitas,0
+Pacifico,Putumayo,Colon,0
+Sur y Llanos,Meta,El Castillo Meta,0
+Sur y Llanos,Meta,Vereda Costa Rica,0
+Sur y Llanos,Tolima,Iglesia del Cairo Socorro,0
+Sur y Llanos,Tolima,barrio caracoli,0
+Sur y Llanos,Huila,Iglesia de Iquira,0
+Santanderes & Boyaca,Santander,Curiti,0
+Sur y Llanos,Tolima,Cunday,0
+Pacifico,Narino,EL TAMBO,0
+Pacifico,Narino,Consaca,0
+Santanderes & Boyaca,Norte de Santander,Salazar,0
+Sur y Llanos,Tolima,Armero-Guyabal,0
+Sur y Llanos,Meta,La Iglesia de Mira,0
+Pacifico,Valle del Cauca,Vereda el Venado,0
+Caribe,Magdalena,El Pinon,0
+Sur y Llanos,Meta,"Cll 12 # 4 - 65 , Barrio Primero de Mayo- Cel: 3162778580",0
+Sur y Llanos,Tolima,Alpujarra,0
+Pacifico,Valle del Cauca,Yotoco,0
+Pacifico,Putumayo,La Dorada,0
+Sur y Llanos,Tolima,Falan,0
+Pacifico,Valle del Cauca,GALICIA,0
+Antioquia Eje Cafetero,Risaralda,Pueblo Rico,0
+Sur y Llanos,Huila,Hobo,0
+Caribe,Magdalena,Nueva Granada,0
+Pacifico,Narino,imues,0
+Sur y Llanos,Huila,Vegalarga,0
+Santanderes & Boyaca,Santander,La belleza,0
+Santanderes & Boyaca,Norte de Santander,DURANIA,0
+Caribe,La Guajira,Urumita,0
+Pacifico,Valle del Cauca,Chorreras,0
+Pacifico,Narino,Barbacoas,0
+Caribe,Sucre,"vereda el Charcon,  Al lado del colegio",0
+Sur y Llanos,Tolima,Rioblanco,0
+Pacifico,Valle del Cauca,BOLIVAR,0
+Sur y Llanos,Tolima,Convenio,0
+Pacifico,Valle del Cauca,IDMJI Argelia Valle,0
+Pacifico,Narino,Puerres,0
+Pacifico,Valle del Cauca,Centro,0
+Sur y Llanos,Meta,Centro Poblado La Julia,0
+Pacifico,Narino,Sapuyes,0
+Pacifico,Valle del Cauca,El Placer,0
+Pacifico,Valle del Cauca,Iglesia Ministerial,0
+Pacifico,Narino,La Llanada,0
+Pacifico,Narino,Pupiales,0
+Sur y Llanos,Huila,Guadalupe,0
+Pacifico,Valle del Cauca,Buitrera Cali,0
+Sur y Llanos,Tolima,Herveo,0
+Pacifico,Valle del Cauca,Fatima 1,0
+Sur y Llanos,Meta,Mesetas,0
+Santanderes & Boyaca,Santander,Rionegro,0
+Pacifico,Narino,Guachavez,0
+Sur y Llanos,Huila,El Agrado,0
+Pacifico,Narino,Chachagui,0
+Pacifico,Valle del Cauca,Grupo de reunion Sonso,0
+Pacifico,Narino,San Bernardo,0
+Pacifico,Putumayo,Puerto Caicedo,0
+Antioquia Eje Cafetero,Quindio,Buenavista,0
+Santanderes & Boyaca,Santander,Oiba,0
+Pacifico,Putumayo,El Tigre,0
+Caribe,Magdalena,Calle 3 # 5 - 43 Corregimiento de Palermo,0
+Sur y Llanos,Vichada,La Iglesia Ministerial,0
+Pacifico,Valle del Cauca,Corregimiento Zaragoza,0
+Caribe,Sucre,Corregimiento de Segovia Calle 2 Carrera 7-8,0
+Antioquia Eje Cafetero,Risaralda,Irra,0
+Sur y Llanos,Huila,Naranjal,0
+Sur y Llanos,Meta,Primavera,0
+Sur y Llanos,Tolima,Barrio Las Palmas,0
+Pacifico,Valle del Cauca,"Celian, Via puerto frazadas",0
+Sur y Llanos,Tolima,Iglesia de dolores,0
+Santanderes & Boyaca,Norte de Santander,Salon de la casa de la cultura del corregimiento de Agua Clara.,0
+Sur y Llanos,Vichada,Cumaribo,0
+Pacifico,Narino,Barrio el Centro,0
+Sur y Llanos,Tolima,Iglesia chicoral,0
+Pacifico,Valle del Cauca,Andalucia,0
+Pacifico,Valle del Cauca,El Carmelo,0
+Antioquia Eje Cafetero,Risaralda,Guatica,0
 
 SECCION 5 - OTROS DATOS GLOBALES
 
 "Categoria","Etiqueta","Valor"
-genero,F,18509
+genero,F,18513
 genero,M,4966
-edad,18-25,2711
+edad,18-25,2712
 edad,26-35,4336
-edad,36-45,4751
-edad,46-60,7275
+edad,36-45,4752
+edad,46-60,7277
 edad,61+,3641
-etnia,Ninguno,21463
+etnia,Ninguno,21467
 etnia,Afrodescendientes,1529
 etnia,Indigenas,389
 etnia,Raizales,84
@@ -854,589 +854,589 @@ discapacidad,Sin condicion (Ninguna),9
 
 SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)
 
-"Departamento","Iglesia","Inscritos"
-Cundinamarca,La Colina,293
-Valle del Cauca,Cambulos,250
-Cundinamarca,Galan,247
-Cundinamarca,Engativa,238
-Valle del Cauca,PACARA,229
-Cundinamarca,Santander,227
-Cundinamarca,Ferias,199
-Cundinamarca,Soacha autopista o Soacha centro,199
-Cundinamarca,La Granja,188
-Cundinamarca,Orquideas,178
-Cundinamarca,Fontibon,177
-Antioquia,Itagui,174
-Cundinamarca,Santa Lucia,171
-Norte de Santander,Rosetal,165
-Cundinamarca,Suba Flores,159
-Valle del Cauca,Pasoancho,150
-Cundinamarca,Candelaria,150
-Cundinamarca,Sosiego,147
-Bolivar,Avenida Pedro de Heredia,144
-Cundinamarca,Suba Rincon,136
-Cauca,Popayan Sur,132
-Bolivar,Portales,131
-Narino,Fatima,130
-Cundinamarca,Fusagasuga,129
-Cundinamarca,Kennedy central,129
-Meta,San Marcos,122
-Cundinamarca,Facatativa,115
-Valle del Cauca,El Troncal,115
-Cordoba,Monteria Barrio Sucre,112
-Cundinamarca,Suba Pinar,111
-Cundinamarca,Prado Veraniego,108
-Antioquia,San Diego,107
-Caldas,Manizales Norte,106
-Cundinamarca,Carvajal,106
-Cundinamarca,Chia,102
-Antioquia,Apartado,102
-Boyaca,Sogamoso,100
-Antioquia,Bello,100
-Boyaca,Tunja,99
-Atlantico,Villa Estadio,96
-Cauca,Popayan Norte,95
-Casanare,Vencedores,95
-Antioquia,Caribe,92
-Huila,SUR,88
-Valle del Cauca,El Cambio,88
-Cundinamarca,La Alqueria,87
-Caqueta,Florencia Sur,87
-Cundinamarca,Valladolid,84
-Cundinamarca,Suba Lisboa,84
-Risaralda,Pereira Cuba,83
-Valle del Cauca,Piloto,83
-Cundinamarca,Bosa Estacion,81
-Cundinamarca,Madrid,81
-Tolima,Picalena,81
-Cundinamarca,Lucero Bajo,80
-Cundinamarca,Lijaca,79
-Choco,Medrano,78
-Meta,EL TERMINAL,78
-Arauca,Saravena,78
-Meta,Acacias,77
-Bolivar,IGLESIA DE DIOS MINISTERIAL DE JESUCRISTO INTERNACIONAL,77
-Valle del Cauca,Los Lagos,77
-Boyaca,Duitama,76
-Bolivar,Del Castillo,75
-Risaralda,Guadalupe,74
-Cundinamarca,Serrezuelita,74
-Cundinamarca,Santa Librada,73
-Narino,Centro,73
-Risaralda,Pereira Centro,72
-Narino,Heroes,72
-Cundinamarca,Chapinero,72
-Cundinamarca,Cajica,72
-Santander,Barrancabermeja,71
-Cundinamarca,Parque de las Aguas,71
-Choco,Centro,71
-Cundinamarca,Zipaquira,70
-Quindio,Postobon,70
-Cundinamarca,Class Roma,69
-Cundinamarca,La Victoria,69
-Valle del Cauca,12 de Octubre,69
-Cundinamarca,Ubate,68
-Cundinamarca,Cedritos,68
-Quindio,Armenia Norte,68
-Atlantico,Boston,66
-Cauca,Ciudad Jardin,65
-Cundinamarca,Patio Bonito,65
-Cundinamarca,San Vicente Ferrer,65
-Huila,norte,65
-Magdalena,Avenida Libertador,64
-Cundinamarca,Silvania,64
-Atlantico,La Pradera,63
-Santander,Exito,63
-Cauca,Popayan Occidente,63
-Cundinamarca,Bosa Recreo,62
-Valle del Cauca,Popular,61
-Meta,Ciudad Milenio,61
-Bolivar,Ceballos,61
-Tolima,LA QUINTA,61
-Atlantico,Puerto Colombia,60
-Caldas,Centro- Linares,59
-Valle del Cauca,Terranova,58
-Meta,Puerto Gaitan,58
-Tolima,Las Ferias,57
-Tolima,La Floresta,56
-Tolima,El Jardin,56
-Valle del Cauca,Centro,55
-Meta,Dos Mil,55
-Antioquia,Villanueva,54
-Antioquia,CALASANZ,53
-Cundinamarca,Usme,53
-Narino,La Taguera,52
-Cauca,Santander de Quilichao,52
-Bolivar,El Carmen de Bolivar,51
-Magdalena,Fundacion,51
-Valle del Cauca,La 10,51
-Arauca,Arauca Cristo Rey,51
-Valle del Cauca,Independencia,51
-Antioquia,Rionegro,50
-Cundinamarca,Tocancipa,49
-Valle del Cauca,Llanogrande,49
-Atlantico,Riomar,49
-Cundinamarca,Girardot,48
-Santander,Floridablanca,48
-Valle del Cauca,Libertadores,47
-Caqueta,Florencia -Centro,47
-La Guajira,Riohacha,47
-Cundinamarca,Las Mercedes,46
-Cesar,Mayales,45
-Arauca,Tame,44
-Meta,Puerto Lopez,44
-Cundinamarca,funza,43
-Narino,Ipiales,43
-Santander,Piedecuesta,42
-Magdalena,Ferrocarril,41
-Valle del Cauca,Yumbo,41
-Norte de Santander,Aeropuerto,41
-Meta,Doce de Octubre,40
-Tolima,Melgar,40
-Antioquia,Necocli,40
-Quindio,La Pista,40
-Antioquia,Marinilla,39
-Boyaca,Paipa,39
-Cundinamarca,Sesquile,39
-Valle del Cauca,Florida,39
-Cundinamarca,Suba Fontanar,38
-Caldas,centro,37
-Magdalena,Pivijay,37
-Valle del Cauca,Puebo Nuevo,37
-Antioquia,SABANETA,37
-Cundinamarca,Cota,36
-Cordoba,Cerete,36
-Huila,Rivera,36
-Cordoba,Villa Fatima,36
-Magdalena,CIENAGA,35
-Boyaca,Chiquinquira,34
-Huila,Centro,34
-Huila,Las Palmas,33
-Tolima,GAVIOTA,33
-Antioquia,Copacabana,33
-Tolima,Cerca a la la estacion de gasolina Mendoza,33
-Valle del Cauca,Zamorano,32
-Putumayo,Mocoa,32
-Cundinamarca,El Rosal,32
-Putumayo,Puerto Asis,32
-Caqueta,LA ORIENTAL,32
-Narino,"Samaniego, Narino",32
-Huila,Garzon,31
-Quindio,Calarca Norte,31
-Meta,BRISAS DEL LLANO,31
-Arauca,Fortul,30
-Antioquia,Manrique,30
-Quindio,Circasia,30
-Atlantico,La Loma,30
-Tolima,Flandes quintas,29
-Cundinamarca,Tenjo,29
-Caldas,Chinchina,29
-Cauca,El Bordo,29
-Valle del Cauca,BUGA,28
-Caqueta,San Vicente del Caguan,28
-Tolima,El Salado,28
-Boyaca,Puerto Boyaca,28
-Magdalena,Rodadero,28
-Huila,Tello,27
-Quindio,Calle 30,27
-Bolivar,Turbaco,27
-Antioquia,El Carmen de Viboral,27
-Valle del Cauca,Villagorgona,27
-Putumayo,La Hormiga,27
-Cundinamarca,Soacha Compartir,26
-Cundinamarca,Mesitas de El Colegio,26
-Atlantico,La Ceiba,26
-Choco,Huapango,26
-Meta,Vistahermosa,26
-"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,26
-Risaralda,El Poblado,26
-Caldas,Villamaria,26
-Quindio,Sur,26
-Cundinamarca,La Calera,25
-Huila,Trinidad - centro,25
-Casanare,Sector Llano Lindo,25
-Cauca,Vereda de Torres,25
-Meta,Granada,25
-Valle del Cauca,Guacari,25
-Santander,Giron,25
-Antioquia,La Ceja,25
-Meta,Iglesia de Cumaral,25
-Casanare,Paz de Ariporo,25
-Cauca,"Timbio, Cauca",24
-Antioquia,Sopetran,24
-Cauca,Piendamo,24
-Risaralda,2500 lotes,24
-Cauca,Puerto Tejada,24
-Meta,Castilla la Nueva,24
-Choco,Istmina,24
-Antioquia,Caldas,24
-Meta,Iglesia Cubarral,23
-Valle del Cauca,Darien,23
-Caldas,supia,23
-Cundinamarca,VILLETA,23
-Cauca,Caloto,23
-Norte de Santander,Los Patios,23
-Valle del Cauca,Bella Suiza,23
-Cundinamarca,Al lado del Club La Riviera,23
-Arauca,San Isidro,23
-Antioquia,Centro,22
-Tolima,Purificacion,22
-Sucre,Centro,22
-Valle del Cauca,Poblado,22
-Huila,campoalegre,22
-Risaralda,La Virginia,22
-Risaralda,Barrio Villavicencio,22
-Narino,Catambuco,22
-Antioquia,Chigorodo,22
-Norte de Santander,Comuneros,22
-Caldas,Las Ferias,22
-Cordoba,CARRILLO,21
-Valle del Cauca,corregimiento Rozo,21
-Valle del Cauca,Americas,21
-Cundinamarca,Guasca,21
-Risaralda,Belen de umbria,21
-Norte de Santander,Aguas Calientes,21
-Narino,Buesaco,20
-Antioquia,Carepa,20
-Tolima,Miramar,20
-Casanare,Villanueva,20
-Tolima,San Sebastian de Mariquita,20
-Norte de Santander,Atalalaya,20
-Valle del Cauca,Pradera,20
-Atlantico,Las Nieves,20
-Cundinamarca,Viota,20
-Bolivar,Bocagrande,19
-Valle del Cauca,Roldanillo,19
-Atlantico,Sabanagrande,19
-Meta,Copecal,19
-Narino,Tuquerres,19
-Valle del Cauca,Pavas,19
-Huila,Suaza,19
-Boyaca,Otanche,18
-Valle del Cauca,El Cerrito,18
-Tolima,Honda,18
-Valle del Cauca,Vijes,18
-Tolima,Espinal,18
-Cundinamarca,Guacheta,18
-Caqueta,Puerto Rico,18
-Cesar,Villalba,18
-Cauca,Corinto,18
-Cesar,Bosconia,18
-Norte de Santander,Cucuta,17
-Cordoba,Tierralta,17
-Caldas,Viterbo,17
-Huila,Isnos,17
-Risaralda,Centro,17
-Valle del Cauca,Montebello,17
-Norte de Santander,Pamplona,17
-Cundinamarca,Sopo,17
-Valle del Cauca,Calle Real,17
-Antioquia,Girardota,17
-Huila,La Plata,17
-Antioquia,Guarne,17
-Antioquia,Envigado,17
-Huila,Algeciras,16
-La Guajira,Rancheria Pulitchamana,16
-Narino,La Cruz,16
-Valle del Cauca,Los Alpes,16
-Caldas,Palestina,16
-Cundinamarca,La Mesa,16
-Meta,Guamal,16
-Huila,San Agustin,16
-Meta,San Martin,16
-Valle del Cauca,Kennedy,16
-Antioquia,El Poblado,16
-Antioquia,El Totumo,16
-Risaralda,Alameda,16
-Cundinamarca,Subachoque,16
-Cundinamarca,San Antonio Del Tequendama.,16
-Risaralda,Santuario,16
-Cundinamarca,Choachi,15
-Putumayo,Sibundoy,15
-Sucre,San Onofre,15
-Putumayo,Orito,15
-Casanare,Tauramena,15
-Norte de Santander,Villa del Rosario,15
-Cundinamarca,Pacho,15
-Santander,Malaga,15
-Caqueta,Albania,15
-Cauca,Miranda,15
-Cundinamarca,Puerto Salgar,15
-La Guajira,San Jose,15
-Caldas,Filadelfia,15
-Caldas,Anserma,14
-Caqueta,Cartagena del chaira,14
-Santander,Barbosa,14
-Risaralda,PEREIRA GALICIA,14
-Cundinamarca,Simijaca,14
-Choco,Pizarro,14
-Boyaca,Sachica,14
-Valle del Cauca,Terron Colorado,14
-Putumayo,Puerto Leguizamo,14
-Norte de Santander,Ocana,13
-Antioquia,Nueva Colonia,13
-Meta,La reliquia,13
-Caldas,Risaralda,13
-Santander,San Gil,13
-Meta,Fuente de Oro,13
-Valle del Cauca,Zarzal,13
-Tolima,Palocabildo,13
-Quindio,Quimbaya,13
-Norte de Santander,Chinacota,13
-Valle del Cauca,Andalucia la Estacion,13
-Norte de Santander,Santa clara,13
-Cundinamarca,Grupo de reunion de Subia,13
-Atlantico,Malambo,13
-Valle del Cauca,Ginebra,13
-Cundinamarca,salida a Cajica,12
-Risaralda,La Popa,12
-Vichada,Puerto Carreno,12
-Caldas,Aguadas,12
-Guaviare,El Retorno,12
-Tolima,Alvarado,12
-Tolima,Natagaima,12
-Choco,Acandi,12
-Guaviare,La Esperanza,12
-Huila,Barrio Villa Matilde,12
-Cesar,Aguachica,12
-Cesar,Agustin Codazzi,11
-Caqueta,Belen de Los Andaquies,11
-Valle del Cauca,La Union Barrio Belen,11
-Santander,Socorro,11
-Cordoba,Centenario,11
-Cesar,La Jagua de Ibirico,11
-Putumayo,Villagarzon,11
-Tolima,Fresno,11
-Magdalena,El Banco,11
-Choco,IGLESIA DE TADO,11
-Santander,Puente Nacional,11
-Huila,Neiva Caguan,11
-Meta,Lejanias,11
-Caldas,Corregimiento Samaria,11
-Guainia,Inirida,11
-Cundinamarca,San Bernardo,11
-Cundinamarca,Ricaurte,10
-Quindio,Barcelona,10
-Narino,Carlos Lleras,10
-Caldas,La Enea,10
-Cordoba,Montelibano,10
-Caqueta,Paujil,10
-Valle del Cauca,La 40 Alvernia Tulua,10
-Antioquia,Caucasia,10
-Bolivar,Arjona,10
-Quindio,Genova,10
-Huila,Palermo,10
-Valle del Cauca,Caicedonia,10
-Cundinamarca,La Vega,10
-Huila,AIPE,10
-Casanare,Monterrey,10
-Cauca,El Tambo,10
-Meta,San Juan de Arama,9
-Guaviare,Primero de Mayo,9
-Cesar,Curumani,9
-Santander,El Centro de Ecopetrol,9
-Risaralda,Puerto Caldas,9
-Santander,San Vicente de Chucuri,9
-Boyaca,Guateque,9
-Valle del Cauca,obando,8
-Santander,Puerto Wilches,8
-Boyaca,Garagoa,8
-Santander,Velez,8
-Huila,NEIVA CENTRO,8
-Quindio,La Tebaida,8
-Santander,Bucaramanga Norte,8
-Boyaca,Saboya,8
-Tolima,Flandes San Luis,8
-Antioquia,Cisneros,8
-Narino,San Pablo,8
-Huila,Amborco,8
-Cundinamarca,Tocaima,8
-Huila,TERUEL,8
-Choco,Capurgana,7
-Huila,Tesalia,7
-Huila,La Argentina,7
-Boyaca,Tasco,7
-Valle del Cauca,Cartago Santana,7
-Caldas,Pacora,7
-Tolima,Ortega,7
-Choco,Bahia Solano,7
-Cauca,Villarica,7
-Valle del Cauca,Riofrio,7
-Amazonas,LETICIA,7
-Choco,Iglesia De Condoto,7
-Cauca,Rosas,7
-Narino,Guaitarilla,7
-Cundinamarca,Guaduas,7
-Caqueta,El Doncello,7
-Valle del Cauca,Ansermanuevo,7
-Boyaca,Turmeque,7
-Cauca,Guachene,7
-Caqueta,Curillo,7
-Antioquia,Amaga,6
-Magdalena,El Reten,6
-Boyaca,Tibana,6
-Cundinamarca,Arbelaez,6
-Sucre,Sampues,6
-Boyaca,Samaca,6
-Choco,Certegui,6
-Cundinamarca,Ubaque,6
-Risaralda,Marsella,6
-Valle del Cauca,Corregimiento la Marina,6
-Valle del Cauca,TARRAGONA,6
-Huila,Elias,6
-Caqueta,la montanita,6
-Cordoba,CALLE CHINU,6
-Cauca,Timbiqui,6
-Tolima,Lerida Centro,5
-Caqueta,OCCIDENTAL,5
-Sucre,Corozal,5
-Valle del Cauca,BUGALAGRANDE,5
-Huila,acevedo,5
-Cundinamarca,Guayabal de Siquima,5
-Sucre,Santiago de Tolu,5
-Cauca,Caldono,5
-Tolima,Saldana,5
-Tolima,Guamo,5
-Santander,Lebrija,5
-Antioquia,Segovia,5
-Caldas,Neira,5
-Cordoba,Valencia,5
-Caqueta,Morelia,5
-Quindio,Pueblo Tapao,5
-Valle del Cauca,Belhorizonte,5
-Antioquia,Andes,5
-Caldas,Salamina,4
-Cesar,El Copey,4
-Antioquia,Zaragoza,4
-Tolima,Iglesia de Rovira,4
-Cundinamarca,Choconta,4
-Cundinamarca,San Francisco,4
-La Guajira,CUESTECITAS,4
-Valle del Cauca,Salida la union,4
-Quindio,Cordoba,4
-Santander,Sabana de Torres,4
-Atlantico,Santa Lucia,4
-Meta,la ministerial,4
-Bolivar,Iglesia de Bayunca,4
-Cundinamarca,Cambao,4
-Narino,"Sandona, Narino",4
-Choco,Bajira,4
-Cauca,La Sierra,3
-Cundinamarca,Porvenir Rio,3
-Cesar,San Alberto,3
-Boyaca,Villa de Leyva,3
-Cauca,Piamonte,3
-Choco,Bojaya,3
-Risaralda,LA CELIA,3
-Tolima,San Luis,3
-Caqueta,Valparaiso,3
-Antioquia,Colegio 20 de Julio,3
-Casanare,Aguazul,3
-Caqueta,Solano,3
-Tolima,Villarrica,3
-Bolivar,Pasacaballos,3
-Risaralda,Apia,3
-Quindio,Salento,3
-Choco,Yuto,3
-Caqueta,san jose,3
-Vaupes,Colombia • Vaupes • Mitu • Av 15 # 5 - 136 - Br. San Jose - Via Malecon - Contacto: 3135927379 ,3
-Cordoba,La Apartada,3
-Santander,Charala,3
-Cordoba,IDMJI CIENAGA DE ORO,3
-Cauca,Mondomo,2
-Caldas,"La Merced, Caldas",2
-Cauca,Cuarto Esquinas,2
-Boyaca,Moniquira,2
-Sucre,Laguna flor,2
-Boyaca,Tenza,2
-Risaralda,Caimalito,2
-Caldas,Belalcazar,2
-Bolivar,Santa Rosa,2
-Antioquia,Santa Barbara,2
-Atlantico,Centro,2
-Quindio,IGLESIA PIJAO,2
-Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
-Boyaca,Muzo,2
-Cundinamarca,Caparrapi,2
-Putumayo,"La Tagua,",2
-Magdalena,Aracataca,2
-Cordoba,IDMJI Colegio lacides,2
-Cundinamarca,San Juan de Rio Seco,2
-La Guajira,Rancheria Jonjoncito,2
-Cesar,PUEBLO BELLO,2
-Valle del Cauca,Alcala,2
-Caldas,Pensilvania,2
-Narino,Taminango,2
-Tolima,Carmen de Apicala,2
-Tolima,San Antonio,2
-Antioquia,Santa fe de Antioquia,2
-Cundinamarca,Fomeque,2
-Magdalena,Isla del Rosario,2
-Valle del Cauca,Corregimiento de Bitaco,2
-Cesar,La Paz,2
-Magdalena,Iglesia Ministerial,2
-Antioquia,Caseta comunal 28 de octubre,2
-Antioquia,BARBOSA,1
-Antioquia,La Union,1
-Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
-Valle del Cauca,San Pedro,1
-Valle del Cauca,Robledo,1
-Quindio,Escuela la Cascada,1
-Risaralda,La Hermosa,1
-Santander,Cimitarra,1
-Quindio,Filandia,1
-Caldas,Manzanares,1
-Quindio,La Virginia,1
-Valle del Cauca,Vallejuelo,1
-Boyaca,Vereda Jaraquira,1
-Cundinamarca,San Carlos,1
-Santander,Jesus Maria,1
-Guaviare,Calamar,1
-Atlantico,ponedera,1
-Bolivar,La Boquilla,1
-Cundinamarca,Chipaque,1
-Antioquia,IDMJI,1
-Boyaca,Nuevo Colon,1
-Risaralda,QUINCHIA,1
-Narino,Ricaurte,1
-Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
-Norte de Santander,Las Delicias,1
-Cauca,Sucre,1
-Boyaca,Aquitania,1
-Tolima,IGLESIA DE COYAIMA,1
-Boyaca,Santana,1
-Santander,Capitanejo,1
-Magdalena,Rio Frio,1
-Cundinamarca,Cachipay,1
-Narino,Ancuya,1
-Antioquia,Ciudad Bolivar,1
-Huila,Bruselas,1
-La Guajira,Uribia,1
-Cauca,Buenos Aires,1
-Bolivar,IDMJI DE MOMPOX,1
-Caldas,Riosucio,1
-Cauca,Cajibio,1
-Valle del Cauca,Prado,1
-Valle del Cauca,Ciudad del Campo,1
-Antioquia,San Antonio de Prado,1
-Valle del Cauca,La Cumbre,1
-Cundinamarca,La Palma,1
-Tolima,El Tablazo,1
-Risaralda,Mistrato,1
-Magdalena,Colombia • Magdalena • Plato • Calle 13 No. 16A-44 Barrio El Carmen  (frente a la Biblioteca municipal),1
-Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
-Antioquia,San Pedro de Uraba,1
-Norte de Santander,La Gabarra,1
-Valle del Cauca,Panamericano,1
-Caqueta,Solita,1
-Atlantico,TUBARA,1
-Valle del Cauca,La Fresneda,1
-Valle del Cauca,Obelisco,1
-Tolima,Planadas,1
-Valle del Cauca,Salonica,1
-Sucre,SAN MARCOS,1
+"Zona","Departamento","Iglesia","Inscritos"
+Bogota & Cundinamarca,Cundinamarca,La Colina,293
+Pacifico,Valle del Cauca,Cambulos,250
+Bogota & Cundinamarca,Cundinamarca,Galan,247
+Bogota & Cundinamarca,Cundinamarca,Engativa,238
+Pacifico,Valle del Cauca,PACARA,229
+Bogota & Cundinamarca,Cundinamarca,Santander,227
+Bogota & Cundinamarca,Cundinamarca,Soacha autopista o Soacha centro,199
+Bogota & Cundinamarca,Cundinamarca,Ferias,199
+Bogota & Cundinamarca,Cundinamarca,La Granja,188
+Bogota & Cundinamarca,Cundinamarca,Orquideas,178
+Bogota & Cundinamarca,Cundinamarca,Fontibon,177
+Antioquia Eje Cafetero,Antioquia,Itagui,174
+Bogota & Cundinamarca,Cundinamarca,Santa Lucia,171
+Santanderes & Boyaca,Norte de Santander,Rosetal,165
+Bogota & Cundinamarca,Cundinamarca,Suba Flores,159
+Bogota & Cundinamarca,Cundinamarca,Candelaria,152
+Pacifico,Valle del Cauca,Pasoancho,150
+Bogota & Cundinamarca,Cundinamarca,Sosiego,147
+Caribe,Bolivar,Avenida Pedro de Heredia,144
+Bogota & Cundinamarca,Cundinamarca,Suba Rincon,136
+Pacifico,Cauca,Popayan Sur,132
+Caribe,Bolivar,Portales,131
+Pacifico,Narino,Fatima,130
+Bogota & Cundinamarca,Cundinamarca,Fusagasuga,129
+Bogota & Cundinamarca,Cundinamarca,Kennedy central,129
+Sur y Llanos,Meta,San Marcos,122
+Bogota & Cundinamarca,Cundinamarca,Facatativa,115
+Pacifico,Valle del Cauca,El Troncal,115
+Caribe,Cordoba,Monteria Barrio Sucre,112
+Bogota & Cundinamarca,Cundinamarca,Suba Pinar,111
+Bogota & Cundinamarca,Cundinamarca,Prado Veraniego,108
+Antioquia Eje Cafetero,Antioquia,San Diego,107
+Bogota & Cundinamarca,Cundinamarca,Carvajal,106
+Antioquia Eje Cafetero,Caldas,Manizales Norte,106
+Bogota & Cundinamarca,Cundinamarca,Chia,102
+Antioquia Eje Cafetero,Antioquia,Apartado,102
+Antioquia Eje Cafetero,Antioquia,Bello,100
+Santanderes & Boyaca,Boyaca,Sogamoso,100
+Santanderes & Boyaca,Boyaca,Tunja,99
+Caribe,Atlantico,Villa Estadio,96
+Sur y Llanos,Casanare,Vencedores,95
+Pacifico,Cauca,Popayan Norte,95
+Antioquia Eje Cafetero,Antioquia,Caribe,92
+Sur y Llanos,Huila,SUR,88
+Pacifico,Valle del Cauca,El Cambio,88
+Bogota & Cundinamarca,Cundinamarca,La Alqueria,87
+Sur y Llanos,Caqueta,Florencia Sur,87
+Bogota & Cundinamarca,Cundinamarca,Valladolid,84
+Bogota & Cundinamarca,Cundinamarca,Suba Lisboa,84
+Pacifico,Valle del Cauca,Piloto,83
+Antioquia Eje Cafetero,Risaralda,Pereira Cuba,83
+Bogota & Cundinamarca,Cundinamarca,Madrid,81
+Bogota & Cundinamarca,Cundinamarca,Bosa Estacion,81
+Sur y Llanos,Tolima,Picalena,81
+Bogota & Cundinamarca,Cundinamarca,Lucero Bajo,80
+Bogota & Cundinamarca,Cundinamarca,Lijaca,79
+Sur y Llanos,Meta,EL TERMINAL,78
+Pacifico,Choco,Medrano,78
+Sur y Llanos,Arauca,Saravena,78
+Sur y Llanos,Meta,Acacias,77
+Caribe,Bolivar,IGLESIA DE DIOS MINISTERIAL DE JESUCRISTO INTERNACIONAL,77
+Pacifico,Valle del Cauca,Los Lagos,77
+Santanderes & Boyaca,Boyaca,Duitama,76
+Caribe,Bolivar,Del Castillo,75
+Bogota & Cundinamarca,Cundinamarca,Serrezuelita,74
+Antioquia Eje Cafetero,Risaralda,Guadalupe,74
+Bogota & Cundinamarca,Cundinamarca,Santa Librada,73
+Pacifico,Narino,Centro,73
+Antioquia Eje Cafetero,Risaralda,Pereira Centro,72
+Pacifico,Narino,Heroes,72
+Bogota & Cundinamarca,Cundinamarca,Cajica,72
+Bogota & Cundinamarca,Cundinamarca,Chapinero,72
+Pacifico,Choco,Centro,71
+Bogota & Cundinamarca,Cundinamarca,Parque de las Aguas,71
+Santanderes & Boyaca,Santander,Barrancabermeja,71
+Antioquia Eje Cafetero,Quindio,Postobon,70
+Bogota & Cundinamarca,Cundinamarca,Zipaquira,70
+Bogota & Cundinamarca,Cundinamarca,La Victoria,69
+Bogota & Cundinamarca,Cundinamarca,Class Roma,69
+Pacifico,Valle del Cauca,12 de Octubre,69
+Bogota & Cundinamarca,Cundinamarca,Ubate,68
+Bogota & Cundinamarca,Cundinamarca,Cedritos,68
+Antioquia Eje Cafetero,Quindio,Armenia Norte,68
+Caribe,Atlantico,Boston,66
+Bogota & Cundinamarca,Cundinamarca,Patio Bonito,65
+Sur y Llanos,Huila,norte,65
+Bogota & Cundinamarca,Cundinamarca,San Vicente Ferrer,65
+Pacifico,Cauca,Ciudad Jardin,65
+Bogota & Cundinamarca,Cundinamarca,Silvania,64
+Caribe,Magdalena,Avenida Libertador,64
+Santanderes & Boyaca,Santander,Exito,63
+Pacifico,Cauca,Popayan Occidente,63
+Caribe,Atlantico,La Pradera,63
+Bogota & Cundinamarca,Cundinamarca,Bosa Recreo,62
+Caribe,Bolivar,Ceballos,61
+Sur y Llanos,Tolima,LA QUINTA,61
+Pacifico,Valle del Cauca,Popular,61
+Sur y Llanos,Meta,Ciudad Milenio,61
+Caribe,Atlantico,Puerto Colombia,60
+Antioquia Eje Cafetero,Caldas,Centro- Linares,59
+Pacifico,Valle del Cauca,Terranova,58
+Sur y Llanos,Meta,Puerto Gaitan,58
+Sur y Llanos,Tolima,Las Ferias,57
+Sur y Llanos,Tolima,La Floresta,56
+Sur y Llanos,Tolima,El Jardin,56
+Pacifico,Valle del Cauca,Centro,55
+Sur y Llanos,Meta,Dos Mil,55
+Antioquia Eje Cafetero,Antioquia,Villanueva,54
+Antioquia Eje Cafetero,Antioquia,CALASANZ,53
+Bogota & Cundinamarca,Cundinamarca,Usme,53
+Pacifico,Narino,La Taguera,52
+Pacifico,Cauca,Santander de Quilichao,52
+Pacifico,Valle del Cauca,La 10,51
+Sur y Llanos,Arauca,Arauca Cristo Rey,51
+Caribe,Magdalena,Fundacion,51
+Pacifico,Valle del Cauca,Independencia,51
+Caribe,Bolivar,El Carmen de Bolivar,51
+Antioquia Eje Cafetero,Antioquia,Rionegro,50
+Pacifico,Valle del Cauca,Llanogrande,49
+Caribe,Atlantico,Riomar,49
+Bogota & Cundinamarca,Cundinamarca,Tocancipa,49
+Santanderes & Boyaca,Santander,Floridablanca,48
+Bogota & Cundinamarca,Cundinamarca,Girardot,48
+Caribe,La Guajira,Riohacha,47
+Sur y Llanos,Caqueta,Florencia -Centro,47
+Pacifico,Valle del Cauca,Libertadores,47
+Bogota & Cundinamarca,Cundinamarca,Las Mercedes,46
+Santanderes & Boyaca,Cesar,Mayales,45
+Sur y Llanos,Arauca,Tame,44
+Sur y Llanos,Meta,Puerto Lopez,44
+Bogota & Cundinamarca,Cundinamarca,funza,43
+Pacifico,Narino,Ipiales,43
+Santanderes & Boyaca,Santander,Piedecuesta,42
+Caribe,Magdalena,Ferrocarril,41
+Santanderes & Boyaca,Norte de Santander,Aeropuerto,41
+Pacifico,Valle del Cauca,Yumbo,41
+Antioquia Eje Cafetero,Antioquia,Necocli,40
+Sur y Llanos,Tolima,Melgar,40
+Sur y Llanos,Meta,Doce de Octubre,40
+Antioquia Eje Cafetero,Quindio,La Pista,40
+Bogota & Cundinamarca,Cundinamarca,Sesquile,39
+Santanderes & Boyaca,Boyaca,Paipa,39
+Antioquia Eje Cafetero,Antioquia,Marinilla,39
+Pacifico,Valle del Cauca,Florida,39
+Bogota & Cundinamarca,Cundinamarca,Suba Fontanar,38
+Antioquia Eje Cafetero,Antioquia,SABANETA,37
+Antioquia Eje Cafetero,Caldas,centro,37
+Pacifico,Valle del Cauca,Puebo Nuevo,37
+Caribe,Magdalena,Pivijay,37
+Bogota & Cundinamarca,Cundinamarca,Cota,36
+Caribe,Cordoba,Villa Fatima,36
+Sur y Llanos,Huila,Rivera,36
+Caribe,Cordoba,Cerete,36
+Caribe,Magdalena,CIENAGA,35
+Sur y Llanos,Huila,Centro,34
+Santanderes & Boyaca,Boyaca,Chiquinquira,34
+Antioquia Eje Cafetero,Antioquia,Copacabana,33
+Sur y Llanos,Huila,Las Palmas,33
+Sur y Llanos,Tolima,Cerca a la la estacion de gasolina Mendoza,33
+Sur y Llanos,Tolima,GAVIOTA,33
+Pacifico,Valle del Cauca,Zamorano,32
+Pacifico,Putumayo,Puerto Asis,32
+Pacifico,Putumayo,Mocoa,32
+Sur y Llanos,Caqueta,LA ORIENTAL,32
+Bogota & Cundinamarca,Cundinamarca,El Rosal,32
+Pacifico,Narino,"Samaniego, Narino",32
+Antioquia Eje Cafetero,Quindio,Calarca Norte,31
+Sur y Llanos,Meta,BRISAS DEL LLANO,31
+Sur y Llanos,Huila,Garzon,31
+Antioquia Eje Cafetero,Quindio,Circasia,30
+Antioquia Eje Cafetero,Antioquia,Manrique,30
+Sur y Llanos,Arauca,Fortul,30
+Caribe,Atlantico,La Loma,30
+Bogota & Cundinamarca,Cundinamarca,Tenjo,29
+Antioquia Eje Cafetero,Caldas,Chinchina,29
+Sur y Llanos,Tolima,Flandes quintas,29
+Pacifico,Cauca,El Bordo,29
+Sur y Llanos,Caqueta,San Vicente del Caguan,28
+Caribe,Magdalena,Rodadero,28
+Santanderes & Boyaca,Boyaca,Puerto Boyaca,28
+Pacifico,Valle del Cauca,BUGA,28
+Sur y Llanos,Tolima,El Salado,28
+Antioquia Eje Cafetero,Antioquia,El Carmen de Viboral,27
+Sur y Llanos,Huila,Tello,27
+Pacifico,Valle del Cauca,Villagorgona,27
+Antioquia Eje Cafetero,Quindio,Calle 30,27
+Caribe,Bolivar,Turbaco,27
+Pacifico,Putumayo,La Hormiga,27
+Caribe,Atlantico,La Ceiba,26
+Bogota & Cundinamarca,Cundinamarca,Soacha Compartir,26
+Sur y Llanos,Meta,Vistahermosa,26
+Antioquia Eje Cafetero,Risaralda,El Poblado,26
+Caribe,"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,26
+Antioquia Eje Cafetero,Quindio,Sur,26
+Antioquia Eje Cafetero,Caldas,Villamaria,26
+Pacifico,Choco,Huapango,26
+Bogota & Cundinamarca,Cundinamarca,Mesitas de El Colegio,26
+Sur y Llanos,Casanare,Paz de Ariporo,25
+Santanderes & Boyaca,Santander,Giron,25
+Sur y Llanos,Meta,Granada,25
+Pacifico,Cauca,Vereda de Torres,25
+Sur y Llanos,Meta,Iglesia de Cumaral,25
+Sur y Llanos,Huila,Trinidad - centro,25
+Sur y Llanos,Casanare,Sector Llano Lindo,25
+Bogota & Cundinamarca,Cundinamarca,La Calera,25
+Pacifico,Valle del Cauca,Guacari,25
+Antioquia Eje Cafetero,Antioquia,La Ceja,25
+Antioquia Eje Cafetero,Antioquia,Sopetran,24
+Sur y Llanos,Meta,Castilla la Nueva,24
+Pacifico,Cauca,"Timbio, Cauca",24
+Antioquia Eje Cafetero,Risaralda,2500 lotes,24
+Pacifico,Choco,Istmina,24
+Pacifico,Cauca,Puerto Tejada,24
+Antioquia Eje Cafetero,Antioquia,Caldas,24
+Pacifico,Cauca,Piendamo,24
+Bogota & Cundinamarca,Cundinamarca,VILLETA,23
+Bogota & Cundinamarca,Cundinamarca,Al lado del Club La Riviera,23
+Pacifico,Valle del Cauca,Bella Suiza,23
+Antioquia Eje Cafetero,Caldas,supia,23
+Sur y Llanos,Arauca,San Isidro,23
+Sur y Llanos,Meta,Iglesia Cubarral,23
+Pacifico,Cauca,Caloto,23
+Pacifico,Valle del Cauca,Darien,23
+Santanderes & Boyaca,Norte de Santander,Los Patios,23
+Santanderes & Boyaca,Norte de Santander,Comuneros,22
+Antioquia Eje Cafetero,Caldas,Las Ferias,22
+Antioquia Eje Cafetero,Antioquia,Chigorodo,22
+Sur y Llanos,Tolima,Purificacion,22
+Antioquia Eje Cafetero,Risaralda,La Virginia,22
+Antioquia Eje Cafetero,Antioquia,Centro,22
+Antioquia Eje Cafetero,Risaralda,Barrio Villavicencio,22
+Sur y Llanos,Huila,campoalegre,22
+Caribe,Sucre,Centro,22
+Pacifico,Narino,Catambuco,22
+Pacifico,Valle del Cauca,Poblado,22
+Santanderes & Boyaca,Norte de Santander,Aguas Calientes,21
+Pacifico,Valle del Cauca,corregimiento Rozo,21
+Bogota & Cundinamarca,Cundinamarca,Guasca,21
+Caribe,Cordoba,CARRILLO,21
+Pacifico,Valle del Cauca,Americas,21
+Antioquia Eje Cafetero,Risaralda,Belen de umbria,21
+Antioquia Eje Cafetero,Antioquia,Carepa,20
+Sur y Llanos,Casanare,Villanueva,20
+Sur y Llanos,Tolima,Miramar,20
+Caribe,Atlantico,Las Nieves,20
+Santanderes & Boyaca,Norte de Santander,Atalalaya,20
+Pacifico,Valle del Cauca,Pradera,20
+Bogota & Cundinamarca,Cundinamarca,Viota,20
+Sur y Llanos,Tolima,San Sebastian de Mariquita,20
+Pacifico,Narino,Buesaco,20
+Sur y Llanos,Meta,Copecal,19
+Pacifico,Narino,Tuquerres,19
+Caribe,Atlantico,Sabanagrande,19
+Pacifico,Valle del Cauca,Roldanillo,19
+Caribe,Bolivar,Bocagrande,19
+Sur y Llanos,Huila,Suaza,19
+Pacifico,Valle del Cauca,Pavas,19
+Sur y Llanos,Tolima,Honda,18
+Santanderes & Boyaca,Cesar,Bosconia,18
+Pacifico,Cauca,Corinto,18
+Santanderes & Boyaca,Boyaca,Otanche,18
+Sur y Llanos,Tolima,Espinal,18
+Sur y Llanos,Caqueta,Puerto Rico,18
+Santanderes & Boyaca,Cesar,Villalba,18
+Bogota & Cundinamarca,Cundinamarca,Guacheta,18
+Pacifico,Valle del Cauca,Vijes,18
+Pacifico,Valle del Cauca,El Cerrito,18
+Sur y Llanos,Huila,La Plata,17
+Bogota & Cundinamarca,Cundinamarca,Sopo,17
+Antioquia Eje Cafetero,Risaralda,Centro,17
+Pacifico,Valle del Cauca,Calle Real,17
+Sur y Llanos,Huila,Isnos,17
+Antioquia Eje Cafetero,Antioquia,Girardota,17
+Antioquia Eje Cafetero,Antioquia,Guarne,17
+Santanderes & Boyaca,Norte de Santander,Cucuta,17
+Pacifico,Valle del Cauca,Montebello,17
+Caribe,Cordoba,Tierralta,17
+Santanderes & Boyaca,Norte de Santander,Pamplona,17
+Antioquia Eje Cafetero,Antioquia,Envigado,17
+Antioquia Eje Cafetero,Caldas,Viterbo,17
+Pacifico,Valle del Cauca,Kennedy,16
+Pacifico,Narino,La Cruz,16
+Caribe,La Guajira,Rancheria Pulitchamana,16
+Antioquia Eje Cafetero,Antioquia,El Totumo,16
+Sur y Llanos,Huila,San Agustin,16
+Bogota & Cundinamarca,Cundinamarca,La Mesa,16
+Antioquia Eje Cafetero,Risaralda,Alameda,16
+Pacifico,Valle del Cauca,Los Alpes,16
+Antioquia Eje Cafetero,Caldas,Palestina,16
+Antioquia Eje Cafetero,Antioquia,El Poblado,16
+Sur y Llanos,Meta,Guamal,16
+Antioquia Eje Cafetero,Risaralda,Santuario,16
+Bogota & Cundinamarca,Cundinamarca,Subachoque,16
+Sur y Llanos,Meta,San Martin,16
+Bogota & Cundinamarca,Cundinamarca,San Antonio Del Tequendama.,16
+Sur y Llanos,Huila,Algeciras,16
+Caribe,Sucre,San Onofre,15
+Bogota & Cundinamarca,Cundinamarca,Puerto Salgar,15
+Bogota & Cundinamarca,Cundinamarca,Choachi,15
+Sur y Llanos,Casanare,Tauramena,15
+Sur y Llanos,Caqueta,Albania,15
+Bogota & Cundinamarca,Cundinamarca,Pacho,15
+Pacifico,Putumayo,Sibundoy,15
+Caribe,La Guajira,San Jose,15
+Pacifico,Cauca,Miranda,15
+Pacifico,Putumayo,Orito,15
+Antioquia Eje Cafetero,Caldas,Filadelfia,15
+Santanderes & Boyaca,Norte de Santander,Villa del Rosario,15
+Santanderes & Boyaca,Santander,Malaga,15
+Antioquia Eje Cafetero,Risaralda,PEREIRA GALICIA,14
+Santanderes & Boyaca,Santander,Barbosa,14
+Antioquia Eje Cafetero,Caldas,Anserma,14
+Pacifico,Putumayo,Puerto Leguizamo,14
+Pacifico,Choco,Pizarro,14
+Santanderes & Boyaca,Boyaca,Sachica,14
+Bogota & Cundinamarca,Cundinamarca,Simijaca,14
+Pacifico,Valle del Cauca,Terron Colorado,14
+Sur y Llanos,Caqueta,Cartagena del chaira,14
+Santanderes & Boyaca,Santander,San Gil,13
+Sur y Llanos,Tolima,Palocabildo,13
+Pacifico,Valle del Cauca,Andalucia la Estacion,13
+Santanderes & Boyaca,Norte de Santander,Ocana,13
+Santanderes & Boyaca,Norte de Santander,Santa clara,13
+Antioquia Eje Cafetero,Antioquia,Nueva Colonia,13
+Pacifico,Valle del Cauca,Ginebra,13
+Pacifico,Valle del Cauca,Zarzal,13
+Caribe,Atlantico,Malambo,13
+Santanderes & Boyaca,Norte de Santander,Chinacota,13
+Antioquia Eje Cafetero,Quindio,Quimbaya,13
+Sur y Llanos,Meta,La reliquia,13
+Antioquia Eje Cafetero,Caldas,Risaralda,13
+Sur y Llanos,Meta,Fuente de Oro,13
+Bogota & Cundinamarca,Cundinamarca,Grupo de reunion de Subia,13
+Sur y Llanos,Guaviare,La Esperanza,12
+Sur y Llanos,Tolima,Alvarado,12
+Sur y Llanos,Huila,Barrio Villa Matilde,12
+Santanderes & Boyaca,Cesar,Aguachica,12
+Bogota & Cundinamarca,Cundinamarca,salida a Cajica,12
+Pacifico,Choco,Acandi,12
+Antioquia Eje Cafetero,Risaralda,La Popa,12
+Sur y Llanos,Guaviare,El Retorno,12
+Sur y Llanos,Vichada,Puerto Carreno,12
+Antioquia Eje Cafetero,Caldas,Aguadas,12
+Sur y Llanos,Tolima,Natagaima,12
+Santanderes & Boyaca,Santander,Socorro,11
+Pacifico,Choco,IGLESIA DE TADO,11
+Sur y Llanos,Meta,Lejanias,11
+Santanderes & Boyaca,Santander,Puente Nacional,11
+Sur y Llanos,Guainia,Inirida,11
+Antioquia Eje Cafetero,Caldas,Corregimiento Samaria,11
+Caribe,Magdalena,El Banco,11
+Santanderes & Boyaca,Cesar,Agustin Codazzi,11
+Sur y Llanos,Caqueta,Belen de Los Andaquies,11
+Pacifico,Valle del Cauca,La Union Barrio Belen,11
+Santanderes & Boyaca,Cesar,La Jagua de Ibirico,11
+Caribe,Cordoba,Centenario,11
+Pacifico,Putumayo,Villagarzon,11
+Sur y Llanos,Huila,Neiva Caguan,11
+Sur y Llanos,Tolima,Fresno,11
+Bogota & Cundinamarca,Cundinamarca,San Bernardo,11
+Pacifico,Valle del Cauca,Caicedonia,10
+Sur y Llanos,Huila,Palermo,10
+Bogota & Cundinamarca,Cundinamarca,La Vega,10
+Antioquia Eje Cafetero,Quindio,Genova,10
+Sur y Llanos,Caqueta,Paujil,10
+Antioquia Eje Cafetero,Antioquia,Caucasia,10
+Pacifico,Valle del Cauca,La 40 Alvernia Tulua,10
+Caribe,Cordoba,Montelibano,10
+Sur y Llanos,Casanare,Monterrey,10
+Caribe,Bolivar,Arjona,10
+Antioquia Eje Cafetero,Quindio,Barcelona,10
+Bogota & Cundinamarca,Cundinamarca,Ricaurte,10
+Antioquia Eje Cafetero,Caldas,La Enea,10
+Pacifico,Narino,Carlos Lleras,10
+Pacifico,Cauca,El Tambo,10
+Sur y Llanos,Huila,AIPE,10
+Santanderes & Boyaca,Cesar,Curumani,9
+Santanderes & Boyaca,Boyaca,Guateque,9
+Santanderes & Boyaca,Santander,San Vicente de Chucuri,9
+Santanderes & Boyaca,Santander,El Centro de Ecopetrol,9
+Antioquia Eje Cafetero,Risaralda,Puerto Caldas,9
+Sur y Llanos,Guaviare,Primero de Mayo,9
+Sur y Llanos,Meta,San Juan de Arama,9
+Bogota & Cundinamarca,Cundinamarca,Tocaima,8
+Sur y Llanos,Huila,Amborco,8
+Santanderes & Boyaca,Boyaca,Saboya,8
+Santanderes & Boyaca,Santander,Velez,8
+Santanderes & Boyaca,Boyaca,Garagoa,8
+Pacifico,Valle del Cauca,obando,8
+Antioquia Eje Cafetero,Quindio,La Tebaida,8
+Pacifico,Narino,San Pablo,8
+Antioquia Eje Cafetero,Antioquia,Cisneros,8
+Sur y Llanos,Tolima,Flandes San Luis,8
+Sur y Llanos,Huila,TERUEL,8
+Santanderes & Boyaca,Santander,Bucaramanga Norte,8
+Santanderes & Boyaca,Santander,Puerto Wilches,8
+Sur y Llanos,Huila,NEIVA CENTRO,8
+Pacifico,Valle del Cauca,Riofrio,7
+Sur y Llanos,Amazonas,LETICIA,7
+Pacifico,Cauca,Rosas,7
+Sur y Llanos,Huila,Tesalia,7
+Santanderes & Boyaca,Boyaca,Tasco,7
+Pacifico,Valle del Cauca,Cartago Santana,7
+Sur y Llanos,Huila,La Argentina,7
+Antioquia Eje Cafetero,Caldas,Pacora,7
+Pacifico,Narino,Guaitarilla,7
+Pacifico,Valle del Cauca,Ansermanuevo,7
+Sur y Llanos,Tolima,Ortega,7
+Pacifico,Choco,Bahia Solano,7
+Sur y Llanos,Caqueta,El Doncello,7
+Pacifico,Cauca,Guachene,7
+Pacifico,Choco,Iglesia De Condoto,7
+Bogota & Cundinamarca,Cundinamarca,Guaduas,7
+Santanderes & Boyaca,Boyaca,Turmeque,7
+Sur y Llanos,Caqueta,Curillo,7
+Pacifico,Choco,Capurgana,7
+Pacifico,Cauca,Villarica,7
+Pacifico,Cauca,Timbiqui,6
+Antioquia Eje Cafetero,Risaralda,Marsella,6
+Bogota & Cundinamarca,Cundinamarca,Arbelaez,6
+Caribe,Sucre,Sampues,6
+Pacifico,Choco,Certegui,6
+Santanderes & Boyaca,Boyaca,Samaca,6
+Santanderes & Boyaca,Boyaca,Tibana,6
+Pacifico,Valle del Cauca,Corregimiento la Marina,6
+Caribe,Magdalena,El Reten,6
+Caribe,Cordoba,CALLE CHINU,6
+Antioquia Eje Cafetero,Antioquia,Amaga,6
+Pacifico,Valle del Cauca,TARRAGONA,6
+Sur y Llanos,Caqueta,la montanita,6
+Bogota & Cundinamarca,Cundinamarca,Ubaque,6
+Sur y Llanos,Huila,Elias,6
+Sur y Llanos,Tolima,Saldana,5
+Antioquia Eje Cafetero,Antioquia,Segovia,5
+Sur y Llanos,Huila,acevedo,5
+Pacifico,Valle del Cauca,Belhorizonte,5
+Antioquia Eje Cafetero,Antioquia,Andes,5
+Sur y Llanos,Tolima,Lerida Centro,5
+Antioquia Eje Cafetero,Quindio,Pueblo Tapao,5
+Pacifico,Cauca,Caldono,5
+Caribe,Sucre,Corozal,5
+Caribe,Cordoba,Valencia,5
+Sur y Llanos,Caqueta,OCCIDENTAL,5
+Caribe,Sucre,Santiago de Tolu,5
+Pacifico,Valle del Cauca,BUGALAGRANDE,5
+Bogota & Cundinamarca,Cundinamarca,Guayabal de Siquima,5
+Sur y Llanos,Caqueta,Morelia,5
+Sur y Llanos,Tolima,Guamo,5
+Santanderes & Boyaca,Santander,Lebrija,5
+Antioquia Eje Cafetero,Caldas,Neira,5
+Antioquia Eje Cafetero,Caldas,Salamina,4
+Antioquia Eje Cafetero,Quindio,Cordoba,4
+Caribe,Bolivar,Iglesia de Bayunca,4
+Sur y Llanos,Tolima,Iglesia de Rovira,4
+Pacifico,Narino,"Sandona, Narino",4
+Caribe,La Guajira,CUESTECITAS,4
+Bogota & Cundinamarca,Cundinamarca,Choconta,4
+Antioquia Eje Cafetero,Antioquia,Zaragoza,4
+Sur y Llanos,Meta,la ministerial,4
+Pacifico,Valle del Cauca,Salida la union,4
+Santanderes & Boyaca,Cesar,El Copey,4
+Santanderes & Boyaca,Santander,Sabana de Torres,4
+Bogota & Cundinamarca,Cundinamarca,Cambao,4
+Caribe,Atlantico,Santa Lucia,4
+Bogota & Cundinamarca,Cundinamarca,San Francisco,4
+Pacifico,Choco,Bajira,4
+Sur y Llanos,Caqueta,Solano,3
+Caribe,Bolivar,Pasacaballos,3
+Santanderes & Boyaca,Boyaca,Villa de Leyva,3
+Caribe,Cordoba,IDMJI CIENAGA DE ORO,3
+Sur y Llanos,Vaupes,Colombia • Vaupes • Mitu • Av 15 # 5 - 136 - Br. San Jose - Via Malecon - Contacto: 3135927379 ,3
+Pacifico,Cauca,Piamonte,3
+Bogota & Cundinamarca,Cundinamarca,Porvenir Rio,3
+Santanderes & Boyaca,Santander,Charala,3
+Pacifico,Cauca,La Sierra,3
+Antioquia Eje Cafetero,Risaralda,Apia,3
+Sur y Llanos,Caqueta,san jose,3
+Antioquia Eje Cafetero,Risaralda,LA CELIA,3
+Sur y Llanos,Tolima,San Luis,3
+Sur y Llanos,Caqueta,Valparaiso,3
+Antioquia Eje Cafetero,Quindio,Salento,3
+Pacifico,Choco,Bojaya,3
+Antioquia Eje Cafetero,Antioquia,Colegio 20 de Julio,3
+Sur y Llanos,Casanare,Aguazul,3
+Pacifico,Choco,Yuto,3
+Santanderes & Boyaca,Cesar,San Alberto,3
+Caribe,Cordoba,La Apartada,3
+Sur y Llanos,Tolima,Villarrica,3
+Caribe,Sucre,Laguna flor,2
+Antioquia Eje Cafetero,Antioquia,Santa fe de Antioquia,2
+Pacifico,Cauca,Cuarto Esquinas,2
+Bogota & Cundinamarca,Cundinamarca,Caparrapi,2
+Santanderes & Boyaca,Cesar,La Paz,2
+Antioquia Eje Cafetero,Caldas,"La Merced, Caldas",2
+Pacifico,Cauca,Mondomo,2
+Caribe,Cordoba,IDMJI Colegio lacides,2
+Bogota & Cundinamarca,Cundinamarca,San Juan de Rio Seco,2
+Caribe,Bolivar,Santa Rosa,2
+Santanderes & Boyaca,Boyaca,Muzo,2
+Sur y Llanos,Tolima,Carmen de Apicala,2
+Pacifico,Valle del Cauca,Corregimiento de Bitaco,2
+Bogota & Cundinamarca,Cundinamarca,Fomeque,2
+Caribe,Magdalena,Iglesia Ministerial,2
+Antioquia Eje Cafetero,Caldas,Belalcazar,2
+Antioquia Eje Cafetero,Antioquia,Caseta comunal 28 de octubre,2
+Santanderes & Boyaca,Boyaca,Tenza,2
+Santanderes & Boyaca,Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
+Pacifico,Valle del Cauca,Alcala,2
+Antioquia Eje Cafetero,Risaralda,Caimalito,2
+Santanderes & Boyaca,Boyaca,Moniquira,2
+Caribe,Magdalena,Aracataca,2
+Antioquia Eje Cafetero,Caldas,Pensilvania,2
+Antioquia Eje Cafetero,Antioquia,Santa Barbara,2
+Antioquia Eje Cafetero,Quindio,IGLESIA PIJAO,2
+Caribe,Atlantico,Centro,2
+Pacifico,Putumayo,"La Tagua,",2
+Caribe,La Guajira,Rancheria Jonjoncito,2
+Pacifico,Narino,Taminango,2
+Caribe,Magdalena,Isla del Rosario,2
+Santanderes & Boyaca,Cesar,PUEBLO BELLO,2
+Sur y Llanos,Tolima,San Antonio,2
+Santanderes & Boyaca,Norte de Santander,Las Delicias,1
+Santanderes & Boyaca,Santander,Cimitarra,1
+Santanderes & Boyaca,Boyaca,Aquitania,1
+Caribe,Bolivar,La Boquilla,1
+Pacifico,Valle del Cauca,Ciudad del Campo,1
+Caribe,Atlantico,TUBARA,1
+Antioquia Eje Cafetero,Antioquia,San Pedro de Uraba,1
+Antioquia Eje Cafetero,Antioquia,La Union,1
+Pacifico,Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
+Antioquia Eje Cafetero,Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
+Sur y Llanos,Tolima,IGLESIA DE COYAIMA,1
+Santanderes & Boyaca,Boyaca,Vereda Jaraquira,1
+Sur y Llanos,Caqueta,Solita,1
+Antioquia Eje Cafetero,Antioquia,BARBOSA,1
+Pacifico,Valle del Cauca,Salonica,1
+Antioquia Eje Cafetero,Antioquia,IDMJI,1
+Antioquia Eje Cafetero,Risaralda,La Hermosa,1
+Bogota & Cundinamarca,Cundinamarca,Chipaque,1
+Antioquia Eje Cafetero,Quindio,Escuela la Cascada,1
+Pacifico,Valle del Cauca,San Pedro,1
+Pacifico,Valle del Cauca,Obelisco,1
+Antioquia Eje Cafetero,Risaralda,QUINCHIA,1
+Bogota & Cundinamarca,Cundinamarca,San Carlos,1
+Antioquia Eje Cafetero,Quindio,La Virginia,1
+Antioquia Eje Cafetero,Caldas,Manzanares,1
+Pacifico,Valle del Cauca,Robledo,1
+Santanderes & Boyaca,Santander,Jesus Maria,1
+Caribe,Bolivar,IDMJI DE MOMPOX,1
+Caribe,La Guajira,Uribia,1
+Bogota & Cundinamarca,Cundinamarca,Cachipay,1
+Santanderes & Boyaca,Boyaca,Nuevo Colon,1
+Antioquia Eje Cafetero,Risaralda,Mistrato,1
+Antioquia Eje Cafetero,Quindio,Filandia,1
+Santanderes & Boyaca,Santander,Capitanejo,1
+Santanderes & Boyaca,Boyaca,Santana,1
+Pacifico,Valle del Cauca,Vallejuelo,1
+Pacifico,Valle del Cauca,Panamericano,1
+Sur y Llanos,Huila,Bruselas,1
+Pacifico,Cauca,Sucre,1
+Antioquia Eje Cafetero,Caldas,Riosucio,1
+Caribe,Magdalena,Rio Frio,1
+Sur y Llanos,Tolima,Planadas,1
+Caribe,Sucre,SAN MARCOS,1
+Pacifico,Valle del Cauca,La Cumbre,1
+Sur y Llanos,Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
+Pacifico,Narino,Ricaurte,1
+Caribe,Atlantico,ponedera,1
+Pacifico,Cauca,Cajibio,1
+Sur y Llanos,Guaviare,Calamar,1
+Pacifico,Narino,Ancuya,1
+Antioquia Eje Cafetero,Antioquia,Ciudad Bolivar,1
+Pacifico,Cauca,Buenos Aires,1
+Bogota & Cundinamarca,Cundinamarca,La Palma,1
+Santanderes & Boyaca,Norte de Santander,La Gabarra,1
+Antioquia Eje Cafetero,Antioquia,San Antonio de Prado,1
+Caribe,Magdalena,Colombia • Magdalena • Plato • Calle 13 No. 16A-44 Barrio El Carmen  (frente a la Biblioteca municipal),1
+Sur y Llanos,Tolima,El Tablazo,1
+Pacifico,Valle del Cauca,Prado,1
+Pacifico,Valle del Cauca,La Fresneda,1
 
 SECCION 7 - METADATOS
 
 "Clave","Valor"
-corte_datos,2026-08-12T21:38:54.378866-05:00
+corte_datos,2026-08-12T22:08:53.893828-05:00
