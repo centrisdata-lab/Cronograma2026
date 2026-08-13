@@ -38,7 +38,12 @@
 
   /* ---------- Header ---------- */
   .topbar{height:5px; background:var(--blue);}
-  header.masthead{background:var(--white); border-bottom:3px solid var(--orange); padding:14px 0;}
+  /* El padding lateral lo pone el header (28px, igual que la app y el
+     Informe Nacional) y el .wrap de dentro solo centra a 1180px. Antes
+     ambos aportaban margen y el logo quedaba 28px más adentro. */
+  header.masthead{background:var(--white); border-bottom:3px solid var(--orange); padding:14px 28px;}
+  header.masthead > .wrap{padding-left:0; padding-right:0;}
+  @media (max-width:600px){ header.masthead{padding:14px 16px;} }
   .header-inner{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
   .header-logo{
     flex-shrink:0; display:flex; align-items:center; justify-content:center;

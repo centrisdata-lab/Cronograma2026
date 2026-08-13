@@ -1,39 +1,41 @@
 /* ============================================================
    INFORME CUERPO ACADÉMICO — CAMPUS FIMLM
-   Hereda la identidad visual del generador de tarjetas:
-   azul marino institucional + naranja/dorado de acento,
-   tipografía Baloo 2 (titulares) / Nunito (texto), tarjetas
-   redondeadas, cápsulas y decoraciones circulares suaves.
+   Comparte la identidad visual de la app (index.html) y del
+   informe de Cupos y Matrículas: misma paleta, misma tipografía
+   (Nunito) y los mismos colores de zona que data/zonas.json.
+   Los nombres de variable se conservan en español para no tener
+   que reescribir todas las reglas del archivo; lo que se alineó
+   son sus valores.
    ============================================================ */
 
 :root {
-  /* ---- Identidad de marca ---- */
-  --azul-marino: #0f2a5e;
-  --azul-marino-2: #1b4da0;
-  --azul-marino-oscuro: #0a1d42;
-  --naranja: #f5a623;
-  --naranja-oscuro: #d9791c;
+  /* ---- Identidad de marca (misma paleta que la app) ---- */
+  --azul-marino: #1a3c6e;      /* --blue */
+  --azul-marino-2: #1e4d8c;    /* --blue-mid */
+  --azul-marino-oscuro: #14203b;
+  --naranja: #f5a623;          /* --orange */
+  --naranja-oscuro: #c97d00;   /* --orange-dk */
   --dorado: #ffcf5c;
 
-  /* ---- Paleta de datos (validada CVD-safe, 6 zonas) ---- */
-  --zona-1: #1b4da0; /* Bogotá & Cundinamarca */
-  --zona-2: #0090a0; /* Caribe */
-  --zona-3: #d9791c; /* Antioquia & Eje Cafetero */
-  --zona-4: #1a9e6e; /* Pacífico */
-  --zona-5: #4a3aa7; /* Sur & Llanos */
-  --zona-6: #c0392b; /* Santanderes & Boyacá */
+  /* ---- Colores de zona: los mismos de data/zonas.json ---- */
+  --zona-1: #1a3c6e; /* Bogotá & Cundinamarca */
+  --zona-2: #0891b2; /* Zona Caribe */
+  --zona-3: #7c3aed; /* Antioquia & Eje Cafetero */
+  --zona-4: #059669; /* Zona Pacífico */
+  --zona-5: #d97706; /* Zona Sur & Llanos */
+  --zona-6: #dc2626; /* Santanderes, Boyacá y Cesar */
 
-  /* ---- Superficie y texto ---- */
-  --fondo: #f4f6fb;
-  --superficie: #ffffff;
-  --borde: #e3e8f2;
-  --texto-primario: #14203b;
-  --texto-secundario: #55617c;
-  --texto-muted: #8a93ab;
+  /* ---- Superficie y texto (mismos valores que la app) ---- */
+  --fondo: #f0f4fa;            /* --bg */
+  --superficie: #ffffff;       /* --white */
+  --borde: #d0dff5;            /* --border */
+  --texto-primario: #1a2a4a;   /* --text */
+  --texto-secundario: #6b7fa3; /* --muted */
+  --texto-muted: #93a2c2;      /* --faint */
 
-  /* ---- Tipografía ---- */
-  --fuente-titulos: "Baloo 2", "Nunito", sans-serif;
-  --fuente-texto: "Nunito", sans-serif;
+  /* ---- Tipografía: Nunito, igual que la app ---- */
+  --fuente-titulos: "Nunito", "Segoe UI", sans-serif;
+  --fuente-texto: "Nunito", "Segoe UI", sans-serif;
 
   /* ---- Forma ---- */
   --radio-lg: 22px;
@@ -67,9 +69,9 @@ html, body {
 .app { min-height: 100vh; }
 
 .app-main.report-main {
-  max-width: 1240px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 40px 24px 64px;
+  padding: 28px 28px 64px;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -83,14 +85,14 @@ html, body {
   position: relative;
   background: var(--superficie);
   color: var(--texto-primario);
-  padding: 14px 24px;
+  padding: 14px 28px;
   border-bottom: 3px solid var(--naranja);
   box-shadow: var(--sombra-card);
 }
 
 .report-header__top {
   position: relative;
-  max-width: 1240px;
+  max-width: 1180px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -136,7 +138,7 @@ html, body {
 
 .report-header__meta {
   position: relative;
-  max-width: 1240px;
+  max-width: 1180px;
   margin: 14px auto 0;
   display: flex;
   flex-wrap: wrap;
@@ -168,7 +170,7 @@ html, body {
 .section__head h2 {
   font-family: var(--fuente-titulos);
   font-weight: 800;
-  font-size: clamp(20px, 2.6vw, 26px);
+  font-size: 21.6px; /* = 1.35rem, igual que Cupos y Matriculas */
   color: var(--azul-marino);
   margin: 0 0 4px;
 }
@@ -235,7 +237,7 @@ html, body {
 .panel__titles h2 {
   font-family: var(--fuente-titulos);
   font-weight: 800;
-  font-size: clamp(20px, 2.6vw, 26px);
+  font-size: 21.6px; /* = 1.35rem, igual que Cupos y Matriculas */
   color: var(--azul-marino);
   margin: 0 0 4px;
 }

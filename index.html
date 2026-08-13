@@ -46,9 +46,15 @@
     header {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
-      padding: 14px 32px;
+      padding: 14px 28px;
     }
-    .header-inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    /* Contenedor centrado de 1180px, el mismo que usan los dos informes
+       embebidos, para que el logo y los textos arranquen a la misma
+       distancia del borde en todas las secciones. */
+    .header-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
     .header-logo {
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
@@ -83,9 +89,16 @@
       display: flex; gap: 0;
       background: var(--white);
       border-bottom: 2px solid var(--border);
-      padding: 0 32px;
+      padding: 0 28px;
       overflow-x: auto; -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+    }
+    /* Envoltura interna para alinear las pestañas con el resto del
+       contenido (1180px centrados) sin perder el scroll horizontal
+       en móvil, que vive en .tabs. */
+    .tabs-inner {
+      display: flex; gap: 0;
+      max-width: 1180px; margin: 0 auto; width: 100%;
     }
     .tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
@@ -99,7 +112,7 @@
     .tab-btn:hover:not(.active) { color: var(--blue); }
 
     /* ── MAIN ── */
-    main { padding: 24px 32px 60px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 28px 64px; }
     .tab-section { display: none; }
     .tab-section.active { display: block; }
 
@@ -736,9 +749,9 @@
       .header-logo img { height: 44px; }
       .header-text h1 { font-size: 1.35rem; line-height: 1.22; }
       .header-text p  { font-size: 0.8rem; margin-top: 6px; }
-      main   { padding: 14px 12px 40px; }
+      main   { padding: 16px 16px 40px; }
       .legend { padding: 8px 12px; }
-      .tabs { padding: 0 8px; }
+      .tabs { padding: 0 16px; }
       .tab-btn { padding: 12px 14px; font-size: 0.72rem; }
       .dashboard { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .dash-card { padding: 12px 10px; }
@@ -911,12 +924,14 @@
 </div>
 
 <nav class="tabs">
-  <button class="tab-btn active" onclick="switchTab('cronograma')">📋 Cronograma</button>
-  <button class="tab-btn" onclick="switchTab('equipo')">👥 Roles</button>
-  <button class="tab-btn" onclick="switchTab('organigrama')">🏛️ Organigrama</button>
-  <button class="tab-btn" onclick="switchTab('zonas')">🗺️ Zonas</button>
-  <button class="tab-btn" onclick="switchTab('informe')">📊 Informe Nacional</button>
-  <button class="tab-btn" onclick="switchTab('matriculas')">🎯 Cupos y Matrículas</button>
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('cronograma')">📋 Cronograma</button>
+    <button class="tab-btn" onclick="switchTab('equipo')">👥 Roles</button>
+    <button class="tab-btn" onclick="switchTab('organigrama')">🏛️ Organigrama</button>
+    <button class="tab-btn" onclick="switchTab('zonas')">🗺️ Zonas</button>
+    <button class="tab-btn" onclick="switchTab('informe')">📊 Informe Nacional</button>
+    <button class="tab-btn" onclick="switchTab('matriculas')">🎯 Cupos y Matrículas</button>
+  </div>
 </nav>
 
 <header id="app-header">
