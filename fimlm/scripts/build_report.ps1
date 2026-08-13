@@ -220,6 +220,14 @@ $final = $template.Replace('%%ZONAS_JSON%%', $zonasJson).Replace('%%CURSOS_JSON%
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($outPath, $final, $utf8NoBom)
 
+# Archivo pequeño y aparte (no el index.html completo, que el navegador
+# puede tener cacheado) para que el botón "Actualizar" del informe pueda
+# preguntar "¿hay un corte más nuevo que el que ya cargué?" sin tener que
+# recargar todo. Se consulta por fetch con cache-busting propio.
+$ultimoCortePath = Join-Path $dataDir "ultimo_corte.json"
+$ultimoCorteJson = [ordered]@{ corte = $corteDatos } | ConvertTo-Json -Compress
+[System.IO.File]::WriteAllText($ultimoCortePath, $ultimoCorteJson, $utf8NoBom)
+
 Write-Output "OK -> $outPath"
 Write-Output "Zonas: $($zonas.Count)  Cursos: $($cursos.Count)  Grupos: $($grupos.Count)  Iglesias sin matricula: $($iglesias.Count)  Otros datos: $($otros.Count)  Iglesias con inscripcion: $($iglesiasInsc.Count)"
 Write-Output "Corte de datos: $corteDatos"

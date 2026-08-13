@@ -49,20 +49,58 @@
     .header-logo{order:1;}
     .header-logo img{height:44px;}
     .header-text{order:2; flex:1; min-width:0;}
-    .bell-btn{order:3; margin-left:0; flex-basis:100%; justify-content:center; padding:10px; margin-top:4px;}
+    .header-actions{order:3; margin-left:0; flex-basis:100%; margin-top:4px;}
+    .bell-btn{flex:1; justify-content:center; padding:10px;}
+    .refresh-btn{padding:10px 14px;}
     .bell-label{display:inline;}
     h1.title{font-size:1.35rem; line-height:1.22;}
     .meta-row{flex-direction:column; gap:8px; margin-top:14px;}
+    .update-notice{flex-wrap:wrap;}
   }
+  .header-actions{margin-left:auto; flex-shrink:0; display:flex; align-items:center; gap:8px;}
+  .refresh-btn{
+    -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
+    flex-shrink:0; background:var(--white); border:2px solid var(--border);
+    border-radius:999px; padding:9px 16px; cursor:pointer; font-family:var(--font);
+    font-size:.74rem; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--blue);
+    display:flex; align-items:center; gap:8px;
+    transition:transform .2s, box-shadow .2s, background-color .2s;
+  }
+  .refresh-btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-hover); background-color:var(--blue-light);}
+  .refresh-icon{font-size:1rem; line-height:1; display:inline-block; transition:transform .5s ease;}
+  .refresh-btn.is-loading .refresh-icon{animation:spin .8s linear infinite;}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion:reduce){ .refresh-btn.is-loading .refresh-icon{animation:none;} }
   .bell-btn{
     -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
-    margin-left:auto; flex-shrink:0; background:var(--white); border:2px solid var(--border);
+    flex-shrink:0; background:var(--white); border:2px solid var(--border);
     border-radius:999px; padding:9px 16px 9px 18px; cursor:pointer;
     display:flex; align-items:center; gap:10px;
     transition:transform .2s, box-shadow .2s, background-color .2s;
   }
   .bell-btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-hover); background-color:var(--blue-light);}
   .bell-btn.active{border-color:var(--blue);}
+
+  /* ---------- Aviso de corte más reciente disponible ---------- */
+  .update-notice{
+    display:flex; align-items:center; gap:10px; margin-top:12px; padding:9px 14px;
+    background:var(--yellow-bg); border:1.5px solid #f0d98c; border-radius:10px;
+    font-size:.82rem; font-weight:700; color:var(--yellow);
+  }
+  .update-notice[hidden]{display:none;}
+  .update-notice-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0;
+    animation:pulseDot 1.6s ease-in-out infinite;
+  }
+  @keyframes pulseDot{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  @media (prefers-reduced-motion:reduce){ .update-notice-dot{animation:none;} }
+  .update-notice-btn{
+    -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
+    margin-left:auto; flex-shrink:0; border:1.5px solid var(--yellow); background:var(--white);
+    color:var(--yellow); font-family:var(--font); font-size:.74rem; font-weight:900;
+    text-transform:uppercase; letter-spacing:.02em; padding:6px 14px; border-radius:999px; cursor:pointer;
+  }
+  .update-notice-btn:hover{background:var(--yellow); color:#fff;}
   .bell-label{font-size:.74rem; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--blue); white-space:nowrap;}
   .bell-icon{position:relative; font-size:1.2rem; flex-shrink:0; line-height:1;}
   .bell-badge{
@@ -471,10 +509,16 @@
       <h1 class="title">Informe y gestión de alertas — Colombia</h1>
       <p class="subtitle" hidden>Lectura de las alertas que arroja el cruce de datos de zona, curso y grupo (con horario) del Periodo 1&nbsp;-&nbsp;2026, Convocatoria Mundial. Cada alerta explica qué muestra el dato, por qué importa y qué acción se desprende.</p>
     </div>
-    <button type="button" class="bell-btn" id="bell-btn" onclick="toggleNovedades()" title="Novedades desde el corte anterior">
-      <span class="bell-label">Boletines de avance</span>
-      <span class="bell-icon">🔔<span class="bell-badge" id="bell-badge" hidden>0</span></span>
-    </button>
+    <div class="header-actions">
+      <button type="button" class="refresh-btn" id="refresh-btn" onclick="refreshReport()" title="Recargar con los datos más recientes publicados">
+        <span class="refresh-icon" id="refresh-icon">🔄</span>
+        <span>Actualizar</span>
+      </button>
+      <button type="button" class="bell-btn" id="bell-btn" onclick="toggleNovedades()" title="Novedades desde el corte anterior">
+        <span class="bell-label">Boletines de avance</span>
+        <span class="bell-icon">🔔<span class="bell-badge" id="bell-badge" hidden>0</span></span>
+      </button>
+    </div>
   </div>
   <div class="wrap">
     <div class="novedades-panel" id="novedades-panel" hidden></div>
@@ -485,6 +529,11 @@
       <div><strong>Corte de datos</strong> <span id="corte-datos">—</span> <span class="corte-auto">(se actualiza cada 30 min)</span></div>
       <div><strong>Alcance</strong> 6 zonas · Colombia</div>
       <div><strong>Niveles cruzados</strong> Zona → Curso → Grupo</div>
+    </div>
+    <div class="update-notice" id="update-notice" hidden>
+      <span class="update-notice-dot"></span>
+      <span id="update-notice-text"></span>
+      <button type="button" class="update-notice-btn" onclick="refreshReport()">Actualizar ahora</button>
     </div>
   </div>
 </header>
@@ -627,6 +676,57 @@ function formatCorte(iso){
   const hora = d.toLocaleTimeString('es-CO', {hour:'numeric', minute:'2-digit', hour12:true});
   return `${fecha}, ${hora}`;
 }
+
+/* ---------- Botón "Actualizar" + aviso de corte más reciente disponible ----------
+   El informe es un HTML estático regenerado cada 30 min por la tarea programada;
+   el navegador puede tener una copia vieja cacheada. Para saber si hay algo más
+   nuevo SIN recargar todo, se consulta por separado un JSON chico
+   (data/ultimo_corte.json) que build_report.ps1 publica en cada corrida junto
+   con index.html. Si su fecha es más reciente que CORTE_DATOS (el corte que ya
+   está cargado en esta pestaña), se muestra el aviso. */
+function refreshReport(){
+  const btn = document.getElementById('refresh-btn');
+  if(btn) btn.classList.add('is-loading');
+  // Bypass de caché real: un query param único fuerza a que el navegador
+  // (y cualquier caché intermedia) traiga la versión más reciente del
+  // archivo, no una copia guardada de una carga anterior.
+  window.location.href = window.location.pathname + '?t=' + Date.now();
+}
+
+function hoursAgoLabel(iso){
+  const d = new Date(iso);
+  if(isNaN(d)) return '';
+  const mins = Math.max(0, Math.round((Date.now() - d.getTime())/60000));
+  if(mins < 1) return 'hace un momento';
+  if(mins < 60) return `hace ${mins} minuto${mins!==1?'s':''}`;
+  const hrs = Math.round(mins/60);
+  return `hace ${hrs} hora${hrs!==1?'s':''}`;
+}
+
+function checkForNewerCorte(){
+  fetch('data/ultimo_corte.json?t=' + Date.now(), {cache:'no-store'})
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if(!data || !data.corte) return;
+      const nuevo = new Date(data.corte);
+      const actual = new Date(CORTE_DATOS);
+      if(isNaN(nuevo) || isNaN(actual)) return;
+      const notice = document.getElementById('update-notice');
+      const text = document.getElementById('update-notice-text');
+      if(!notice || !text) return;
+      // Margen de 60s para no marcar "nuevo" por diferencias de reloj
+      // insignificantes entre el momento del build y el de esta lectura.
+      if(nuevo.getTime() > actual.getTime() + 60000){
+        text.textContent = `Disponible nuevo avance de ${hoursAgoLabel(data.corte)} — toca Actualizar para verlo`;
+        notice.hidden = false;
+      } else {
+        notice.hidden = true;
+      }
+    })
+    .catch(()=>{}); // si falla la consulta (offline, ruta no publicada aún), no se muestra nada — no es un error visible para el usuario
+}
+checkForNewerCorte();
+setInterval(checkForNewerCorte, 60000);
 const zoneName = {}; ZONAS.forEach(z=>zoneName[z.code]=z.name);
 
 CURSOS.forEach(c=>{ c.ocu = c.cap ? (c.mat/c.cap*100) : 0; c.zn = zoneName[c.z]; });
