@@ -593,7 +593,7 @@
           <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
-          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias sin matrícula</div><div class="hint">Gestionar todas las iglesias →</div></button>
+          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
         </div>
       </div>
     </div>
@@ -779,7 +779,8 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   const vacios = GRUPOS.filter(g=>g.mat===0).length;
   document.getElementById('kpi-vacios').textContent = fmt(vacios);
   document.getElementById('kpi-vacios-sub').textContent = 'repartidos en '+fmt(cursosConGrupoVacio.size)+' curso'+(cursosConGrupoVacio.size===1?'':'s');
-  document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length);
+  document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length + IGLESIAS_INSC.length);
+  document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin matrícula';
 
   const corteEl = document.getElementById('corte-datos');
   if(corteEl) corteEl.textContent = formatCorte(CORTE_DATOS);
@@ -1219,8 +1220,9 @@ function courseGroupsInlineHtml(z, cod, colspan){
 }
 
 function kdHead(title, sub){
+  const subHtml = sub ? `<div class="kd-sub">${sub}</div>` : '';
   return `<div class="kd-head"><h3>${title}</h3><button type="button" class="kd-close" onclick="closeDetail()">✕</button></div>
-    <div class="kd-sub">${sub}</div>`;
+    ${subHtml}`;
 }
 
 let zonasSortState = {key:'ocu', dir:-1};
@@ -1380,8 +1382,7 @@ function buildDetail(kind){
   }
   if(kind==='iglesias'){
     const nSin = IGLESIAS.length, nCon = IGLESIAS_INSC.length, nTodas = nSin + nCon;
-    return kdHead('Iglesias',
-      `${fmt(nTodas)} iglesias/sedes registradas en el sistema, con su estado de matrícula en Campus 360. El dashboard las entrega solo por departamento; aquí se agrupan por zona según el departamento de cada una. Toca una zona o un departamento para desplegar, y toca una iglesia para ver su detalle.`) +
+    return kdHead('Iglesias', '') +
       `<div class="state-filter-group" style="margin-bottom:14px;">
         <span class="chip-label">Estado</span>
         <button type="button" class="chip${iglesiasEstadoFiltro==='todas'?' active':''}" onclick="setIglesiasFiltro('todas')">Todas (${fmt(nTodas)})</button>
@@ -1389,7 +1390,7 @@ function buildDetail(kind){
         <button type="button" class="chip chip-info${iglesiasEstadoFiltro==='con'?' active':''}" onclick="setIglesiasFiltro('con')">📈 Con inscripción (${fmt(nCon)})</button>
       </div>
       <input type="search" id="iglesias-search" placeholder="Buscar iglesia, departamento o zona…" oninput="onIglesiasSearch(this.value)" style="margin-bottom:12px; width:100%;">
-      <div class="table-scroll" style="max-height:420px;"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
+      <div class="table-scroll no-vscroll"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
   }
   return '';
 }
