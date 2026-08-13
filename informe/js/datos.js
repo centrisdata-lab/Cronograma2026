@@ -157,7 +157,7 @@ const ZONAS = [
   },
   {
     id: "santanderes-boyaca",
-    nombre: "Santanderes & Boyacá",
+    nombre: "Santanderes, Boyacá y Cesar",
     emoji: "⛰️",
     departamentos: ["Santander", "Norte de Santander", "Boyacá", "Cesar"],
     color: "#C0392B",

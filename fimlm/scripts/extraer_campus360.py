@@ -36,7 +36,9 @@ ZONA_MAP = {
     "ZONA BOGOTÁ & CUNDINAMARCA 2026": "Bogota & Cundinamarca",
     "ZONA CARIBE 2026": "Caribe",
     "ZONA PACIFICO 2026": "Pacifico",
-    "ZONA SANTANDERES & BOYACA 2026": "Santanderes & Boyaca",
+    # La clave es el nombre tal como lo envia el dashboard (no se toca);
+    # el valor es el nombre con el que la zona se muestra en el informe.
+    "ZONA SANTANDERES & BOYACA 2026": "Santanderes, Boyaca y Cesar",
 }
 
 EDAD_LABELS = {18: "18-25", 26: "26-35", 36: "36-45", 46: "46-60", 61: "61+"}
@@ -63,7 +65,7 @@ ZONA_POR_DEPARTAMENTO = {
         "Meta", "Arauca", "Casanare", "Guainia", "Guaviare", "Vaupes",
         "Vichada", "Amazonas", "Caqueta", "Huila", "Tolima",
     ],
-    "Santanderes & Boyaca": ["Santander", "Norte de Santander", "Boyaca", "Cesar"],
+    "Santanderes, Boyaca y Cesar": ["Santander", "Norte de Santander", "Boyaca", "Cesar"],
 }
 
 # Zona a usar cuando un departamento no esta en la tabla de arriba. No deberia

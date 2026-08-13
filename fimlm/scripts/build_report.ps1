@@ -25,7 +25,7 @@ $iAcute = [char]0x00ED  # í
 $aAcute = [char]0x00E1  # á
 $zoneNames = @{
   "ANT"="Antioquia Eje Cafetero"; "SUR"="Sur y Llanos"; "BOG"="Bogot$aAcute & Cundinamarca"
-  "CAR"="Caribe"; "PAC"="Pac${iAcute}fico"; "SAN"="Santanderes & Boyac$aAcute"
+  "CAR"="Caribe"; "PAC"="Pac${iAcute}fico"; "SAN"="Santanderes, Boyac$aAcute y Cesar"
 }
 # Iconos y colores tomados de la pagina de referencia (DISEÑOREFERENCIA.html, arreglo "zonas").
 $varSel16 = [char]0xFE0F  # variation selector (fuerza estilo emoji a color)

@@ -1016,7 +1016,17 @@ function toggleIglesiasZona(zona){
 const zonaMetaPorNombre = {};
 ZONAS.forEach(z => { zonaMetaPorNombre[normKey(z.name)] = z; });
 function metaDeZona(nombre){
-  return zonaMetaPorNombre[normKey(nombre)] || null;
+  const clave = normKey(nombre);
+  const exacta = zonaMetaPorNombre[clave];
+  if(exacta) return exacta;
+  // El nombre de una zona puede cambiar (p. ej. "Santanderes & Boyacá" pasó a
+  // "Santanderes, Boyacá y Cesar"). Mientras no se regenere el CSV con el
+  // nombre nuevo, las filas guardadas traen el anterior: se busca entonces
+  // por coincidencia parcial para que la zona no pierda su ícono y color.
+  for(const [k, z] of Object.entries(zonaMetaPorNombre)){
+    if(k.startsWith(clave) || clave.startsWith(k)) return z;
+  }
+  return null;
 }
 // El CSV llega sin tildes (el extractor las quita para que el archivo no se
 // corrompa según la codificación con que se guarde). Para mostrar, se repone
