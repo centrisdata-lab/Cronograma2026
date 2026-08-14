@@ -1,0 +1,77 @@
+{
+  "corte": "2026-08-13T20:54:43.707013-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4912",
+      "matAntes": 19,
+      "matAhora": 20,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4908",
+      "matAntes": 21,
+      "matAhora": 22,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2716",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4710",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 33,
+      "matAhora": 35,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2734",
+      "nom": "Pintura en Madera",
+      "g": "G-4674",
+      "matAntes": 19,
+      "matAhora": 20,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4285",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-5041",
+      "matAntes": 37,
+      "matAhora": 39,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4869",
+      "matAntes": 22,
+      "matAhora": 23,
+      "delta": 1
+    }
+  ]
+}
