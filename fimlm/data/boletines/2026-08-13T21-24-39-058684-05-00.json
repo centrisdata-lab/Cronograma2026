@@ -1,0 +1,32 @@
+{
+  "corte": "2026-08-13T21:24:39.058684-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4994",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-5010",
+      "matAntes": 12,
+      "matAhora": 13,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-4427",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    }
+  ]
+}
