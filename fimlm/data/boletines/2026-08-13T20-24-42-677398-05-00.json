@@ -1,0 +1,212 @@
+{
+  "corte": "2026-08-13T20:24:42.677398-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2559",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4767",
+      "matAntes": 57,
+      "matAhora": 60,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4841",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4847",
+      "matAntes": 43,
+      "matAhora": 44,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2567",
+      "nom": "Italiano Nivel 2",
+      "g": "G-4982",
+      "matAntes": 57,
+      "matAhora": 58,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2535",
+      "nom": "Salud y Bienestar para Ovinos y Caprinos",
+      "g": "G-4764",
+      "matAntes": 30,
+      "matAhora": 31,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2592",
+      "nom": "Frances Nivel 2",
+      "g": "G-4926",
+      "matAntes": 37,
+      "matAhora": 38,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4991",
+      "matAntes": 39,
+      "matAhora": 40,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-5010",
+      "matAntes": 11,
+      "matAhora": 12,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4777",
+      "matAntes": 29,
+      "matAhora": 31,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4865",
+      "matAntes": 10,
+      "matAhora": 11,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4829",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4794",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-4704",
+      "matAntes": 39,
+      "matAhora": 43,
+      "delta": 4
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-4681",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5022",
+      "matAntes": 20,
+      "matAhora": 22,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5055",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4297",
+      "matAntes": 16,
+      "matAhora": 17,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4301",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2462",
+      "nom": "Mi Negocio en Internet",
+      "g": "G-4274",
+      "matAntes": 1,
+      "matAhora": 2,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4290",
+      "matAntes": 30,
+      "matAhora": 31,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4867",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 23,
+      "matAhora": 24,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2447",
+      "nom": "Costos para Emprendedores/Contabilidad",
+      "g": "G-4245",
+      "matAntes": 1,
+      "matAhora": 2,
+      "delta": 1
+    }
+  ]
+}
