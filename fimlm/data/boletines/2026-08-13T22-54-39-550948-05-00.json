@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-13T22:54:39.550948-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2592",
+      "nom": "Frances Nivel 2",
+      "g": "G-4926",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    }
+  ]
+}
