@@ -1,0 +1,122 @@
+{
+  "corte": "2026-08-13T19:54:44.191330-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2559",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4767",
+      "matAntes": 56,
+      "matAhora": 57,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4996",
+      "matAntes": 39,
+      "matAhora": 40,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4833",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4774",
+      "matAntes": 40,
+      "matAhora": 41,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4777",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-4704",
+      "matAntes": 37,
+      "matAhora": 39,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4668",
+      "matAntes": 32,
+      "matAhora": 34,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5022",
+      "matAntes": 19,
+      "matAhora": 20,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5055",
+      "matAntes": 43,
+      "matAhora": 44,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4511",
+      "matAntes": 9,
+      "matAhora": 10,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4873",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4297",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2458",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4267",
+      "matAntes": 48,
+      "matAhora": 49,
+      "delta": 1
+    }
+  ]
+}
