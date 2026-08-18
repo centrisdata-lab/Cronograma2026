@@ -1,0 +1,1328 @@
+{
+  "corte": "2026-08-18T13:47:51.930883-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2559",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4765",
+      "matAntes": 54,
+      "matAhora": 60,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4810",
+      "matAntes": 30,
+      "matAhora": 33,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4839",
+      "matAntes": 43,
+      "matAhora": 50,
+      "delta": 7
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4840",
+      "matAntes": 16,
+      "matAhora": 18,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4841",
+      "matAntes": 18,
+      "matAhora": 25,
+      "delta": 7
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4843",
+      "matAntes": 34,
+      "matAhora": 42,
+      "delta": 8
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4844",
+      "matAntes": 47,
+      "matAhora": 50,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4845",
+      "matAntes": 20,
+      "matAhora": 23,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4847",
+      "matAntes": 44,
+      "matAhora": 50,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4910",
+      "matAntes": 37,
+      "matAhora": 42,
+      "delta": 5
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2500",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4956",
+      "matAntes": 6,
+      "matAhora": 8,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4963",
+      "matAntes": 36,
+      "matAhora": 42,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4964",
+      "matAntes": 36,
+      "matAhora": 48,
+      "delta": 12
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4967",
+      "matAntes": 35,
+      "matAhora": 46,
+      "delta": 11
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4996",
+      "matAntes": 40,
+      "matAhora": 49,
+      "delta": 9
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4997",
+      "matAntes": 23,
+      "matAhora": 29,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4912",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4913",
+      "matAntes": 13,
+      "matAhora": 16,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4928",
+      "matAntes": 5,
+      "matAhora": 7,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2567",
+      "nom": "Italiano Nivel 2",
+      "g": "G-4982",
+      "matAntes": 58,
+      "matAhora": 60,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2535",
+      "nom": "Salud y Bienestar para Ovinos y Caprinos",
+      "g": "G-4764",
+      "matAntes": 31,
+      "matAhora": 36,
+      "delta": 5
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4694",
+      "matAntes": 21,
+      "matAhora": 27,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4722",
+      "matAntes": 13,
+      "matAhora": 19,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4757",
+      "matAntes": 31,
+      "matAhora": 35,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4832",
+      "matAntes": 15,
+      "matAhora": 17,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4833",
+      "matAntes": 8,
+      "matAhora": 12,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4834",
+      "matAntes": 12,
+      "matAhora": 13,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2592",
+      "nom": "Frances Nivel 2",
+      "g": "G-4922",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2592",
+      "nom": "Frances Nivel 2",
+      "g": "G-4926",
+      "matAntes": 39,
+      "matAhora": 44,
+      "delta": 5
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4990",
+      "matAntes": 27,
+      "matAhora": 38,
+      "delta": 11
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4991",
+      "matAntes": 40,
+      "matAhora": 50,
+      "delta": 10
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4992",
+      "matAntes": 15,
+      "matAhora": 27,
+      "delta": 12
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4993",
+      "matAntes": 15,
+      "matAhora": 18,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4994",
+      "matAntes": 28,
+      "matAhora": 37,
+      "delta": 9
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4995",
+      "matAntes": 25,
+      "matAhora": 32,
+      "delta": 7
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-5010",
+      "matAntes": 13,
+      "matAhora": 18,
+      "delta": 5
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4774",
+      "matAntes": 41,
+      "matAhora": 58,
+      "delta": 17
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2488",
+      "nom": "Bisuteria 1",
+      "g": "G-4777",
+      "matAntes": 31,
+      "matAhora": 58,
+      "delta": 27
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4859",
+      "matAntes": 11,
+      "matAhora": 15,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4863",
+      "matAntes": 4,
+      "matAhora": 5,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4864",
+      "matAntes": 17,
+      "matAhora": 21,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4865",
+      "matAntes": 11,
+      "matAhora": 14,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2566",
+      "nom": "Mi Negocio en Internet",
+      "g": "G-4984",
+      "matAntes": 5,
+      "matAhora": 6,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4819",
+      "matAntes": 28,
+      "matAhora": 32,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4820",
+      "matAntes": 17,
+      "matAhora": 19,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4821",
+      "matAntes": 29,
+      "matAhora": 32,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4822",
+      "matAntes": 13,
+      "matAhora": 15,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4825",
+      "matAntes": 10,
+      "matAhora": 12,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4826",
+      "matAntes": 40,
+      "matAhora": 46,
+      "delta": 6
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4827",
+      "matAntes": 42,
+      "matAhora": 49,
+      "delta": 7
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4828",
+      "matAntes": 28,
+      "matAhora": 32,
+      "delta": 4
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4829",
+      "matAntes": 39,
+      "matAhora": 46,
+      "delta": 7
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4909",
+      "matAntes": 12,
+      "matAhora": 13,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4794",
+      "matAntes": 41,
+      "matAhora": 50,
+      "delta": 9
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2491",
+      "nom": "Comprension Lectora",
+      "g": "G-4908",
+      "matAntes": 24,
+      "matAhora": 50,
+      "delta": 26
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4848",
+      "matAntes": 7,
+      "matAhora": 9,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4849",
+      "matAntes": 8,
+      "matAhora": 10,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4851",
+      "matAntes": 10,
+      "matAhora": 15,
+      "delta": 5
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2692",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-5091",
+      "matAntes": 2,
+      "matAhora": 3,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2731",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-5095",
+      "matAntes": 19,
+      "matAhora": 21,
+      "delta": 2
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2686",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4754",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2633",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4641",
+      "matAntes": 21,
+      "matAhora": 22,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2709",
+      "nom": "Reposteria 2",
+      "g": "G-4673",
+      "matAntes": 44,
+      "matAhora": 50,
+      "delta": 6
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2709",
+      "nom": "Reposteria 2",
+      "g": "G-4684",
+      "matAntes": 22,
+      "matAhora": 26,
+      "delta": 4
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2634",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4707",
+      "matAntes": 5,
+      "matAhora": 6,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-4639",
+      "matAntes": 29,
+      "matAhora": 38,
+      "delta": 9
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2536",
+      "nom": "Comprension Lectora",
+      "g": "G-4704",
+      "matAntes": 43,
+      "matAhora": 50,
+      "delta": 7
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2716",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4710",
+      "matAntes": 36,
+      "matAhora": 38,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4637",
+      "matAntes": 45,
+      "matAhora": 47,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 35,
+      "matAhora": 38,
+      "delta": 3
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4784",
+      "matAntes": 13,
+      "matAhora": 19,
+      "delta": 6
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2649",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4644",
+      "matAntes": 47,
+      "matAhora": 50,
+      "delta": 3
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2649",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4781",
+      "matAntes": 30,
+      "matAhora": 34,
+      "delta": 4
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2630",
+      "nom": "Profundizacion Costos para Emprendedores",
+      "g": "G-4660",
+      "matAntes": 5,
+      "matAhora": 7,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4638",
+      "matAntes": 28,
+      "matAhora": 33,
+      "delta": 5
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4668",
+      "matAntes": 34,
+      "matAhora": 45,
+      "delta": 11
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4715",
+      "matAntes": 6,
+      "matAhora": 12,
+      "delta": 6
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2734",
+      "nom": "Pintura en Madera",
+      "g": "G-4674",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2734",
+      "nom": "Pintura en Madera",
+      "g": "G-4709",
+      "matAntes": 37,
+      "matAhora": 46,
+      "delta": 9
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-4681",
+      "matAntes": 27,
+      "matAhora": 32,
+      "delta": 5
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5022",
+      "matAntes": 22,
+      "matAhora": 27,
+      "delta": 5
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-5055",
+      "matAntes": 45,
+      "matAhora": 49,
+      "delta": 4
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2439",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4220",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2440",
+      "nom": "Costos para Emprendedores/Contabilidad",
+      "g": "G-4878",
+      "matAntes": 9,
+      "matAhora": 10,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2472",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4257",
+      "matAntes": 6,
+      "matAhora": 7,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2650",
+      "nom": "Ingles 2",
+      "g": "G-4461",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2650",
+      "nom": "Ingles 2",
+      "g": "G-4659",
+      "matAntes": 8,
+      "matAhora": 9,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2520",
+      "nom": "Reposteria 2",
+      "g": "G-4679",
+      "matAntes": 18,
+      "matAhora": 19,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2473",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4258",
+      "matAntes": 32,
+      "matAhora": 34,
+      "delta": 2
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2473",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4259",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2485",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4328",
+      "matAntes": 40,
+      "matAhora": 41,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2485",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4329",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2485",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4330",
+      "matAntes": 13,
+      "matAhora": 14,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2485",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4906",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4481",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4482",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4484",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4485",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4487",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4509",
+      "matAntes": 45,
+      "matAhora": 46,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4512",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2627",
+      "nom": "Economia del Hogar",
+      "g": "G-4817",
+      "matAntes": 20,
+      "matAhora": 22,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2456",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4875",
+      "matAntes": 32,
+      "matAhora": 34,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4246",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4307",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4873",
+      "matAntes": 33,
+      "matAhora": 37,
+      "delta": 4
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4874",
+      "matAntes": 2,
+      "matAhora": 3,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4297",
+      "matAntes": 17,
+      "matAhora": 27,
+      "delta": 10
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4301",
+      "matAntes": 18,
+      "matAhora": 20,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4302",
+      "matAntes": 22,
+      "matAhora": 27,
+      "delta": 5
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4303",
+      "matAntes": 13,
+      "matAhora": 16,
+      "delta": 3
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4895",
+      "matAntes": 34,
+      "matAhora": 40,
+      "delta": 6
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4897",
+      "matAntes": 23,
+      "matAhora": 25,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4899",
+      "matAntes": 8,
+      "matAhora": 9,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-5065",
+      "matAntes": 21,
+      "matAhora": 25,
+      "delta": 4
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-5120",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-5122",
+      "matAntes": 23,
+      "matAhora": 27,
+      "delta": 4
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2458",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4267",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2458",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4904",
+      "matAntes": 22,
+      "matAhora": 27,
+      "delta": 5
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2462",
+      "nom": "Mi Negocio en Internet",
+      "g": "G-4927",
+      "matAntes": 4,
+      "matAhora": 5,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4285",
+      "matAntes": 42,
+      "matAhora": 50,
+      "delta": 8
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4286",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4290",
+      "matAntes": 31,
+      "matAhora": 41,
+      "delta": 10
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4292",
+      "matAntes": 19,
+      "matAhora": 27,
+      "delta": 8
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4293",
+      "matAntes": 47,
+      "matAhora": 50,
+      "delta": 3
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4888",
+      "matAntes": 28,
+      "matAhora": 35,
+      "delta": 7
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4890",
+      "matAntes": 8,
+      "matAhora": 10,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4892",
+      "matAntes": 14,
+      "matAhora": 18,
+      "delta": 4
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4894",
+      "matAntes": 15,
+      "matAhora": 17,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-5041",
+      "matAntes": 39,
+      "matAhora": 44,
+      "delta": 5
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-5127",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4867",
+      "matAntes": 9,
+      "matAhora": 14,
+      "delta": 5
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4869",
+      "matAntes": 23,
+      "matAhora": 26,
+      "delta": 3
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4870",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4872",
+      "matAntes": 27,
+      "matAhora": 29,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-5043",
+      "matAntes": 8,
+      "matAhora": 9,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-5125",
+      "matAntes": 38,
+      "matAhora": 44,
+      "delta": 6
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4282",
+      "matAntes": 39,
+      "matAhora": 41,
+      "delta": 2
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4879",
+      "matAntes": 16,
+      "matAhora": 25,
+      "delta": 9
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4880",
+      "matAntes": 35,
+      "matAhora": 45,
+      "delta": 10
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4881",
+      "matAntes": 18,
+      "matAhora": 21,
+      "delta": 3
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 24,
+      "matAhora": 35,
+      "delta": 11
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-5056",
+      "matAntes": 3,
+      "matAhora": 7,
+      "delta": 4
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2447",
+      "nom": "Costos para Emprendedores/Contabilidad",
+      "g": "G-4245",
+      "matAntes": 2,
+      "matAhora": 3,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-4427",
+      "matAntes": 34,
+      "matAhora": 39,
+      "delta": 5
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-4924",
+      "matAntes": 36,
+      "matAhora": 39,
+      "delta": 3
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-5053",
+      "matAntes": 24,
+      "matAhora": 27,
+      "delta": 3
+    }
+  ]
+}
