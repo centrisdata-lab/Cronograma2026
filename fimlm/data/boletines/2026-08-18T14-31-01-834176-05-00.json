@@ -1,0 +1,59 @@
+{
+  "corte": "2026-08-18T14:31:01.834176-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4845",
+      "matAntes": 23,
+      "matAhora": 24,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4826",
+      "matAntes": 46,
+      "matAhora": 47,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4895",
+      "matAntes": 40,
+      "matAhora": 41,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4897",
+      "matAntes": 25,
+      "matAhora": 26,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2445",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4879",
+      "matAntes": 25,
+      "matAhora": 26,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-5053",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    }
+  ]
+}
