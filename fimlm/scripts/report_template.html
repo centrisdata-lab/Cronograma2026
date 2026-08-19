@@ -631,7 +631,7 @@
       <div class="kpi-group is-action">
         <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
         <div class="kpis kpis-action">
-          <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
+          <button type="button" class="kpi flag" onclick="showDetail('externos', this)"><span class="kpi-arrow">▾</span><div class="icon">🌐</div><div class="v num" id="kpi-externos">—</div><div class="l">Personas externas inscritas<span class="kpi-sub" id="kpi-externos-sub"></span></div><div class="hint">Ver por medio →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con menos de 14 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
           <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
@@ -813,10 +813,19 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
 /* ---------- KPIs ---------- */
 (function(){
   const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
-  const mat=sum('mat'), cap=sum('cap'), esp=sum('esp'), bajo=sum('bajo');
+  const mat=sum('mat'), cap=sum('cap'), esp=sum('esp');
   document.getElementById('kpi-ocu').textContent = fmt(mat);
   document.getElementById('kpi-esp').textContent = fmt(esp);
-  document.getElementById('kpi-bajo').textContent = fmt(bajo)+' / '+fmt(sum('cur'));
+  // "Personas externas" = todo lo que no es "Iglesia" en la pregunta
+  // "¿Cómo conoció la FIMLM?" (dato global del dashboard, no filtrado a
+  // las 6 zonas de Colombia -- mismo alcance que género/edad/etnia).
+  const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
+  const externos = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
+  document.getElementById('kpi-externos').textContent = fmt(externos);
+  const iglesiaItem = conocimiento.find(o=>o.lbl==='Iglesia');
+  document.getElementById('kpi-externos-sub').textContent = iglesiaItem
+    ? fmt(iglesiaItem.val)+' dijeron que conocieron por iglesia'
+    : '';
   const bajaMatGrupos = GRUPOS.filter(g=>g.mat<14);
   document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
   const byHC = {};
@@ -1523,6 +1532,14 @@ function buildDetail(kind){
     return kdHead('Grupos con mayor lista de espera',
       'Los 10 grupos con más personas esperando cupo — <b>todos</b> están al 100% de su capacidad (0 disponibles). La espera aquí siempre va ligada a un grupo lleno, no a falta de inscripción a tiempo. Toca un curso para ver todos sus grupos.') +
       `<div class="table-scroll" style="max-height:360px;"><table class="data" id="espera-detail-table">${esperaTableHtml()}</table></div>`;
+  }
+  if(kind==='externos'){
+    const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
+    const iglesiaItem = conocimiento.find(o=>o.lbl==='Iglesia');
+    const externosTotal = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
+    return kdHead('Personas externas inscritas',
+      `Respuesta a "¿Cómo conoció la FIMLM?" — dato <b>global</b> (todas las convocatorias del mundo, no solo las 6 zonas de Colombia), igual que género/edad/etnia. "Externas" son las <b>${fmt(externosTotal)}</b> que dijeron un medio distinto a iglesia (referido, redes, web, noticias o sin dato). El dashboard no distingue de qué iglesia específica se trata dentro de la opción "Iglesia" (${fmt(iglesiaItem?iglesiaItem.val:0)} personas), así que ese total se muestra tal cual, sin desglosar IDMJI de otras iglesias.`) +
+      `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('¿Cómo conoció la FIMLM?','conocimiento')}</div>`;
   }
   if(kind==='bajo'){
     return kdHead('Cursos con baja ocupación (&lt;30%)',

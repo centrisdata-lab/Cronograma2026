@@ -295,6 +295,8 @@ def build_csv(data):
     sin_condicion = sum(d["n"] for d in disc if d["etiqueta"].strip().lower() == "ninguna")
     lines.append(csv_row("discapacidad", "Con alguna condicion reportada", con_condicion))
     lines.append(csv_row("discapacidad", "Sin condicion (Ninguna)", sin_condicion))
+    for c in data.get("conocimiento", {}).get("items", []):
+        lines.append(csv_row("conocimiento", strip_accents(c["opcion"]), c["n"]))
     lines.append("")
 
     # ---------- Seccion 6: iglesias con inscripcion ----------
