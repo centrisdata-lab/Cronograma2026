@@ -145,7 +145,17 @@ async def fetch_dashboard_data():
                     captured["data"] = (await resp.json())["data"]
                     captured["status"] = resp.status
                 except Exception as e:
-                    captured["error"] = str(e)
+                    # El dashboard a veces dispara más de un POST a este
+                    # endpoint durante el reload (uno inicial y un retry
+                    # propio de la página ~30s después). Si el PRIMERO no
+                    # trae "data" (p.ej. una respuesta transitoria de
+                    # error), no se debe abortar la espera: se guarda el
+                    # error solo si todavía no hay uno, para no pisar un
+                    # "data" que ya haya llegado de una respuesta anterior,
+                    # y se sigue esperando por si el siguiente POST sí trae
+                    # los datos buenos.
+                    if "data" not in captured:
+                        captured["error"] = str(e)
 
         page.on("response", on_response)
         # "networkidle" nunca se alcanza en este dashboard (tiene polling/
@@ -156,10 +166,12 @@ async def fetch_dashboard_data():
         # activamente a que el listener capture esa respuesta puntual.
         # El propio POST puede tardar 30s+ en responder cuando el dashboard
         # de origen está lento (medido hasta ~33s en pruebas), así que se
-        # espera hasta 90s en vez de los 30s originales.
+        # espera el margen completo de 90s y solo se corta antes si ya
+        # llegó un "data" válido -- un "error" por sí solo no corta la
+        # espera, porque puede llegar un segundo POST con los datos buenos.
         await page.reload(wait_until="load", timeout=45000)
         for _ in range(180):
-            if "data" in captured or "error" in captured:
+            if "data" in captured:
                 break
             await page.wait_for_timeout(500)
         await browser.close()
