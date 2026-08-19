@@ -358,6 +358,17 @@
   tr.zona-row.group-head:hover td{background:var(--blue-light);}
   tr.zona-row:hover .zona-nombre{color:var(--blue-mid);}
 
+  /* Zona con una alerta operativa (p.ej. actividad pausada por un evento
+     externo, no por matrículas): fondo rojo claro persistente -- no solo
+     en hover -- para que se distinga de las demás zonas de un vistazo. */
+  tr.zona-row--alerta td{background:var(--red-bg);}
+  tr.zona-row--alerta:hover td{background:var(--red-bg); box-shadow:0 4px 12px -4px rgba(192,57,43,0.35), inset 3px 0 0 var(--red);}
+  tr.zona-row--alerta .zona-nombre{color:var(--red);}
+  .zona-alerta-nota{
+    display:block; font-size:.72rem; font-weight:800; color:var(--red);
+    margin-top:2px;
+  }
+
   .context-divider{
     display:flex; align-items:baseline; gap:10px; margin:22px 0 14px; padding-top:6px;
     border-top:1.5px dashed var(--border);
@@ -1287,6 +1298,14 @@ function clearZonaEstadoFilter(){
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
 }
+// Zonas con una nota de alerta operativa (no relacionada a matrículas)
+// que se muestra en la tabla de "Total matriculados por zona". Formato:
+// codigoFimlm de data/zonas.json -> texto de la nota.
+const ZONAS_NOTA_ALERTA = {
+  'ANT': 'Pausaron actividades debido a terremoto',
+  'PAC': 'Pausaron actividades debido a terremoto',
+};
+
 function zonasTableHtml(){
   const sorted = [...ZONAS].sort((a,b)=>(a[zonasSortState.key]-b[zonasSortState.key])*zonasSortState.dir);
   const filterLabel = {baja:'con baja ocupación', saturado:'saturados', espera:'en espera', vacio:'con algún grupo vacío'}[zonasStateFilter];
@@ -1310,9 +1329,12 @@ function zonasTableHtml(){
         <span style="color:var(--blue-mid)">${zSaturado} saturados</span>
         <span style="color:var(--red)">${zVacio} con algún grupo vacío</span>
       </span>`;
-    let row = `<tr class="clickable-row zona-row" onclick="toggleZonaCursos('${z.code}')" title="Ver los cursos de ${z.name}">
+    const notaAlerta = ZONAS_NOTA_ALERTA[z.code];
+    const notaHtml = notaAlerta ? `<span class="zona-alerta-nota">⚠️ ${notaAlerta}</span>` : '';
+    const claseAlerta = notaAlerta ? ' zona-row--alerta' : '';
+    let row = `<tr class="clickable-row zona-row${claseAlerta}" onclick="toggleZonaCursos('${z.code}')" title="Ver los cursos de ${z.name}">
         <td class="expand-cell">${isOpen?'▾':'▸'}</td>
-        <td><div style="display:flex; align-items:center; gap:10px;"><span class="zone-icon-badge" style="background:${z.color}">${z.icon}</span><span><span class="zona-nombre">${z.name}</span>${zoneFilterBadge}<span class="sub" style="display:block;font-weight:600;color:var(--faint);font-size:.72rem;">${fmt(z.cur)} cursos · ${fmt(z.grp)} grupos · ${zoneStatusLine}</span></span></div></td>
+        <td><div style="display:flex; align-items:center; gap:10px;"><span class="zone-icon-badge" style="background:${z.color}">${z.icon}</span><span><span class="zona-nombre">${z.name}</span>${zoneFilterBadge}${notaHtml}<span class="sub" style="display:block;font-weight:600;color:var(--faint);font-size:.72rem;">${fmt(z.cur)} cursos · ${fmt(z.grp)} grupos · ${zoneStatusLine}</span></span></div></td>
         <td class="num-cell">${fmt(z.mat)}</td>
         <td class="num-cell">${fmt(z.cap)}</td>
         <td class="num-cell"><div class="bar-cell" title="${fmt(z.mat)} / ${fmt(z.cap)} matriculados/capacidad"><div class="track"><div class="fill" style="width:${z.ocu}%"></div></div><span class="pct">${pct(z.ocu)}</span></div></td>
