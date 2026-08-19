@@ -37,6 +37,13 @@ EDAD_LABELS = {18: "18-25", 26: "26-35", 36: "36-45", 46: "46-60", 61: "61+"}
 # preferible mostrarlo agrupado aparte que perderlo o romper el informe.
 ZONA_DESCONOCIDA = "Sin zona asignada"
 
+# Cursos que no se van a ofertar y por eso se excluyen por completo del
+# informe (KPIs, alertas, tabla de zonas) aunque el dashboard los siga
+# reportando. Formato "C-<codigo>", igual al que arma build_csv().
+CURSOS_EXCLUIDOS = {
+    "C-2579",  # Sistemas e Informatica | Nivel basico, Bogota & Cundinamarca -- 7 grupos, 0 matriculados, no se ofertara
+}
+
 # Fuente unica de zonas y departamentos, compartida con la app y el Informe
 # Nacional. Si hay que corregir a que zona pertenece un departamento, se edita
 # alli y no aqui.
@@ -199,9 +206,13 @@ def build_csv(data):
 
     for zona in validacion:
         zona_nombre = ZONA_MAP[zona["convocatoria"]]
+        # Se filtra ANTES de iterar, no dentro del loop, para que el
+        # curso excluido tampoco cuente en len(cursos_zona) (columna
+        # "Cursos ofertados" de la zona en la Seccion 1).
+        cursos_zona = [c for c in zona["cursos"] if f"C-{c['codigo']}" not in CURSOS_EXCLUIDOS]
         z_mat = z_cap = z_esp = z_grp = 0
         z_bajo = 0
-        for curso in zona["cursos"]:
+        for curso in cursos_zona:
             cap = curso["capacidad"]
             mat = curso["matriculas"]
             grupos = curso["grupos"]
@@ -230,7 +241,7 @@ def build_csv(data):
 
         z_disp = z_cap - z_mat
         z_ocu = round((z_mat / z_cap * 100), 1) if z_cap else 0
-        sec1_rows.append(csv_row(zona_nombre, z_mat, z_mat, z_cap, z_disp, z_ocu, len(zona["cursos"]), z_grp, z_esp, z_bajo))
+        sec1_rows.append(csv_row(zona_nombre, z_mat, z_mat, z_cap, z_disp, z_ocu, len(cursos_zona), z_grp, z_esp, z_bajo))
         tot_mat += z_mat; tot_cap += z_cap; tot_disp += z_disp
         tot_grp += z_grp; tot_esp += z_esp; tot_bajo += z_bajo
 

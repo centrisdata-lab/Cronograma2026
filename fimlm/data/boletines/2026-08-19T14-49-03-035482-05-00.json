@@ -1,0 +1,23 @@
+{
+  "corte": "2026-08-19T14:49:03.035482-05:00",
+  "novedades": [
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2709",
+      "nom": "Reposteria 2",
+      "g": "G-4673",
+      "matAntes": 51,
+      "matAhora": 52,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2709",
+      "nom": "Reposteria 2",
+      "g": "G-4684",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    }
+  ]
+}
