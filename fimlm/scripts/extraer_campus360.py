@@ -42,6 +42,10 @@ ZONA_DESCONOCIDA = "Sin zona asignada"
 # reportando. Formato "C-<codigo>", igual al que arma build_csv().
 CURSOS_EXCLUIDOS = {
     "C-2579",  # Sistemas e Informatica | Nivel basico, Bogota & Cundinamarca -- 7 grupos, 0 matriculados, no se ofertara
+    "C-2519",  # Bonsai en Alambre y Pedreria, Antioquia & Eje Cafetero -- no se ofertara
+    "C-2542",  # English Leasing a Conversacion, Antioquia & Eje Cafetero -- no se ofertara
+    "C-2538",  # Huertas Caseras, Antioquia & Eje Cafetero -- no se ofertara
+    "C-2541",  # Sistemas e Informatica - Sistema Basico, Antioquia & Eje Cafetero -- no se ofertara
 }
 
 # Fuente unica de zonas y departamentos, compartida con la app y el Informe
