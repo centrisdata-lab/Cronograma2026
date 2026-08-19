@@ -1,0 +1,77 @@
+{
+  "corte": "2026-08-18T21:30:43.909218-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4810",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4967",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4996",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4997",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4865",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4851",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2684",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4737",
+      "matAntes": 13,
+      "matAhora": 14,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-5053",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    }
+  ]
+}
