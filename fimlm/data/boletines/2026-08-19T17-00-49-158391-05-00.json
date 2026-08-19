@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-19T17:00:49.158391-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4963",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    }
+  ]
+}
