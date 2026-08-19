@@ -15,6 +15,10 @@
     --red:#c0392b; --red-bg:#fdecea;
     --yellow:#b45309; --yellow-bg:#fff8e1;
     --gray:#4b5563; --gray-bg:#f1f3f5;
+    /* Franjas muy claras para agrupar visualmente filas relacionadas
+       (p.ej. grupos con el mismo horario duplicado) sin que compitan
+       con los colores semánticos de estado (rojo/verde/amarillo). */
+    --dup-1:#eef1fb; --dup-2:#eef7f2; --dup-3:#fbf3ea; --dup-4:#f5eefb;
     --shadow:0 2px 12px rgba(26,60,110,0.06);
     --shadow-hover:0 8px 28px rgba(26,60,110,0.13);
     --font:'Nunito','Segoe UI',sans-serif;
@@ -1460,16 +1464,23 @@ function vaciosTableHtml(){
         <td class="expand-cell">${abierta?'▾':'▸'}</td>
         <td colspan="7"><div style="display:flex; align-items:center; gap:10px;">${icono}<span class="zona-nombre">${zona.nombre}</span> <span class="badge info" style="margin-left:6px;">${resumen}</span></div></td>
       </tr>`;
+    // Un color de franja distinto por cada grupo de coincidencia (curso+
+    // horario), rotando entre 4 tonos claros -- así se ve de un vistazo
+    // qué filas son "el mismo caso" sin depender solo de leer el texto.
+    let claveDupAnterior = null, colorIdx = -1;
     const filas = abierta ? zona.grupos.map(g=>{
       const dup = dupSet.has(g);
       let dupBadge = '';
+      let rowStyle = '';
       if(dup){
         const key = g.z+'|'+g.cod+'|'+g.h;
+        if(key !== claveDupAnterior){ colorIdx = (colorIdx+1) % 4; claveDupAnterior = key; }
+        rowStyle = ` style="background:var(--dup-${colorIdx+1});"`;
         const otros = (alertsData.coincidenciasPorGrupo[key]||[]).filter(o=>o!==g).map(o=>o.g);
         const nota = otros.length ? `<span class="dup-nota">Coincide con: ${otros.join(', ')}</span>` : '';
         dupBadge = `<span class="badge crit" style="margin-left:8px;">horario duplicado</span>${nota}`;
       }
-      return `<tr><td></td><td style="padding-left:26px;" class="code-cell">${g.g}</td><td class="code-cell">${g.cod}</td><td>${g.nom}${dupBadge}</td><td>${zona.nombre}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`;
+      return `<tr${rowStyle}><td></td><td style="padding-left:26px;" class="code-cell">${g.g}</td><td class="code-cell">${g.cod}</td><td>${g.nom}${dupBadge}</td><td>${zona.nombre}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`;
     }).join('') : '';
     return cabecera + filas;
   }).join('');
