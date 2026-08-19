@@ -1,0 +1,23 @@
+{
+  "corte": "2026-08-19T16:30:49.393402-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4828",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    }
+  ]
+}
