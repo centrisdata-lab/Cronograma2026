@@ -1,0 +1,167 @@
+{
+  "corte": "2026-08-18T20:00:46.728888-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4992",
+      "matAntes": 27,
+      "matAhora": 30,
+      "delta": 3
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4993",
+      "matAntes": 18,
+      "matAhora": 19,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2610",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4865",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4819",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4909",
+      "matAntes": 13,
+      "matAhora": 14,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2684",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4737",
+      "matAntes": 12,
+      "matAhora": 13,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4668",
+      "matAntes": 45,
+      "matAhora": 46,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2734",
+      "nom": "Pintura en Madera",
+      "g": "G-4709",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2632",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4814",
+      "matAntes": 30,
+      "matAhora": 31,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4895",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4292",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4894",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-5041",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4867",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4868",
+      "matAntes": 4,
+      "matAhora": 5,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-4872",
+      "matAntes": 29,
+      "matAhora": 30,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-5125",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    }
+  ]
+}
