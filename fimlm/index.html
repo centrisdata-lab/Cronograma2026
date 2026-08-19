@@ -19,6 +19,7 @@
        (p.ej. grupos con el mismo horario duplicado) sin que compitan
        con los colores semánticos de estado (rojo/verde/amarillo). */
     --dup-1:#eef1fb; --dup-2:#eef7f2; --dup-3:#fbf3ea; --dup-4:#f5eefb;
+    --dup-5:#eaf7f7; --dup-6:#fbeef1;
     --shadow:0 2px 12px rgba(26,60,110,0.06);
     --shadow-hover:0 8px 28px rgba(26,60,110,0.13);
     --font:'Nunito','Segoe UI',sans-serif;
@@ -1465,8 +1466,12 @@ function vaciosTableHtml(){
         <td colspan="7"><div style="display:flex; align-items:center; gap:10px;">${icono}<span class="zona-nombre">${zona.nombre}</span> <span class="badge info" style="margin-left:6px;">${resumen}</span></div></td>
       </tr>`;
     // Un color de franja distinto por cada grupo de coincidencia (curso+
-    // horario), rotando entre 4 tonos claros -- así se ve de un vistazo
-    // qué filas son "el mismo caso" sin depender solo de leer el texto.
+    // horario). Dentro de cada zona los duplicados ya quedan ordenados y
+    // contiguos por clave, así que basta con avanzar al siguiente color
+    // de la paleta cada vez que la clave cambia -- eso garantiza que dos
+    // bloques consecutivos NUNCA compartan color (un hash con pocos
+    // buckets sí podía chocar por casualidad, como pasó con "Costos para
+    // Emprendedores" y "Despertar Emprendedor" saliendo iguales).
     let claveDupAnterior = null, colorIdx = -1;
     const filas = abierta ? zona.grupos.map(g=>{
       const dup = dupSet.has(g);
@@ -1474,7 +1479,7 @@ function vaciosTableHtml(){
       let rowStyle = '';
       if(dup){
         const key = g.z+'|'+g.cod+'|'+g.h;
-        if(key !== claveDupAnterior){ colorIdx = (colorIdx+1) % 4; claveDupAnterior = key; }
+        if(key !== claveDupAnterior){ colorIdx = (colorIdx+1) % 6; claveDupAnterior = key; }
         rowStyle = ` style="background:var(--dup-${colorIdx+1});"`;
         const otros = (alertsData.coincidenciasPorGrupo[key]||[]).filter(o=>o!==g).map(o=>o.g);
         const nota = otros.length ? `<span class="dup-nota">Coincide con: ${otros.join(', ')}</span>` : '';
