@@ -1,0 +1,23 @@
+{
+  "corte": "2026-08-19T18:30:43.980459-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4963",
+      "matAntes": 48,
+      "matAhora": 49,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-5120",
+      "matAntes": 18,
+      "matAhora": 19,
+      "delta": 1
+    }
+  ]
+}
