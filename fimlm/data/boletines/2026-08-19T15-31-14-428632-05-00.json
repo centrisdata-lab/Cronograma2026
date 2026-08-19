@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-19T15:31:14.428632-05:00",
+  "novedades": [
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    }
+  ]
+}

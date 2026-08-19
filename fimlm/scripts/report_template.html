@@ -619,7 +619,7 @@
         <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
         <div class="kpis kpis-action">
           <button type="button" class="kpi flag" onclick="showDetail('bajo', this)"><span class="kpi-arrow">▾</span><div class="icon">⚠️</div><div class="v num" id="kpi-bajo">—</div><div class="l">Cursos con baja ocupación</div><div class="hint">Ver cursos →</div></button>
-          <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con 0 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
+          <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con menos de 14 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
           <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
           <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
         </div>
@@ -804,9 +804,14 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   document.getElementById('kpi-ocu').textContent = fmt(mat);
   document.getElementById('kpi-esp').textContent = fmt(esp);
   document.getElementById('kpi-bajo').textContent = fmt(bajo)+' / '+fmt(sum('cur'));
-  const vacios = GRUPOS.filter(g=>g.mat===0).length;
-  document.getElementById('kpi-vacios').textContent = fmt(vacios);
-  document.getElementById('kpi-vacios-sub').textContent = 'repartidos en '+fmt(cursosConGrupoVacio.size)+' curso'+(cursosConGrupoVacio.size===1?'':'s');
+  const bajaMatGrupos = GRUPOS.filter(g=>g.mat<14);
+  document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
+  const byHC = {};
+  bajaMatGrupos.forEach(g=>{ const k=g.z+'|'+g.cod+'|'+g.h; (byHC[k]=byHC[k]||[]).push(g); });
+  const nCoincidencias = Object.values(byHC).filter(gs=>gs.length>=2).length;
+  document.getElementById('kpi-vacios-sub').textContent = nCoincidencias
+    ? nCoincidencias+' con horario duplicado en el mismo curso'
+    : 'ninguno con horario duplicado en el mismo curso';
   document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length + IGLESIAS_INSC.length);
   document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin personas matriculadas';
 
@@ -921,11 +926,23 @@ const alertsData = {};
     .slice(0,10);
   alertsData.chronic = chronic;
 
-  // empty groups
-  const vac = GRUPOS.filter(g=>g.mat===0);
-  alertsData.vacCount = vac.length;
-  alertsData.vacCap = vac.reduce((a,g)=>a+g.cap,0);
-  alertsData.vacRows = vac;
+  // Grupos con matrícula baja (menos de 14 inscritos) y, dentro de esos,
+  // los que coinciden en zona+curso+horario exacto con otro grupo del
+  // mismo curso -- candidatos claros a fusionarse en uno solo.
+  const UMBRAL_BAJA_MATRICULA = 14;
+  const bajaMat = GRUPOS.filter(g=>g.mat<UMBRAL_BAJA_MATRICULA);
+  alertsData.bajaMatCount = bajaMat.length;
+  alertsData.bajaMatCap = bajaMat.reduce((a,g)=>a+g.cap,0);
+  alertsData.bajaMatRows = bajaMat;
+
+  const byHorarioCurso = {};
+  bajaMat.forEach(g=>{
+    const key = g.z+'|'+g.cod+'|'+g.h;
+    (byHorarioCurso[key] = byHorarioCurso[key] || []).push(g);
+  });
+  const coincidencias = Object.values(byHorarioCurso).filter(gs=>gs.length>=2);
+  alertsData.coincidenciasGrupos = coincidencias.flat();
+  alertsData.coincidenciasCount = coincidencias.length;
 
   // zone spread
   const s = [...ZONAS].sort((a,b)=>a.ocu-b.ocu);
@@ -953,14 +970,16 @@ function renderAlerts(){
   alertCards.push(`
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · cupos inmovilizados</span></div>
-    <h3>${a.vacCount} grupos abiertos sin un solo inscrito — ${fmt(a.vacCap)} cupos sin usar</h3>
-    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th>Cap.</th></tr></thead>
-    <tbody>${a.vacRows.map(g=>{
+    <h3>${a.bajaMatCount} grupos con menos de 14 inscritos${a.coincidenciasCount ? ` — ${a.coincidenciasCount} coinciden en horario con otro grupo del mismo curso` : ''}</h3>
+    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
+    <tbody>${a.bajaMatRows.map(g=>{
       const open = expandedCursos.has(g.z+'|'+g.cod);
-      return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}</td><td>${g.h}</td><td class="num">${g.cap}</td></tr>`
-        + courseGroupsInlineHtml(g.z, g.cod, 5);
+      const dup = alertsData.coincidenciasGrupos.includes(g);
+      const dupBadge = dup ? '<span class="badge crit" style="margin-left:8px;">horario duplicado</span>' : '';
+      return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}${dupBadge}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`
+        + courseGroupsInlineHtml(g.z, g.cod, 6);
     }).join('')}</tbody></table></div>
-    <div class="rec" hidden><b>Acción sugerida —</b> confirmar con los coordinadores de zona si estas cohortes van a abrir o deben cerrarse para liberar el cupo reportado como disponible.</div>
+    <div class="rec" hidden><b>Acción sugerida —</b> los grupos marcados "horario duplicado" son del mismo curso, misma zona y mismo día/hora exactos — evaluar si conviene fusionarlos en un solo grupo. Para los demás, confirmar con los coordinadores de zona si van a abrir o deben cerrarse.</div>
   </div></div>`);
 
   contextCards.push(`
@@ -1393,12 +1412,14 @@ function bajoTableHtml(){
     }).join('')}</tbody>`;
 }
 function vaciosTableHtml(){
-  const vac = alertsData.vacRows;
-  return `<thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th class="num-cell">Cap.</th></tr></thead>
+  const vac = alertsData.bajaMatRows;
+  return `<thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
     <tbody>${vac.map(g=>{
       const open = expandedCursos.has(g.z+'|'+g.cod);
-      return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}</td><td>${g.h}</td><td class="num-cell">${g.cap}</td></tr>`
-        + courseGroupsInlineHtml(g.z, g.cod, 5);
+      const dup = alertsData.coincidenciasGrupos.includes(g);
+      const dupBadge = dup ? '<span class="badge crit" style="margin-left:8px;">horario duplicado</span>' : '';
+      return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}${dupBadge}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`
+        + courseGroupsInlineHtml(g.z, g.cod, 6);
     }).join('')}</tbody>`;
 }
 
@@ -1406,7 +1427,7 @@ function buildDetail(kind){
   if(kind==='zonas'){
     return kdHead('Zonas — matrículas, capacidad, ocupación y disponibles',
       'Las 6 zonas con sus cuatro cifras principales en una sola tabla. Toca un encabezado para ordenar, o toca una zona para ver sus cursos sin perder de vista las demás.') +
-      `<div class="filter-scope-note" hidden>⚠️ Los filtros de abajo agrupan por <b>curso</b>: al tocar uno se abren las 6 zonas y se listan solo los cursos que cumplen esa condición. "Con algún grupo vacío" muestra los <b>${fmt(cursosConGrupoVacio.size)} cursos</b> que tienen al menos un horario con 0 inscritos — la misma cifra que "repartidos en ${fmt(cursosConGrupoVacio.size)} cursos" de la tarjeta "17 grupos con 0 inscritos" de arriba. Un curso puede aparecer aquí aunque tenga gente matriculada, si es solo alguno de sus horarios el que está vacío.</div>
+      `<div class="filter-scope-note" hidden>⚠️ Los filtros de abajo agrupan por <b>curso</b>: al tocar uno se abren las 6 zonas y se listan solo los cursos que cumplen esa condición. "Con algún grupo vacío" muestra los <b>${fmt(cursosConGrupoVacio.size)} cursos</b> que tienen al menos un horario con 0 inscritos. Un curso puede aparecer aquí aunque tenga gente matriculada, si es solo alguno de sus horarios el que está vacío.</div>
       <input type="search" id="zonas-search" placeholder="Buscar curso o código en las 6 zonas…" value="${zonasSearchTerm.replace(/"/g,'&quot;')}" oninput="onZonasSearch(this.value)" style="margin-bottom:14px; width:100%;">
       <div class="state-filter-group" id="zonas-estado-filter" style="margin-bottom:14px;">
         <span class="chip-label">Estado</span>
@@ -1429,8 +1450,11 @@ function buildDetail(kind){
       `<div class="table-scroll" style="max-height:360px;"><table class="data" id="bajo-detail-table">${bajoTableHtml()}</table></div>`;
   }
   if(kind==='vacios'){
-    return kdHead('Grupos sin un solo inscrito',
-      `${alertsData.vacRows.length} grupos ya abiertos (con horario asignado) que tienen <b>0 matriculados</b> — ${fmt(alertsData.vacCap)} cupos de esos grupos siguen sin usarse. Toca un curso para ver todos sus grupos.`) +
+    const dupNote = alertsData.coincidenciasCount
+      ? ` De esos, <b>${alertsData.coincidenciasCount} grupos</b> coinciden en zona, curso y horario exacto con otro grupo — marcados como "horario duplicado", son candidatos claros a fusionarse en uno solo.`
+      : '';
+    return kdHead('Grupos con menos de 14 inscritos',
+      `${alertsData.bajaMatRows.length} grupos ya abiertos con menos de 14 personas matriculadas — ${fmt(alertsData.bajaMatCap)} cupos entre todos.${dupNote} Toca un curso para ver todos sus grupos.`) +
       `<div class="table-scroll" style="max-height:360px;"><table class="data" id="vacios-detail-table">${vaciosTableHtml()}</table></div>`;
   }
   if(kind==='alertas'){
