@@ -808,9 +808,9 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
   const byHC = {};
   bajaMatGrupos.forEach(g=>{ const k=g.z+'|'+g.cod+'|'+g.h; (byHC[k]=byHC[k]||[]).push(g); });
-  const nCoincidencias = Object.values(byHC).filter(gs=>gs.length>=2).length;
-  document.getElementById('kpi-vacios-sub').textContent = nCoincidencias
-    ? nCoincidencias+' con horario duplicado en el mismo curso'
+  const gruposDuplicados = Object.values(byHC).filter(gs=>gs.length>=2).flat().length;
+  document.getElementById('kpi-vacios-sub').textContent = gruposDuplicados
+    ? gruposDuplicados+' con horario duplicado en el mismo curso'
     : 'ninguno con horario duplicado en el mismo curso';
   document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length + IGLESIAS_INSC.length);
   document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin personas matriculadas';
@@ -970,7 +970,7 @@ function renderAlerts(){
   alertCards.push(`
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · cupos inmovilizados</span></div>
-    <h3>${a.bajaMatCount} grupos con menos de 14 inscritos${a.coincidenciasCount ? ` — ${a.coincidenciasCount} coinciden en horario con otro grupo del mismo curso` : ''}</h3>
+    <h3>${a.bajaMatCount} grupos con menos de 14 inscritos${a.coincidenciasGrupos.length ? ` — ${a.coincidenciasGrupos.length} coinciden en horario con otro grupo del mismo curso` : ''}</h3>
     <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
     <tbody>${a.bajaMatRows.map(g=>{
       const open = expandedCursos.has(g.z+'|'+g.cod);
@@ -1450,8 +1450,8 @@ function buildDetail(kind){
       `<div class="table-scroll" style="max-height:360px;"><table class="data" id="bajo-detail-table">${bajoTableHtml()}</table></div>`;
   }
   if(kind==='vacios'){
-    const dupNote = alertsData.coincidenciasCount
-      ? ` De esos, <b>${alertsData.coincidenciasCount} grupos</b> coinciden en zona, curso y horario exacto con otro grupo — marcados como "horario duplicado", son candidatos claros a fusionarse en uno solo.`
+    const dupNote = alertsData.coincidenciasGrupos.length
+      ? ` De esos, <b>${alertsData.coincidenciasGrupos.length} grupos</b> (en ${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}) coinciden en zona, curso y horario exacto con otro grupo — marcados como "horario duplicado", son candidatos claros a fusionarse en uno solo.`
       : '';
     return kdHead('Grupos con menos de 14 inscritos',
       `${alertsData.bajaMatRows.length} grupos ya abiertos con menos de 14 personas matriculadas — ${fmt(alertsData.bajaMatCap)} cupos entre todos.${dupNote} Toca un curso para ver todos sus grupos.`) +
