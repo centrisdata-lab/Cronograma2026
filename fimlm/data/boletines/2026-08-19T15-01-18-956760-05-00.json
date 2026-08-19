@@ -1,0 +1,32 @@
+{
+  "corte": "2026-08-19T15:01:18.956760-05:00",
+  "novedades": [
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2734",
+      "nom": "Pintura en Madera",
+      "g": "G-4674",
+      "matAntes": 22,
+      "matAhora": 23,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-4681",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    }
+  ]
+}
