@@ -1411,16 +1411,61 @@ function bajoTableHtml(){
         + courseGroupsInlineHtml(c.z, c.cod, 6);
     }).join('')}</tbody>`;
 }
+// Grupos con menos de 14 inscritos, agrupados por zona (cada zona se
+// puede colapsar) y con los grupos de horario duplicado siempre primero
+// dentro de su zona -- son los candidatos más claros a fusionarse. Las
+// zonas con algún duplicado empiezan abiertas (lo más urgente, visible
+// sin clics); las demás empiezan cerradas. bajaMatInicializado evita que
+// ese default se reaplique si el usuario ya colapsó todo a mano.
+const expandedZonasBajaMat = new Set();
+let bajaMatInicializado = false;
+function toggleZonaBajaMat(zoneCode){
+  if(expandedZonasBajaMat.has(zoneCode)) expandedZonasBajaMat.delete(zoneCode); else expandedZonasBajaMat.add(zoneCode);
+  const table = document.getElementById('vacios-detail-table');
+  withScrollLock(()=>{ if(table) table.innerHTML = vaciosTableHtml(); });
+}
 function vaciosTableHtml(){
   const vac = alertsData.bajaMatRows;
-  return `<thead><tr><th></th><th>Zona</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
-    <tbody>${vac.map(g=>{
-      const open = expandedCursos.has(g.z+'|'+g.cod);
-      const dup = alertsData.coincidenciasGrupos.includes(g);
+  const dupSet = new Set(alertsData.coincidenciasGrupos);
+  // Clave de coincidencia (curso+horario, sin la zona porque ya se agrupa
+  // por zona aparte): los grupos duplicados entre sí quedan juntos como
+  // un solo bloque contiguo, no intercalados con otras coincidencias.
+  const claveDup = g => g.cod+'|'+g.h;
+  const byZona = {};
+  vac.forEach(g=>{ (byZona[g.z] = byZona[g.z] || []).push(g); });
+  const zonasConDatos = Object.keys(byZona).map(z=>({
+    z, nombre: byZona[z][0].zn,
+    grupos: byZona[z].slice().sort((a,b)=>
+      (dupSet.has(b)?1:0)-(dupSet.has(a)?1:0)
+      || claveDup(a).localeCompare(claveDup(b))
+      || a.mat-b.mat
+    ),
+    nDup: byZona[z].filter(g=>dupSet.has(g)).length,
+  })).sort((a,b)=> b.nDup-a.nDup || b.grupos.length-a.grupos.length);
+
+  if(!bajaMatInicializado){
+    zonasConDatos.filter(z=>z.nDup>0).forEach(z=>expandedZonasBajaMat.add(z.z));
+    bajaMatInicializado = true;
+  }
+
+  const body = zonasConDatos.map(zona=>{
+    const abierta = expandedZonasBajaMat.has(zona.z);
+    const resumen = `${fmt(zona.grupos.length)} grupos` + (zona.nDup ? ` · <span style="color:var(--red);">${fmt(zona.nDup)} con horario duplicado</span>` : '');
+    const meta = metaDeZona(zona.z);
+    const icono = meta ? `<span class="zone-icon-badge" style="background:${meta.color}">${meta.icon}</span>` : '';
+    const cabecera = `<tr class="group-head clickable-row zona-row" onclick="toggleZonaBajaMat('${zona.z}')" title="Ver los grupos de ${zona.nombre}">
+        <td class="expand-cell">${abierta?'▾':'▸'}</td>
+        <td colspan="4"><div style="display:flex; align-items:center; gap:10px;">${icono}<span class="zona-nombre">${zona.nombre}</span> <span class="badge info" style="margin-left:6px;">${resumen}</span></div></td>
+      </tr>`;
+    const filas = abierta ? zona.grupos.map(g=>{
+      const dup = dupSet.has(g);
       const dupBadge = dup ? '<span class="badge crit" style="margin-left:8px;">horario duplicado</span>' : '';
-      return `<tr class="clickable-row" onclick="toggleCursoInline('${g.z}','${g.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${g.zn}</td><td>${g.nom}${dupBadge}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`
-        + courseGroupsInlineHtml(g.z, g.cod, 6);
-    }).join('')}</tbody>`;
+      return `<tr><td></td><td style="padding-left:26px;">${g.nom}${dupBadge}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`;
+    }).join('') : '';
+    return cabecera + filas;
+  }).join('');
+  return `<thead><tr><th></th><th>Zona / Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
+    <tbody>${body}</tbody>`;
 }
 
 function buildDetail(kind){
@@ -1454,8 +1499,8 @@ function buildDetail(kind){
       ? ` De esos, <b>${alertsData.coincidenciasGrupos.length} grupos</b> (en ${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}) coinciden en zona, curso y horario exacto con otro grupo — marcados como "horario duplicado", son candidatos claros a fusionarse en uno solo.`
       : '';
     return kdHead('Grupos con menos de 14 inscritos',
-      `${alertsData.bajaMatRows.length} grupos ya abiertos con menos de 14 personas matriculadas — ${fmt(alertsData.bajaMatCap)} cupos entre todos.${dupNote} Toca un curso para ver todos sus grupos.`) +
-      `<div class="table-scroll" style="max-height:360px;"><table class="data" id="vacios-detail-table">${vaciosTableHtml()}</table></div>`;
+      `${alertsData.bajaMatRows.length} grupos ya abiertos con menos de 14 personas matriculadas — ${fmt(alertsData.bajaMatCap)} cupos entre todos, agrupados por zona.${dupNote} Las zonas con grupos de horario duplicado empiezan abiertas. Toca una zona para ver u ocultar sus grupos.`) +
+      `<div class="table-scroll no-vscroll"><table class="data" id="vacios-detail-table">${vaciosTableHtml()}</table></div>`;
   }
   if(kind==='alertas'){
     renderAlerts();
