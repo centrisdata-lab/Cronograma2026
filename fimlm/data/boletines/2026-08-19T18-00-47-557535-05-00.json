@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-19T18:00:47.557535-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4992",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    }
+  ]
+}
