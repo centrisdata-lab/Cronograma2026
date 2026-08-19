@@ -909,10 +909,13 @@ const alertsData = {};
     if(!byName[k]) byName[k] = {key:k, nombre:c.nom, zonas:new Set(), esp:0, mat:0, cap:0};
     byName[k].zonas.add(c.z); byName[k].esp+=c.esp; byName[k].mat+=c.mat; byName[k].cap+=c.cap;
   });
-  // Se baja el umbral a 2+ zonas (antes 3+) para tener candidatos
-  // suficientes, y se toman los 10 más repetidos -- antes el umbral de
-  // 3+ zonas dejaba la lista corta (solo 5) sin querer.
-  const chronic = Object.values(byName).filter(x=>x.zonas.size>=2)
+  // Se baja el umbral a 1+ zona (antes 2+, y 3+ originalmente) porque en
+  // los datos actuales solo hay 6 cursos que se repiten en 2+ zonas --
+  // con 3+ era peor, solo 5. En vez de dejar la tarjeta corta, se toman
+  // los 10 cursos con peor ocupación en total, priorizando primero los
+  // que se repiten en más zonas (siguen siendo el caso más crónico) y
+  // luego, dentro del mismo número de zonas, los de menor ocupación.
+  const chronic = Object.values(byName).filter(x=>x.zonas.size>=1)
     .map(x=>({...x, n:x.zonas.size, ocu:x.mat/x.cap*100}))
     .sort((a,b)=>b.n-a.n || a.ocu-b.ocu)
     .slice(0,10);
@@ -937,7 +940,7 @@ function renderAlerts(){
   alertCards.push(`
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · diseño de programa</span></div>
-    <h3>Top ${a.chronic.length} programas con baja ocupación crónica, repetidos en varias zonas</h3>
+    <h3>Top ${a.chronic.length} programas con baja ocupación (&lt;30%)</h3>
     <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Curso</th><th>Zonas afectadas</th><th>Ocupación combinada</th></tr></thead>
     <tbody>${a.chronic.map(c=>{
       const open = expandedChronic.has(c.key);
