@@ -883,14 +883,6 @@ function toggleNovedades(){
 /* ---------- Alerts (computed) ---------- */
 const alertsData = {};
 (function(){
-  // Inglés Nivel 1 across zones
-  const ing = CURSOS.filter(c=>{ const k=normKey(c.nom); return k==='ingles1' || k==='inglesnivel1'; });
-  alertsData.ingCount = ing.length;
-  alertsData.ingGrupos = ing.reduce((a,c)=>a+c.grp,0);
-  alertsData.ingEspera = ing.reduce((a,c)=>a+c.esp,0);
-  alertsData.ingAllFull = ing.every(c=>c.disp===0);
-  alertsData.ingTop = [...ing].sort((a,b)=>b.esp-a.esp)[0];
-  alertsData.ingRows = [...ing].sort((a,b)=>b.esp-a.esp);
 
   // waitlist only on full groups
   const withEspera = GRUPOS.filter(g=>g.esp>0);
@@ -906,9 +898,13 @@ const alertsData = {};
     if(!byName[k]) byName[k] = {key:k, nombre:c.nom, zonas:new Set(), esp:0, mat:0, cap:0};
     byName[k].zonas.add(c.z); byName[k].esp+=c.esp; byName[k].mat+=c.mat; byName[k].cap+=c.cap;
   });
-  const chronic = Object.values(byName).filter(x=>x.zonas.size>=3)
+  // Se baja el umbral a 2+ zonas (antes 3+) para tener candidatos
+  // suficientes, y se toman los 10 más repetidos -- antes el umbral de
+  // 3+ zonas dejaba la lista corta (solo 5) sin querer.
+  const chronic = Object.values(byName).filter(x=>x.zonas.size>=2)
     .map(x=>({...x, n:x.zonas.size, ocu:x.mat/x.cap*100}))
-    .sort((a,b)=>b.n-a.n);
+    .sort((a,b)=>b.n-a.n || a.ocu-b.ocu)
+    .slice(0,10);
   alertsData.chronic = chronic;
 
   // empty groups
@@ -928,22 +924,9 @@ function renderAlerts(){
   const contextCards = []; // solo ayudan a interpretar las de arriba, no cuentan como alerta
 
   alertCards.push(`
-  <div class="alert crit"><div class="stripe"></div><div class="body">
-    <div class="alert-top"><span class="badge crit">Crítico · capacidad</span></div>
-    <h3>Inglés Nivel 1 no tiene un solo cupo libre en ninguna de las 6 zonas</h3>
-    <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Zona</th><th>Grupos</th><th>Capacidad</th><th>En espera</th></tr></thead>
-    <tbody>${a.ingRows.map(c=>{
-      const open = expandedCursos.has(c.z+'|'+c.cod);
-      return `<tr class="clickable-row" onclick="toggleCursoInline('${c.z}','${c.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${open?'▾':'▸'}</td><td>${c.zn}</td><td class="num">${c.grp}</td><td class="num">${fmt(c.cap)}</td><td class="num"><b>${c.esp}</b></td></tr>`
-        + courseGroupsInlineHtml(c.z, c.cod, 5);
-    }).join('')}</tbody></table></div>
-    <div class="rec" hidden><b>Acción sugerida —</b> abrir grupos nuevos de Inglés Nivel 1 en cada zona. Reorganizar horarios no libera cupo porque no sobra en ninguno.</div>
-  </div></div>`);
-
-  alertCards.push(`
   <div class="alert warn"><div class="stripe"></div><div class="body">
     <div class="alert-top"><span class="badge warn">Atención · diseño de programa</span></div>
-    <h3>${a.chronic.length} programas con baja ocupación crónica, repetidos en casi todas las zonas</h3>
+    <h3>Top ${a.chronic.length} programas con baja ocupación crónica, repetidos en varias zonas</h3>
     <div class="table-scroll no-vscroll"><table class="alert-mini-table"><thead><tr><th></th><th>Curso</th><th>Zonas afectadas</th><th>Ocupación combinada</th></tr></thead>
     <tbody>${a.chronic.map(c=>{
       const open = expandedChronic.has(c.key);
