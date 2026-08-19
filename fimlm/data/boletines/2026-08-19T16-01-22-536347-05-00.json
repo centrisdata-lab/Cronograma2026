@@ -1,0 +1,14 @@
+{
+  "corte": "2026-08-19T16:01:22.536347-05:00",
+  "novedades": [
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4290",
+      "matAntes": 43,
+      "matAhora": 44,
+      "delta": 1
+    }
+  ]
+}

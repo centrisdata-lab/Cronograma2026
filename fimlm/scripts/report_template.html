@@ -1418,12 +1418,9 @@ function bajoTableHtml(){
 }
 // Grupos con menos de 14 inscritos, agrupados por zona (cada zona se
 // puede colapsar) y con los grupos de horario duplicado siempre primero
-// dentro de su zona -- son los candidatos más claros a fusionarse. Las
-// zonas con algún duplicado empiezan abiertas (lo más urgente, visible
-// sin clics); las demás empiezan cerradas. bajaMatInicializado evita que
-// ese default se reaplique si el usuario ya colapsó todo a mano.
+// dentro de su zona -- son los candidatos más claros a fusionarse. Todas
+// las zonas empiezan cerradas para que el usuario elija cuál abrir.
 const expandedZonasBajaMat = new Set();
-let bajaMatInicializado = false;
 function toggleZonaBajaMat(zoneCode){
   if(expandedZonasBajaMat.has(zoneCode)) expandedZonasBajaMat.delete(zoneCode); else expandedZonasBajaMat.add(zoneCode);
   const table = document.getElementById('vacios-detail-table');
@@ -1447,11 +1444,6 @@ function vaciosTableHtml(){
     ),
     nDup: byZona[z].filter(g=>dupSet.has(g)).length,
   })).sort((a,b)=> b.nDup-a.nDup || b.grupos.length-a.grupos.length);
-
-  if(!bajaMatInicializado){
-    zonasConDatos.filter(z=>z.nDup>0).forEach(z=>expandedZonasBajaMat.add(z.z));
-    bajaMatInicializado = true;
-  }
 
   const body = zonasConDatos.map(zona=>{
     const abierta = expandedZonasBajaMat.has(zona.z);
