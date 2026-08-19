@@ -1,0 +1,23 @@
+{
+  "corte": "2026-08-19T17:30:56.308274-05:00",
+  "novedades": [
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2485",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4328",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2460",
+      "nom": "Ingles 2",
+      "g": "G-4924",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    }
+  ]
+}
