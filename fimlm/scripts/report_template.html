@@ -882,15 +882,26 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   const mat=sum('mat'), cap=sum('cap'), esp=sum('esp');
   document.getElementById('kpi-ocu').textContent = fmt(mat);
   document.getElementById('kpi-esp').textContent = fmt(esp);
-  // "Personas externas" = todo lo que no es "Iglesia" en la pregunta
-  // "¿Cómo conoció la FIMLM?" (dato global del dashboard, no filtrado a
-  // las 6 zonas de Colombia -- mismo alcance que género/edad/etnia).
+  // "Personas externas" = todo lo que no es "Personas internas" (antes
+  // "Iglesia") en la pregunta "¿Cómo conoció la FIMLM?" (dato global del
+  // dashboard, no filtrado a las 6 zonas de Colombia -- mismo alcance
+  // que género/edad/etnia).
   const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
   const externos = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
   document.getElementById('kpi-externos').textContent = fmt(externos);
-  const iglesiaItem = conocimiento.find(o=>o.lbl==='Iglesia');
-  document.getElementById('kpi-externos-sub').textContent = iglesiaItem
-    ? fmt(iglesiaItem.val)+' dijeron que conocieron por iglesia'
+  const internasItem = conocimiento.find(o=>o.lbl==='Iglesia');
+  // Estimado de cuántos de esos externos son de Colombia: el dashboard no
+  // cruza "cómo te enteraste" con "país" persona por persona, así que se
+  // aplica la proporción de matriculados que sí son de Colombia (país de
+  // residencia) sobre el total de externos -- una estimación, no un dato
+  // exacto, y se etiqueta como tal en todo lugar donde se muestra.
+  const paisRows = OTROS.filter(o=>o.cat==='origen_pais');
+  const colombiaTotal = (paisRows.find(o=>o.lbl==='Colombia')||{}).val || 0;
+  const paisTotalGlobal = (paisRows.find(o=>o.lbl==='Total')||{}).val || 0;
+  const pctColombia = paisTotalGlobal ? colombiaTotal/paisTotalGlobal : 0;
+  const externosEstColombia = Math.round(externos * pctColombia);
+  document.getElementById('kpi-externos-sub').textContent = internasItem
+    ? `${fmt(internasItem.val)} internas · ~${fmt(externosEstColombia)} externas serían de Colombia (estimado)`
     : '';
   const bajaMatGrupos = GRUPOS.filter(g=>g.mat<14);
   document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
@@ -1414,7 +1425,7 @@ function dashboardHtml(){
     .map(z=>({nombre:z.name, val:dupPorZona[z.code]||0, color:z.color}));
 
   const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
-  const iglesiaItem = conocimiento.find(o=>o.lbl==='Iglesia');
+  const internasItem = conocimiento.find(o=>o.lbl==='Iglesia');
   const externos = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
 
   return `
@@ -1425,7 +1436,7 @@ function dashboardHtml(){
       ${dashTile('📍',fmt(IGLESIAS.length),'Iglesias sin matrícula','--red')}
     </div>
     <div class="dash-tiles" style="margin-top:14px;">
-      ${dashTile('🌐',fmt(externos),'Personas externas inscritas','--blue-mid',iglesiaItem?`${fmt(iglesiaItem.val)} por iglesia`:'')}
+      ${dashTile('🌐',fmt(externos),'Personas externas inscritas','--blue-mid',internasItem?`${fmt(internasItem.val)} internas`:'')}
       ${dashTile('🚫',fmt(alertsData.bajaMatCount),'Grupos con menos de 14 inscritos','--orange-dk')}
       ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`)}
     </div>
@@ -1442,13 +1453,18 @@ function dashboardHtml(){
       ${otrosBarGroup('Rango de edad','edad')}
     </div>`;
 }
+// La respuesta "Iglesia" del dashboard (pregunta "¿Cómo conoció la
+// FIMLM?") se muestra como "Personas internas" -- quienes asisten a la
+// IDMJI -- sin tocar el dato crudo del CSV ni afectar otras categorías
+// que reutilizan esta misma función (género, edad, etnia, discapacidad).
+const RENOMBRES_ETIQUETA = { 'Iglesia': 'Personas internas' };
 function otrosBarGroup(titulo, cat){
   const rows = OTROS.filter(o=>o.cat===cat);
   const total = rows.reduce((a,o)=>a+o.val,0);
   const max = Math.max(...rows.map(o=>o.val), 1);
   const bars = rows.map(o=>`
     <div class="otros-row">
-      <span class="otros-label">${o.lbl}</span>
+      <span class="otros-label">${RENOMBRES_ETIQUETA[o.lbl] || o.lbl}</span>
       <div class="track"><div class="fill" style="width:${(o.val/max*100).toFixed(1)}%"></div></div>
       <span class="otros-value">${fmt(o.val)}</span>
     </div>`).join('');
@@ -1705,10 +1721,15 @@ function buildDetail(kind){
   }
   if(kind==='externos'){
     const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
-    const iglesiaItem = conocimiento.find(o=>o.lbl==='Iglesia');
+    const internasItem = conocimiento.find(o=>o.lbl==='Iglesia');
     const externosTotal = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
+    const paisRows = OTROS.filter(o=>o.cat==='origen_pais');
+    const colombiaTotal = (paisRows.find(o=>o.lbl==='Colombia')||{}).val || 0;
+    const paisTotalGlobal = (paisRows.find(o=>o.lbl==='Total')||{}).val || 0;
+    const pctColombia = paisTotalGlobal ? (colombiaTotal/paisTotalGlobal*100) : 0;
+    const externosEstColombia = paisTotalGlobal ? Math.round(externosTotal * colombiaTotal/paisTotalGlobal) : 0;
     return kdHead('Personas externas inscritas',
-      `Respuesta a "¿Cómo conoció la FIMLM?" — dato <b>global</b> (todas las convocatorias del mundo, no solo las 6 zonas de Colombia), igual que género/edad/etnia. "Externas" son las <b>${fmt(externosTotal)}</b> que dijeron un medio distinto a iglesia (referido, redes, web, noticias o sin dato). El dashboard no distingue de qué iglesia específica se trata dentro de la opción "Iglesia" (${fmt(iglesiaItem?iglesiaItem.val:0)} personas), así que ese total se muestra tal cual, sin desglosar IDMJI de otras iglesias.`) +
+      `Respuesta a "¿Cómo conoció la FIMLM?" — dato <b>global</b> (todas las convocatorias del mundo, no solo las 6 zonas de Colombia), igual que género/edad/etnia. "Externas" son las <b>${fmt(externosTotal)}</b> que dijeron un medio distinto a "Personas internas" (referido, redes, web, noticias o sin dato). "Personas internas" (${fmt(internasItem?internasItem.val:0)}) es la respuesta "Iglesia" del dashboard — quienes asisten a la IDMJI; el dashboard no la desglosa por sede específica, así que ese total se muestra tal cual.<br><br><b>Estimado de Colombia:</b> el dashboard no cruza "cómo te enteraste" con "país" persona por persona, así que no hay un dato exacto de cuántas de las ${fmt(externosTotal)} externas son de Colombia. Aplicando la proporción de matriculados que sí son de Colombia (${fmt(colombiaTotal)} de ${fmt(paisTotalGlobal)}, ${pctColombia.toFixed(0)}%) sobre el total de externas, el estimado es de <b>~${fmt(externosEstColombia)} personas</b>. Es una aproximación, no un conteo real.`) +
       `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('¿Cómo conoció la FIMLM?','conocimiento')}</div>`;
   }
   if(kind==='bajo'){

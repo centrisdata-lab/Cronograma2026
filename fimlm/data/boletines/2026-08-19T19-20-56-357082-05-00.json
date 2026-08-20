@@ -1,0 +1,77 @@
+{
+  "corte": "2026-08-19T19:20:56.357082-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4810",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4843",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2500",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4957",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2580",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4963",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4722",
+      "matAntes": 19,
+      "matAhora": 20,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4995",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4820",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4292",
+      "matAntes": 29,
+      "matAhora": 30,
+      "delta": 1
+    }
+  ]
+}

@@ -297,6 +297,15 @@ def build_csv(data):
     lines.append(csv_row("discapacidad", "Sin condicion (Ninguna)", sin_condicion))
     for c in data.get("conocimiento", {}).get("items", []):
         lines.append(csv_row("conocimiento", strip_accents(c["opcion"]), c["n"]))
+    # Pais de residencia (global): solo se guarda el total de Colombia y el
+    # total general, para poder estimar que fraccion de "conocimiento" es
+    # probablemente de Colombia (el dashboard no cruza ambas dimensiones
+    # persona por persona, asi que esto es una proporcion, no un dato exacto).
+    origen_pais = data["demanda"].get("origen_pais", [])
+    total_pais = sum(o["n"] for o in origen_pais)
+    colombia_pais = next((o["n"] for o in origen_pais if o["etiqueta"].strip().lower() == "colombia"), 0)
+    lines.append(csv_row("origen_pais", "Colombia", colombia_pais))
+    lines.append(csv_row("origen_pais", "Total", total_pais))
     lines.append("")
 
     # ---------- Seccion 6: iglesias con inscripcion ----------
