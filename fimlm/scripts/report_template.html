@@ -1961,7 +1961,51 @@ function buildDetail(kind){
       'Dato global (todas las convocatorias del mundo, no filtrado a las 6 zonas de Colombia). Se muestra solo como total de personas con alguna condición reportada, sin el detalle individual de cuál condición.') +
       `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('Discapacidad','discapacidad')}</div>`;
   }
+  if(kind==='oferta'){
+    const cursosUnicos = cursosOfertadosResumen();
+    return kdHead('Cursos ofertados',
+      `${fmt(cursosUnicos.length)} cursos distintos en las 6 zonas, ordenados de mayor a menor cantidad de inscritos. Toca un curso para ver en qué zonas se dicta.`) +
+      `<input type="search" id="oferta-search" placeholder="Buscar curso o código…" value="${ofertaSearchTerm.replace(/"/g,'&quot;')}" oninput="onOfertaSearch(this.value)" style="margin-bottom:14px; width:100%;">
+      <div class="table-scroll no-vscroll"><table class="data" id="oferta-detail-table">${ofertaTableHtml()}</table></div>`;
+  }
   return '';
+}
+let ofertaSearchTerm = '';
+const expandedOferta = new Set();
+function onOfertaSearch(val){
+  ofertaSearchTerm = val;
+  const table = document.getElementById('oferta-detail-table');
+  withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
+}
+function toggleOfertaCurso(cod){
+  if(expandedOferta.has(cod)) expandedOferta.delete(cod); else expandedOferta.add(cod);
+  const table = document.getElementById('oferta-detail-table');
+  withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
+}
+function ofertaTableHtml(){
+  const term = normKey(ofertaSearchTerm);
+  let cursos = cursosOfertadosResumen();
+  if(term) cursos = cursos.filter(c=>normKey(c.nom).includes(term) || normKey(c.cod).includes(term));
+  const rows = cursos.map(c=>{
+    const open = expandedOferta.has(c.cod);
+    const ocu = c.cap ? (c.mat/c.cap*100) : 0;
+    const zonasBody = open ? `<tr class="curso-groups-row"><td colspan="6"><div class="groups-inline">
+        <table class="data mini">
+          <thead><tr><th>Zona</th><th class="num-cell">Matr.</th></tr></thead>
+          <tbody>${[...c.zonas].sort((a,b)=>b.mat-a.mat).map(z=>`<tr><td>${z.zn}</td><td class="num-cell">${fmt(z.mat)}</td></tr>`).join('')}</tbody>
+        </table>
+      </div></td></tr>` : '';
+    return `<tr class="clickable-row" onclick="toggleOfertaCurso('${c.cod}')" title="Ver en qué zonas se dicta este curso">
+        <td class="expand-cell">${open?'▾':'▸'}</td>
+        <td class="code-cell">${c.cod}</td>
+        <td>${c.nom}</td>
+        <td class="num-cell">${c.zonas.length}</td>
+        <td class="num-cell">${c.grp}</td>
+        <td class="num-cell">${fmt(c.mat)}</td>
+      </tr>${zonasBody}`;
+  }).join('');
+  return `<thead><tr><th></th><th>Código</th><th>Curso</th><th class="num-cell">Zonas</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th></tr></thead>
+    <tbody>${rows || '<tr><td colspan="6" class="empty-note">Sin cursos que coincidan con la búsqueda.</td></tr>'}</tbody>`;
 }
 
 function withScrollLock(fn){
