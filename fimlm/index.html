@@ -799,7 +799,11 @@
     </div>
   </section>
 
-  <section id="otros-seccion">
+  <section id="otros-seccion" hidden>
+    <!-- Oculta: género, edad y etnia ya se muestran arriba en el Dashboard;
+         discapacidad tiene su propia tarjeta con detalle por curso/zona.
+         Se deja el bloque en el DOM (no se borra el código) por si hace
+         falta reactivarlo más adelante. -->
     <details class="explorer" id="otros-details">
       <summary>
         <span class="acc-title">📊 Otros datos</span>
@@ -1644,6 +1648,20 @@ function dashboardHtml(){
   const coloresGenero = ['var(--blue)','var(--blue-mid)','var(--faint)'];
   const dataGenero = generoRows.map((g,i)=>({nombre:g.lbl, val:g.val, color:coloresGenero[i%coloresGenero.length]}));
 
+  const etniaRows = OTROS.filter(o=>o.cat==='etnia');
+  const coloresEtnia = ['var(--blue)','var(--green)','var(--orange-dk)','var(--blue-mid)','var(--red)','var(--faint)'];
+  const dataEtnia = etniaRows.map((e,i)=>({nombre:e.lbl, val:e.val, color:coloresEtnia[i%coloresEtnia.length]}));
+
+  const edadRows = OTROS.filter(o=>o.cat==='edad');
+  // Un solo hue (magnitud, no categoría) en degradado claro→oscuro según la
+  // cantidad, para que el color mismo comunique cuál rango pesa más sin
+  // depender de leer los números.
+  const edadMax = Math.max(...edadRows.map(e=>e.val), 1);
+  const dataEdad = edadRows.map(e=>{
+    const t = 0.35 + 0.65*(e.val/edadMax); // 35%-100% de intensidad, nunca demasiado pálido
+    return { nombre:e.lbl, nombreCorto:e.lbl, val:e.val, color:`color-mix(in srgb, var(--blue) ${(t*100).toFixed(0)}%, var(--blue-light))` };
+  });
+
   return `
     <div class="dash-tiles">
       ${dashTile('📖',fmt(mat),'Total matriculados','--blue','','zonas',true,'Ver por zona →')}
@@ -1662,17 +1680,14 @@ function dashboardHtml(){
     <div id="dash-charts">
       <div class="dash-grid" style="margin-top:20px;">
         ${dashBarrasZona('Matriculados por zona', barrasMatricula, '', true, 'zonas')}
-        ${dashGauge(ocuPct, 'Ocupación global', `${fmt(mat)} de ${fmt(cap)} cupos usados`)}
-      </div>
-      <div class="dash-grid" style="margin-top:20px;">
-        ${dashColumnas('Grupos con menos de 14 inscritos, por zona', barrasBaja, true, 'vacios')}
-        ${dashBarrasZona('Grupos fusionables, por zona', barrasFusion, '', true, 'fusion')}
+        ${dashGauge(ocuPct, 'Ocupación Colombia', `${fmt(mat)} de ${fmt(cap)} cupos usados`)}
       </div>
       <div class="dash-grid" style="margin-top:20px;">
         ${dashDona('Género', dataGenero)}
-        <div class="otros-grid dash-demografia" style="grid-template-columns:1fr;">
-          ${otrosBarGroup('Rango de edad','edad')}
-        </div>
+        ${dashDona('Grupo étnico', dataEtnia)}
+      </div>
+      <div class="dash-grid" style="margin-top:20px; grid-template-columns:1fr;">
+        ${dashColumnas('Rango de edad', dataEdad, false)}
       </div>
     </div>`;
 }
