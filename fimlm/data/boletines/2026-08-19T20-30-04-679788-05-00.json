@@ -1,0 +1,230 @@
+{
+  "corte": "2026-08-19T20:30:04.679788-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4845",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2540",
+      "nom": "Pintura en madera 1",
+      "g": "G-4997",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4928",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2535",
+      "nom": "Salud y Bienestar para Ovinos y Caprinos",
+      "g": "G-4764",
+      "matAntes": 36,
+      "matAhora": 37,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2487",
+      "nom": "Bienestar para la Persona Mayor",
+      "g": "G-4757",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4990",
+      "matAntes": 43,
+      "matAhora": 44,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4993",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4822",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4826",
+      "matAntes": 49,
+      "matAhora": 50,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4828",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4829",
+      "matAntes": 46,
+      "matAhora": 47,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4909",
+      "matAntes": 15,
+      "matAhora": 16,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4849",
+      "matAntes": 12,
+      "matAhora": 13,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2633",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4641",
+      "matAntes": 22,
+      "matAhora": 23,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4637",
+      "matAntes": 47,
+      "matAhora": 48,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2649",
+      "nom": "Ingles Nivel 2",
+      "g": "G-4781",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2533",
+      "nom": "Despertar Humano",
+      "g": "G-4668",
+      "matAntes": 46,
+      "matAhora": 47,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2628",
+      "nom": "Economia del Hogar",
+      "g": "G-4681",
+      "matAntes": 33,
+      "matAhora": 34,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2456",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4875",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4248",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2453",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4823",
+      "matAntes": 10,
+      "matAhora": 11,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4302",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4897",
+      "matAntes": 29,
+      "matAhora": 30,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2448",
+      "nom": "Despertar Emprendedor",
+      "g": "G-4292",
+      "matAntes": 30,
+      "matAhora": 31,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-4313",
+      "matAntes": 44,
+      "matAhora": 45,
+      "delta": 1
+    }
+  ]
+}

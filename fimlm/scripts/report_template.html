@@ -664,34 +664,13 @@
   <section id="resumen">
     <div class="section-head">
       <h2>Resumen general</h2>
-      <div class="section-note">Toca una tarjeta para ver su detalle — zonas, cursos, grupos, alertas e iglesias salen todos de aquí.</div>
+      <div class="section-note">Toca una tarjeta o un gráfico para ver su detalle — zonas, cursos, grupos e iglesias salen todos de aquí.</div>
     </div>
 
-    <div class="kpi-groups">
-      <div class="kpis kpis-unificado">
-        <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
-        <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
-        <button type="button" class="kpi flag" onclick="showDetail('externos', this)"><span class="kpi-arrow">▾</span><div class="icon">🌐</div><div class="v num" id="kpi-externos">—</div><div class="l">Personas externas inscritas<span class="kpi-sub" id="kpi-externos-sub"></span></div><div class="hint">Ver por medio →</div></button>
-        <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con menos de 14 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
-        <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
-        <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
-      </div>
-    </div>
+    <div id="dashboard-slot"></div>
     <div class="kd-arrow" id="kd-arrow" hidden></div>
     <div class="kpi-detail panel" id="kpi-detail"></div>
     <div id="alerts-wrap" hidden></div>
-
-    <section id="dashboard-seccion">
-      <details class="explorer" id="dashboard-details" open>
-        <summary>
-          <span class="acc-title">📈 Dashboard</span>
-          <span class="acc-desc">Un solo lugar con las cifras clave de las 6 zonas de Colombia: matrícula, ocupación, alertas de grupos y demografía.</span>
-        </summary>
-        <div class="panel" id="panel-dashboard">
-          <div id="dashboard-slot"></div>
-        </div>
-      </details>
-    </section>
 
     <div class="quick-search">
       <span class="quick-search-icon">🔍</span>
@@ -861,42 +840,8 @@ CURSOS.forEach(c=>{ c.ocu = c.cap ? (c.mat/c.cap*100) : 0; c.zn = zoneName[c.z];
 GRUPOS.forEach(g=>{ g.disp = g.cap-g.mat; g.zn = zoneName[g.z]; });
 const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g.cod));
 
-/* ---------- KPIs ---------- */
+/* ---------- Corte de datos ---------- */
 (function(){
-  const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
-  const mat=sum('mat'), cap=sum('cap'), esp=sum('esp');
-  document.getElementById('kpi-ocu').textContent = fmt(mat);
-  document.getElementById('kpi-esp').textContent = fmt(esp);
-  // "Personas externas" = todo lo que no es "Personas internas" (antes
-  // "Iglesia") en la pregunta "¿Cómo conoció la FIMLM?" (dato global del
-  // dashboard, no filtrado a las 6 zonas de Colombia -- mismo alcance
-  // que género/edad/etnia).
-  const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
-  const externos = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
-  // Estimado de cuántos externos son de Colombia: el dashboard no cruza
-  // "cómo te enteraste" con "país" persona por persona, así que se aplica
-  // la proporción de matriculados que sí son de Colombia (país de
-  // residencia) sobre el total de externos -- una estimación, no un dato
-  // exacto. Es la cifra grande de la tarjeta porque es lo que interesa
-  // operativamente; el total global (960) queda como referencia abajo.
-  const paisRows = OTROS.filter(o=>o.cat==='origen_pais');
-  const colombiaTotal = (paisRows.find(o=>o.lbl==='Colombia')||{}).val || 0;
-  const paisTotalGlobal = (paisRows.find(o=>o.lbl==='Total')||{}).val || 0;
-  const pctColombia = paisTotalGlobal ? colombiaTotal/paisTotalGlobal : 0;
-  const externosEstColombia = Math.round(externos * pctColombia);
-  document.getElementById('kpi-externos').textContent = fmt(externosEstColombia);
-  document.getElementById('kpi-externos-sub').textContent = `Aproximado · ${fmt(externos)} total mundial`;
-  const bajaMatGrupos = GRUPOS.filter(g=>g.mat<14);
-  document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
-  const byHC = {};
-  bajaMatGrupos.forEach(g=>{ const k=g.z+'|'+g.cod+'|'+g.h; (byHC[k]=byHC[k]||[]).push(g); });
-  const gruposDuplicados = Object.values(byHC).filter(gs=>gs.length>=2).flat().length;
-  document.getElementById('kpi-vacios-sub').textContent = gruposDuplicados
-    ? gruposDuplicados+' con horario duplicado en el mismo curso'
-    : 'ninguno con horario duplicado en el mismo curso';
-  document.getElementById('kpi-iglesias').textContent = fmt(IGLESIAS.length + IGLESIAS_INSC.length);
-  document.getElementById('kpi-iglesias-sub').textContent = fmt(IGLESIAS.length)+' sin personas matriculadas';
-
   const corteEl = document.getElementById('corte-datos');
   if(corteEl) corteEl.textContent = formatCorte(CORTE_DATOS);
 })();
@@ -1084,7 +1029,7 @@ function renderAlerts(){
   const contextHeader = `<div class="context-divider"><span>Contexto adicional</span><span class="context-note">no cuenta como alerta — ayuda a interpretar las de arriba</span></div>`;
   const showContext = false; // oculto por ahora; cambia a true para volver a mostrar el contexto adicional
   document.getElementById('alerts-wrap').innerHTML = alertCards.join('') + (showContext ? contextHeader + contextCards.join('') : '');
-  document.getElementById('kpi-alertas').textContent = fmt(alertCards.length);
+  alertsData.alertCount = alertCards.length;
 }
 /* Nota: renderAlerts() se invoca al final del script (no aquí), porque sus filas
    usan expandedCursos/courseGroups, que se declaran más abajo. Llamarla antes de
@@ -1333,18 +1278,22 @@ function onIglesiasSearch(val){
   if(t) t.innerHTML = iglesiasTableHtml();
 }
 /* ---------- Dashboard ---------- */
-// Stat tile compacto (no clicable): mismo lenguaje visual que las
-// tarjetas KPI del resumen, pero informativo, no un botón de detalle.
-function dashTile(icon, valor, etiqueta, colorVar, sub, destacado){
+// Tile clicable: mismo tamaño/proporción que antes tenían las tarjetas
+// del dashboard (más compactas que las viejas .kpi del resumen), pero
+// ahora es el propio botón que abre el detalle -- unifica "resumen" y
+// "dashboard" en un solo nivel de tarjetas en vez de repetir la info.
+function dashTile(icon, valor, etiqueta, colorVar, sub, kind, destacado, hint){
   const cls = destacado ? ' dash-tile--dest' : '';
   const barra = destacado ? '' : `<div class="dash-tile__bar" style="background:var(${colorVar});"></div>`;
-  return `<div class="dash-tile${cls}">
+  return `<button type="button" class="dash-tile${cls}" onclick="showDetail('${kind}', this)">
+      <span class="kpi-arrow dash-tile__arrow">▾</span>
       ${barra}
       <div class="dash-tile__icon">${icon}</div>
       <div class="dash-tile__value">${valor}</div>
       <div class="dash-tile__label">${etiqueta}</div>
       ${sub ? `<div class="dash-tile__sub">${sub}</div>` : ''}
-    </div>`;
+      ${hint ? `<div class="dash-tile__hint">${hint}</div>` : ''}
+    </button>`;
 }
 // Barras horizontales categóricas (una por zona), con el color propio
 // de cada zona -- mismo color que sus íconos en el resto del informe,
@@ -1784,7 +1733,7 @@ function showDetail(kind, btnEl){
   const box = document.getElementById('kpi-detail');
   const arrow = document.getElementById('kd-arrow');
   const wasActive = btnEl.classList.contains('active');
-  document.querySelectorAll('.kpi.active').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.kpi.active, .dash-tile.active').forEach(b=>b.classList.remove('active'));
   if(wasActive){ box.classList.remove('open'); if(arrow) arrow.hidden = true; activeDetailKind = null; return; }
   btnEl.classList.add('active');
   activeDetailKind = kind;
@@ -2009,7 +1958,7 @@ function restoreState(){
   }
 
   if(s.activeDetailKind){
-    const btn = [...document.querySelectorAll('.kpi')].find(b=>{
+    const btn = [...document.querySelectorAll('.kpi, .dash-tile, tr.zona-row')].find(b=>{
       const oc = b.getAttribute('onclick');
       return oc && oc.includes(`'${s.activeDetailKind}'`);
     });
