@@ -220,20 +220,16 @@
      no competir con las alertas individuales. Al ser cajas separadas
      (en vez de un único grid de 6 columnas), cada una define su
      propio grid interno y colapsa de forma independiente en móvil.  */
-  .kpi-groups{display:flex; flex-wrap:wrap; gap:14px; align-items:stretch;}
-  .kpi-group{
-    flex:1 1 260px; background:var(--bg); border:1.5px solid var(--border);
-    border-radius:16px; padding:14px 14px 16px; min-width:0;
-  }
-  .kpi-group.is-action{flex-grow:2;}
-  .kpi-group-label{
-    font-size:.72rem; font-weight:900; text-transform:uppercase; letter-spacing:.05em;
-    color:var(--muted); margin:2px 4px 12px;
-  }
-  .kpi-group-label.is-action{color:var(--red);}
+  .kpi-groups{display:block;}
   .kpis{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
-  .kpis-status{grid-template-columns:repeat(2,1fr);}
-  .kpis-action{grid-template-columns:repeat(4,1fr);}
+  /* Un solo grid de 6 columnas iguales para las 6 tarjetas -- antes
+     estaban repartidas en dos cajas con distinto número de columnas
+     (2 y 4), lo que hacía que unas tarjetas se vieran más anchas que
+     otras al ser el mismo ancho total repartido entre menos columnas. */
+  .kpis-unificado{grid-template-columns:repeat(6,1fr);}
+  @media (max-width:1300px){ .kpis-unificado{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:700px){ .kpis-unificado{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .kpis-unificado{grid-template-columns:1fr;} }
   .kd-arrow{
     width:0; height:0; margin:10px 0 8px 0; position:relative; left:0;
     border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:12px solid var(--white);
@@ -264,9 +260,6 @@
   .kpi-sub{display:block; font-size:.66rem; font-weight:700; letter-spacing:normal; text-transform:none; color:var(--faint); margin-top:3px;}
   .kpi.flag .hint{color:var(--yellow);}
   .kpi.flag2 .hint{color:var(--red);}
-  @media (max-width:1300px){ .kpis-action{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:900px){ .kpi-group{flex-basis:100%;} }
-  @media (max-width:560px){ .kpis-status, .kpis-action{grid-template-columns:repeat(1,1fr);} }
   .panel.flash, .kpi.flash{animation:flashHighlight 1.3s ease;}
   @keyframes flashHighlight{
     0%{box-shadow:0 0 0 4px var(--orange);}
@@ -675,26 +668,30 @@
     </div>
 
     <div class="kpi-groups">
-      <div class="kpi-group">
-        <div class="kpi-group-label">📊 Estado general</div>
-        <div class="kpis kpis-status">
-          <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
-          <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
-        </div>
-      </div>
-      <div class="kpi-group is-action">
-        <div class="kpi-group-label is-action">🎯 Requiere tu atención</div>
-        <div class="kpis kpis-action">
-          <button type="button" class="kpi flag" onclick="showDetail('externos', this)"><span class="kpi-arrow">▾</span><div class="icon">🌐</div><div class="v num" id="kpi-externos">—</div><div class="l">Personas externas inscritas<span class="kpi-sub" id="kpi-externos-sub"></span></div><div class="hint">Ver por medio →</div></button>
-          <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con menos de 14 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
-          <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
-          <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
-        </div>
+      <div class="kpis kpis-unificado">
+        <button type="button" class="kpi" id="kpi-btn-zonas" onclick="showDetail('zonas', this)"><span class="kpi-arrow">▾</span><div class="icon">🗺️</div><div class="v num" id="kpi-ocu">—</div><div class="l">Total matriculados Colombia</div><div class="hint">Haz clic para ver el detalle por zona →</div></button>
+        <button type="button" class="kpi flag" onclick="showDetail('espera', this)"><span class="kpi-arrow">▾</span><div class="icon">⏳</div><div class="v num" id="kpi-esp">—</div><div class="l">personas en lista de espera</div><div class="hint">Ver grupos →</div></button>
+        <button type="button" class="kpi flag" onclick="showDetail('externos', this)"><span class="kpi-arrow">▾</span><div class="icon">🌐</div><div class="v num" id="kpi-externos">—</div><div class="l">Personas externas inscritas<span class="kpi-sub" id="kpi-externos-sub"></span></div><div class="hint">Ver por medio →</div></button>
+        <button type="button" class="kpi flag2" onclick="showDetail('vacios', this)"><span class="kpi-arrow">▾</span><div class="icon">🚫</div><div class="v num" id="kpi-vacios">—</div><div class="l">Grupos con menos de 14 inscritos<span class="kpi-sub" id="kpi-vacios-sub"></span></div><div class="hint">Ver grupos →</div></button>
+        <button type="button" class="kpi flag2" onclick="showDetail('alertas', this)"><span class="kpi-arrow">▾</span><div class="icon">🔔</div><div class="v num" id="kpi-alertas">—</div><div class="l">Alertas</div><div class="hint">Ver el detalle →</div></button>
+        <button type="button" class="kpi flag3" onclick="showDetail('iglesias', this)"><span class="kpi-arrow">▾</span><div class="icon">📍</div><div class="v num" id="kpi-iglesias">—</div><div class="l">Iglesias totales<span class="kpi-sub" id="kpi-iglesias-sub"></span></div><div class="hint">Gestionar todas las iglesias →</div></button>
       </div>
     </div>
     <div class="kd-arrow" id="kd-arrow" hidden></div>
     <div class="kpi-detail panel" id="kpi-detail"></div>
     <div id="alerts-wrap" hidden></div>
+
+    <section id="dashboard-seccion">
+      <details class="explorer" id="dashboard-details" open>
+        <summary>
+          <span class="acc-title">📈 Dashboard</span>
+          <span class="acc-desc">Un solo lugar con las cifras clave de las 6 zonas de Colombia: matrícula, ocupación, alertas de grupos y demografía.</span>
+        </summary>
+        <div class="panel" id="panel-dashboard">
+          <div id="dashboard-slot"></div>
+        </div>
+      </details>
+    </section>
 
     <div class="quick-search">
       <span class="quick-search-icon">🔍</span>
@@ -728,18 +725,6 @@
         </table>
       </div>
     </div>
-  </section>
-
-  <section id="dashboard-seccion">
-    <details class="explorer" id="dashboard-details">
-      <summary>
-        <span class="acc-title">📈 Dashboard</span>
-        <span class="acc-desc">Un solo lugar con las cifras clave de las 6 zonas de Colombia: matrícula, ocupación, alertas de grupos y demografía.</span>
-      </summary>
-      <div class="panel" id="panel-dashboard">
-        <div id="dashboard-slot"></div>
-      </div>
-    </details>
   </section>
 
   <section id="otros-seccion">
@@ -899,8 +884,8 @@ const cursosConGrupoVacio = new Set(GRUPOS.filter(g=>g.mat===0).map(g=>g.z+'|'+g
   const paisTotalGlobal = (paisRows.find(o=>o.lbl==='Total')||{}).val || 0;
   const pctColombia = paisTotalGlobal ? colombiaTotal/paisTotalGlobal : 0;
   const externosEstColombia = Math.round(externos * pctColombia);
-  document.getElementById('kpi-externos').textContent = '~'+fmt(externosEstColombia);
-  document.getElementById('kpi-externos-sub').textContent = `estimado · ${fmt(externos)} en total (global)`;
+  document.getElementById('kpi-externos').textContent = fmt(externosEstColombia);
+  document.getElementById('kpi-externos-sub').textContent = `Aproximado · ${fmt(externos)} total mundial`;
   const bajaMatGrupos = GRUPOS.filter(g=>g.mat<14);
   document.getElementById('kpi-vacios').textContent = fmt(bajaMatGrupos.length);
   const byHC = {};
@@ -1383,7 +1368,11 @@ function dashBarrasZona(titulo, items, unidad){
 // categoría), con el número grande al centro -- patrón "gauge" simple
 // sin depender de ninguna librería de gráficos.
 function dashGauge(pct, label, sub){
-  const r = 70, cx = 90, cy = 90, startAngle = 135, sweepTotal = 270;
+  // r + mitad del grosor del trazo (16px) es lo que sobresale del centro
+  // en cualquier dirección; el viewBox necesita ese margen completo o el
+  // arco se recorta -- con r=70 y stroke 16, el punto más bajo llega a
+  // cy + r + 8, así que el viewBox debe cubrir esa altura.
+  const r = 70, cx = 95, cy = 95, startAngle = 135, sweepTotal = 270;
   const toXY = (angleDeg) => {
     const a = (angleDeg - 90) * Math.PI / 180;
     return [cx + r*Math.cos(a), cy + r*Math.sin(a)];
@@ -1397,10 +1386,10 @@ function dashGauge(pct, label, sub){
   const valueAngle = startAngle + sweepTotal * Math.min(pct,100)/100;
   return `<div class="dash-card dash-card--gauge">
       <h4 class="dash-card__title">${label}</h4>
-      <svg viewBox="0 0 180 150" class="dash-gauge">
+      <svg viewBox="0 0 190 190" class="dash-gauge">
         <path d="${arcPath(startAngle, endAngle)}" class="dash-gauge__track"/>
         <path d="${arcPath(startAngle, valueAngle)}" class="dash-gauge__fill"/>
-        <text x="90" y="92" text-anchor="middle" class="dash-gauge__value">${pct.toFixed(0)}%</text>
+        <text x="95" y="100" text-anchor="middle" class="dash-gauge__value">${pct.toFixed(0)}%</text>
       </svg>
       <div class="dash-card__sub">${sub}</div>
     </div>`;
@@ -1428,6 +1417,7 @@ function dashboardHtml(){
   const colombiaTotalDash = (paisRowsDash.find(o=>o.lbl==='Colombia')||{}).val || 0;
   const paisTotalGlobalDash = (paisRowsDash.find(o=>o.lbl==='Total')||{}).val || 0;
   const externosEstColombiaDash = paisTotalGlobalDash ? Math.round(externos * colombiaTotalDash/paisTotalGlobalDash) : 0;
+  const discapacidadTotal = (OTROS.find(o=>o.cat==='discapacidad' && o.lbl==='Con alguna condicion reportada')||{}).val || 0;
 
   return `
     <div class="dash-tiles">
@@ -1437,9 +1427,10 @@ function dashboardHtml(){
       ${dashTile('📍',fmt(IGLESIAS.length),'Iglesias sin matrícula','--red')}
     </div>
     <div class="dash-tiles" style="margin-top:14px;">
-      ${dashTile('🌐','~'+fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`estimado · ${fmt(externos)} en total`)}
+      ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`)}
       ${dashTile('🚫',fmt(alertsData.bajaMatCount),'Grupos con menos de 14 inscritos','--orange-dk')}
       ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`)}
+      ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial')}
     </div>
     <div class="dash-grid" style="margin-top:20px;">
       ${dashBarrasZona('Matriculados por zona', barrasMatricula)}
@@ -1730,7 +1721,7 @@ function buildDetail(kind){
     const pctColombia = paisTotalGlobal ? (colombiaTotal/paisTotalGlobal*100) : 0;
     const externosEstColombia = paisTotalGlobal ? Math.round(externosTotal * colombiaTotal/paisTotalGlobal) : 0;
     return kdHead('Personas externas inscritas',
-      `Respuesta a "¿Cómo conoció la FIMLM?" — dato global. "Personas internas" (${fmt(internasItem?internasItem.val:0)}) es la respuesta "Iglesia", quienes asisten a la IDMJI. El resto (referido, redes, web, noticias o sin dato) son las <b>${fmt(externosTotal)}</b> personas externas en total. <b>~${fmt(externosEstColombia)}</b> serían de Colombia — estimado según el % de matriculados que sí son de Colombia (${pctColombia.toFixed(0)}%), no un conteo real.`) +
+      `Respuesta a "¿Cómo conoció la FIMLM?" — dato global. "Personas internas" (${fmt(internasItem?internasItem.val:0)}) es la respuesta "Iglesia", quienes asisten a la IDMJI. El resto (referido, redes, web, noticias o sin dato) son <b>${fmt(externosTotal)}</b> personas externas, total mundial. Aproximado <b>${fmt(externosEstColombia)}</b> serían de Colombia, según el % de matriculados que sí son de Colombia (${pctColombia.toFixed(0)}%) — no es un conteo real.`) +
       `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('¿Cómo conoció la FIMLM?','conocimiento')}</div>`;
   }
   if(kind==='bajo'){
