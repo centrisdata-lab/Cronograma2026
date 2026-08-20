@@ -1,0 +1,122 @@
+{
+  "corte": "2026-08-19T21:00:43.600377-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4810",
+      "matAntes": 35,
+      "matAhora": 36,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4845",
+      "matAntes": 28,
+      "matAhora": 29,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4913",
+      "matAntes": 17,
+      "matAhora": 18,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4828",
+      "matAntes": 34,
+      "matAhora": 35,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4909",
+      "matAntes": 16,
+      "matAhora": 17,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2713",
+      "nom": "Despertar Humano",
+      "g": "G-5084",
+      "matAntes": 5,
+      "matAhora": 6,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 40,
+      "matAhora": 41,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4784",
+      "matAntes": 21,
+      "matAhora": 23,
+      "delta": 2
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2630",
+      "nom": "Profundizacion Costos para Emprendedores",
+      "g": "G-4660",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2472",
+      "nom": "Estrategias para la Busqueda de Empleo",
+      "g": "G-4256",
+      "matAntes": 11,
+      "matAhora": 12,
+      "delta": 1
+    },
+    {
+      "z": "Zona Pacifico",
+      "cod": "C-2623",
+      "nom": "Despertar Humano",
+      "g": "G-4485",
+      "matAntes": 36,
+      "matAhora": 37,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-4895",
+      "matAntes": 42,
+      "matAhora": 43,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2449",
+      "nom": "Despertar Humano",
+      "g": "G-5121",
+      "matAntes": 3,
+      "matAhora": 4,
+      "delta": 1
+    }
+  ]
+}
