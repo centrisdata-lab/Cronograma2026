@@ -1165,10 +1165,12 @@ function toggleZonaCursos(zoneCode){
 // ventana modal sobrepuesta (no el panel inline) con el detalle de esa
 // zona ya filtrado -- así el usuario no pierde de vista el gráfico que
 // tocó y puede cerrar la ventana apenas termine de mirar.
+let zonaModalActual = null;
 function abrirZonaModal(zoneCode, modalKind){
   const backdrop = document.getElementById('zmodal-backdrop');
   const box = document.getElementById('zmodal');
   if(!backdrop || !box) return;
+  zonaModalActual = {zoneCode, modalKind};
   box.innerHTML = zonaModalHtml(zoneCode, modalKind);
   backdrop.hidden = false;
   document.body.style.overflow = 'hidden';
@@ -1178,6 +1180,22 @@ function closeZonaModal(){
   if(!backdrop) return;
   backdrop.hidden = true;
   document.body.style.overflow = '';
+  zonaModalActual = null;
+}
+// Expandir un curso dentro del modal de zona para ver sus grupos, igual
+// que ya se puede hacer en la tabla de "Zonas" del panel inline -- aquí
+// solo hace falta reconstruir el propio modal (no kpi-detail) y mantener
+// la posición de scroll dentro de su tabla, que se reconstruye entera.
+function toggleCursoZonaModal(z, cod){
+  const key = z+'|'+cod;
+  if(expandedCursos.has(key)) expandedCursos.delete(key); else expandedCursos.add(key);
+  if(!zonaModalActual) return;
+  const box = document.getElementById('zmodal');
+  const scroller = box.querySelector('.table-scroll');
+  const scrollTop = scroller ? scroller.scrollTop : 0;
+  box.innerHTML = zonaModalHtml(zonaModalActual.zoneCode, zonaModalActual.modalKind);
+  const newScroller = box.querySelector('.table-scroll');
+  if(newScroller) newScroller.scrollTop = scrollTop;
 }
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape'){
@@ -1209,14 +1227,18 @@ function zonaModalHtml(zoneCode, modalKind){
         <tbody>${grupos.map(g=>`<tr><td class="code-cell">${g.g}</td><td class="code-cell">${g.cod}</td><td>${g.nom}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`).join('') || '<tr><td colspan="6" class="empty-note">Sin grupos fusionables en esta zona.</td></tr>'}</tbody>
       </table></div>`;
   }
-  // modalKind === 'zonas' (o cualquier otro caso): tabla de cursos de esa zona.
+  // modalKind === 'zonas' (o cualquier otro caso): tabla de cursos de esa
+  // zona, cada uno expandible para ver sus grupos (mismo patrón que la
+  // tabla de "Zonas" del panel inline).
   const cursos = CURSOS.filter(c=>c.z===zoneCode).sort((a,b)=>a.ocu-b.ocu);
-  return `${head(`${z.name} — cursos`, `${fmt(z.mat)} matriculados de ${fmt(z.cap)} cupos (${pct(z.ocu)} de ocupación) · ${fmt(z.disp)} disponibles.`)}
+  return `${head(`${z.name} — cursos`, `${fmt(z.mat)} matriculados de ${fmt(z.cap)} cupos (${pct(z.ocu)} de ocupación) · ${fmt(z.disp)} disponibles. Toca un curso para ver sus grupos.`)}
     <div class="table-scroll" style="max-height:60vh;"><table class="data mini">
-      <thead><tr><th>Código</th><th>Curso</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th><th class="num-cell">Ocup.</th><th class="num-cell">Espera</th></tr></thead>
+      <thead><tr><th></th><th>Código</th><th>Curso</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th><th class="num-cell">Ocup.</th><th class="num-cell">Espera</th></tr></thead>
       <tbody>${cursos.map(c=>{
         const cbadge = (c.disp===0 && c.esp>0) ? '<span class="badge info" style="margin-left:8px;">saturado</span>' : (c.ocu<30 ? '<span class="badge crit" style="margin-left:8px;">baja</span>' : '');
-        return `<tr><td class="code-cell">${c.cod}</td><td>${c.nom}${cbadge}</td><td class="num-cell">${c.grp}</td><td class="num-cell">${fmt(c.mat)}</td><td class="num-cell">${fmt(c.cap)}</td><td class="num-cell">${c.ocu.toFixed(0)}%</td><td class="num-cell">${c.esp||''}</td></tr>`;
+        const cOpen = expandedCursos.has(c.z+'|'+c.cod);
+        return `<tr class="clickable-row" onclick="toggleCursoZonaModal('${c.z}','${c.cod}')" title="Ver los grupos de este curso"><td class="expand-cell">${cOpen?'▾':'▸'}</td><td class="code-cell">${c.cod}</td><td>${c.nom}${cbadge}</td><td class="num-cell">${c.grp}</td><td class="num-cell">${fmt(c.mat)}</td><td class="num-cell">${fmt(c.cap)}</td><td class="num-cell">${c.ocu.toFixed(0)}%</td><td class="num-cell">${c.esp||''}</td></tr>`
+          + courseGroupsInlineHtml(c.z, c.cod, 8);
       }).join('')}</tbody>
     </table></div>`;
 }
