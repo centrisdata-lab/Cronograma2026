@@ -945,6 +945,32 @@
   </div>
 </nav>
 
+<script>
+  // Aplica la pestaña guardada ANTES de que el navegador pinte el resto de
+  // la página (#tab-cronograma más abajo llega marcado "active" en el HTML
+  // por defecto) -- si esto se dejara para el <script type="module"> de
+  // Firebase, ese módulo se ejecuta después del primer paint (los imports
+  // ES son asíncronos por naturaleza), y el usuario alcanza a ver un flash
+  // de "Cronograma" antes de saltar a la pestaña real. No depende de
+  // Firebase ni de switchTab() (aún no definida a esta altura del HTML):
+  // solo lee localStorage y ajusta clases, así que puede correr ya mismo.
+  (function(){
+    var saved = localStorage.getItem('activeTab');
+    if(!saved || saved === 'cronograma') return;
+    var css = '#tab-cronograma{display:none !important;}#tab-' + saved + '{display:block !important;}';
+    if(saved === 'informe' || saved === 'matriculas') css += '#app-header{display:none !important;}';
+    document.write('<style>' + css + '</style>');
+    // Los botones de pestaña ya existen en el DOM a esta altura (van antes
+    // de este script), así que también se puede corregir cuál se ve
+    // "active" sin esperar a switchTab().
+    var btns = document.querySelectorAll('.tab-btn');
+    for(var i=0;i<btns.length;i++){
+      var isSaved = btns[i].getAttribute('onclick').indexOf("'" + saved + "'") !== -1;
+      btns[i].classList.toggle('active', isSaved);
+    }
+  })();
+</script>
+
 <header id="app-header">
   <div class="header-inner">
     <div class="header-logo"><img src="informe/img/logo-campus.png" alt="Logo CAMPUS FIMLM"></div>
