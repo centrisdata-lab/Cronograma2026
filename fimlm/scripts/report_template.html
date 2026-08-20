@@ -1660,11 +1660,34 @@ const ZONA_NOMBRE_CORTO = {
 // código distinto en otra), así que agrupar por código cuenta el mismo
 // curso varias veces. Se agrupa por nombre normalizado en su lugar, y
 // se listan todos los códigos usados entre zonas.
+// Las 6 áreas de formación son las mismas que publica el Campus FIMLM en
+// su catálogo público (campus.fimlm.org). El dashboard de origen no
+// entrega esta clasificación por curso, así que se infiere por palabras
+// clave en el nombre -- confirmadas contra el catálogo público para los
+// ~21 cursos "base" que aparecen ahí; las variantes de nivel/número que
+// Colombia sí ofrece pero el catálogo no lista aparte (Francés Nivel 2,
+// Repostería 2, Bisutería 1·2, etc.) heredan la categoría de su mismo
+// tema por el mismo criterio de palabra clave.
+const CATEGORIAS_CURSO = [
+  { nombre:'Idiomas', claves:['ingles','frances','portugues','italiano','business english'] },
+  { nombre:'Tecnología y programación', claves:['sistemas','informatica'] },
+  { nombre:'Emprendimiento y Empleabilidad', claves:['emprendedor','emprendedora','busqueda de empleo','sin limites virtual','mi negocio','costos para emprendedores','familias empresarias'] },
+  { nombre:'Artes y Oficios', claves:['reposteria','bisuteria','modisteria','trenzas','confeccion','pintura en madera','floristeria','munecas de trapo'] },
+  { nombre:'Medio Ambiente y Agroproductividad', claves:['reciclaje','ovinos','caprinos','agro','ambiente'] },
+  { nombre:'Habilidades Humanas', claves:['comprension lectora','despertar humano','economia del hogar','bienestar para la persona mayor'] },
+];
+function categoriaDeCurso(nombre){
+  const key = normKey(nombre);
+  for(const cat of CATEGORIAS_CURSO){
+    if(cat.claves.some(clave=>key.includes(normKey(clave)))) return cat.nombre;
+  }
+  return 'Otros';
+}
 function cursosOfertadosResumen(){
   const porNombre = {};
   CURSOS.forEach(c=>{
     const key = normKey(c.nom);
-    if(!porNombre[key]) porNombre[key] = { nom:c.nom, mat:0, cap:0, grp:0, codigos:[], zonas:[] };
+    if(!porNombre[key]) porNombre[key] = { nom:c.nom, mat:0, cap:0, grp:0, codigos:[], zonas:[], categoria:categoriaDeCurso(c.nom) };
     const u = porNombre[key];
     u.mat += c.mat; u.cap += c.cap; u.grp += c.grp;
     if(!u.codigos.includes(c.cod)) u.codigos.push(c.cod);
@@ -2151,7 +2174,7 @@ function buildDetail(kind){
   if(kind==='oferta'){
     const cursosUnicos = cursosOfertadosResumen();
     return kdHead('Cursos ofertados',
-      `${fmt(cursosUnicos.length)} cursos distintos en las 6 zonas, ordenados de mayor a menor cantidad de inscritos. Toca un curso para ver en qué zonas se dicta.`) +
+      `${fmt(cursosUnicos.length)} cursos distintos en las 6 zonas, agrupados por área de formación. Toca un área para ver sus cursos, y un curso para ver en qué zonas se dicta.`) +
       `<input type="search" id="oferta-search" placeholder="Buscar curso o código…" value="${ofertaSearchTerm.replace(/"/g,'&quot;')}" oninput="onOfertaSearch(this.value)" style="margin-bottom:14px; width:100%;">
       <div class="table-scroll no-vscroll"><table class="data" id="oferta-detail-table">${ofertaTableHtml()}</table></div>`;
   }
@@ -2159,6 +2182,7 @@ function buildDetail(kind){
 }
 let ofertaSearchTerm = '';
 const expandedOferta = new Set();
+const expandedCategoriaOferta = new Set();
 function onOfertaSearch(val){
   ofertaSearchTerm = val;
   const table = document.getElementById('oferta-detail-table');
@@ -2169,33 +2193,60 @@ function toggleOfertaCurso(key){
   const table = document.getElementById('oferta-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
 }
+function toggleCategoriaOferta(categoria){
+  if(expandedCategoriaOferta.has(categoria)) expandedCategoriaOferta.delete(categoria); else expandedCategoriaOferta.add(categoria);
+  const table = document.getElementById('oferta-detail-table');
+  withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
+}
+function ofertaCursoRowHtml(c){
+  const key = normKey(c.nom);
+  const open = expandedOferta.has(key);
+  // El mismo curso trae un código distinto por zona -- se listan todos
+  // juntos aquí, y cada uno se ve asociado a su zona al expandir.
+  const codigosTxt = c.codigos.length > 2 ? `${c.codigos.slice(0,2).join(', ')} +${c.codigos.length-2}` : c.codigos.join(', ');
+  const zonasBody = open ? `<tr class="curso-groups-row"><td colspan="6"><div class="groups-inline">
+      <table class="data mini">
+        <thead><tr><th>Zona</th><th>Código</th><th class="num-cell">Matr.</th></tr></thead>
+        <tbody>${[...c.zonas].sort((a,b)=>b.mat-a.mat).map(z=>`<tr><td>${z.zn}</td><td class="code-cell">${z.cod}</td><td class="num-cell">${fmt(z.mat)}</td></tr>`).join('')}</tbody>
+      </table>
+    </div></td></tr>` : '';
+  return `<tr class="clickable-row" onclick="toggleOfertaCurso('${key}')" title="Ver en qué zonas se dicta este curso">
+      <td class="expand-cell">${open?'▾':'▸'}</td>
+      <td style="padding-left:20px;" class="code-cell" title="${c.codigos.join(', ')}">${codigosTxt}</td>
+      <td>${c.nom}</td>
+      <td class="num-cell">${c.zonas.length}</td>
+      <td class="num-cell">${c.grp}</td>
+      <td class="num-cell">${fmt(c.mat)}</td>
+    </tr>${zonasBody}`;
+}
+// Los cursos se agrupan por área de formación (las 6 categorías del
+// catálogo público del Campus FIMLM -- ver categoriaDeCurso), cada una
+// colapsable por separado. Dentro de cada categoría, igual que antes,
+// ordenados de mayor a menor matrícula.
 function ofertaTableHtml(){
   const term = normKey(ofertaSearchTerm);
   let cursos = cursosOfertadosResumen();
   if(term) cursos = cursos.filter(c=>normKey(c.nom).includes(term) || c.codigos.some(cod=>normKey(cod).includes(term)));
-  const rows = cursos.map(c=>{
-    const key = normKey(c.nom);
-    const open = expandedOferta.has(key);
-    // El mismo curso trae un código distinto por zona -- se listan todos
-    // juntos aquí, y cada uno se ve asociado a su zona al expandir.
-    const codigosTxt = c.codigos.length > 2 ? `${c.codigos.slice(0,2).join(', ')} +${c.codigos.length-2}` : c.codigos.join(', ');
-    const zonasBody = open ? `<tr class="curso-groups-row"><td colspan="6"><div class="groups-inline">
-        <table class="data mini">
-          <thead><tr><th>Zona</th><th>Código</th><th class="num-cell">Matr.</th></tr></thead>
-          <tbody>${[...c.zonas].sort((a,b)=>b.mat-a.mat).map(z=>`<tr><td>${z.zn}</td><td class="code-cell">${z.cod}</td><td class="num-cell">${fmt(z.mat)}</td></tr>`).join('')}</tbody>
-        </table>
-      </div></td></tr>` : '';
-    return `<tr class="clickable-row" onclick="toggleOfertaCurso('${key}')" title="Ver en qué zonas se dicta este curso">
-        <td class="expand-cell">${open?'▾':'▸'}</td>
-        <td class="code-cell" title="${c.codigos.join(', ')}">${codigosTxt}</td>
-        <td>${c.nom}</td>
-        <td class="num-cell">${c.zonas.length}</td>
-        <td class="num-cell">${c.grp}</td>
-        <td class="num-cell">${fmt(c.mat)}</td>
-      </tr>${zonasBody}`;
+
+  const porCategoria = {};
+  cursos.forEach(c=>{ (porCategoria[c.categoria] = porCategoria[c.categoria] || []).push(c); });
+  const categorias = Object.keys(porCategoria).map(nombre=>({
+    nombre, cursos: porCategoria[nombre],
+    totalMat: porCategoria[nombre].reduce((a,c)=>a+c.mat,0),
+  })).sort((a,b)=>b.totalMat-a.totalMat);
+
+  const body = categorias.map(cat=>{
+    const abierta = expandedCategoriaOferta.has(cat.nombre) || !!term;
+    const resumen = `${fmt(cat.cursos.length)} curso${cat.cursos.length===1?'':'s'} · ${fmt(cat.totalMat)} matriculados`;
+    const cabecera = `<tr class="group-head clickable-row zona-row" onclick="toggleCategoriaOferta('${cat.nombre}')" title="Ver los cursos de ${cat.nombre}">
+        <td class="expand-cell">${abierta?'▾':'▸'}</td>
+        <td colspan="5"><div style="display:flex; align-items:center; gap:10px;"><span class="zona-nombre">${cat.nombre}</span> <span class="badge info" style="margin-left:6px;">${resumen}</span></div></td>
+      </tr>`;
+    const filas = abierta ? cat.cursos.map(ofertaCursoRowHtml).join('') : '';
+    return cabecera + filas;
   }).join('');
   return `<thead><tr><th></th><th>Código</th><th>Curso</th><th class="num-cell">Zonas</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th></tr></thead>
-    <tbody>${rows || '<tr><td colspan="6" class="empty-note">Sin cursos que coincidan con la búsqueda.</td></tr>'}</tbody>`;
+    <tbody>${body || '<tr><td colspan="6" class="empty-note">Sin cursos que coincidan con la búsqueda.</td></tr>'}</tbody>`;
 }
 
 // Árbol condición → cursos → grupo/horario/zona, a partir de
