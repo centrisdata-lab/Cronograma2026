@@ -1695,6 +1695,16 @@ function cursosOfertadosResumen(){
   });
   return Object.values(porNombre).sort((a,b)=>b.mat-a.mat);
 }
+// Dos totales de "personas con discapacidad": el global (OTROS.discapacidad,
+// todas las convocatorias del mundo) y el de Colombia (DISCAPACIDAD_DETALLE,
+// que el extractor ya filtra a las 6 zonas). Mismo criterio de conteo en
+// ambos -- excluye "Ninguna", cuenta cada condición reportada aunque una
+// persona tenga más de una -- para que sean comparables entre sí.
+function discapacidadTotales(){
+  const total = OTROS.filter(o=>o.cat==='discapacidad' && normKey(o.lbl)!=='ninguna').reduce((a,o)=>a+o.val,0);
+  const colombia = DISCAPACIDAD_DETALLE.filter(d=>normKey(d.cond)!=='ninguna').reduce((a,d)=>a+d.n,0);
+  return { total, colombia };
+}
 function dashboardHtml(){
   const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
   const mat = sum('mat'), cap = sum('cap'), esp = sum('esp'), disp = cap-mat;
@@ -1718,8 +1728,7 @@ function dashboardHtml(){
   const colombiaTotalDash = (paisRowsDash.find(o=>o.lbl==='Colombia')||{}).val || 0;
   const paisTotalGlobalDash = (paisRowsDash.find(o=>o.lbl==='Total')||{}).val || 0;
   const externosEstColombiaDash = paisTotalGlobalDash ? Math.round(externos * colombiaTotalDash/paisTotalGlobalDash) : 0;
-  const discapacidadRows = OTROS.filter(o=>o.cat==='discapacidad');
-  const discapacidadTotal = discapacidadRows.filter(o=>normKey(o.lbl)!=='ninguna').reduce((a,o)=>a+o.val,0);
+  const { total: discapacidadTotal, colombia: discapacidadColombia } = discapacidadTotales();
   const cursosBajaOcu = CURSOS.filter(c=>c.ocu<30).length;
   // Un mismo curso (código) puede ofertarse en varias zonas -- "cursos
   // ofertados" cuenta códigos únicos, no filas de CURSOS (que son
@@ -1766,7 +1775,7 @@ function dashboardHtml(){
       ${dashTile('📉',fmt(cursosBajaOcu),'Cursos con baja ocupación','--orange-dk','< 30%','bajo',false,'Ver cursos →')}
       ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`,'vacios',false,'Ver grupos →')}
       ${dashTile('📍',fmt(IGLESIAS.length+IGLESIAS_INSC.length),'Iglesias totales','--red',`${fmt(IGLESIAS.length)} sin matrícula`,'iglesias',false,'Gestionar →')}
-      ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial','otros-discapacidad',false,'Ver detalle →')}
+      ${dashTile('♿',fmt(discapacidadColombia),'Personas con discapacidad en Colombia','--blue-mid',`${fmt(discapacidadTotal)} total mundial`,'otros-discapacidad',false,'Ver detalle →')}
     </div>
     <div id="dash-charts">
       <div class="dash-grid" style="margin-top:20px;">
@@ -2165,8 +2174,9 @@ function buildDetail(kind){
       <div class="table-scroll no-vscroll"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
   }
   if(kind==='otros-discapacidad'){
-    return kdHead('Personas con discapacidad',
-      'Arriba, el total es un dato <b>global</b> (todas las convocatorias del mundo). El detalle de abajo — condición → curso → grupo y horario — es solo de las <b>6 zonas de Colombia</b>. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.') +
+    const { total: discTotalMundial, colombia: discTotalColombia } = discapacidadTotales();
+    return kdHead('Personas con discapacidad en Colombia',
+      `<b>${fmt(discTotalColombia)}</b> reportes de alguna condición en las 6 zonas de Colombia (<b>${fmt(discTotalMundial)}</b> total mundial). El gráfico de abajo es el dato <b>global</b>; el árbol condición → curso → grupo y horario es solo de Colombia. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.`) +
       `<div class="otros-grid" style="grid-template-columns:1fr; margin-bottom:18px;">${otrosBarGroup('Discapacidad (dato global)','discapacidad',['ninguna'])}</div>` +
       `<input type="search" id="disc-search" placeholder="Buscar condición o curso…" value="${discSearchTerm.replace(/"/g,'&quot;')}" oninput="onDiscSearch(this.value)" style="margin-bottom:14px; width:100%;">
       <div id="disc-detalle-tree">${discDetalleTreeHtml()}</div>`;
