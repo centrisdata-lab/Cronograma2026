@@ -2190,7 +2190,7 @@ function buildDetail(kind){
   if(kind==='otros-discapacidad'){
     const { total: discTotalMundial, colombia: discTotalColombia } = discapacidadTotales();
     return kdHead('Personas con discapacidad en Colombia',
-      `<b>${fmt(discTotalColombia)}</b> reportes de alguna condición en las 6 zonas de Colombia. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.`) +
+      `<b>${fmt(discTotalColombia)}</b> reportes de alguna condición en las 6 zonas de Colombia. Toca una condición para ver sus zonas, una zona para ver sus cursos, y un curso para ver el grupo y horario exactos.`) +
       `<input type="search" id="disc-search" placeholder="Buscar condición o curso…" value="${discSearchTerm.replace(/"/g,'&quot;')}" oninput="onDiscSearch(this.value)" style="margin-bottom:14px; width:100%;">
       <div id="disc-detalle-tree">${discDetalleTreeHtml()}</div>
       <details class="disc-global-toggle">
@@ -2276,30 +2276,40 @@ function ofertaTableHtml(){
     <tbody>${body || '<tr><td colspan="6" class="empty-note">Sin cursos que coincidan con la búsqueda.</td></tr>'}</tbody>`;
 }
 
-// Árbol condición → cursos → grupo/horario/zona, a partir de
-// DISCAPACIDAD_DETALLE (ya filtrado a Colombia por el extractor). Las
-// condiciones se agrupan por el texto EXACTO tal como lo reportó cada
-// persona (sin normalizar variantes como "Epilepsia"/"Epilepsia " o
-// "Ninguna" repetida) -- igual que la propia UI de Campus 360, que
-// tampoco las funde entre sí. Se excluye "Ninguna" porque no aporta al
-// desglose de quiénes SÍ reportan una condición.
+// Árbol condición → zona → curso → grupo/horario, a partir de
+// DISCAPACIDAD_DETALLE (ya filtrado a Colombia por el extractor) -- mismo
+// orden de agrupación que el resto del informe (zona primero, luego
+// curso, luego grupo). Las condiciones se agrupan por el texto EXACTO tal
+// como lo reportó cada persona (sin normalizar variantes como
+// "Epilepsia"/"Epilepsia " o "Ninguna" repetida) -- igual que la propia
+// UI de Campus 360, que tampoco las funde entre sí. Se excluye "Ninguna"
+// porque no aporta al desglose de quiénes SÍ reportan una condición.
 function discapacidadPorCondicion(){
   const porCond = {};
   DISCAPACIDAD_DETALLE.forEach(d=>{
     if(normKey(d.cond)==='ninguna') return;
-    if(!porCond[d.cond]) porCond[d.cond] = { cond:d.cond, total:0, cursos:{} };
+    if(!porCond[d.cond]) porCond[d.cond] = { cond:d.cond, total:0, zonas:{} };
     const c = porCond[d.cond];
     c.total += d.n;
-    if(!c.cursos[d.curso]) c.cursos[d.curso] = { curso:d.curso, total:0, grupos:[] };
-    c.cursos[d.curso].total += d.n;
-    c.cursos[d.curso].grupos.push({zona:d.zona, cod:d.cod, g:d.g, h:d.h, n:d.n});
+    if(!c.zonas[d.zona]) c.zonas[d.zona] = { zona:d.zona, total:0, cursos:{} };
+    const z = c.zonas[d.zona];
+    z.total += d.n;
+    if(!z.cursos[d.curso]) z.cursos[d.curso] = { curso:d.curso, total:0, grupos:[] };
+    z.cursos[d.curso].total += d.n;
+    z.cursos[d.curso].grupos.push({cod:d.cod, g:d.g, h:d.h, n:d.n});
   });
   return Object.values(porCond)
-    .map(c=>({ ...c, cursos: Object.values(c.cursos).sort((a,b)=>b.total-a.total) }))
+    .map(c=>({
+      ...c,
+      zonas: Object.values(c.zonas)
+        .map(z=>({ ...z, cursos: Object.values(z.cursos).sort((a,b)=>b.total-a.total) }))
+        .sort((a,b)=>b.total-a.total),
+    }))
     .sort((a,b)=>b.total-a.total);
 }
 let discSearchTerm = '';
 const expandedDiscCond = new Set();
+const expandedDiscZona = new Set();
 const expandedDiscCurso = new Set();
 function onDiscSearch(val){
   discSearchTerm = val;
@@ -2308,6 +2318,11 @@ function onDiscSearch(val){
 }
 function toggleDiscCond(cond){
   if(expandedDiscCond.has(cond)) expandedDiscCond.delete(cond); else expandedDiscCond.add(cond);
+  const wrap = document.getElementById('disc-detalle-tree');
+  withScrollLock(()=>{ if(wrap) wrap.innerHTML = discDetalleTreeHtml(); });
+}
+function toggleDiscZona(key){
+  if(expandedDiscZona.has(key)) expandedDiscZona.delete(key); else expandedDiscZona.add(key);
   const wrap = document.getElementById('disc-detalle-tree');
   withScrollLock(()=>{ if(wrap) wrap.innerHTML = discDetalleTreeHtml(); });
 }
@@ -2324,36 +2339,53 @@ function discDetalleTreeHtml(){
   let condiciones = discapacidadPorCondicion();
   if(term){
     condiciones = condiciones
-      .map(c=>({ ...c, cursos: c.cursos.filter(cu=>normKey(cu.curso).includes(term)) }))
-      .filter(c=>normKey(c.cond).includes(term) || c.cursos.length>0);
+      .map(c=>({
+        ...c,
+        zonas: c.zonas
+          .map(z=>({ ...z, cursos: z.cursos.filter(cu=>normKey(cu.curso).includes(term)) }))
+          .filter(z=>normKey(z.zona).includes(term) || z.cursos.length>0),
+      }))
+      .filter(c=>normKey(c.cond).includes(term) || c.zonas.length>0);
   }
   if(!condiciones.length) return `<div class="empty-note">Sin resultados para esta búsqueda.</div>`;
   return `<div class="disc-tree">${condiciones.map(c=>{
     const open = expandedDiscCond.has(c.cond);
-    const cursosBody = open ? `<div class="disc-tree__cursos">${c.cursos.map(cu=>{
-      const key = c.cond+'|'+cu.curso;
-      const openCurso = expandedDiscCurso.has(key);
-      const gruposBody = openCurso ? `<table class="data mini">
-          <thead><tr><th>Zona</th><th>Código</th><th>Grupo</th><th>Horario</th><th class="num-cell">Personas</th></tr></thead>
-          <tbody>${[...cu.grupos].sort((a,b)=>b.n-a.n).map(g=>`<tr><td>${g.zona}</td><td class="code-cell">${g.cod}</td><td class="code-cell">${g.g}</td><td>${g.h}</td><td class="num-cell">${g.n}</td></tr>`).join('')}</tbody>
-        </table>` : '';
+    const zonasBody = open ? `<div class="disc-tree__cursos">${c.zonas.map(z=>{
+      const zKey = c.cond+'|'+z.zona;
+      const openZona = expandedDiscZona.has(zKey);
+      const cursosBody = openZona ? `<div class="disc-tree__cursos">${z.cursos.map(cu=>{
+        const cKey = zKey+'|'+cu.curso;
+        const openCurso = expandedDiscCurso.has(cKey);
+        const gruposBody = openCurso ? `<table class="data mini">
+            <thead><tr><th>Código</th><th>Grupo</th><th>Horario</th><th class="num-cell">Personas</th></tr></thead>
+            <tbody>${[...cu.grupos].sort((a,b)=>b.n-a.n).map(g=>`<tr><td class="code-cell">${g.cod}</td><td class="code-cell">${g.g}</td><td>${g.h}</td><td class="num-cell">${g.n}</td></tr>`).join('')}</tbody>
+          </table>` : '';
+        return `<div class="disc-tree__curso">
+            <div class="clickable-row disc-tree__curso-head" onclick="toggleDiscCurso('${cKey.replace(/'/g,"\\'")}')" title="Ver grupo y horario">
+              <span class="expand-cell">${openCurso?'▾':'▸'}</span>
+              <span class="disc-tree__curso-nombre">${cu.curso}</span>
+              <span class="disc-tree__curso-total">${fmt(cu.total)}</span>
+            </div>
+            ${openCurso ? `<div class="groups-inline">${gruposBody}</div>` : ''}
+          </div>`;
+      }).join('')}</div>` : '';
       return `<div class="disc-tree__curso">
-          <div class="clickable-row disc-tree__curso-head" onclick="toggleDiscCurso('${key.replace(/'/g,"\\'")}')" title="Ver grupo, horario y zona">
-            <span class="expand-cell">${openCurso?'▾':'▸'}</span>
-            <span class="disc-tree__curso-nombre">${cu.curso}</span>
-            <span class="disc-tree__curso-total">${fmt(cu.total)}</span>
+          <div class="clickable-row disc-tree__curso-head" onclick="toggleDiscZona('${zKey.replace(/'/g,"\\'")}')" title="Ver los cursos de esta zona">
+            <span class="expand-cell">${openZona?'▾':'▸'}</span>
+            <span class="disc-tree__curso-nombre">${z.zona}</span>
+            <span class="disc-tree__curso-total">${fmt(z.total)}</span>
           </div>
-          ${openCurso ? `<div class="groups-inline">${gruposBody}</div>` : ''}
+          ${cursosBody}
         </div>`;
     }).join('')}</div>` : '';
     return `<div class="disc-tree__cond">
-        <div class="clickable-row disc-tree__cond-head" onclick="toggleDiscCond('${c.cond.replace(/'/g,"\\'")}')" title="Ver cursos donde aparece esta condición">
+        <div class="clickable-row disc-tree__cond-head" onclick="toggleDiscCond('${c.cond.replace(/'/g,"\\'")}')" title="Ver zonas donde aparece esta condición">
           <span class="expand-cell">${open?'▾':'▸'}</span>
           <span class="disc-tree__cond-nombre">${c.cond}</span>
           <div class="dash-bar-row__track disc-tree__cond-track"><div class="dash-bar-row__fill" style="width:${Math.min(100, c.total/condiciones[0].total*100).toFixed(1)}%; background:${colorGradient('#1e4d8c')};"></div></div>
           <span class="disc-tree__cond-total">${fmt(c.total)}</span>
         </div>
-        ${cursosBody}
+        ${zonasBody}
       </div>`;
   }).join('')}</div>`;
 }
