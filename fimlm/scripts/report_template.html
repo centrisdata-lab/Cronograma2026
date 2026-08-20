@@ -1569,15 +1569,23 @@ const ZONA_NOMBRE_CORTO = {
 // sumando matrículas/capacidad/grupos entre las zonas donde se ofrece
 // -- así "cursos ofertados" cuenta cursos reales, no una fila por cada
 // zona en la que aparece el mismo curso.
+// Agrupa CURSOS (filas por zona×curso) en cursos únicos reales. El
+// código NO sirve para agrupar: cada zona asigna su propio código al
+// mismo curso (p.ej. "Inglés Nivel 1" es C-2581 en una zona y otro
+// código distinto en otra), así que agrupar por código cuenta el mismo
+// curso varias veces. Se agrupa por nombre normalizado en su lugar, y
+// se listan todos los códigos usados entre zonas.
 function cursosOfertadosResumen(){
-  const porCodigo = {};
+  const porNombre = {};
   CURSOS.forEach(c=>{
-    if(!porCodigo[c.cod]) porCodigo[c.cod] = { cod:c.cod, nom:c.nom, mat:0, cap:0, grp:0, zonas:[] };
-    const u = porCodigo[c.cod];
+    const key = normKey(c.nom);
+    if(!porNombre[key]) porNombre[key] = { nom:c.nom, mat:0, cap:0, grp:0, codigos:[], zonas:[] };
+    const u = porNombre[key];
     u.mat += c.mat; u.cap += c.cap; u.grp += c.grp;
-    u.zonas.push({z:c.z, zn:c.zn, mat:c.mat});
+    if(!u.codigos.includes(c.cod)) u.codigos.push(c.cod);
+    u.zonas.push({z:c.z, zn:c.zn, cod:c.cod, mat:c.mat});
   });
-  return Object.values(porCodigo).sort((a,b)=>b.mat-a.mat);
+  return Object.values(porNombre).sort((a,b)=>b.mat-a.mat);
 }
 function dashboardHtml(){
   const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
@@ -1621,6 +1629,7 @@ function dashboardHtml(){
       ${dashTile('⏳',fmt(esp),'En lista de espera','--orange-dk','','espera',false,'Ver grupos →')}
       ${dashTile('🟢',fmt(disp),'Cupos disponibles','--green','','zonas',false,'Ver por zona →')}
       ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`,'externos',false,'Ver por medio →')}
+      ${dashTile('📚',fmt(cursosUnicos.length),'Cursos ofertados','--green','En las 6 zonas','oferta',false,'Ver por inscritos →')}
     </div>
     <div class="dash-tiles" style="margin-top:14px;">
       ${dashTile('🚫',fmt(alertsData.bajaMatCount),'Grupos con menos de 14 inscritos','--orange-dk','','vacios',false,'Ver grupos →')}
@@ -1628,7 +1637,6 @@ function dashboardHtml(){
       ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`,'vacios',false,'Ver grupos →')}
       ${dashTile('📍',fmt(IGLESIAS.length+IGLESIAS_INSC.length),'Iglesias totales','--red',`${fmt(IGLESIAS.length)} sin matrícula`,'iglesias',false,'Gestionar →')}
       ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial','otros-discapacidad',false,'Ver detalle →')}
-      ${dashTile('📚',fmt(cursosUnicos.length),'Cursos ofertados','--green','En las 6 zonas','oferta',false,'Ver por inscritos →')}
     </div>
     <div id="dash-charts">
       <div class="dash-grid" style="margin-top:20px;">
@@ -1983,27 +1991,30 @@ function onOfertaSearch(val){
   const table = document.getElementById('oferta-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
 }
-function toggleOfertaCurso(cod){
-  if(expandedOferta.has(cod)) expandedOferta.delete(cod); else expandedOferta.add(cod);
+function toggleOfertaCurso(key){
+  if(expandedOferta.has(key)) expandedOferta.delete(key); else expandedOferta.add(key);
   const table = document.getElementById('oferta-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = ofertaTableHtml(); });
 }
 function ofertaTableHtml(){
   const term = normKey(ofertaSearchTerm);
   let cursos = cursosOfertadosResumen();
-  if(term) cursos = cursos.filter(c=>normKey(c.nom).includes(term) || normKey(c.cod).includes(term));
+  if(term) cursos = cursos.filter(c=>normKey(c.nom).includes(term) || c.codigos.some(cod=>normKey(cod).includes(term)));
   const rows = cursos.map(c=>{
-    const open = expandedOferta.has(c.cod);
-    const ocu = c.cap ? (c.mat/c.cap*100) : 0;
+    const key = normKey(c.nom);
+    const open = expandedOferta.has(key);
+    // El mismo curso trae un código distinto por zona -- se listan todos
+    // juntos aquí, y cada uno se ve asociado a su zona al expandir.
+    const codigosTxt = c.codigos.length > 2 ? `${c.codigos.slice(0,2).join(', ')} +${c.codigos.length-2}` : c.codigos.join(', ');
     const zonasBody = open ? `<tr class="curso-groups-row"><td colspan="6"><div class="groups-inline">
         <table class="data mini">
-          <thead><tr><th>Zona</th><th class="num-cell">Matr.</th></tr></thead>
-          <tbody>${[...c.zonas].sort((a,b)=>b.mat-a.mat).map(z=>`<tr><td>${z.zn}</td><td class="num-cell">${fmt(z.mat)}</td></tr>`).join('')}</tbody>
+          <thead><tr><th>Zona</th><th>Código</th><th class="num-cell">Matr.</th></tr></thead>
+          <tbody>${[...c.zonas].sort((a,b)=>b.mat-a.mat).map(z=>`<tr><td>${z.zn}</td><td class="code-cell">${z.cod}</td><td class="num-cell">${fmt(z.mat)}</td></tr>`).join('')}</tbody>
         </table>
       </div></td></tr>` : '';
-    return `<tr class="clickable-row" onclick="toggleOfertaCurso('${c.cod}')" title="Ver en qué zonas se dicta este curso">
+    return `<tr class="clickable-row" onclick="toggleOfertaCurso('${key}')" title="Ver en qué zonas se dicta este curso">
         <td class="expand-cell">${open?'▾':'▸'}</td>
-        <td class="code-cell">${c.cod}</td>
+        <td class="code-cell" title="${c.codigos.join(', ')}">${codigosTxt}</td>
         <td>${c.nom}</td>
         <td class="num-cell">${c.zonas.length}</td>
         <td class="num-cell">${c.grp}</td>
