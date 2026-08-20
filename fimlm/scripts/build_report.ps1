@@ -115,7 +115,8 @@ $lines = $rawText -replace "`r`n","`n" -split "`n"
 
 $hasSeccion5 = ($lines | Where-Object { $_.Trim() -eq "SECCION 5 - OTROS DATOS GLOBALES" }).Count -gt 0
 $hasSeccion6 = ($lines | Where-Object { $_.Trim() -eq "SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)" }).Count -gt 0
-$allMarkers = @("SECCION 2 - DETALLE DE CURSOS POR ZONA","SECCION 3 - DETALLE DE GRUPOS POR CURSO","SECCION 4 - IGLESIAS SIN MATRICULA","SECCION 5 - OTROS DATOS GLOBALES","SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)","SECCION 7 - METADATOS")
+$hasSeccion8 = ($lines | Where-Object { $_.Trim() -eq "SECCION 8 - DISCAPACIDAD DETALLE (COLOMBIA)" }).Count -gt 0
+$allMarkers = @("SECCION 2 - DETALLE DE CURSOS POR ZONA","SECCION 3 - DETALLE DE GRUPOS POR CURSO","SECCION 4 - IGLESIAS SIN MATRICULA","SECCION 5 - OTROS DATOS GLOBALES","SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)","SECCION 7 - METADATOS","SECCION 8 - DISCAPACIDAD DETALLE (COLOMBIA)")
 
 $resumenLines   = Get-SectionBlock $lines "SECCION 1 - RESUMEN POR ZONA" $allMarkers
 $cursosLines    = Get-SectionBlock $lines "SECCION 2 - DETALLE DE CURSOS POR ZONA" $allMarkers
@@ -123,6 +124,7 @@ $gruposLines    = Get-SectionBlock $lines "SECCION 3 - DETALLE DE GRUPOS POR CUR
 $iglesiasLines  = Get-SectionBlock $lines "SECCION 4 - IGLESIAS SIN MATRICULA" $allMarkers
 $otrosLines     = if ($hasSeccion5) { Get-SectionBlock $lines "SECCION 5 - OTROS DATOS GLOBALES" $allMarkers } else { @() }
 $iglInscLines   = if ($hasSeccion6) { Get-SectionBlock $lines "SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)" $allMarkers } else { @() }
+$discDetalleLines = if ($hasSeccion8) { Get-SectionBlock $lines "SECCION 8 - DISCAPACIDAD DETALLE (COLOMBIA)" $allMarkers } else { @() }
 
 # --- Zonas (resumen) ---
 $resumen = $resumenLines | ConvertFrom-Csv
@@ -221,6 +223,18 @@ if ($otrosLines.Count -gt 0) {
   }
 }
 
+# --- Discapacidad, detalle por curso/grupo (solo Colombia, ya filtrado por el extractor) ---
+$discDetalle = @()
+if ($discDetalleLines.Count -gt 0) {
+  $discDetalleRaw = $discDetalleLines | ConvertFrom-Csv
+  foreach ($d in $discDetalleRaw) {
+    $discDetalle += [ordered]@{
+      zona=$d.Zona; cond=$d.Condicion; curso=$d.Curso; cod=$d.Codigo
+      g=$d.Grupo; h=$d.Horario; n=[int]$d.Personas
+    }
+  }
+}
+
 # --- Iglesias con inscripcion (Colombia, global - no filtrado a 6 zonas) ---
 # La columna "Zona" se agrego junto con la de la seccion 4; los CSV anteriores
 # no la traen (ConvertFrom-Csv devuelve $null) y en ese caso queda vacia.
@@ -247,6 +261,9 @@ if ($otros.Count -eq 1) { $otrosJson = "[$otrosJson]" }
 $iglesiasInscJson = ($iglesiasInsc | ConvertTo-Json -Depth 5 -Compress)
 if ($iglesiasInsc.Count -eq 0) { $iglesiasInscJson = "[]" }
 if ($iglesiasInsc.Count -eq 1) { $iglesiasInscJson = "[$iglesiasInscJson]" }
+$discDetalleJson = ($discDetalle | ConvertTo-Json -Depth 5 -Compress)
+if ($discDetalle.Count -eq 0) { $discDetalleJson = "[]" }
+if ($discDetalle.Count -eq 1) { $discDetalleJson = "[$discDetalleJson]" }
 $corteJson = $corteDatos | ConvertTo-Json -Compress
 $corteAnteriorJson = if ($corteAnterior) { $corteAnterior | ConvertTo-Json -Compress } else { "null" }
 $boletinesJson = ($boletines | ConvertTo-Json -Depth 6 -Compress)
@@ -254,7 +271,7 @@ if ($boletines.Count -eq 0) { $boletinesJson = "[]" }
 if ($boletines.Count -eq 1) { $boletinesJson = "[$boletinesJson]" }
 
 $template = (Get-Content -Path $templatePath -Raw -Encoding UTF8).TrimStart([char]0xFEFF)
-$final = $template.Replace('%%ZONAS_JSON%%', $zonasJson).Replace('%%CURSOS_JSON%%', $cursosJson).Replace('%%GRUPOS_JSON%%', $gruposJson).Replace('%%IGLESIAS_JSON%%', $iglesiasJson).Replace('%%OTROS_JSON%%', $otrosJson).Replace('%%IGLESIAS_INSC_JSON%%', $iglesiasInscJson).Replace('%%CORTE_DATOS_JSON%%', $corteJson).Replace('%%CORTE_ANTERIOR_JSON%%', $corteAnteriorJson).Replace('%%BOLETINES_JSON%%', $boletinesJson)
+$final = $template.Replace('%%ZONAS_JSON%%', $zonasJson).Replace('%%CURSOS_JSON%%', $cursosJson).Replace('%%GRUPOS_JSON%%', $gruposJson).Replace('%%IGLESIAS_JSON%%', $iglesiasJson).Replace('%%OTROS_JSON%%', $otrosJson).Replace('%%IGLESIAS_INSC_JSON%%', $iglesiasInscJson).Replace('%%DISCAPACIDAD_DETALLE_JSON%%', $discDetalleJson).Replace('%%CORTE_DATOS_JSON%%', $corteJson).Replace('%%CORTE_ANTERIOR_JSON%%', $corteAnteriorJson).Replace('%%BOLETINES_JSON%%', $boletinesJson)
 
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($outPath, $final, $utf8NoBom)
@@ -268,6 +285,6 @@ $ultimoCorteJson = [ordered]@{ corte = $corteDatos } | ConvertTo-Json -Compress
 [System.IO.File]::WriteAllText($ultimoCortePath, $ultimoCorteJson, $utf8NoBom)
 
 Write-Output "OK -> $outPath"
-Write-Output "Zonas: $($zonas.Count)  Cursos: $($cursos.Count)  Grupos: $($grupos.Count)  Iglesias sin matricula: $($iglesias.Count)  Otros datos: $($otros.Count)  Iglesias con inscripcion: $($iglesiasInsc.Count)"
+Write-Output "Zonas: $($zonas.Count)  Cursos: $($cursos.Count)  Grupos: $($grupos.Count)  Iglesias sin matricula: $($iglesias.Count)  Otros datos: $($otros.Count)  Iglesias con inscripcion: $($iglesiasInsc.Count)  Discapacidad detalle: $($discDetalle.Count)"
 Write-Output "Corte de datos: $corteDatos"
 Write-Output "Boletines en historial: $($boletines.Count)  (mas reciente: $($novedades.Count) novedad(es))"

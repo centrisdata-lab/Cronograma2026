@@ -629,6 +629,23 @@
   .dash-demografia .otros-row .track{box-shadow:inset 0 1px 2px rgba(26,60,110,.08);}
   .dash-demografia .otros-row .fill{background:linear-gradient(90deg, var(--blue-mid), var(--blue)); transition:width .5s cubic-bezier(0.16,1,0.3,1);}
 
+  /* Árbol condición → curso → grupo/horario/zona, de discapacidad_detalle. */
+  .disc-tree__cond{border-bottom:1px solid var(--border); padding:10px 0;}
+  .disc-tree__cond:last-child{border-bottom:none;}
+  .disc-tree__cond-head{display:flex; align-items:center; gap:10px; padding:2px 4px;}
+  .disc-tree__cond-nombre{font-weight:800; font-size:.86rem; color:var(--text); width:190px; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  @media (max-width:600px){ .disc-tree__cond-nombre{width:120px; font-size:.78rem;} }
+  .disc-tree__cond-track{flex:1;}
+  .disc-tree__cond-total{width:44px; flex-shrink:0; text-align:right; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .disc-tree__cursos{margin:8px 0 4px 32px; padding-left:12px; border-left:2px solid var(--border);}
+  @media (max-width:600px){ .disc-tree__cursos{margin-left:16px;} }
+  .disc-tree__curso{margin-bottom:4px;}
+  .disc-tree__curso-head{display:flex; align-items:center; gap:8px; padding:6px 4px; border-radius:8px;}
+  .disc-tree__curso-head:hover{background:var(--blue-light);}
+  .disc-tree__curso-nombre{flex:1; font-weight:700; font-size:.8rem; color:var(--blue-mid);}
+  .disc-tree__curso-total{font-weight:800; font-size:.8rem; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .disc-tree__curso .groups-inline{margin-left:20px;}
+
   tr.curso-row{cursor:pointer;}
   .expand-cell{width:22px; text-align:center; color:var(--orange); font-size:.7rem; padding-right:0 !important;}
   .zone-icon-badge{
@@ -833,6 +850,10 @@ const GRUPOS = %%GRUPOS_JSON%%;
 const IGLESIAS = %%IGLESIAS_JSON%%;
 const OTROS = %%OTROS_JSON%%;
 const IGLESIAS_INSC = %%IGLESIAS_INSC_JSON%%;
+// Detalle de discapacidad por curso/grupo, ya filtrado a las 6 zonas de
+// Colombia por el extractor (a diferencia de OTROS.discapacidad, que es
+// global). Un registro por condición reportada en un grupo específico.
+const DISCAPACIDAD_DETALLE = %%DISCAPACIDAD_DETALLE_JSON%%;
 // Lista maestra para la gestión de iglesias: une "sin matrícula" (mat=0,
 // tal como llega) y "con inscripción" (su total de inscritos) en un solo
 // registro por iglesia con su estado. El dashboard de origen las entrega
@@ -1972,8 +1993,10 @@ function buildDetail(kind){
   }
   if(kind==='otros-discapacidad'){
     return kdHead('Personas con discapacidad',
-      'Dato global (todas las convocatorias del mundo, no filtrado a las 6 zonas de Colombia), desglosado por tipo de condición reportada.') +
-      `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('Discapacidad','discapacidad',['ninguna'])}</div>`;
+      'Arriba, el total es un dato <b>global</b> (todas las convocatorias del mundo). El detalle de abajo — condición → curso → grupo y horario — es solo de las <b>6 zonas de Colombia</b>. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.') +
+      `<div class="otros-grid" style="grid-template-columns:1fr; margin-bottom:18px;">${otrosBarGroup('Discapacidad (dato global)','discapacidad',['ninguna'])}</div>` +
+      `<input type="search" id="disc-search" placeholder="Buscar condición o curso…" value="${discSearchTerm.replace(/"/g,'&quot;')}" oninput="onDiscSearch(this.value)" style="margin-bottom:14px; width:100%;">
+      <div id="disc-detalle-tree">${discDetalleTreeHtml()}</div>`;
   }
   if(kind==='oferta'){
     const cursosUnicos = cursosOfertadosResumen();
@@ -2023,6 +2046,88 @@ function ofertaTableHtml(){
   }).join('');
   return `<thead><tr><th></th><th>Código</th><th>Curso</th><th class="num-cell">Zonas</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th></tr></thead>
     <tbody>${rows || '<tr><td colspan="6" class="empty-note">Sin cursos que coincidan con la búsqueda.</td></tr>'}</tbody>`;
+}
+
+// Árbol condición → cursos → grupo/horario/zona, a partir de
+// DISCAPACIDAD_DETALLE (ya filtrado a Colombia por el extractor). Las
+// condiciones se agrupan por el texto EXACTO tal como lo reportó cada
+// persona (sin normalizar variantes como "Epilepsia"/"Epilepsia " o
+// "Ninguna" repetida) -- igual que la propia UI de Campus 360, que
+// tampoco las funde entre sí. Se excluye "Ninguna" porque no aporta al
+// desglose de quiénes SÍ reportan una condición.
+function discapacidadPorCondicion(){
+  const porCond = {};
+  DISCAPACIDAD_DETALLE.forEach(d=>{
+    if(normKey(d.cond)==='ninguna') return;
+    if(!porCond[d.cond]) porCond[d.cond] = { cond:d.cond, total:0, cursos:{} };
+    const c = porCond[d.cond];
+    c.total += d.n;
+    if(!c.cursos[d.curso]) c.cursos[d.curso] = { curso:d.curso, total:0, grupos:[] };
+    c.cursos[d.curso].total += d.n;
+    c.cursos[d.curso].grupos.push({zona:d.zona, cod:d.cod, g:d.g, h:d.h, n:d.n});
+  });
+  return Object.values(porCond)
+    .map(c=>({ ...c, cursos: Object.values(c.cursos).sort((a,b)=>b.total-a.total) }))
+    .sort((a,b)=>b.total-a.total);
+}
+let discSearchTerm = '';
+const expandedDiscCond = new Set();
+const expandedDiscCurso = new Set();
+function onDiscSearch(val){
+  discSearchTerm = val;
+  const wrap = document.getElementById('disc-detalle-tree');
+  withScrollLock(()=>{ if(wrap) wrap.innerHTML = discDetalleTreeHtml(); });
+}
+function toggleDiscCond(cond){
+  if(expandedDiscCond.has(cond)) expandedDiscCond.delete(cond); else expandedDiscCond.add(cond);
+  const wrap = document.getElementById('disc-detalle-tree');
+  withScrollLock(()=>{ if(wrap) wrap.innerHTML = discDetalleTreeHtml(); });
+}
+function toggleDiscCurso(key){
+  if(expandedDiscCurso.has(key)) expandedDiscCurso.delete(key); else expandedDiscCurso.add(key);
+  const wrap = document.getElementById('disc-detalle-tree');
+  withScrollLock(()=>{ if(wrap) wrap.innerHTML = discDetalleTreeHtml(); });
+}
+function discDetalleTreeHtml(){
+  if(!DISCAPACIDAD_DETALLE.length){
+    return `<div class="empty-note">No hay detalle por curso disponible para este corte.</div>`;
+  }
+  const term = normKey(discSearchTerm);
+  let condiciones = discapacidadPorCondicion();
+  if(term){
+    condiciones = condiciones
+      .map(c=>({ ...c, cursos: c.cursos.filter(cu=>normKey(cu.curso).includes(term)) }))
+      .filter(c=>normKey(c.cond).includes(term) || c.cursos.length>0);
+  }
+  if(!condiciones.length) return `<div class="empty-note">Sin resultados para esta búsqueda.</div>`;
+  return `<div class="disc-tree">${condiciones.map(c=>{
+    const open = expandedDiscCond.has(c.cond);
+    const cursosBody = open ? `<div class="disc-tree__cursos">${c.cursos.map(cu=>{
+      const key = c.cond+'|'+cu.curso;
+      const openCurso = expandedDiscCurso.has(key);
+      const gruposBody = openCurso ? `<table class="data mini">
+          <thead><tr><th>Zona</th><th>Código</th><th>Grupo</th><th>Horario</th><th class="num-cell">Personas</th></tr></thead>
+          <tbody>${[...cu.grupos].sort((a,b)=>b.n-a.n).map(g=>`<tr><td>${g.zona}</td><td class="code-cell">${g.cod}</td><td class="code-cell">${g.g}</td><td>${g.h}</td><td class="num-cell">${g.n}</td></tr>`).join('')}</tbody>
+        </table>` : '';
+      return `<div class="disc-tree__curso">
+          <div class="clickable-row disc-tree__curso-head" onclick="toggleDiscCurso('${key.replace(/'/g,"\\'")}')" title="Ver grupo, horario y zona">
+            <span class="expand-cell">${openCurso?'▾':'▸'}</span>
+            <span class="disc-tree__curso-nombre">${cu.curso}</span>
+            <span class="disc-tree__curso-total">${fmt(cu.total)}</span>
+          </div>
+          ${openCurso ? `<div class="groups-inline">${gruposBody}</div>` : ''}
+        </div>`;
+    }).join('')}</div>` : '';
+    return `<div class="disc-tree__cond">
+        <div class="clickable-row disc-tree__cond-head" onclick="toggleDiscCond('${c.cond.replace(/'/g,"\\'")}')" title="Ver cursos donde aparece esta condición">
+          <span class="expand-cell">${open?'▾':'▸'}</span>
+          <span class="disc-tree__cond-nombre">${c.cond}</span>
+          <div class="dash-bar-row__track disc-tree__cond-track"><div class="dash-bar-row__fill" style="width:${Math.min(100, c.total/condiciones[0].total*100).toFixed(1)}%; background:${colorGradient('#1e4d8c')};"></div></div>
+          <span class="disc-tree__cond-total">${fmt(c.total)}</span>
+        </div>
+        ${cursosBody}
+      </div>`;
+  }).join('')}</div>`;
 }
 
 function withScrollLock(fn){

@@ -322,10 +322,37 @@ def build_csv(data):
     lines.append('"Clave","Valor"')
     lines.append(csv_row("corte_datos", corte))
 
+    # ---------- Seccion 8: discapacidad, detalle por curso/grupo (Colombia) ----------
+    # discapacidad_detalle trae un registro por cada grupo donde hay al menos
+    # una persona con alguna condicion, para TODAS las convocatorias del
+    # mundo (Colombia y otros paises mezclados). Se filtra aqui a solo las 6
+    # zonas de Colombia via ZONA_MAP (misma fuente que el resto del informe),
+    # descartando lo demas -- a diferencia de "discapacidad" (el conteo
+    # simple de la Seccion 5), que se deja global a proposito.
+    lines.append("SECCION 8 - DISCAPACIDAD DETALLE (COLOMBIA)")
+    lines.append("")
+    lines.append('"Zona","Condicion","Curso","Codigo","Grupo","Horario","Personas"')
+    disc_detalle_co = 0
+    for d in data["demanda"].get("discapacidad_detalle", []):
+        zona = ZONA_MAP.get(d.get("conv", ""))
+        if not zona:
+            continue
+        condiciones = d.get("conds") or ["(sin dato)"]
+        for cond in condiciones:
+            cond_norm = strip_accents(cond).strip() or "(sin dato)"
+            lines.append(csv_row(
+                zona, cond_norm, strip_accents(d.get("curso", "")),
+                "C-" + str(d.get("codigo", "")), d.get("grupo", ""),
+                strip_accents(d.get("horario", "")), d.get("n", 0),
+            ))
+            disc_detalle_co += 1
+    lines.append("")
+
     counts = {
         "zonas": len(sec1_rows), "cursos": len(sec2_rows), "grupos": len(sec3_rows),
         "iglesias_sin": len(data["iglesias"]["sin_co_departamentos"]),
         "iglesias_con": len(data["demanda"]["iglesia_co_departamentos"]),
+        "discapacidad_detalle": disc_detalle_co,
     }
     return "\n".join(lines) + "\n", counts, grupos_snapshot, corte
 
@@ -425,7 +452,8 @@ async def main():
     print(f"OK -> {OUT_CSV}")
     print(
         f"Zonas: {counts['zonas']}  Cursos: {counts['cursos']}  Grupos: {counts['grupos']}  "
-        f"Iglesias sin matricula: {counts['iglesias_sin']}  Iglesias con inscripcion: {counts['iglesias_con']}"
+        f"Iglesias sin matricula: {counts['iglesias_sin']}  Iglesias con inscripcion: {counts['iglesias_con']}  "
+        f"Discapacidad detalle (Colombia): {counts['discapacidad_detalle']}"
     )
     print(f"Boletin guardado: {len(novedades)} novedad(es) en el corte {corte}")
 
