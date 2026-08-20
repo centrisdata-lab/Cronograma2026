@@ -587,6 +587,17 @@
   .dash-dona__item-label{font-weight:700; color:var(--text);}
   .dash-dona__item-value{color:var(--muted); font-weight:700; font-variant-numeric:tabular-nums; margin-left:auto; padding-left:8px;}
 
+  /* Barra apilada: una franja por categoría, todas del mismo alto -- a
+     diferencia de la dona, ninguna categoría queda ilegible aunque sea
+     muy chica frente a las demás (mínimo visual garantizado por CSS). */
+  .dash-stack{
+    display:flex; width:100%; height:26px; border-radius:8px; overflow:hidden;
+    box-shadow:inset 0 1px 3px rgba(26,60,110,.09); background:var(--bg);
+  }
+  .dash-stack__seg{height:100%; min-width:6px; transition:width .5s cubic-bezier(0.16,1,0.3,1); position:relative;}
+  .dash-stack__seg + .dash-stack__seg{box-shadow:inset 1px 0 0 rgba(255,255,255,.5);}
+  .dash-stack__seg::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,0) 55%);}
+
   /* ---------- Modal de zona (overlay) ---------- */
   .zmodal-backdrop{
     position:fixed; inset:0; background:rgba(15,26,48,.52); backdrop-filter:blur(2px);
@@ -1548,6 +1559,33 @@ function dashDona(titulo, items, subtitulo){
       ${subtitulo ? `<div class="dash-card__sub">${subtitulo}</div>` : ''}
     </div>`;
 }
+// Barra apilada horizontal: una sola barra dividida en segmentos de
+// color proporcionales al valor, con leyenda debajo -- útil cuando una
+// categoría domina mucho sobre las demás (como "Ninguno" en etnia), caso
+// en el que una dona deja al resto de segmentos casi invisibles por lo
+// finos que quedan. Aquí cada segmento sigue siendo una franja ancha y
+// legible sin importar la proporción.
+function dashBarraApilada(titulo, items, subtitulo){
+  const total = items.reduce((a,i)=>a+i.val,0) || 1;
+  const segmentos = items.map((i,idx)=>{
+    const pct = i.val/total*100;
+    if(pct<=0) return '';
+    const esBorde = idx===0 ? 'border-radius:8px 0 0 8px;' : (idx===items.length-1 ? 'border-radius:0 8px 8px 0;' : '');
+    return `<div class="dash-stack__seg" style="width:${pct.toFixed(2)}%; background:${i.color}; ${esBorde}" title="${i.nombre}: ${fmt(i.val)} (${pct.toFixed(0)}%)"></div>`;
+  }).join('');
+  const leyenda = items.map(i=>`
+    <div class="dash-dona__item">
+      <span class="dash-bar-row__dot" style="background:${i.color};"></span>
+      <span class="dash-dona__item-label">${i.nombre}</span>
+      <span class="dash-dona__item-value">${fmt(i.val)} · ${(i.val/total*100).toFixed(0)}%</span>
+    </div>`).join('');
+  return `<div class="dash-card">
+      <h4 class="dash-card__title">${titulo}</h4>
+      <div class="dash-stack">${segmentos}</div>
+      <div class="dash-dona__legend" style="margin-top:16px;">${leyenda}</div>
+      ${subtitulo ? `<div class="dash-card__sub">${subtitulo}</div>` : ''}
+    </div>`;
+}
 // Medidor de ocupación: arco SVG de 270°, un solo hue (magnitud, no
 // categoría), con el número grande al centro -- patrón "gauge" simple
 // sin depender de ninguna librería de gráficos.
@@ -1655,11 +1693,19 @@ function dashboardHtml(){
   const edadRows = OTROS.filter(o=>o.cat==='edad');
   // Un solo hue (magnitud, no categoría) en degradado claro→oscuro según la
   // cantidad, para que el color mismo comunique cuál rango pesa más sin
-  // depender de leer los números.
+  // depender de leer los números. hexMix produce un hex real (no
+  // color-mix()) porque colorGradient() hace parseInt(hex,16) para
+  // aclarar el color -- un color-mix() ahí da NaN y el relleno queda sin
+  // fondo (invisible).
+  const hexMix = (hexA, hexB, t) => {
+    const pa = hexA.replace('#',''), pb = hexB.replace('#','');
+    const mix = (i) => Math.round(parseInt(pa.substr(i,2),16)*(1-t) + parseInt(pb.substr(i,2),16)*t);
+    return '#' + [0,2,4].map(i=>mix(i).toString(16).padStart(2,'0')).join('');
+  };
   const edadMax = Math.max(...edadRows.map(e=>e.val), 1);
   const dataEdad = edadRows.map(e=>{
     const t = 0.35 + 0.65*(e.val/edadMax); // 35%-100% de intensidad, nunca demasiado pálido
-    return { nombre:e.lbl, nombreCorto:e.lbl, val:e.val, color:`color-mix(in srgb, var(--blue) ${(t*100).toFixed(0)}%, var(--blue-light))` };
+    return { nombre:e.lbl, nombreCorto:e.lbl, val:e.val, color:hexMix('#e8f0fb','#1a3c6e',t) };
   });
 
   return `
@@ -1684,7 +1730,7 @@ function dashboardHtml(){
       </div>
       <div class="dash-grid" style="margin-top:20px;">
         ${dashDona('Género', dataGenero)}
-        ${dashDona('Grupo étnico', dataEtnia)}
+        ${dashBarraApilada('Grupo étnico', dataEtnia)}
       </div>
       <div class="dash-grid" style="margin-top:20px; grid-template-columns:1fr;">
         ${dashColumnas('Rango de edad', dataEdad, false)}
