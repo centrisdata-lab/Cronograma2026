@@ -1,0 +1,41 @@
+{
+  "corte": "2026-08-19T21:58:20.754081-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4841",
+      "matAntes": 26,
+      "matAhora": 27,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4994",
+      "matAntes": 39,
+      "matAhora": 40,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2684",
+      "nom": "Sistemas Nivel 2",
+      "g": "G-4737",
+      "matAntes": 14,
+      "matAhora": 15,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2466",
+      "nom": "Sin Limites Virtual",
+      "g": "G-5056",
+      "matAntes": 8,
+      "matAhora": 9,
+      "delta": 1
+    }
+  ]
+}
