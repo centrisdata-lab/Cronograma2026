@@ -812,13 +812,13 @@ SECCION 5 - OTROS DATOS GLOBALES
 
 "Categoria","Etiqueta","Valor"
 genero,F,19927
-genero,M,5295
+genero,M,5296
 edad,18-25,2905
-edad,26-35,4674
+edad,26-35,4675
 edad,36-45,5148
 edad,46-60,7829
 edad,61+,3907
-etnia,Ninguno,23093
+etnia,Ninguno,23094
 etnia,Afrodescendientes,1601
 etnia,Indigenas,429
 etnia,Raizales,89
@@ -829,103 +829,103 @@ discapacidad,Visual,112
 discapacidad,Auditiva,77
 discapacidad,Cognitiva,76
 discapacidad,Multiple,25
-discapacidad,Fibromialgia,5
-discapacidad,Ninguna,5
 discapacidad,Ninguna ,5
-discapacidad,Epilepsia ,3
-discapacidad,Epilepsia,3
+discapacidad,Ninguna,5
+discapacidad,Fibromialgia,5
 discapacidad,Artrosis,3
-discapacidad,Artrosis degenerativa,2
-discapacidad,Intelectual ,2
+discapacidad,Epilepsia,3
+discapacidad,Epilepsia ,3
 discapacidad,Artritis,2
-discapacidad,No me puedo agachar ,2
-discapacidad,artritis reumatoide,2
-discapacidad,Recuperacion de habla a consecuencia de un derrame ,2
 discapacidad,Ritmo cardiaco bajo ,2
 discapacidad,hafisia,2
+discapacidad,Intelectual ,2
+discapacidad,artritis reumatoide,2
 discapacidad,Mi diagnostico es que mi corazon esta muy lento ,2
+discapacidad,Recuperacion de habla a consecuencia de un derrame ,2
+discapacidad,No me puedo agachar ,2
+discapacidad,Artrosis degenerativa,2
 discapacidad,Movilidad reducida,2
-discapacidad,Autismo leve,1
-discapacidad,Parkinson ,1
-discapacidad,Esquizofrenia,1
+discapacidad,Apnea del sueno,1
 discapacidad,Mental,1
-discapacidad,Desgaste de cadera,1
-discapacidad,Insuficiencia renal,1
-discapacidad,Artosisi,1
-discapacidad,Cancer,1
-discapacidad,Bipolar ,1
-discapacidad,Falta de pierna derecha,1
-discapacidad,Hemiparexia con hipoxia neonatal ,1
+discapacidad,Discapacidad intelectual ,1
 discapacidad,Mental leve,1
+discapacidad,Cancer,1
+discapacidad,Diabetes,1
+discapacidad,Falta de pierna derecha,1
+discapacidad,Bipolar ,1
+discapacidad,Respiratoria asma ,1
+discapacidad,Hemiparexia con hipoxia neonatal ,1
+discapacidad,Artosisi,1
+discapacidad,Esquizofrenia,1
+discapacidad,Autismo leve,1
+discapacidad,Insuficiencia renal,1
+discapacidad,TDH ,1
+discapacidad,Siringomelia ,1
+discapacidad,Tdah,1
 discapacidad,Usa baston ,1
-discapacidad,Ataxia ,1
-discapacidad,Discapacidad mental,1
-discapacidad,Paciente oncologica,1
-discapacidad,Ematoma ,1
+discapacidad,Discopatia,1
 discapacidad,Persona con discapacidad minusvalida,1
+discapacidad,Vision lejana,1
+discapacidad,Paciente oncologica,1
+discapacidad,Otra,1
 discapacidad,Columna,1
+discapacidad,Psicologica y fisica ,1
 discapacidad,Psicosocial,1
+discapacidad,Ataxia ,1
 discapacidad,TDAH ,1
 discapacidad,Trasplante renal,1
-discapacidad,Ataxia cerebral no progresiva,1
+discapacidad,Ematoma ,1
 discapacidad,Presion alta,1
-discapacidad,Otra,1
-discapacidad,Psicologica y fisica ,1
-discapacidad,Apnea del sueno,1
-discapacidad,Diabetes,1
-discapacidad,"Soy diabetica, y estoy operada del corazon, ",1
-discapacidad,Respiratoria asma ,1
-discapacidad,TDH ,1
-discapacidad,Motriz,1
-discapacidad,Ataques epilepticos ,1
-discapacidad,Artritis rematoidea,1
-discapacidad,Cancer de mama ,1
-discapacidad,"Columna operada y visual, miopia y abtimatismo",1
-discapacidad,Memoria debilitada por infarto en el 2020,1
-discapacidad,Discapacidad fisica ,1
-discapacidad,Problema respiratorio ,1
-discapacidad,Insuficiencia renal ,1
-discapacidad,Luxacion de cadera congenita,1
-discapacidad,Hipertension pulmonar,1
-discapacidad,Ciatica,1
-discapacidad,Enfermedad del Miocardio,1
-discapacidad,Cardiaca,1
-discapacidad,Columna operada,1
-discapacidad,Osteoporosis,1
 discapacidad,Uso gafas,1
+discapacidad,Dependencia,1
+discapacidad,Artrosis en la mano,1
+discapacidad,Artritis rematoideal,1
+discapacidad,Perdida de capacidad laboral,1
+discapacidad,Por lupus,1
+discapacidad,medula osea,1
+discapacidad,Sincope,1
 discapacidad,Mental ,1
 discapacidad,Esquizofrenia ,1
-discapacidad,Sincope,1
-discapacidad,Vision lejana,1
+discapacidad,Osteoporosis,1
 discapacidad,Traqueostomia,1
-discapacidad,Tdah,1
-discapacidad,Perdida de capacidad laboral,1
-discapacidad,Siringomelia ,1
-discapacidad,Discopatia,1
-discapacidad,Artritis rematoideal,1
-discapacidad,medula osea,1
-discapacidad,Hipertension ,1
-discapacidad,Artrosis en la mano,1
-discapacidad,Dependencia,1
-discapacidad,Por lupus,1
-discapacidad,Discapacidad intelectual ,1
-discapacidad,Psiquica,1
-discapacidad,Siquiquica,1
-discapacidad,Anemia faciforme,1
+discapacidad,Columna operada,1
+discapacidad,Motriz,1
+discapacidad,Cardiaca,1
+discapacidad,Enfermedad del Miocardio,1
+discapacidad,Hipertension pulmonar,1
+discapacidad,Luxacion de cadera congenita,1
+discapacidad,Insuficiencia renal ,1
+discapacidad,Discapacidad mental,1
+discapacidad,Problema respiratorio ,1
+discapacidad,Artritis rematoidea,1
+discapacidad,Ataxia cerebral no progresiva,1
+discapacidad,Parkinson ,1
+discapacidad,"Soy diabetica, y estoy operada del corazon, ",1
 discapacidad,Corazon ,1
-discapacidad,Memoria limitada por infarto cerebral en el ano 2020,1
-discapacidad,Trastorno de ansiedad y depresion ,1
-discapacidad,Tdh ,1
+discapacidad,Discapacidad fisica ,1
+discapacidad,Memoria debilitada por infarto en el 2020,1
+discapacidad,Cancer de mama ,1
+discapacidad,"Columna operada y visual, miopia y abtimatismo",1
 discapacidad,Paciente oncologica ,1
+discapacidad,Ataques epilepticos ,1
+discapacidad,Desgaste de cadera,1
 discapacidad,Lupus,1
-conocimiento,Iglesia,22869
+discapacidad,Trastorno de ansiedad y depresion ,1
+discapacidad,Memoria limitada por infarto cerebral en el ano 2020,1
+discapacidad,Ciatica,1
+discapacidad,Tdh ,1
+discapacidad,Siquiquica,1
+discapacidad,Psiquica,1
+discapacidad,Anemia faciforme,1
+discapacidad,Hipertension ,1
+conocimiento,Iglesia,22870
 conocimiento,Referido,777
 conocimiento,Redes,134
 conocimiento,Web,45
 conocimiento,Noticias,7
 conocimiento,(sin dato),2
 origen_pais,Colombia,22081
-origen_pais,Total,25222
+origen_pais,Total,25223
 
 SECCION 6 - IGLESIAS CON INSCRIPCION (COLOMBIA)
 
@@ -945,8 +945,8 @@ Bogota & Cundinamarca,Cundinamarca,Suba Flores,192
 Bogota & Cundinamarca,Cundinamarca,Santa Lucia,181
 Bogota & Cundinamarca,Cundinamarca,Candelaria,175
 Antioquia & Eje Cafetero,Antioquia,Itagui,174
-"Santanderes, Boyaca y Cesar",Norte de Santander,Rosetal,167
 Zona Caribe,Bolivar,Avenida Pedro de Heredia,167
+"Santanderes, Boyaca y Cesar",Norte de Santander,Rosetal,167
 Bogota & Cundinamarca,Cundinamarca,Sosiego,157
 Bogota & Cundinamarca,Cundinamarca,Suba Rincon,153
 Zona Pacifico,Valle del Cauca,Pasoancho,150
@@ -967,10 +967,10 @@ Antioquia & Eje Cafetero,Caldas,Manizales Norte,107
 Antioquia & Eje Cafetero,Antioquia,Apartado,105
 Bogota & Cundinamarca,Cundinamarca,Chia,104
 Antioquia & Eje Cafetero,Antioquia,Bello,101
-"Santanderes, Boyaca y Cesar",Boyaca,Tunja,100
 "Santanderes, Boyaca y Cesar",Boyaca,Sogamoso,100
-Zona Caribe,Atlantico,Villa Estadio,99
+"Santanderes, Boyaca y Cesar",Boyaca,Tunja,100
 Zona Sur & Llanos,Huila,SUR,99
+Zona Caribe,Atlantico,Villa Estadio,99
 Zona Sur & Llanos,Casanare,Vencedores,98
 Zona Pacifico,Cauca,Popayan Norte,95
 Bogota & Cundinamarca,Cundinamarca,La Alqueria,92
@@ -980,58 +980,58 @@ Zona Sur & Llanos,Arauca,Saravena,90
 Bogota & Cundinamarca,Cundinamarca,Bosa Estacion,90
 Zona Pacifico,Valle del Cauca,El Cambio,89
 Bogota & Cundinamarca,Cundinamarca,Madrid,88
-Bogota & Cundinamarca,Cundinamarca,Suba Lisboa,87
 Bogota & Cundinamarca,Cundinamarca,Valladolid,87
-Zona Caribe,Bolivar,Del Castillo,86
+Bogota & Cundinamarca,Cundinamarca,Suba Lisboa,87
 Zona Sur & Llanos,Meta,EL TERMINAL,86
+Zona Caribe,Bolivar,Del Castillo,86
 Bogota & Cundinamarca,Cundinamarca,Lijaca,85
 Zona Sur & Llanos,Tolima,Picalena,84
-Antioquia & Eje Cafetero,Risaralda,Pereira Cuba,83
 Zona Pacifico,Valle del Cauca,Piloto,83
+Antioquia & Eje Cafetero,Risaralda,Pereira Cuba,83
 Bogota & Cundinamarca,Cundinamarca,Lucero Bajo,81
-Zona Sur & Llanos,Meta,Acacias,79
 Bogota & Cundinamarca,Cundinamarca,Cajica,79
+Zona Sur & Llanos,Meta,Acacias,79
 Bogota & Cundinamarca,Cundinamarca,Santa Librada,79
-Bogota & Cundinamarca,Cundinamarca,Ubate,78
 Zona Pacifico,Choco,Medrano,78
+Bogota & Cundinamarca,Cundinamarca,Ubate,78
+Zona Caribe,Bolivar,IGLESIA DE DIOS MINISTERIAL DE JESUCRISTO INTERNACIONAL,77
+Bogota & Cundinamarca,Cundinamarca,La Victoria,77
 "Santanderes, Boyaca y Cesar",Boyaca,Duitama,77
 Zona Pacifico,Valle del Cauca,Los Lagos,77
-Bogota & Cundinamarca,Cundinamarca,La Victoria,77
-Zona Caribe,Bolivar,IGLESIA DE DIOS MINISTERIAL DE JESUCRISTO INTERNACIONAL,77
 Bogota & Cundinamarca,Cundinamarca,Serrezuelita,76
 Bogota & Cundinamarca,Cundinamarca,Class Roma,76
-Bogota & Cundinamarca,Cundinamarca,Chapinero,75
 Bogota & Cundinamarca,Cundinamarca,Silvania,75
 Bogota & Cundinamarca,Cundinamarca,Parque de las Aguas,75
+Bogota & Cundinamarca,Cundinamarca,Chapinero,75
 Antioquia & Eje Cafetero,Risaralda,Guadalupe,74
 Zona Pacifico,Narino,Centro,74
 Zona Pacifico,Narino,Heroes,73
-Antioquia & Eje Cafetero,Risaralda,Pereira Centro,72
 Bogota & Cundinamarca,Cundinamarca,Cedritos,72
-Zona Caribe,Bolivar,Ceballos,72
 Zona Sur & Llanos,Huila,norte,72
-"Santanderes, Boyaca y Cesar",Santander,Barrancabermeja,71
+Antioquia & Eje Cafetero,Risaralda,Pereira Centro,72
+Zona Caribe,Bolivar,Ceballos,72
 Zona Pacifico,Choco,Centro,71
 Bogota & Cundinamarca,Cundinamarca,Zipaquira,71
+"Santanderes, Boyaca y Cesar",Santander,Barrancabermeja,71
 Antioquia & Eje Cafetero,Quindio,Postobon,70
 Zona Caribe,Magdalena,Avenida Libertador,70
 Bogota & Cundinamarca,Cundinamarca,Patio Bonito,70
-Zona Caribe,Atlantico,Boston,69
-Zona Sur & Llanos,Tolima,LA QUINTA,69
 Zona Pacifico,Valle del Cauca,12 de Octubre,69
+Zona Sur & Llanos,Tolima,LA QUINTA,69
+Zona Caribe,Atlantico,Boston,69
 Antioquia & Eje Cafetero,Quindio,Armenia Norte,68
 Zona Sur & Llanos,Arauca,Arauca Cristo Rey,68
 Bogota & Cundinamarca,Cundinamarca,Bosa Recreo,67
 Zona Caribe,Atlantico,Puerto Colombia,65
 Bogota & Cundinamarca,Cundinamarca,San Vicente Ferrer,65
 Zona Pacifico,Cauca,Ciudad Jardin,65
-Zona Pacifico,Cauca,Popayan Occidente,64
 Zona Caribe,La Guajira,Riohacha,64
+Zona Pacifico,Cauca,Popayan Occidente,64
 "Santanderes, Boyaca y Cesar",Santander,Exito,63
+Zona Sur & Llanos,Meta,Puerto Gaitan,63
+Zona Sur & Llanos,Tolima,La Floresta,63
 Zona Sur & Llanos,Meta,Ciudad Milenio,63
 Zona Caribe,Atlantico,La Pradera,63
-Zona Sur & Llanos,Tolima,La Floresta,63
-Zona Sur & Llanos,Meta,Puerto Gaitan,63
 Zona Sur & Llanos,Tolima,El Jardin,62
 Zona Pacifico,Valle del Cauca,Popular,61
 Zona Caribe,Magdalena,Fundacion,60
@@ -1042,951 +1042,951 @@ Zona Sur & Llanos,Tolima,Las Ferias,57
 Zona Pacifico,Narino,La Taguera,56
 Zona Sur & Llanos,Arauca,Tame,56
 Zona Pacifico,Valle del Cauca,Centro,55
-Zona Caribe,Atlantico,Riomar,55
 Bogota & Cundinamarca,Cundinamarca,Usme,55
-Antioquia & Eje Cafetero,Antioquia,Villanueva,54
+Zona Caribe,Atlantico,Riomar,55
 Antioquia & Eje Cafetero,Antioquia,CALASANZ,54
-Bogota & Cundinamarca,Cundinamarca,Girardot,53
+Antioquia & Eje Cafetero,Antioquia,Villanueva,54
 Zona Caribe,Bolivar,El Carmen de Bolivar,53
-Bogota & Cundinamarca,Cundinamarca,funza,52
+Bogota & Cundinamarca,Cundinamarca,Girardot,53
 Zona Pacifico,Cauca,Santander de Quilichao,52
+Bogota & Cundinamarca,Cundinamarca,funza,52
 Antioquia & Eje Cafetero,Antioquia,Rionegro,51
-Zona Pacifico,Valle del Cauca,La 10,51
 Zona Pacifico,Valle del Cauca,Independencia,51
+Zona Pacifico,Valle del Cauca,La 10,51
 Bogota & Cundinamarca,Cundinamarca,Las Mercedes,51
-Zona Pacifico,Valle del Cauca,Llanogrande,49
 Bogota & Cundinamarca,Cundinamarca,Tocancipa,49
+Zona Pacifico,Valle del Cauca,Llanogrande,49
 Zona Sur & Llanos,Caqueta,Florencia -Centro,49
 "Santanderes, Boyaca y Cesar",Santander,Floridablanca,48
 Zona Pacifico,Valle del Cauca,Libertadores,47
-Zona Sur & Llanos,Meta,Puerto Lopez,45
 Zona Pacifico,Narino,Ipiales,45
 "Santanderes, Boyaca y Cesar",Cesar,Mayales,45
+Zona Sur & Llanos,Meta,Puerto Lopez,45
 Zona Sur & Llanos,Tolima,GAVIOTA,44
 Bogota & Cundinamarca,Cundinamarca,Sesquile,43
 Zona Sur & Llanos,Meta,Doce de Octubre,43
 "Santanderes, Boyaca y Cesar",Santander,Piedecuesta,42
 Zona Caribe,Magdalena,Ferrocarril,42
-Zona Pacifico,Valle del Cauca,Yumbo,41
 "Santanderes, Boyaca y Cesar",Norte de Santander,Aeropuerto,41
-Zona Pacifico,Valle del Cauca,Florida,40
-Antioquia & Eje Cafetero,Quindio,La Pista,40
-Antioquia & Eje Cafetero,Antioquia,Marinilla,40
+Zona Pacifico,Valle del Cauca,Yumbo,41
 Zona Sur & Llanos,Huila,Las Palmas,40
+Antioquia & Eje Cafetero,Quindio,La Pista,40
+Zona Pacifico,Valle del Cauca,Florida,40
+Antioquia & Eje Cafetero,Antioquia,Marinilla,40
 Antioquia & Eje Cafetero,Antioquia,Necocli,40
 Zona Sur & Llanos,Tolima,Melgar,40
-"Santanderes, Boyaca y Cesar",Boyaca,Paipa,39
 Bogota & Cundinamarca,Cundinamarca,Suba Fontanar,39
+"Santanderes, Boyaca y Cesar",Boyaca,Paipa,39
+Zona Caribe,Magdalena,Pivijay,38
 Zona Pacifico,Valle del Cauca,Puebo Nuevo,38
 Bogota & Cundinamarca,Cundinamarca,El Rosal,38
-Zona Caribe,Magdalena,Pivijay,38
-Bogota & Cundinamarca,Cundinamarca,Cota,37
 Zona Caribe,Magdalena,CIENAGA,37
-Zona Sur & Llanos,Huila,Rivera,37
-Antioquia & Eje Cafetero,Antioquia,SABANETA,37
 Antioquia & Eje Cafetero,Caldas,centro,37
+Antioquia & Eje Cafetero,Antioquia,SABANETA,37
 Zona Caribe,Cordoba,Cerete,37
+Zona Sur & Llanos,Huila,Rivera,37
+Bogota & Cundinamarca,Cundinamarca,Cota,37
 Zona Sur & Llanos,Tolima,Cerca a la la estacion de gasolina Mendoza,36
 Zona Caribe,Cordoba,Villa Fatima,36
 Zona Sur & Llanos,Caqueta,LA ORIENTAL,36
 Zona Sur & Llanos,Huila,Centro,35
-Bogota & Cundinamarca,Cundinamarca,Tenjo,34
 "Santanderes, Boyaca y Cesar",Boyaca,Chiquinquira,34
+Bogota & Cundinamarca,Cundinamarca,Tenjo,34
 Zona Sur & Llanos,Tolima,El Salado,34
-Antioquia & Eje Cafetero,Antioquia,Copacabana,33
 Zona Pacifico,Putumayo,Mocoa,33
+Antioquia & Eje Cafetero,Antioquia,Copacabana,33
 Zona Sur & Llanos,Meta,BRISAS DEL LLANO,33
+Zona Sur & Llanos,Arauca,Fortul,32
 Zona Caribe,Atlantico,La Loma,32
 Zona Pacifico,Narino,"Samaniego, Narino",32
-Bogota & Cundinamarca,Cundinamarca,Mesitas de El Colegio,32
 Zona Pacifico,Valle del Cauca,Zamorano,32
 Zona Pacifico,Putumayo,Puerto Asis,32
-Zona Sur & Llanos,Arauca,Fortul,32
-Zona Sur & Llanos,Tolima,Flandes quintas,31
+Bogota & Cundinamarca,Cundinamarca,Mesitas de El Colegio,32
 Antioquia & Eje Cafetero,Quindio,Calarca Norte,31
 Zona Sur & Llanos,Huila,Garzon,31
-Zona Sur & Llanos,Arauca,San Isidro,30
+Zona Sur & Llanos,Tolima,Flandes quintas,31
+Antioquia & Eje Cafetero,Antioquia,Manrique,30
 Zona Caribe,Magdalena,Rodadero,30
+Zona Sur & Llanos,Huila,Tello,30
 Bogota & Cundinamarca,Cundinamarca,Viota,30
 Antioquia & Eje Cafetero,Quindio,Circasia,30
-"Santanderes, Boyaca y Cesar",Boyaca,Puerto Boyaca,30
-Antioquia & Eje Cafetero,Antioquia,Manrique,30
-Zona Sur & Llanos,Huila,Tello,30
 Zona Sur & Llanos,Huila,Trinidad - centro,30
+"Santanderes, Boyaca y Cesar",Boyaca,Puerto Boyaca,30
+Zona Sur & Llanos,Arauca,San Isidro,30
 Zona Pacifico,Cauca,El Bordo,29
 Antioquia & Eje Cafetero,Caldas,Chinchina,29
-Zona Caribe,Bolivar,Turbaco,28
-Zona Caribe,"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,28
-Zona Sur & Llanos,Caqueta,San Vicente del Caguan,28
-Bogota & Cundinamarca,Cundinamarca,La Calera,28
-Zona Pacifico,Valle del Cauca,Villagorgona,28
 Zona Pacifico,Valle del Cauca,BUGA,28
-Antioquia & Eje Cafetero,Antioquia,El Carmen de Viboral,27
-Zona Sur & Llanos,Casanare,Paz de Ariporo,27
+Zona Caribe,"Archipielago de San Andres, Providencia y Santa Catalina",Iglesia Cartagena Alegre,28
+Zona Pacifico,Valle del Cauca,Villagorgona,28
+Zona Caribe,Bolivar,Turbaco,28
+Bogota & Cundinamarca,Cundinamarca,La Calera,28
+Zona Sur & Llanos,Caqueta,San Vicente del Caguan,28
 Zona Pacifico,Putumayo,La Hormiga,27
-Zona Caribe,Atlantico,La Ceiba,27
 Antioquia & Eje Cafetero,Quindio,Calle 30,27
+Antioquia & Eje Cafetero,Antioquia,El Carmen de Viboral,27
 Zona Sur & Llanos,Meta,Vistahermosa,27
-Antioquia & Eje Cafetero,Risaralda,El Poblado,26
+Zona Sur & Llanos,Casanare,Paz de Ariporo,27
+Zona Caribe,Atlantico,La Ceiba,27
 Zona Sur & Llanos,Meta,Iglesia de Cumaral,26
+Antioquia & Eje Cafetero,Risaralda,El Poblado,26
 Antioquia & Eje Cafetero,Quindio,Sur,26
-Bogota & Cundinamarca,Cundinamarca,Soacha Compartir,26
 Antioquia & Eje Cafetero,Caldas,Villamaria,26
+Bogota & Cundinamarca,Cundinamarca,Soacha Compartir,26
 Zona Sur & Llanos,Meta,Iglesia Cubarral,26
-Zona Pacifico,Choco,Huapango,26
 Bogota & Cundinamarca,Cundinamarca,VILLETA,26
-Zona Pacifico,Cauca,Vereda de Torres,25
-Zona Sur & Llanos,Casanare,Sector Llano Lindo,25
-"Santanderes, Boyaca y Cesar",Santander,Giron,25
-Zona Sur & Llanos,Tolima,Purificacion,25
-Zona Sur & Llanos,Meta,Granada,25
+Zona Pacifico,Choco,Huapango,26
 Zona Pacifico,Valle del Cauca,Guacari,25
+Zona Sur & Llanos,Meta,Granada,25
+Zona Sur & Llanos,Tolima,Purificacion,25
 Antioquia & Eje Cafetero,Antioquia,La Ceja,25
-Antioquia & Eje Cafetero,Antioquia,Sopetran,24
-Antioquia & Eje Cafetero,Risaralda,2500 lotes,24
-Zona Sur & Llanos,Huila,campoalegre,24
-Zona Sur & Llanos,Meta,Castilla la Nueva,24
-Zona Pacifico,Choco,Istmina,24
+Zona Sur & Llanos,Casanare,Sector Llano Lindo,25
+Zona Pacifico,Cauca,Vereda de Torres,25
+"Santanderes, Boyaca y Cesar",Santander,Giron,25
 Zona Pacifico,Cauca,Piendamo,24
-Zona Caribe,Sucre,Centro,24
+Zona Pacifico,Cauca,Puerto Tejada,24
+Antioquia & Eje Cafetero,Risaralda,2500 lotes,24
 Zona Pacifico,Cauca,"Timbio, Cauca",24
 Antioquia & Eje Cafetero,Antioquia,Caldas,24
-Zona Pacifico,Cauca,Puerto Tejada,24
-Bogota & Cundinamarca,Cundinamarca,Al lado del Club La Riviera,23
-Antioquia & Eje Cafetero,Caldas,supia,23
-Zona Pacifico,Cauca,Caloto,23
-Zona Pacifico,Narino,Catambuco,23
-Zona Sur & Llanos,Casanare,Villanueva,23
-"Santanderes, Boyaca y Cesar",Norte de Santander,Los Patios,23
-Zona Pacifico,Valle del Cauca,Darien,23
-Zona Caribe,La Guajira,Rancheria Pulitchamana,23
-Zona Pacifico,Valle del Cauca,Bella Suiza,23
+Zona Sur & Llanos,Huila,campoalegre,24
+Zona Pacifico,Choco,Istmina,24
+Zona Caribe,Sucre,Centro,24
+Antioquia & Eje Cafetero,Antioquia,Sopetran,24
+Zona Sur & Llanos,Meta,Castilla la Nueva,24
 Antioquia & Eje Cafetero,Caldas,Las Ferias,23
-Antioquia & Eje Cafetero,Antioquia,Centro,22
-Antioquia & Eje Cafetero,Antioquia,Chigorodo,22
-Zona Caribe,Cordoba,CARRILLO,22
-Zona Pacifico,Valle del Cauca,Poblado,22
-Zona Sur & Llanos,Tolima,Espinal,22
-Antioquia & Eje Cafetero,Risaralda,La Virginia,22
-Zona Sur & Llanos,Tolima,San Sebastian de Mariquita,22
-Zona Pacifico,Valle del Cauca,Pradera,22
+Zona Pacifico,Valle del Cauca,Bella Suiza,23
+Zona Caribe,La Guajira,Rancheria Pulitchamana,23
+Zona Pacifico,Narino,Catambuco,23
+Zona Pacifico,Valle del Cauca,Darien,23
+Zona Pacifico,Cauca,Caloto,23
+"Santanderes, Boyaca y Cesar",Norte de Santander,Los Patios,23
+Antioquia & Eje Cafetero,Caldas,supia,23
+Bogota & Cundinamarca,Cundinamarca,Al lado del Club La Riviera,23
+Zona Sur & Llanos,Casanare,Villanueva,23
 "Santanderes, Boyaca y Cesar",Norte de Santander,Comuneros,22
 Antioquia & Eje Cafetero,Risaralda,Barrio Villavicencio,22
-Zona Pacifico,Valle del Cauca,corregimiento Rozo,21
-Zona Pacifico,Valle del Cauca,Americas,21
+Antioquia & Eje Cafetero,Risaralda,La Virginia,22
+Antioquia & Eje Cafetero,Antioquia,Chigorodo,22
+Zona Sur & Llanos,Tolima,Espinal,22
+Zona Sur & Llanos,Tolima,San Sebastian de Mariquita,22
+Antioquia & Eje Cafetero,Antioquia,Centro,22
+Zona Caribe,Cordoba,CARRILLO,22
+Zona Pacifico,Valle del Cauca,Poblado,22
+Zona Pacifico,Valle del Cauca,Pradera,22
+Zona Pacifico,Narino,Buesaco,21
+Zona Caribe,Atlantico,Las Nieves,21
 Antioquia & Eje Cafetero,Risaralda,Belen de umbria,21
 Bogota & Cundinamarca,Cundinamarca,Guasca,21
-Zona Pacifico,Narino,Buesaco,21
 "Santanderes, Boyaca y Cesar",Norte de Santander,Aguas Calientes,21
-Zona Caribe,Atlantico,Las Nieves,21
-Zona Sur & Llanos,Huila,Suaza,20
-Antioquia & Eje Cafetero,Antioquia,Carepa,20
+Zona Pacifico,Valle del Cauca,Americas,21
+Zona Pacifico,Valle del Cauca,corregimiento Rozo,21
 Zona Sur & Llanos,Meta,Copecal,20
-"Santanderes, Boyaca y Cesar",Norte de Santander,Atalalaya,20
-Zona Sur & Llanos,Tolima,Miramar,20
 Zona Caribe,Bolivar,Bocagrande,20
-Zona Sur & Llanos,Casanare,Aguazul,19
-Zona Sur & Llanos,Huila,Algeciras,19
-Zona Pacifico,Narino,Tuquerres,19
-Zona Pacifico,Valle del Cauca,Pavas,19
-Zona Caribe,Sucre,San Onofre,19
+Zona Sur & Llanos,Tolima,Miramar,20
+Antioquia & Eje Cafetero,Antioquia,Carepa,20
+Zona Sur & Llanos,Huila,Suaza,20
+"Santanderes, Boyaca y Cesar",Norte de Santander,Atalalaya,20
 Zona Caribe,Atlantico,Sabanagrande,19
+Zona Caribe,Sucre,San Onofre,19
+Zona Pacifico,Valle del Cauca,Pavas,19
+Zona Sur & Llanos,Huila,Algeciras,19
+Zona Sur & Llanos,Casanare,Aguazul,19
 Zona Pacifico,Valle del Cauca,Roldanillo,19
-Zona Sur & Llanos,Caqueta,Puerto Rico,18
-"Santanderes, Boyaca y Cesar",Cesar,Bosconia,18
-Zona Sur & Llanos,Meta,San Martin,18
-Bogota & Cundinamarca,Cundinamarca,Guacheta,18
-"Santanderes, Boyaca y Cesar",Cesar,Villalba,18
-"Santanderes, Boyaca y Cesar",Boyaca,Otanche,18
-Antioquia & Eje Cafetero,Antioquia,Envigado,18
-Zona Pacifico,Valle del Cauca,Vijes,18
+Zona Pacifico,Narino,Tuquerres,19
 Zona Pacifico,Valle del Cauca,El Cerrito,18
-Zona Sur & Llanos,Tolima,Honda,18
 Zona Pacifico,Cauca,Corinto,18
+Zona Sur & Llanos,Caqueta,Puerto Rico,18
+Bogota & Cundinamarca,Cundinamarca,Guacheta,18
+Zona Sur & Llanos,Tolima,Honda,18
+"Santanderes, Boyaca y Cesar",Cesar,Villalba,18
+"Santanderes, Boyaca y Cesar",Cesar,Bosconia,18
+"Santanderes, Boyaca y Cesar",Boyaca,Otanche,18
+Zona Pacifico,Valle del Cauca,Vijes,18
 Bogota & Cundinamarca,Cundinamarca,Choachi,18
-Bogota & Cundinamarca,Cundinamarca,Sopo,18
 Zona Sur & Llanos,Huila,Isnos,18
-Antioquia & Eje Cafetero,Antioquia,Guarne,17
+Zona Sur & Llanos,Meta,San Martin,18
+Bogota & Cundinamarca,Cundinamarca,Sopo,18
+Antioquia & Eje Cafetero,Antioquia,Envigado,18
+Zona Sur & Llanos,Huila,La Plata,17
 Bogota & Cundinamarca,Cundinamarca,Pacho,17
-Antioquia & Eje Cafetero,Antioquia,Girardota,17
-Zona Pacifico,Valle del Cauca,Montebello,17
-Antioquia & Eje Cafetero,Risaralda,Centro,17
-Antioquia & Eje Cafetero,Antioquia,El Poblado,17
-Antioquia & Eje Cafetero,Caldas,Palestina,17
-Zona Caribe,Cordoba,Tierralta,17
+Zona Pacifico,Valle del Cauca,Calle Real,17
+Antioquia & Eje Cafetero,Antioquia,Guarne,17
+Antioquia & Eje Cafetero,Caldas,Viterbo,17
 Zona Sur & Llanos,Caqueta,Cartagena del chaira,17
 "Santanderes, Boyaca y Cesar",Norte de Santander,Cucuta,17
-Zona Sur & Llanos,Casanare,Tauramena,17
-Antioquia & Eje Cafetero,Caldas,Viterbo,17
-Zona Sur & Llanos,Huila,La Plata,17
-Zona Pacifico,Valle del Cauca,Calle Real,17
+Antioquia & Eje Cafetero,Antioquia,El Poblado,17
+Antioquia & Eje Cafetero,Risaralda,Centro,17
+Antioquia & Eje Cafetero,Antioquia,Girardota,17
+Zona Pacifico,Valle del Cauca,Montebello,17
+Antioquia & Eje Cafetero,Caldas,Palestina,17
+Zona Caribe,Cordoba,Tierralta,17
 "Santanderes, Boyaca y Cesar",Norte de Santander,Pamplona,17
-Zona Sur & Llanos,Huila,San Agustin,16
+Zona Sur & Llanos,Casanare,Tauramena,17
 Zona Pacifico,Putumayo,Orito,16
+Antioquia & Eje Cafetero,Risaralda,Alameda,16
 Zona Sur & Llanos,Meta,Guamal,16
 Zona Pacifico,Valle del Cauca,Los Alpes,16
 Bogota & Cundinamarca,Cundinamarca,Subachoque,16
-Antioquia & Eje Cafetero,Risaralda,Alameda,16
-Zona Pacifico,Narino,La Cruz,16
-Antioquia & Eje Cafetero,Risaralda,Santuario,16
 Bogota & Cundinamarca,Cundinamarca,San Antonio Del Tequendama.,16
-Bogota & Cundinamarca,Cundinamarca,La Mesa,16
+Zona Sur & Llanos,Huila,San Agustin,16
+Zona Pacifico,Narino,La Cruz,16
 Antioquia & Eje Cafetero,Antioquia,El Totumo,16
+Antioquia & Eje Cafetero,Risaralda,Santuario,16
 Zona Pacifico,Valle del Cauca,Kennedy,16
-Zona Pacifico,Cauca,Miranda,15
-Zona Pacifico,Putumayo,Sibundoy,15
-Antioquia & Eje Cafetero,Caldas,Filadelfia,15
-Zona Sur & Llanos,Caqueta,Albania,15
-Bogota & Cundinamarca,Cundinamarca,Puerto Salgar,15
-Zona Caribe,Magdalena,El Banco,15
-Zona Caribe,La Guajira,San Jose,15
-"Santanderes, Boyaca y Cesar",Norte de Santander,Villa del Rosario,15
+Bogota & Cundinamarca,Cundinamarca,La Mesa,16
 "Santanderes, Boyaca y Cesar",Santander,Malaga,15
-Zona Sur & Llanos,Tolima,Ortega,14
-Zona Pacifico,Valle del Cauca,Terron Colorado,14
-Zona Pacifico,Choco,Pizarro,14
-Zona Sur & Llanos,Meta,La reliquia,14
-Zona Sur & Llanos,Caqueta,Belen de Los Andaquies,14
-Bogota & Cundinamarca,Cundinamarca,Simijaca,14
-"Santanderes, Boyaca y Cesar",Boyaca,Sachica,14
-"Santanderes, Boyaca y Cesar",Santander,Barbosa,14
-Zona Pacifico,Valle del Cauca,Andalucia la Estacion,14
-Zona Pacifico,Putumayo,Puerto Leguizamo,14
+Zona Caribe,Magdalena,El Banco,15
+Antioquia & Eje Cafetero,Caldas,Filadelfia,15
+Bogota & Cundinamarca,Cundinamarca,Puerto Salgar,15
+Zona Pacifico,Cauca,Miranda,15
+"Santanderes, Boyaca y Cesar",Norte de Santander,Villa del Rosario,15
+Zona Caribe,La Guajira,San Jose,15
+Zona Pacifico,Putumayo,Sibundoy,15
+Zona Sur & Llanos,Caqueta,Albania,15
 Antioquia & Eje Cafetero,Risaralda,PEREIRA GALICIA,14
+Zona Pacifico,Putumayo,Puerto Leguizamo,14
+Zona Sur & Llanos,Caqueta,Belen de Los Andaquies,14
+Zona Pacifico,Valle del Cauca,Terron Colorado,14
+Zona Pacifico,Valle del Cauca,Andalucia la Estacion,14
 Zona Sur & Llanos,Huila,Palermo,14
 Antioquia & Eje Cafetero,Caldas,Anserma,14
-Antioquia & Eje Cafetero,Quindio,Quimbaya,13
-Zona Sur & Llanos,Tolima,Natagaima,13
+"Santanderes, Boyaca y Cesar",Boyaca,Sachica,14
+Zona Sur & Llanos,Tolima,Ortega,14
+Zona Sur & Llanos,Meta,La reliquia,14
+Bogota & Cundinamarca,Cundinamarca,Simijaca,14
+Zona Pacifico,Choco,Pizarro,14
+"Santanderes, Boyaca y Cesar",Santander,Barbosa,14
+Zona Caribe,Atlantico,Malambo,13
 "Santanderes, Boyaca y Cesar",Norte de Santander,Chinacota,13
 Bogota & Cundinamarca,Cundinamarca,Grupo de reunion de Subia,13
-Antioquia & Eje Cafetero,Caldas,Risaralda,13
-Zona Sur & Llanos,Huila,Barrio Villa Matilde,13
-Zona Sur & Llanos,Guaviare,El Retorno,13
-Zona Sur & Llanos,Vichada,Puerto Carreno,13
-Zona Pacifico,Putumayo,Villagarzon,13
+Antioquia & Eje Cafetero,Quindio,Quimbaya,13
 Zona Pacifico,Choco,Acandi,13
-Zona Sur & Llanos,Meta,Fuente de Oro,13
-"Santanderes, Boyaca y Cesar",Norte de Santander,Ocana,13
+Zona Sur & Llanos,Tolima,Natagaima,13
 Zona Sur & Llanos,Guainia,Inirida,13
+Antioquia & Eje Cafetero,Caldas,Risaralda,13
+Zona Pacifico,Putumayo,Villagarzon,13
+"Santanderes, Boyaca y Cesar",Norte de Santander,Santa clara,13
+Zona Pacifico,Valle del Cauca,Zarzal,13
+"Santanderes, Boyaca y Cesar",Norte de Santander,Ocana,13
+Zona Sur & Llanos,Tolima,Palocabildo,13
 Antioquia & Eje Cafetero,Antioquia,Nueva Colonia,13
+Zona Sur & Llanos,Meta,Fuente de Oro,13
+Zona Sur & Llanos,Huila,Barrio Villa Matilde,13
 Zona Pacifico,Valle del Cauca,Ginebra,13
 "Santanderes, Boyaca y Cesar",Santander,San Gil,13
 Zona Sur & Llanos,Tolima,Alvarado,13
-Zona Caribe,Atlantico,Malambo,13
-"Santanderes, Boyaca y Cesar",Norte de Santander,Santa clara,13
-Zona Sur & Llanos,Tolima,Palocabildo,13
-Zona Pacifico,Valle del Cauca,Zarzal,13
+Zona Sur & Llanos,Vichada,Puerto Carreno,13
+Zona Sur & Llanos,Guaviare,El Retorno,13
+"Santanderes, Boyaca y Cesar",Cesar,La Jagua de Ibirico,12
 "Santanderes, Boyaca y Cesar",Cesar,Aguachica,12
-Antioquia & Eje Cafetero,Caldas,Aguadas,12
 Bogota & Cundinamarca,Cundinamarca,salida a Cajica,12
 Zona Sur & Llanos,Guaviare,La Esperanza,12
-Zona Sur & Llanos,Tolima,Fresno,12
-"Santanderes, Boyaca y Cesar",Cesar,La Jagua de Ibirico,12
 Antioquia & Eje Cafetero,Risaralda,La Popa,12
+Zona Sur & Llanos,Tolima,Fresno,12
+Antioquia & Eje Cafetero,Caldas,Aguadas,12
+Zona Sur & Llanos,Guaviare,Primero de Mayo,11
+Bogota & Cundinamarca,Cundinamarca,Ricaurte,11
+Bogota & Cundinamarca,Cundinamarca,San Bernardo,11
+Zona Pacifico,Cauca,El Tambo,11
+Zona Sur & Llanos,Casanare,Monterrey,11
+Zona Pacifico,Valle del Cauca,La Union Barrio Belen,11
+Zona Pacifico,Valle del Cauca,La 40 Alvernia Tulua,11
+"Santanderes, Boyaca y Cesar",Santander,Socorro,11
+Antioquia & Eje Cafetero,Caldas,Corregimiento Samaria,11
+Zona Sur & Llanos,Caqueta,Paujil,11
+Zona Sur & Llanos,Meta,Lejanias,11
 "Santanderes, Boyaca y Cesar",Cesar,Agustin Codazzi,11
 Zona Caribe,Cordoba,Centenario,11
-"Santanderes, Boyaca y Cesar",Santander,Socorro,11
-Zona Sur & Llanos,Casanare,Monterrey,11
-Zona Sur & Llanos,Huila,Neiva Caguan,11
-Zona Pacifico,Cauca,El Tambo,11
-Zona Sur & Llanos,Caqueta,Paujil,11
-Zona Pacifico,Valle del Cauca,La 40 Alvernia Tulua,11
-"Santanderes, Boyaca y Cesar",Santander,Puente Nacional,11
-Bogota & Cundinamarca,Cundinamarca,San Bernardo,11
-Bogota & Cundinamarca,Cundinamarca,Ricaurte,11
-Antioquia & Eje Cafetero,Caldas,Corregimiento Samaria,11
-Zona Pacifico,Valle del Cauca,La Union Barrio Belen,11
 Zona Pacifico,Choco,IGLESIA DE TADO,11
-Zona Sur & Llanos,Guaviare,Primero de Mayo,11
-Zona Sur & Llanos,Meta,Lejanias,11
+Zona Sur & Llanos,Huila,Neiva Caguan,11
+"Santanderes, Boyaca y Cesar",Santander,Puente Nacional,11
+Zona Sur & Llanos,Huila,NEIVA CENTRO,10
+Zona Pacifico,Valle del Cauca,Caicedonia,10
+Zona Caribe,Cordoba,Montelibano,10
+Zona Pacifico,Narino,Carlos Lleras,10
+Bogota & Cundinamarca,Cundinamarca,La Vega,10
+Bogota & Cundinamarca,Cundinamarca,Guayabal de Siquima,10
+Zona Sur & Llanos,Huila,AIPE,10
+Antioquia & Eje Cafetero,Caldas,La Enea,10
+Antioquia & Eje Cafetero,Quindio,Barcelona,10
+Antioquia & Eje Cafetero,Quindio,Genova,10
 Zona Caribe,Bolivar,Arjona,10
 Antioquia & Eje Cafetero,Antioquia,Caucasia,10
-Antioquia & Eje Cafetero,Quindio,Barcelona,10
-Zona Caribe,Cordoba,Montelibano,10
-Zona Sur & Llanos,Huila,NEIVA CENTRO,10
-Zona Pacifico,Narino,Carlos Lleras,10
-Antioquia & Eje Cafetero,Quindio,Genova,10
-Bogota & Cundinamarca,Cundinamarca,Guayabal de Siquima,10
-Antioquia & Eje Cafetero,Caldas,La Enea,10
-Bogota & Cundinamarca,Cundinamarca,La Vega,10
-Zona Sur & Llanos,Huila,AIPE,10
-Zona Pacifico,Valle del Cauca,Caicedonia,10
+"Santanderes, Boyaca y Cesar",Santander,San Vicente de Chucuri,9
 "Santanderes, Boyaca y Cesar",Boyaca,Guateque,9
 "Santanderes, Boyaca y Cesar",Cesar,Curumani,9
 "Santanderes, Boyaca y Cesar",Santander,El Centro de Ecopetrol,9
-"Santanderes, Boyaca y Cesar",Santander,San Vicente de Chucuri,9
+Antioquia & Eje Cafetero,Risaralda,Puerto Caldas,9
 Zona Sur & Llanos,Meta,San Juan de Arama,9
 Zona Sur & Llanos,Tolima,Flandes San Luis,9
-Antioquia & Eje Cafetero,Risaralda,Puerto Caldas,9
-"Santanderes, Boyaca y Cesar",Boyaca,Garagoa,8
-Zona Sur & Llanos,Huila,Amborco,8
-"Santanderes, Boyaca y Cesar",Santander,Velez,8
-Zona Pacifico,Valle del Cauca,obando,8
-Zona Pacifico,Narino,San Pablo,8
-"Santanderes, Boyaca y Cesar",Santander,Bucaramanga Norte,8
-"Santanderes, Boyaca y Cesar",Boyaca,Saboya,8
 Antioquia & Eje Cafetero,Quindio,La Tebaida,8
+"Santanderes, Boyaca y Cesar",Boyaca,Garagoa,8
+"Santanderes, Boyaca y Cesar",Santander,Velez,8
+Zona Pacifico,Narino,San Pablo,8
 Bogota & Cundinamarca,Cundinamarca,Tocaima,8
-Zona Sur & Llanos,Huila,TERUEL,8
+"Santanderes, Boyaca y Cesar",Boyaca,Tasco,8
 Antioquia & Eje Cafetero,Antioquia,Cisneros,8
 "Santanderes, Boyaca y Cesar",Santander,Puerto Wilches,8
-"Santanderes, Boyaca y Cesar",Boyaca,Tasco,8
-Zona Pacifico,Narino,Guaitarilla,7
-"Santanderes, Boyaca y Cesar",Boyaca,Turmeque,7
+Zona Sur & Llanos,Huila,Amborco,8
+"Santanderes, Boyaca y Cesar",Boyaca,Saboya,8
+"Santanderes, Boyaca y Cesar",Santander,Bucaramanga Norte,8
+Zona Pacifico,Valle del Cauca,obando,8
+Zona Sur & Llanos,Huila,TERUEL,8
 Zona Pacifico,Valle del Cauca,Cartago Santana,7
-Antioquia & Eje Cafetero,Caldas,Pacora,7
-Zona Pacifico,Cauca,Guachene,7
-Zona Pacifico,Valle del Cauca,Ansermanuevo,7
-Zona Pacifico,Choco,Bahia Solano,7
-Zona Pacifico,Cauca,Rosas,7
-Zona Sur & Llanos,Amazonas,LETICIA,7
-Zona Sur & Llanos,Caqueta,Curillo,7
-Zona Caribe,Cordoba,Valencia,7
-Zona Pacifico,Choco,Capurgana,7
-Zona Pacifico,Choco,Iglesia De Condoto,7
-Zona Pacifico,Valle del Cauca,Riofrio,7
-Zona Pacifico,Cauca,Villarica,7
 Zona Sur & Llanos,Huila,Tesalia,7
-Bogota & Cundinamarca,Cundinamarca,Guaduas,7
-Zona Sur & Llanos,Caqueta,El Doncello,7
+Antioquia & Eje Cafetero,Caldas,Pacora,7
+Zona Caribe,Cordoba,Valencia,7
+Zona Sur & Llanos,Caqueta,Curillo,7
+Zona Pacifico,Choco,Bahia Solano,7
 Zona Sur & Llanos,Huila,La Argentina,7
+Zona Pacifico,Valle del Cauca,Ansermanuevo,7
+Bogota & Cundinamarca,Cundinamarca,Guaduas,7
+Zona Pacifico,Cauca,Villarica,7
+Zona Pacifico,Choco,Iglesia De Condoto,7
+Zona Pacifico,Choco,Capurgana,7
+Zona Pacifico,Valle del Cauca,Riofrio,7
+Zona Pacifico,Cauca,Rosas,7
+Zona Pacifico,Narino,Guaitarilla,7
+Zona Sur & Llanos,Caqueta,El Doncello,7
+"Santanderes, Boyaca y Cesar",Boyaca,Turmeque,7
+Zona Sur & Llanos,Amazonas,LETICIA,7
+Zona Pacifico,Cauca,Guachene,7
 Zona Sur & Llanos,Caqueta,OCCIDENTAL,7
-Antioquia & Eje Cafetero,Risaralda,Marsella,6
-Zona Caribe,Atlantico,Santa Lucia,6
+"Santanderes, Boyaca y Cesar",Boyaca,Tibana,6
+Zona Pacifico,Choco,Certegui,6
 Bogota & Cundinamarca,Cundinamarca,Ubaque,6
-Zona Sur & Llanos,Huila,Elias,6
-Zona Caribe,Cordoba,CALLE CHINU,6
 Bogota & Cundinamarca,Cundinamarca,Arbelaez,6
-Zona Pacifico,Cauca,Timbiqui,6
+Antioquia & Eje Cafetero,Risaralda,Marsella,6
 Zona Sur & Llanos,Caqueta,la montanita,6
+Zona Pacifico,Cauca,Timbiqui,6
+Zona Sur & Llanos,Huila,Elias,6
 Zona Sur & Llanos,Huila,acevedo,6
+Zona Pacifico,Valle del Cauca,TARRAGONA,6
+Zona Pacifico,Valle del Cauca,Corregimiento la Marina,6
+"Santanderes, Boyaca y Cesar",Boyaca,Samaca,6
 Zona Caribe,Magdalena,El Reten,6
 Zona Caribe,Sucre,Sampues,6
 Antioquia & Eje Cafetero,Antioquia,Amaga,6
-Zona Pacifico,Valle del Cauca,Corregimiento la Marina,6
 Zona Sur & Llanos,Tolima,El Tablazo,6
-"Santanderes, Boyaca y Cesar",Boyaca,Tibana,6
-Zona Pacifico,Choco,Certegui,6
-"Santanderes, Boyaca y Cesar",Boyaca,Samaca,6
-Zona Pacifico,Valle del Cauca,TARRAGONA,6
-Antioquia & Eje Cafetero,Quindio,Pueblo Tapao,5
+Zona Caribe,Cordoba,CALLE CHINU,6
+Zona Caribe,Atlantico,Santa Lucia,6
+Zona Caribe,Sucre,Corozal,5
+Zona Sur & Llanos,Tolima,Lerida Centro,5
+"Santanderes, Boyaca y Cesar",Santander,Lebrija,5
+Zona Pacifico,Valle del Cauca,Belhorizonte,5
+Antioquia & Eje Cafetero,Antioquia,Andes,5
 Zona Sur & Llanos,Meta,la ministerial,5
-Zona Sur & Llanos,Caqueta,Morelia,5
+Antioquia & Eje Cafetero,Antioquia,Segovia,5
+Zona Sur & Llanos,Tolima,Guamo,5
+Zona Caribe,Bolivar,Iglesia de Bayunca,5
 Zona Sur & Llanos,Tolima,Saldana,5
 Zona Pacifico,Cauca,Caldono,5
-Zona Caribe,Bolivar,Iglesia de Bayunca,5
-Zona Sur & Llanos,Tolima,Lerida Centro,5
+Zona Sur & Llanos,Caqueta,Morelia,5
 Zona Caribe,Sucre,Santiago de Tolu,5
-Zona Pacifico,Valle del Cauca,BUGALAGRANDE,5
 Antioquia & Eje Cafetero,Caldas,Neira,5
-Zona Pacifico,Valle del Cauca,Belhorizonte,5
-Zona Sur & Llanos,Tolima,Guamo,5
-Antioquia & Eje Cafetero,Antioquia,Segovia,5
-Zona Caribe,Sucre,Corozal,5
-Antioquia & Eje Cafetero,Antioquia,Andes,5
-"Santanderes, Boyaca y Cesar",Santander,Lebrija,5
-Antioquia & Eje Cafetero,Quindio,Cordoba,4
-Zona Caribe,La Guajira,CUESTECITAS,4
-Bogota & Cundinamarca,Cundinamarca,Porvenir Rio,4
+Zona Pacifico,Valle del Cauca,BUGALAGRANDE,5
+Antioquia & Eje Cafetero,Quindio,Pueblo Tapao,5
 Zona Sur & Llanos,Tolima,Iglesia de Rovira,4
-Antioquia & Eje Cafetero,Antioquia,Zaragoza,4
-Zona Pacifico,Valle del Cauca,Salida la union,4
-Bogota & Cundinamarca,Cundinamarca,Choconta,4
 Antioquia & Eje Cafetero,Antioquia,Colegio 20 de Julio,4
+Bogota & Cundinamarca,Cundinamarca,Choconta,4
+Bogota & Cundinamarca,Cundinamarca,Porvenir Rio,4
 Antioquia & Eje Cafetero,Caldas,Salamina,4
-Zona Sur & Llanos,Caqueta,Valparaiso,4
-Zona Pacifico,Choco,Bajira,4
-"Santanderes, Boyaca y Cesar",Cesar,El Copey,4
-Zona Caribe,La Guajira,Rancheria Jonjoncito,4
-Zona Pacifico,Narino,"Sandona, Narino",4
-Bogota & Cundinamarca,Cundinamarca,Cambao,4
-Bogota & Cundinamarca,Cundinamarca,San Francisco,4
+Zona Pacifico,Valle del Cauca,Salida la union,4
 "Santanderes, Boyaca y Cesar",Santander,Sabana de Torres,4
-Zona Caribe,Cordoba,La Apartada,3
+Bogota & Cundinamarca,Cundinamarca,San Francisco,4
+"Santanderes, Boyaca y Cesar",Cesar,El Copey,4
+Zona Pacifico,Choco,Bajira,4
+Antioquia & Eje Cafetero,Antioquia,Zaragoza,4
+Zona Pacifico,Narino,"Sandona, Narino",4
+Zona Caribe,La Guajira,CUESTECITAS,4
+Zona Sur & Llanos,Caqueta,Valparaiso,4
+Zona Caribe,La Guajira,Rancheria Jonjoncito,4
+Bogota & Cundinamarca,Cundinamarca,Cambao,4
+Antioquia & Eje Cafetero,Quindio,Cordoba,4
+Zona Sur & Llanos,Tolima,Iglesia de dolores,3
+Antioquia & Eje Cafetero,Risaralda,LA CELIA,3
+Zona Pacifico,Choco,Bojaya,3
+Antioquia & Eje Cafetero,Risaralda,Apia,3
+Zona Sur & Llanos,Caqueta,Solano,3
 "Santanderes, Boyaca y Cesar",Boyaca,Villa de Leyva,3
-"Santanderes, Boyaca y Cesar",Santander,Charala,3
-Zona Sur & Llanos,Caqueta,san jose,3
 Zona Pacifico,Cauca,La Sierra,3
 "Santanderes, Boyaca y Cesar",Cesar,San Alberto,3
-Antioquia & Eje Cafetero,Risaralda,LA CELIA,3
-Antioquia & Eje Cafetero,Quindio,Salento,3
+Zona Sur & Llanos,Tolima,San Luis,3
+Zona Caribe,Cordoba,IDMJI CIENAGA DE ORO,3
+"Santanderes, Boyaca y Cesar",Santander,Charala,3
+Zona Sur & Llanos,Caqueta,san jose,3
+Zona Caribe,Cordoba,La Apartada,3
+Zona Caribe,Bolivar,Pasacaballos,3
+Zona Pacifico,Putumayo,"La Tagua,",3
 Zona Sur & Llanos,Tolima,Villarrica,3
 Zona Sur & Llanos,Vaupes,Colombia • Vaupes • Mitu • Av 15 # 5 - 136 - Br. San Jose - Via Malecon - Contacto: 3135927379 ,3
-Antioquia & Eje Cafetero,Risaralda,Apia,3
-Zona Caribe,Bolivar,Pasacaballos,3
-Zona Sur & Llanos,Tolima,Iglesia de dolores,3
-Zona Pacifico,Cauca,Piamonte,3
-Zona Pacifico,Putumayo,"La Tagua,",3
-Zona Caribe,Cordoba,IDMJI CIENAGA DE ORO,3
 Zona Pacifico,Choco,Yuto,3
-Zona Pacifico,Choco,Bojaya,3
-Zona Sur & Llanos,Tolima,San Luis,3
-Zona Sur & Llanos,Caqueta,Solano,3
-Zona Sur & Llanos,Tolima,Alpujarra,2
-"Santanderes, Boyaca y Cesar",Cesar,PUEBLO BELLO,2
-"Santanderes, Boyaca y Cesar",Boyaca,Tenza,2
-"Santanderes, Boyaca y Cesar",Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
-Zona Caribe,Bolivar,Santa Rosa,2
-Antioquia & Eje Cafetero,Risaralda,Caimalito,2
-Antioquia & Eje Cafetero,Antioquia,San Jeronimo,2
-Zona Caribe,Cordoba,IDMJI Colegio lacides,2
-Antioquia & Eje Cafetero,Antioquia,Caseta comunal 28 de octubre,2
-Zona Pacifico,Cauca,Mondomo,2
-Antioquia & Eje Cafetero,Caldas,"La Merced, Caldas",2
-Zona Caribe,Sucre,Laguna flor,2
-Zona Sur & Llanos,Huila,Guadalupe,2
-Antioquia & Eje Cafetero,Caldas,Belalcazar,2
-Zona Pacifico,Valle del Cauca,Corregimiento de Bitaco,2
-Antioquia & Eje Cafetero,Antioquia,San Pedro de Uraba,2
-Zona Caribe,Magdalena,Isla del Rosario,2
-Zona Sur & Llanos,Tolima,Planadas,2
+Antioquia & Eje Cafetero,Quindio,Salento,3
+Zona Pacifico,Cauca,Piamonte,3
 "Santanderes, Boyaca y Cesar",Cesar,La Paz,2
-Zona Caribe,Sucre,SAN MARCOS,2
-Bogota & Cundinamarca,Cundinamarca,San Juan de Rio Seco,2
 Zona Sur & Llanos,Huila,Bruselas,2
-Zona Sur & Llanos,Tolima,Carmen de Apicala,2
-Antioquia & Eje Cafetero,Quindio,IGLESIA PIJAO,2
-Antioquia & Eje Cafetero,Antioquia,Santa Barbara,2
-Zona Pacifico,Narino,Taminango,2
-Antioquia & Eje Cafetero,Antioquia,Santa fe de Antioquia,2
-Bogota & Cundinamarca,Cundinamarca,Caparrapi,2
-Zona Caribe,Atlantico,Centro,2
-Antioquia & Eje Cafetero,Caldas,Pensilvania,2
-Zona Sur & Llanos,Tolima,San Antonio,2
-"Santanderes, Boyaca y Cesar",Boyaca,Moniquira,2
 Zona Caribe,Magdalena,Aracataca,2
-Zona Caribe,Magdalena,Iglesia Ministerial,2
-"Santanderes, Boyaca y Cesar",Boyaca,Muzo,2
+"Santanderes, Boyaca y Cesar",Boyaca,Tenza,2
+Antioquia & Eje Cafetero,Antioquia,Santa Barbara,2
+Bogota & Cundinamarca,Cundinamarca,San Juan de Rio Seco,2
+Bogota & Cundinamarca,Cundinamarca,Caparrapi,2
+Zona Caribe,Magdalena,Isla del Rosario,2
+"Santanderes, Boyaca y Cesar",Cesar,PUEBLO BELLO,2
 Zona Pacifico,Valle del Cauca,Alcala,2
-Bogota & Cundinamarca,Cundinamarca,Fomeque,2
+Zona Sur & Llanos,Huila,Guadalupe,2
+"Santanderes, Boyaca y Cesar",Boyaca,Muzo,2
+Zona Sur & Llanos,Tolima,Alpujarra,2
+Zona Caribe,Cordoba,IDMJI Colegio lacides,2
 Zona Pacifico,Cauca,Cuarto Esquinas,2
-Bogota & Cundinamarca,Cundinamarca,Cachipay,1
-Zona Sur & Llanos,Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
-Zona Caribe,Bolivar,IDMJI DE MOMPOX,1
-Zona Caribe,La Guajira,Uribia,1
-Antioquia & Eje Cafetero,Quindio,Filandia,1
-Zona Pacifico,Narino,San Bernardo,1
-Antioquia & Eje Cafetero,Quindio,La Virginia,1
-"Santanderes, Boyaca y Cesar",Boyaca,Santana,1
+Antioquia & Eje Cafetero,Caldas,Belalcazar,2
+Antioquia & Eje Cafetero,Antioquia,San Jeronimo,2
+"Santanderes, Boyaca y Cesar",Norte de Santander,Colombia • Norte de Santander • Gramalote • Manzana 28 Casa 16B. Barrio Nueva Granada,2
+Zona Sur & Llanos,Tolima,Carmen de Apicala,2
+Zona Pacifico,Valle del Cauca,Corregimiento de Bitaco,2
+Bogota & Cundinamarca,Cundinamarca,Fomeque,2
+Antioquia & Eje Cafetero,Risaralda,Caimalito,2
+Zona Sur & Llanos,Tolima,San Antonio,2
+Zona Caribe,Magdalena,Iglesia Ministerial,2
+"Santanderes, Boyaca y Cesar",Boyaca,Moniquira,2
+Zona Caribe,Sucre,SAN MARCOS,2
+Antioquia & Eje Cafetero,Caldas,Pensilvania,2
+Antioquia & Eje Cafetero,Antioquia,Caseta comunal 28 de octubre,2
+Antioquia & Eje Cafetero,Quindio,IGLESIA PIJAO,2
+Zona Pacifico,Cauca,Mondomo,2
+Zona Pacifico,Narino,Taminango,2
+Zona Caribe,Sucre,Laguna flor,2
+Zona Caribe,Bolivar,Santa Rosa,2
+Zona Sur & Llanos,Tolima,Planadas,2
+Zona Caribe,Atlantico,Centro,2
+Antioquia & Eje Cafetero,Antioquia,San Pedro de Uraba,2
+Antioquia & Eje Cafetero,Antioquia,Santa fe de Antioquia,2
+Antioquia & Eje Cafetero,Caldas,"La Merced, Caldas",2
+"Santanderes, Boyaca y Cesar",Boyaca,Nuevo Colon,1
 Zona Caribe,Magdalena,Colombia • Magdalena • Plato • Calle 13 No. 16A-44 Barrio El Carmen  (frente a la Biblioteca municipal),1
-Zona Pacifico,Narino,Barrio el Centro,1
-Zona Sur & Llanos,Caqueta,Solita,1
-Zona Pacifico,Valle del Cauca,Salonica,1
-Antioquia & Eje Cafetero,Risaralda,La Hermosa,1
-Antioquia & Eje Cafetero,Quindio,Escuela la Cascada,1
-Bogota & Cundinamarca,Cundinamarca,San Carlos,1
-Bogota & Cundinamarca,Cundinamarca,La Palma,1
-Zona Sur & Llanos,Guaviare,Calamar,1
-Zona Sur & Llanos,Tolima,IGLESIA DE COYAIMA,1
-Zona Pacifico,Cauca,Cajibio,1
-Zona Pacifico,Narino,Ancuya,1
-Zona Pacifico,Valle del Cauca,Prado,1
-Zona Pacifico,Valle del Cauca,La Cumbre,1
-"Santanderes, Boyaca y Cesar",Boyaca,Aquitania,1
-Zona Pacifico,Valle del Cauca,Robledo,1
-"Santanderes, Boyaca y Cesar",Santander,Cimitarra,1
-Antioquia & Eje Cafetero,Antioquia,Ciudad Bolivar,1
 Antioquia & Eje Cafetero,Antioquia,Arboletes,1
 Zona Pacifico,Valle del Cauca,Vallejuelo,1
-"Santanderes, Boyaca y Cesar",Boyaca,Nuevo Colon,1
-Zona Pacifico,Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
-Antioquia & Eje Cafetero,Antioquia,La Union,1
-Antioquia & Eje Cafetero,Caldas,Manzanares,1
-Antioquia & Eje Cafetero,Antioquia,BARBOSA,1
-"Santanderes, Boyaca y Cesar",Boyaca,Ramiriqui,1
 Zona Pacifico,Valle del Cauca,Obelisco,1
-Zona Pacifico,Valle del Cauca,Panamericano,1
-"Santanderes, Boyaca y Cesar",Santander,Jesus Maria,1
-Zona Pacifico,Valle del Cauca,San Pedro,1
-Zona Caribe,Bolivar,La Boquilla,1
-"Santanderes, Boyaca y Cesar",Norte de Santander,Las Delicias,1
-Bogota & Cundinamarca,Cundinamarca,Colombia • Cundinamarca • Nocaima • Cr 6 #2-119 Br Florilandia al lado Plaza de Mercado,1
-Antioquia & Eje Cafetero,Caldas,Riosucio,1
-"Santanderes, Boyaca y Cesar",Boyaca,Vereda Jaraquira,1
-Antioquia & Eje Cafetero,Risaralda,Mistrato,1
-"Santanderes, Boyaca y Cesar",Santander,Capitanejo,1
-Zona Pacifico,Narino,Ricaurte,1
+"Santanderes, Boyaca y Cesar",Norte de Santander,La Gabarra,1
 Zona Caribe,Atlantico,ponedera,1
-Zona Pacifico,Cauca,Buenos Aires,1
-Zona Pacifico,Valle del Cauca,Ciudad del Campo,1
+"Santanderes, Boyaca y Cesar",Santander,Cimitarra,1
+Bogota & Cundinamarca,Cundinamarca,San Carlos,1
+"Santanderes, Boyaca y Cesar",Boyaca,Vereda Jaraquira,1
+Antioquia & Eje Cafetero,Quindio,La Virginia,1
 Antioquia & Eje Cafetero,Antioquia,San Antonio de Prado,1
+Bogota & Cundinamarca,Cundinamarca,La Palma,1
+Bogota & Cundinamarca,Cundinamarca,Colombia • Cundinamarca • Nocaima • Cr 6 #2-119 Br Florilandia al lado Plaza de Mercado,1
+Zona Pacifico,Valle del Cauca,Ciudad del Campo,1
+Zona Caribe,Atlantico,TUBARA,1
+Zona Pacifico,Cauca,Buenos Aires,1
+Antioquia & Eje Cafetero,Risaralda,La Hermosa,1
+Zona Sur & Llanos,Meta,IGLESIA DE DIOS MINISTERIAL DE JESUCRITO INTERNACIONAL,1
+Antioquia & Eje Cafetero,Quindio,Escuela la Cascada,1
+Antioquia & Eje Cafetero,Antioquia,La Union,1
+Antioquia & Eje Cafetero,Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
+Zona Pacifico,Narino,Ricaurte,1
+Zona Pacifico,Valle del Cauca,San Pedro,1
+Zona Pacifico,Valle del Cauca,La Fresneda,1
 Zona Pacifico,Cauca,Sucre,1
+Zona Sur & Llanos,Tolima,IGLESIA DE COYAIMA,1
+"Santanderes, Boyaca y Cesar",Boyaca,Santana,1
 Zona Caribe,Magdalena,Rio Frio,1
+Zona Pacifico,Valle del Cauca,Panamericano,1
+Zona Pacifico,Cauca,Cajibio,1
+"Santanderes, Boyaca y Cesar",Santander,Jesus Maria,1
+Zona Pacifico,Valle del Cauca,Colombia • Valle del Cauca • Guadalajara de Buga • Corregimiento de la Habana tres esquinas,1
+Antioquia & Eje Cafetero,Caldas,Riosucio,1
 Bogota & Cundinamarca,Cundinamarca,Chipaque,1
 Antioquia & Eje Cafetero,Risaralda,QUINCHIA,1
-Zona Caribe,Atlantico,TUBARA,1
+Zona Sur & Llanos,Guaviare,Calamar,1
+Zona Pacifico,Valle del Cauca,La Cumbre,1
+Zona Pacifico,Valle del Cauca,Prado,1
+Zona Pacifico,Narino,San Bernardo,1
+Zona Pacifico,Narino,Ancuya,1
+"Santanderes, Boyaca y Cesar",Boyaca,Ramiriqui,1
+Antioquia & Eje Cafetero,Antioquia,BARBOSA,1
+Antioquia & Eje Cafetero,Caldas,Manzanares,1
+Antioquia & Eje Cafetero,Antioquia,Ciudad Bolivar,1
+Antioquia & Eje Cafetero,Risaralda,Mistrato,1
+Zona Pacifico,Valle del Cauca,Salonica,1
+Zona Caribe,Bolivar,IDMJI DE MOMPOX,1
 Antioquia & Eje Cafetero,Antioquia,IDMJI,1
-Antioquia & Eje Cafetero,Antioquia,Colombia • Antioquia • La Estrella • Calle 82 A Sur  # 55 G - 2 a 55 G - 4 Salon de la Junta de accionistas comunal. Barrio Escobar ,1
-Zona Pacifico,Valle del Cauca,La Fresneda,1
-"Santanderes, Boyaca y Cesar",Norte de Santander,La Gabarra,1
+Zona Pacifico,Valle del Cauca,Robledo,1
+Bogota & Cundinamarca,Cundinamarca,Cachipay,1
+Zona Pacifico,Narino,Barrio el Centro,1
+Zona Sur & Llanos,Caqueta,Solita,1
+"Santanderes, Boyaca y Cesar",Santander,Capitanejo,1
+Zona Caribe,Bolivar,La Boquilla,1
+"Santanderes, Boyaca y Cesar",Norte de Santander,Las Delicias,1
+Zona Caribe,La Guajira,Uribia,1
+"Santanderes, Boyaca y Cesar",Boyaca,Aquitania,1
+Antioquia & Eje Cafetero,Quindio,Filandia,1
 
 SECCION 7 - METADATOS
 
 "Clave","Valor"
-corte_datos,2026-08-19T21:58:20.754081-05:00
+corte_datos,2026-08-19T22:14:00.879267-05:00
 SECCION 8 - DISCAPACIDAD DETALLE (COLOMBIA)
 
 "Zona","Condicion","Curso","Codigo","Grupo","Horario","Personas"
 Zona Sur & Llanos,Cognitiva,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,5
 Bogota & Cundinamarca,Cognitiva,Sin Limites Virtual,C-2500,G-4957,10:00 - 11:30 a.m,4
 Bogota & Cundinamarca,Fisica,Manejo de Maquinas de Confeccion,C-2621,G-4783,8:00 - 9:30 a.m,4
-Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,4
 Bogota & Cundinamarca,Fisica,Munecas de Trapo,C-2564,G-4988,9:00 - 10:30 a.m,4
-Zona Pacifico,Fisica,Despertar Emprendedor,C-2475,G-4276,20:00 - 21:30 p.m,3
+Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,4
 Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-5131,11:00 - 12:30 a.m,3
 Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4777,15:00 - 16:30 p.m,3
 Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4768,10:00 - 11:30 a.m,3
-Zona Caribe,Fisica,Portugues Nivel 1,C-2688,G-4811,16:00 - 17:30 p.m,2
-Zona Caribe,Fisica,Comprension Lectora,C-2536,G-4647,8:00 - 9:30 a.m,2
-Zona Sur & Llanos,Auditiva,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,2
-Zona Pacifico,Fisica,Bienestar para la Persona Mayor,C-2439,G-4220,14:00 - 15:30 p.m,2
-Bogota & Cundinamarca,Fisica,Sin Limites Virtual,C-2500,G-4957,10:00 - 11:30 a.m,2
-Antioquia & Eje Cafetero,Fisica,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,2
-Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4943,20:00 - 21:30 p.m,2
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4938,10:00 - 11:30 a.m,2
-Zona Sur & Llanos,Fisica,Sistemas 2,C-2468,G-4314,15:00 - 16:30 p.m,2
-Bogota & Cundinamarca,Fisica,Frances Nivel 2,C-2592,G-4922,9:00 - 10:30 a.m,2
+Zona Pacifico,Fisica,Despertar Emprendedor,C-2475,G-4276,20:00 - 21:30 p.m,3
 Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-5064,14:00 - 15:30 p.m,2
-Antioquia & Eje Cafetero,Fisica,Despertar Emprendedor,C-2693,G-4724,10:00 - 11:30 a.m,2
-Zona Pacifico,Visual,Sistemas e Informatica | Nivel basico,C-2486,G-5030,8:00 - 9:30 a.m,2
-Zona Pacifico,Fisica,Sistemas Nivel 2,C-2485,G-4328,10:00 - 11:30 a.m,2
-Zona Sur & Llanos,Auditiva,Despertar Emprendedor,C-2448,G-4286,20:00 - 21:30 p.m,2
-Bogota & Cundinamarca,Fisica,Munecas de Trapo,C-2564,G-4989,8:00 - 9:30 a.m,2
-Bogota & Cundinamarca,Auditiva,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,2
-"Santanderes, Boyaca y Cesar",Fisica,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,2
-Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-5089,9:30 - 11:00 a.m,2
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4895,21:00 - 22:30 p.m,2
-Zona Pacifico,Visual,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,2
-Antioquia & Eje Cafetero,Fisica,Ingles Nivel 1,C-2729,G-4740,8:00 - 9:30 a.m,2
-Bogota & Cundinamarca,Visual,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,2
-Zona Sur & Llanos,Fisica,Sistemas 2,C-2468,G-4269,9:00 - 10:30 a.m,2
-Zona Sur & Llanos,Visual,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,2
-Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-4706,18:00 - 19:30 p.m,2
-Zona Caribe,Visual,Reposteria 1,C-2707,G-4683,18:00 - 19:30 p.m,2
 Antioquia & Eje Cafetero,Fisica,Business English 1,C-2737,G-4772,8:00 - 9:30 a.m,2
-Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4951,20:00 - 21:30 p.m,2
-Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4717,10:00 - 11:30 a.m,2
-Zona Caribe,Fisica,Despertar Emprendedor,C-2550,G-4705,10:00 - 11:30 a.m,2
-Zona Sur & Llanos,Fisica,Estrategias para la Busqueda de Empleo,C-2456,G-4875,21:00 - 22:30 p.m,2
-Bogota & Cundinamarca,Fisica,Modisteria (Faldas),C-2565,G-5006,9:00 - 10:30 a.m,2
-Bogota & Cundinamarca,Cognitiva,Salud y Bienestar para Ovinos y Caprinos,C-2535,G-4764,8:00 - 9:30 a.m,2
-"Santanderes, Boyaca y Cesar",Visual,Italiano Nivel 1,C-2531,G-4368,10:00 - 11:30 a.m,2
-Antioquia & Eje Cafetero,Fisica,Modisteria (Faldas),C-2641,G-5104,8:00 - 9:30 a.m,2
-"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,2
-Zona Pacifico,Auditiva,Ingles 1,C-2648,G-4467,20:00 - 21:30 p.m,2
-Zona Caribe,Fisica,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,2
-"Santanderes, Boyaca y Cesar",Visual,Economia del Hogar,C-2526,G-4358,15:00 - 16:30 p.m,2
-Antioquia & Eje Cafetero,Fisica,Sin Limites Virtual,C-2687,G-4714,9:00 - 10:30 a.m,2
-"Santanderes, Boyaca y Cesar",Cognitiva,Sistemas e Informatica | Nivel basico,C-2532,G-4411,15:00 - 16:30 p.m,2
-Zona Sur & Llanos,Fisica,El ABC del Reciclaje,C-2453,G-4248,8:00 - 9:30 a.m,2
-Bogota & Cundinamarca,Auditiva,Bisuteria 1,C-2488,G-4775,18:00 - 19:30 p.m,2
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4940,10:00 - 11:30 a.m,2
-Bogota & Cundinamarca,Cognitiva,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,2
-"Santanderes, Boyaca y Cesar",Fisica,Orientacion Emprendedora,C-2622,G-4416,8:00 - 9:30 a.m,2
-Zona Sur & Llanos,Fisica,Comprension Lectora,C-2446,G-4287,8:00 - 9:30 a.m,2
 Zona Pacifico,Fisica,Trenzas y Peinados,C-2643,G-4907,10:00 - 11:30 a.m,2
-Antioquia & Eje Cafetero,Fisica,Economia del Hogar,C-2637,G-4726,10:00 - 11:30 a.m,2
+Zona Sur & Llanos,Fisica,Estrategias para la Busqueda de Empleo,C-2456,G-4875,21:00 - 22:30 p.m,2
+Zona Caribe,Fisica,Comprension Lectora,C-2536,G-4647,8:00 - 9:30 a.m,2
+Zona Caribe,Visual,Reposteria 1,C-2707,G-4683,18:00 - 19:30 p.m,2
+Antioquia & Eje Cafetero,Fisica,Ingles Nivel 1,C-2729,G-4740,8:00 - 9:30 a.m,2
+Zona Caribe,Fisica,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,2
+Bogota & Cundinamarca,Fisica,Frances Nivel 2,C-2592,G-4922,9:00 - 10:30 a.m,2
+"Santanderes, Boyaca y Cesar",Visual,Italiano Nivel 1,C-2531,G-4368,10:00 - 11:30 a.m,2
+Zona Pacifico,Auditiva,Ingles 1,C-2648,G-4467,20:00 - 21:30 p.m,2
+"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,2
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4895,21:00 - 22:30 p.m,2
+Bogota & Cundinamarca,Cognitiva,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,2
+"Santanderes, Boyaca y Cesar",Fisica,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,2
+Zona Sur & Llanos,Fisica,Comprension Lectora,C-2446,G-4287,8:00 - 9:30 a.m,2
+Bogota & Cundinamarca,Auditiva,Bisuteria 1,C-2488,G-4775,18:00 - 19:30 p.m,2
+Antioquia & Eje Cafetero,Fisica,Sin Limites Virtual,C-2687,G-4714,9:00 - 10:30 a.m,2
+Zona Caribe,Fisica,Portugues Nivel 1,C-2688,G-4811,16:00 - 17:30 p.m,2
+Antioquia & Eje Cafetero,Fisica,Modisteria (Faldas),C-2641,G-5104,8:00 - 9:30 a.m,2
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4940,10:00 - 11:30 a.m,2
 Zona Pacifico,Auditiva,Orientacion Emprendedora,C-2647,G-4450,20:00 - 21:30 p.m,2
 "Santanderes, Boyaca y Cesar",Fisica,Italiano Nivel 1,C-2531,G-4368,10:00 - 11:30 a.m,2
-Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Movilidad reducida,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-4842,8:00 - 9:30 a.m,1
-Zona Pacifico,Artrosis en la mano,Bienestar para la Persona Mayor,C-2439,G-4221,14:00 - 15:30 p.m,1
-Zona Pacifico,Visual,Despertar Humano,C-2623,G-4481,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4695,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-4650,19:00 - 20:30 p.m,1
-Antioquia & Eje Cafetero,Traqueostomia,Business English 1,C-2737,G-4772,8:00 - 9:30 a.m,1
-Zona Pacifico,Uso gafas,Mi Negocio en Internet,C-2653,G-4903,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Auditiva,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-5047,9:00 - 10:30 a.m,1
-Zona Pacifico,Visual,Comprension Lectora,C-2441,G-4227,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4262,20:30 - 22:00 p.m,1
-Bogota & Cundinamarca,Cancer,Bisuteria 1,C-2488,G-4774,9:00 - 10:30 a.m,1
-Zona Pacifico,Auditiva,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Peinados y Trenzas,C-2730,G-4648,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4842,8:00 - 9:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Modisteria (Faldas),C-2641,G-4646,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-4230,9:00 - 10:30 a.m,1
-Zona Sur & Llanos,Tdh,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,"Bisuteria 1, 2",C-2738,G-4798,9:00 - 10:30 a.m,1
-Zona Sur & Llanos,Cognitiva,Despertar Emprendedor,C-2448,G-4291,8:00 - 9:30 a.m,1
-Zona Pacifico,hafisia,Sistemas e Informatica | Nivel basico,C-2486,G-5032,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Fisica,Ingles 2,C-2460,G-4425,21:00 - 22:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Sistemas Nivel 2,C-2559,G-4768,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
+Zona Caribe,Fisica,Despertar Emprendedor,C-2550,G-4705,10:00 - 11:30 a.m,2
+Zona Pacifico,Visual,Sistemas e Informatica | Nivel basico,C-2486,G-5030,8:00 - 9:30 a.m,2
+Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-4706,18:00 - 19:30 p.m,2
+Zona Sur & Llanos,Visual,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,2
+Antioquia & Eje Cafetero,Fisica,Despertar Emprendedor,C-2693,G-4724,10:00 - 11:30 a.m,2
+Zona Pacifico,Fisica,Sistemas Nivel 2,C-2485,G-4328,10:00 - 11:30 a.m,2
+Zona Sur & Llanos,Auditiva,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,2
+Zona Sur & Llanos,Auditiva,Despertar Emprendedor,C-2448,G-4286,20:00 - 21:30 p.m,2
+Zona Pacifico,Fisica,Bienestar para la Persona Mayor,C-2439,G-4220,14:00 - 15:30 p.m,2
+Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4943,20:00 - 21:30 p.m,2
+Bogota & Cundinamarca,Visual,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,2
+Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4951,20:00 - 21:30 p.m,2
+Antioquia & Eje Cafetero,Fisica,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,2
+Bogota & Cundinamarca,Fisica,Munecas de Trapo,C-2564,G-4989,8:00 - 9:30 a.m,2
+Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4717,10:00 - 11:30 a.m,2
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4938,10:00 - 11:30 a.m,2
+Zona Sur & Llanos,Fisica,Sistemas 2,C-2468,G-4314,15:00 - 16:30 p.m,2
+Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-5089,9:30 - 11:00 a.m,2
+"Santanderes, Boyaca y Cesar",Cognitiva,Sistemas e Informatica | Nivel basico,C-2532,G-4411,15:00 - 16:30 p.m,2
+Bogota & Cundinamarca,Fisica,Sin Limites Virtual,C-2500,G-4957,10:00 - 11:30 a.m,2
+Bogota & Cundinamarca,Fisica,Modisteria (Faldas),C-2565,G-5006,9:00 - 10:30 a.m,2
+Zona Sur & Llanos,Fisica,El ABC del Reciclaje,C-2453,G-4248,8:00 - 9:30 a.m,2
+Zona Pacifico,Visual,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,2
+"Santanderes, Boyaca y Cesar",Visual,Economia del Hogar,C-2526,G-4358,15:00 - 16:30 p.m,2
+"Santanderes, Boyaca y Cesar",Fisica,Orientacion Emprendedora,C-2622,G-4416,8:00 - 9:30 a.m,2
+Antioquia & Eje Cafetero,Fisica,Economia del Hogar,C-2637,G-4726,10:00 - 11:30 a.m,2
+Zona Sur & Llanos,Fisica,Sistemas 2,C-2468,G-4269,9:00 - 10:30 a.m,2
+Bogota & Cundinamarca,Cognitiva,Salud y Bienestar para Ovinos y Caprinos,C-2535,G-4764,8:00 - 9:30 a.m,2
+Bogota & Cundinamarca,Auditiva,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,2
+Bogota & Cundinamarca,Auditiva,Ingles Nivel 2,C-2580,G-4969,8:00 - 9:30 a.m,1
+Zona Pacifico,Fisica,Sistemas e Informatica | Nivel basico,C-2486,G-4333,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Trastorno de ansiedad y depresion,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
+Zona Caribe,Visual,Comprension Lectora,C-2536,G-5062,15:00 - 16:30 p.m,1
+"Santanderes, Boyaca y Cesar",Discapacidad fisica,Modisteria (Faldas),C-2674,G-4543,9:30 - 11:00 a.m,1
+Zona Pacifico,Multiple,Frances 1,C-2642,G-4514,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
+Zona Sur & Llanos,Persona con discapacidad minusvalida,Sistemas 1,C-2467,G-4972,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4773,10:00 - 11:30 a.m,1
+Zona Pacifico,Fisica,Economia del Hogar,C-2627,G-4513,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Paciente oncologica,Munecas de Trapo,C-2564,G-4988,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Ingles 2,C-2460,G-5053,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Fibromialgia,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Artritis,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
+Zona Pacifico,Cognitiva,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
+Zona Pacifico,Tdah,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Auditiva,Ingles Nivel 2,C-2686,G-4750,19:00 - 20:30 p.m,1
+Antioquia & Eje Cafetero,Esquizofrenia,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
+Zona Pacifico,Visual,Reposteria 1,C-2521,G-4354,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4802,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Comprension Lectora,C-2491,G-4797,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4797,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Cognitiva,Comprension Lectora,C-2446,G-4237,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Ingles Nivel 2,C-2686,G-4751,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
+Zona Caribe,Cognitiva,Economia del Hogar,C-2628,G-4681,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Fisica,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Auditiva,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4292,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Multiple,Sin Limites Virtual,C-2500,G-4956,9:00 - 10:30 a.m,1
+Zona Caribe,Fisica,Modisteria (Faldas),C-2733,G-4686,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Auditiva,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Usa baston,Sistemas e Informatica | Nivel basico,C-2554,G-5132,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4993,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Visual,Reposteria 1,C-2504,G-4976,8:00 - 9:30 a.m,1
+Zona Pacifico,Auditiva,Reposteria 1,C-2521,G-4354,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Visual,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5004,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Familias Empresarias del Campo,C-2607,G-4912,19:00 - 20:30 p.m,1
+Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4312,10:00 - 11:30 a.m,1
+Zona Pacifico,Visual,Economia del Hogar,C-2627,G-4509,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4786,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4933,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Perdida de capacidad laboral,Orientacion Emprendedora,C-2563,G-4995,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Ataques epilepticos,Despertar Emprendedor,C-2448,G-4292,8:00 - 9:30 a.m,1
+Zona Pacifico,Fisica,Confeccion: Manejo de Maquinas,C-2474,G-5033,14:00 - 15:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Modisteria (Faldas),C-2674,G-4543,9:30 - 11:00 a.m,1
+Zona Caribe,Visual,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
 Zona Caribe,Fisica,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-4950,15:00 - 16:30 p.m,1
-Zona Pacifico,Fisica,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
-"Santanderes, Boyaca y Cesar",Visual,Comprension Lectora,C-2518,G-4419,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Otra,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Sincope,Despertar Emprendedor,C-2619,G-4805,18:00 - 19:30 p.m,1
+Zona Sur & Llanos,Visual,Reposteria 1,C-2464,G-4294,15:00 - 16:30 p.m,1
+Zona Pacifico,Auditiva,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Sin Limites Virtual,C-2500,G-4956,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-4770,15:00 - 16:30 p.m,1
+Zona Caribe,Fisica,El ABC del Reciclaje,C-2716,G-4710,16:30 - 18:00 p.m,1
+Zona Caribe,Visual,Ingles Nivel 2,C-2649,G-4644,10:00 - 11:30 a.m,1
+Zona Caribe,Auditiva,Reposteria 1,C-2707,G-4682,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Frances Nivel 1,C-2593,G-4919,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Visual,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,El ABC del Reciclaje,C-2612,G-4848,10:00 - 11:30 a.m,1
+Zona Caribe,Cognitiva,Comprension Lectora,C-2536,G-4639,18:00 - 19:30 p.m,1
+Zona Pacifico,Multiple,Pintura en madera 1,C-2646,G-4448,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Diabetes,Despertar Humano,C-2449,G-4295,8:00 - 9:30 a.m,1
+Zona Pacifico,Fisica,Italiano 1,C-2652,G-4457,20:00 - 21:30 p.m,1
+Zona Pacifico,Auditiva,Comprension Lectora,C-2441,G-4224,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Auditiva,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4803,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Peinados y Trenzas,C-2730,G-4648,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,El ABC del Reciclaje,C-2612,G-4849,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Auditiva,Sistemas e Informatica | Nivel basico,C-2554,G-4838,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4953,11:00 - 12:30 a.m,1
+Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-4770,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Mental leve,Comprension Lectora,C-2691,G-5089,9:30 - 11:00 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4285,21:00 - 22:30 p.m,1
+Zona Pacifico,Fisica,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,1
+Zona Pacifico,Fisica,Comprension Lectora,C-2441,G-4225,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4304,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Peinados y Trenzas,C-2730,G-5106,10:00 - 11:30 a.m,1
+Zona Pacifico,Fisica,Reposteria 1,C-2521,G-4355,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Fisica,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Visual,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Epilepsia,Ingles Nivel 1,C-2581,G-4933,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Auditiva,Sistemas Nivel 2,C-2559,G-4768,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4326,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Fisica,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,1
+Zona Caribe,Fisica,Frances Nivel 1,C-2732,G-4672,15:00 - 16:30 p.m,1
+Zona Caribe,medula osea,Orientacion Emprendedora,C-2661,G-4702,15:00 - 16:30 p.m,1
+Zona Pacifico,Fisica,Italiano 1,C-2652,G-4456,20:00 - 21:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-4414,17:30 - 19:00 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Despertar Humano,C-2443,G-4230,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4290,19:00 - 20:30 p.m,1
+Zona Caribe,Fisica,Comprension Lectora,C-2536,G-5063,15:00 - 16:30 p.m,1
+Zona Caribe,Motriz,Economia del Hogar,C-2628,G-4645,14:00 - 15:30 p.m,1
+"Santanderes, Boyaca y Cesar",Cognitiva,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Fisica,Reposteria 2,C-2502,G-4961,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
+Zona Sur & Llanos,Fisica,Bienestar para la Persona Mayor,C-2445,G-4879,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Peinados y Trenzas,C-2552,G-4763,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Multiple,Despertar Humano,C-2617,G-4909,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4293,9:00 - 10:30 a.m,1
+"Santanderes, Boyaca y Cesar",Auditiva,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,1
+Zona Caribe,Hipertension,Bisuteria 1,C-2715,G-4708,9:00 - 10:30 a.m,1
+Zona Pacifico,Visual,Despertar Emprendedor,C-2475,G-4276,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4990,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Movilidad reducida,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Fisica,Peinados y Trenzas,C-2552,G-4836,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Multiple,Manejo de Maquinas de Confeccion,C-2621,G-4782,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5019,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4932,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Cognitiva,Comprension Lectora,C-2691,G-5015,10:30 - 12:00 m,1
+Zona Sur & Llanos,Cognitiva,Economia del Hogar,C-2452,G-4870,21:00 - 22:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5025,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Modisteria (Faldas),C-2565,G-5005,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Sistemas Nivel 2,C-2684,G-4738,15:00 - 16:30 p.m,1
+Zona Pacifico,Auditiva,Sistemas Nivel 2,C-2485,G-4328,10:00 - 11:30 a.m,1
+Zona Caribe,Fisica,Ingles Nivel 2,C-2649,G-4644,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4867,21:00 - 22:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Ingles Nivel 1,C-2729,G-4740,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Multiple,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4775,18:00 - 19:30 p.m,1
+Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4829,11:00 - 12:30 a.m,1
+Zona Caribe,Fisica,Mi Negocio en Internet,C-2700,G-4640,8:00 - 9:30 a.m,1
+Zona Caribe,Auditiva,Pintura en Madera,C-2734,G-4709,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Fisica,Sistemas 1,C-2467,G-5124,8:00 - 9:30 a.m,1
+Zona Caribe,Auditiva,Bisuteria 1,C-2715,G-4708,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Artrosis degenerativa,Comprension Lectora,C-2491,G-4908,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Manejo de Maquinas de Confeccion,C-2621,G-4783,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Ninguna,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Fisica,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,1
+Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4808,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
+Zona Pacifico,Ataxia,Familias Empresarias del Campo,C-2632,G-4814,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Auditiva,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
+Zona Pacifico,Fisica,Despertar Emprendedor,C-2475,G-5034,14:00 - 15:30 p.m,1
+Antioquia & Eje Cafetero,Auditiva,Orientacion Emprendedora,C-2731,G-4718,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Despertar Humano,C-2713,G-4649,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Visual,Mi Negocio en Internet,C-2566,G-4987,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Ingles Nivel 2,C-2580,G-4970,10:00 - 11:30 a.m,1
+Zona Pacifico,Cognitiva,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Visual,Despertar Emprendedor,C-2448,G-4293,9:00 - 10:30 a.m,1
+"Santanderes, Boyaca y Cesar",Epilepsia,Sistemas e Informatica | Nivel basico,C-2532,G-4411,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Peinados y Trenzas,C-2730,G-5105,17:00 - 18:30 p.m,1
+Zona Caribe,Visual,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Discopatia,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Epilepsia,Sistemas e Informatica | Nivel basico,C-2554,G-4838,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Italiano Nivel 2,C-2567,G-4982,17:00 - 18:30 p.m,1
+Bogota & Cundinamarca,Memoria debilitada por infarto en el 2020,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5003,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Memoria limitada por infarto cerebral en el ano 2020,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5003,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Ninguna,Economia del Hogar,C-2616,G-4847,10:00 - 11:30 a.m,1
+Zona Caribe,Fisica,Orientacion Emprendedora,C-2661,G-4702,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4780,15:00 - 16:30 p.m,1
+Zona Sur & Llanos,Fisica,Modisteria 1 (Faldas),C-2463,G-4312,10:00 - 11:30 a.m,1
+Zona Pacifico,Fisica,Frances 1,C-2642,G-4514,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Discapacidad mental,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Cognitiva,Despertar Humano,C-2449,G-4297,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Visual,Economia del Hogar,C-2452,G-4304,15:00 - 16:30 p.m,1
+Zona Pacifico,Cognitiva,Ingles 1,C-2648,G-4564,10:00 - 11:30 a.m,1
+"Santanderes, Boyaca y Cesar",Paciente oncologica,Sistemas e Informatica | Nivel basico,C-2532,G-5046,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4899,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-5130,11:00 - 12:30 a.m,1
+Bogota & Cundinamarca,Fisica,Estrategias para la Busqueda de Empleo,C-2610,G-4859,16:00 - 17:30 p.m,1
+Zona Caribe,Auditiva,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Economia del Hogar,C-2526,G-5045,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4807,8:00 - 9:30 a.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Despertar Emprendedor 1,C-2529,G-4366,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Modisteria (Faldas),C-2641,G-5104,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5101,9:30 - 11:00 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4302,16:00 - 17:30 p.m,1
+Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Business English 1,C-2737,G-4772,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-5132,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Artrosis degenerativa,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
+Zona Caribe,Psicosocial,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Auditiva,Comprension Lectora,C-2691,G-5014,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Artritis rematoideal,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
 Zona Pacifico,Fisica,"Bisuteria 1, 2",C-2457,G-4232,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,El ABC del Reciclaje,C-2612,G-4849,19:00 - 20:30 p.m,1
-"Santanderes, Boyaca y Cesar",Auditiva,Comprension Lectora,C-2518,G-4419,14:00 - 15:30 p.m,1
-Zona Sur & Llanos,Bipolar,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Cognitiva,Despertar Emprendedor,C-2693,G-5096,19:30 - 21:00 p.m,1
-Zona Caribe,Visual,Ingles Nivel 1,C-2645,G-4642,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Visual,Comprension Lectora,C-2446,G-4373,10:00 - 11:30 a.m,1
-Zona Pacifico,Fisica,Reposteria 2,C-2520,G-4680,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-5025,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Cognitiva,Estrategias para la Busqueda de Empleo,C-2456,G-4875,21:00 - 22:30 p.m,1
-Bogota & Cundinamarca,Ninguna,Bisuteria 1,C-2488,G-4777,15:00 - 16:30 p.m,1
-"Santanderes, Boyaca y Cesar",Auditiva,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
-Zona Caribe,Multiple,Pintura en Madera,C-2734,G-4674,7:30 - 9:00 a.m,1
-Zona Sur & Llanos,Auditiva,Bienestar para la Persona Mayor,C-2445,G-4879,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Bienestar para la Persona Mayor,C-2487,G-4722,10:00 - 11:30 a.m,1
-Zona Caribe,Fisica,Despertar Humano,C-2533,G-5061,15:00 - 16:30 p.m,1
-Zona Caribe,Fisica,Sistemas e Informatica | Nivel basico,C-2638,G-5059,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
-Zona Caribe,Fisica,Comprension Lectora,C-2536,G-4639,18:00 - 19:30 p.m,1
+Zona Sur & Llanos,Fisica,Ingles 1,C-2459,G-4920,21:00 - 22:30 p.m,1
+Zona Sur & Llanos,Multiple,Orientacion Emprendedora,C-2476,G-4326,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,"Bisuteria 1, 2",C-2738,G-4798,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Peinados y Trenzas,C-2730,G-4648,15:00 - 16:30 p.m,1
+"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-4230,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Cancer,Bisuteria 1,C-2488,G-4774,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Cognitiva,Despertar Emprendedor,C-2448,G-4291,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-4950,15:00 - 16:30 p.m,1
 Antioquia & Eje Cafetero,Cognitiva,Despertar Humano,C-2713,G-5084,8:30 - 10:00 a.m,1
-Zona Sur & Llanos,Fisica,Bienestar para la Persona Mayor,C-2445,G-5057,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Portugues Nivel 1,C-2561,G-4999,18:00 - 19:30 p.m,1
-Zona Sur & Llanos,Fisica,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Ataxia cerebral no progresiva,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Estrategias para la Busqueda de Empleo,C-2610,G-4864,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Manejo de Maquinas de Confeccion,C-2621,G-4783,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Peinados y Trenzas,C-2552,G-4763,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fibromialgia,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
-Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4992,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
-Zona Pacifico,Auditiva,Sistemas e Informatica | Nivel basico,C-2486,G-4332,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4937,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Visual,Economia del Hogar,C-2526,G-5044,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4997,8:00 - 9:30 a.m,1
-Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-4643,8:00 - 9:30 a.m,1
-Zona Caribe,Multiple,Reposteria 1,C-2707,G-4683,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4821,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Cognitiva,Bienestar para la Persona Mayor,C-2445,G-5057,15:00 - 16:30 p.m,1
-Zona Caribe,Cognitiva,Economia del Hogar,C-2628,G-5055,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Familias Empresarias del Campo,C-2639,G-4761,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Auditiva,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Ninguna,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Cognitiva,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4991,20:00 - 21:30 p.m,1
-Zona Pacifico,Fisica,Ingles 1,C-2648,G-5080,14:00 - 15:30 p.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Bisuteria 1,C-2677,G-5050,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Manejo de Maquinas de Confeccion,C-2644,G-4755,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Fisica,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Bienestar para la Persona Mayor,C-2487,G-4694,19:00 - 20:30 p.m,1
-"Santanderes, Boyaca y Cesar",Visual,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Visual,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Multiple,Munecas de Trapo,C-2564,G-4988,9:00 - 10:30 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4301,17:00 - 18:30 p.m,1
-Bogota & Cundinamarca,Visual,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Sistemas 1,C-2467,G-4972,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5004,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5020,10:00 - 11:30 a.m,1
+Zona Pacifico,Artosisi,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
+Zona Pacifico,Artrosis,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
+"Santanderes, Boyaca y Cesar",Multiple,Ingles Nivel 1,C-2528,G-4412,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Cognitiva,Despertar Humano,C-2449,G-4301,17:00 - 18:30 p.m,1
+Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4819,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Multiple,Ingles Nivel 2,C-2580,G-4970,10:00 - 11:30 a.m,1
+Zona Pacifico,Visual,Portugues 1,C-2527,G-4361,14:00 - 15:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4695,20:00 - 21:30 p.m,1
+Zona Caribe,Fisica,Economia del Hogar,C-2628,G-4645,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
+Zona Pacifico,Visual,Reposteria 1,C-2521,G-4351,10:00 - 11:30 a.m,1
+Zona Pacifico,Visual,Orientacion Emprendedora,C-2647,G-4452,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Ematoma,Despertar Humano,C-2449,G-4297,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Auditiva,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Visual,Orientacion Emprendedora,C-2563,G-4994,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Ninguna,Bisuteria 1,C-2488,G-4777,15:00 - 16:30 p.m,1
+Zona Pacifico,Fisica,Reposteria 2,C-2520,G-4680,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
+Zona Caribe,Fisica,Sistemas e Informatica | Nivel basico,C-2638,G-5059,10:00 - 11:30 a.m,1
+Zona Caribe,Fisica,Comprension Lectora,C-2536,G-4639,18:00 - 19:30 p.m,1
+Zona Caribe,Multiple,Pintura en Madera,C-2734,G-4674,7:30 - 9:00 a.m,1
+Zona Caribe,Fisica,Despertar Humano,C-2533,G-5061,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-5025,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Bienestar para la Persona Mayor,C-2487,G-4722,10:00 - 11:30 a.m,1
 Zona Sur & Llanos,Ninguna,Modisteria 1 (Faldas),C-2463,G-4312,10:00 - 11:30 a.m,1
 Zona Pacifico,Cognitiva,Sistemas e Informatica | Nivel basico,C-2486,G-4332,20:00 - 21:30 p.m,1
 Zona Caribe,Fisica,Bisuteria 1,C-2715,G-4708,9:00 - 10:30 a.m,1
-Zona Pacifico,Visual,Sistemas e Informatica | Nivel basico,C-2486,G-5077,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Cognitiva,El ABC del Reciclaje,C-2453,G-4306,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Cognitiva,El ABC del Reciclaje,C-2537,G-4372,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Problema respiratorio,Peinados y Trenzas,C-2730,G-5105,17:00 - 18:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 2,C-2580,G-4963,16:00 - 17:30 p.m,1
-Bogota & Cundinamarca,Multiple,Portugues Nivel 1,C-2561,G-4999,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Visual,Despertar Emprendedor,C-2619,G-4804,19:00 - 20:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-5015,10:30 - 12:00 m,1
-"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-5049,9:00 - 10:30 a.m,1
-Zona Caribe,Fisica,Sistemas e Informatica | Nivel basico,C-2638,G-4661,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Visual,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Epilepsia,Modisteria (Faldas),C-2565,G-5005,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Visual,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
-Zona Pacifico,Visual,Ingles 1,C-2648,G-4468,20:00 - 21:30 p.m,1
-Zona Pacifico,Cognitiva,Sistemas e Informatica | Nivel basico,C-2486,G-5032,20:00 - 21:30 p.m,1
-Zona Pacifico,Fisica,Ingles 1,C-2648,G-4545,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Pintura en Madera,C-2682,G-4756,15:00 - 16:30 p.m,1
-Zona Caribe,Fisica,Estrategias para la Busqueda de Empleo,C-2633,G-4641,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
-Zona Caribe,Fisica,Sin Limites Virtual,C-2634,G-4707,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4810,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4769,15:00 - 16:30 p.m,1
-Zona Pacifico,Fisica,Familias Empresarias del Campo,C-2632,G-4814,8:00 - 9:30 a.m,1
-Zona Pacifico,Auditiva,Frances 1,C-2642,G-4517,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Vision lejana,Ingles Nivel 1,C-2581,G-4940,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Hemiparexia con hipoxia neonatal,Economia del Hogar,C-2452,G-4872,21:00 - 22:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
+Zona Sur & Llanos,Bipolar,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Auditiva,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
+Zona Pacifico,Auditiva,Sistemas e Informatica | Nivel basico,C-2486,G-4332,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Fisica,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
+"Santanderes, Boyaca y Cesar",Visual,Economia del Hogar,C-2526,G-5044,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4910,19:00 - 20:30 p.m,1
+Zona Caribe,Visual,Ingles Nivel 1,C-2645,G-4642,15:00 - 16:30 p.m,1
+"Santanderes, Boyaca y Cesar",Auditiva,Comprension Lectora,C-2518,G-4419,14:00 - 15:30 p.m,1
+"Santanderes, Boyaca y Cesar",Auditiva,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
+Zona Sur & Llanos,Cognitiva,Estrategias para la Busqueda de Empleo,C-2456,G-4875,21:00 - 22:30 p.m,1
+Zona Sur & Llanos,Fisica,Bienestar para la Persona Mayor,C-2445,G-5057,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Auditiva,Manejo de Maquinas de Confeccion,C-2621,G-4783,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4992,20:00 - 21:30 p.m,1
 Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Familias Empresarias del Campo,C-2639,G-4761,10:00 - 11:30 a.m,1
-Zona Caribe,Visual,Sistemas e Informatica | Nivel basico,C-2638,G-4661,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Siringomelia,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4844,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Economia del Hogar,C-2616,G-4844,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Apnea del sueno,Ingles Nivel 1,C-2581,G-4953,11:00 - 12:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4698,8:00 - 9:30 a.m,1
-Zona Pacifico,Fisica,Orientacion Emprendedora,C-2647,G-4450,20:00 - 21:30 p.m,1
-Zona Pacifico,Cognitiva,Sistemas e Informatica | Nivel basico,C-2486,G-4333,20:00 - 21:30 p.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Despertar Humano,C-2443,G-5074,16:00 - 17:30 p.m,1
-Antioquia & Eje Cafetero,Cognitiva,Reposteria 1,C-2629,G-4758,19:00 - 20:30 p.m,1
-Antioquia & Eje Cafetero,Auditiva,Reposteria 1,C-2629,G-4758,19:00 - 20:30 p.m,1
-Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4872,21:00 - 22:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Ingles Nivel 2,C-2686,G-4754,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Visual,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4295,8:00 - 9:30 a.m,1
-Zona Caribe,Mental,Orientacion Emprendedora,C-2661,G-4637,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fibromialgia,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
+Bogota & Cundinamarca,Fisica,Portugues Nivel 1,C-2561,G-4999,18:00 - 19:30 p.m,1
+Bogota & Cundinamarca,Ataxia cerebral no progresiva,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Traqueostomia,Business English 1,C-2737,G-4772,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-4650,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Peinados y Trenzas,C-2552,G-4763,15:00 - 16:30 p.m,1
+Zona Sur & Llanos,Visual,Comprension Lectora,C-2446,G-4373,10:00 - 11:30 a.m,1
+"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-4229,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Cognitiva,Despertar Emprendedor,C-2693,G-5096,19:30 - 21:00 p.m,1
+Zona Caribe,Multiple,Reposteria 1,C-2707,G-4683,18:00 - 19:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-5047,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4997,8:00 - 9:30 a.m,1
+Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-4643,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4937,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Estrategias para la Busqueda de Empleo,C-2610,G-4864,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4842,8:00 - 9:30 a.m,1
+Zona Pacifico,Visual,Comprension Lectora,C-2441,G-4227,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Modisteria (Faldas),C-2641,G-4646,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Tdh,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
+Zona Pacifico,hafisia,Sistemas e Informatica | Nivel basico,C-2486,G-5032,20:00 - 21:30 p.m,1
+Zona Pacifico,Auditiva,Sistemas e Informatica | Nivel basico,C-2486,G-5031,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4262,20:30 - 22:00 p.m,1
+Bogota & Cundinamarca,Cognitiva,Sistemas Nivel 2,C-2559,G-4768,10:00 - 11:30 a.m,1
+Zona Pacifico,Auditiva,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,1
 Zona Caribe,Columna operada,Ingles Nivel 1,C-2645,G-4664,7:30 - 9:00 a.m,1
 Zona Caribe,Columna,Ingles Nivel 1,C-2645,G-4664,7:30 - 9:00 a.m,1
 Zona Caribe,"Columna operada y visual, miopia y abtimatismo",Ingles Nivel 1,C-2645,G-4664,7:30 - 9:00 a.m,1
 Zona Caribe,Fisica,Ingles Nivel 1,C-2645,G-4664,7:30 - 9:00 a.m,1
 "Santanderes, Boyaca y Cesar",Fisica,Sistemas Nivel 2,C-2723,G-4547,15:00 - 16:30 p.m,1
 Zona Caribe,Anemia faciforme,Sistemas Nivel 2,C-2640,G-4663,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Desgaste de cadera,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
-Zona Pacifico,Artrosis,Sistemas Nivel 2,C-2485,G-4906,14:00 - 15:30 p.m,1
-"Santanderes, Boyaca y Cesar",Auditiva,El ABC del Reciclaje,C-2537,G-4372,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Mental,Orientacion Emprendedora,C-2622,G-4416,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Multiple,Comprension Lectora,C-2446,G-4287,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4828,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Visual,Reposteria 1,C-2464,G-4294,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4866,21:00 - 22:30 p.m,1
-Antioquia & Eje Cafetero,Auditiva,"Bisuteria 1, 2",C-2738,G-4798,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Orientacion Emprendedora,C-2563,G-4991,20:00 - 21:30 p.m,1
-Zona Caribe,Cognitiva,Ingles Nivel 1,C-2645,G-5064,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Visual,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
-Zona Pacifico,Auditiva,Sistemas e Informatica | Nivel basico,C-2486,G-5031,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Visual,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Auditiva,Pintura en Madera,C-2682,G-4756,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4954,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Visual,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,1
-Zona Pacifico,Auditiva,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
-Zona Pacifico,Visual,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Visual,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
-"Santanderes, Boyaca y Cesar",Visual,Despertar Humano,C-2443,G-5066,8:00 - 9:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-4712,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Comprension Lectora,C-2491,G-4790,8:00 - 9:30 a.m,1
-Antioquia & Eje Cafetero,Cognitiva,Sistemas e Informatica | Nivel basico,C-2689,G-4733,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Visual,Manejo de Maquinas de Confeccion,C-2621,G-4782,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-4842,8:00 - 9:30 a.m,1
+Zona Pacifico,Uso gafas,Mi Negocio en Internet,C-2653,G-4903,10:00 - 11:30 a.m,1
+Zona Pacifico,Visual,Despertar Humano,C-2623,G-4481,20:00 - 21:30 p.m,1
+Zona Pacifico,Artrosis en la mano,Bienestar para la Persona Mayor,C-2439,G-4221,14:00 - 15:30 p.m,1
+Zona Sur & Llanos,Fisica,Ingles 2,C-2460,G-4425,21:00 - 22:30 p.m,1
+Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Movilidad reducida,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,1
+"Santanderes, Boyaca y Cesar",Visual,Comprension Lectora,C-2518,G-4419,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Fisica,El ABC del Reciclaje,C-2612,G-4849,19:00 - 20:30 p.m,1
+Zona Caribe,Fisica,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
+Zona Pacifico,Fisica,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
+Zona Pacifico,Fisica,Orientacion Emprendedora,C-2647,G-4450,20:00 - 21:30 p.m,1
+Zona Pacifico,Auditiva,Frances 1,C-2642,G-4517,14:00 - 15:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Familias Empresarias del Campo,C-2639,G-4761,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Apnea del sueno,Ingles Nivel 1,C-2581,G-4953,11:00 - 12:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4698,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Sistemas e Informatica | Nivel basico,C-2554,G-5130,11:00 - 12:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4844,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Economia del Hogar,C-2616,G-4844,8:00 - 9:30 a.m,1
+Zona Pacifico,Cognitiva,Sistemas e Informatica | Nivel basico,C-2486,G-4333,20:00 - 21:30 p.m,1
 Zona Sur & Llanos,Fisica,Comprension Lectora,C-2446,G-4373,10:00 - 11:30 a.m,1
 Zona Caribe,Multiple,Ingles Nivel 1,C-2645,G-4642,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Visual,Sistemas e Informatica | Nivel basico,C-2554,G-5130,11:00 - 12:30 a.m,1
-Zona Sur & Llanos,Fisica,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
-Zona Sur & Llanos,Auditiva,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
-Zona Caribe,Visual,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
-Zona Caribe,Fisica,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4786,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Perdida de capacidad laboral,Orientacion Emprendedora,C-2563,G-4995,9:00 - 10:30 a.m,1
-Zona Sur & Llanos,Ataques epilepticos,Despertar Emprendedor,C-2448,G-4292,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Modisteria (Faldas),C-2674,G-4543,9:30 - 11:00 a.m,1
-Zona Pacifico,Fisica,Confeccion: Manejo de Maquinas,C-2474,G-5033,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4933,16:00 - 17:30 p.m,1
-Zona Pacifico,Visual,Economia del Hogar,C-2627,G-4509,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Familias Empresarias del Campo,C-2607,G-4912,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Visual,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5004,10:00 - 11:30 a.m,1
-Zona Pacifico,Auditiva,Reposteria 1,C-2521,G-4354,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Visual,Reposteria 1,C-2504,G-4976,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Ingles Nivel 1,C-2581,G-4932,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Epilepsia,Sistemas e Informatica | Nivel basico,C-2554,G-4838,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Auditiva,Orientacion Emprendedora,C-2731,G-4718,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Visual,Sistemas 2,C-2468,G-4314,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4847,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Visual,Ingles Nivel 1,C-2581,G-4934,16:00 - 17:30 p.m,1
+Antioquia & Eje Cafetero,Cognitiva,Sistemas e Informatica | Nivel basico,C-2689,G-4733,19:00 - 20:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-4712,19:00 - 20:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Despertar Humano,C-2443,G-5074,16:00 - 17:30 p.m,1
+Zona Caribe,Mental,Orientacion Emprendedora,C-2661,G-4637,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4872,21:00 - 22:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Ingles Nivel 2,C-2686,G-4754,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Visual,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
+Zona Caribe,Visual,Sistemas e Informatica | Nivel basico,C-2638,G-4661,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Vision lejana,Ingles Nivel 1,C-2581,G-4940,10:00 - 11:30 a.m,1
+Antioquia & Eje Cafetero,Cognitiva,Reposteria 1,C-2629,G-4758,19:00 - 20:30 p.m,1
+Antioquia & Eje Cafetero,Auditiva,Reposteria 1,C-2629,G-4758,19:00 - 20:30 p.m,1
+Antioquia & Eje Cafetero,Auditiva,Pintura en Madera,C-2682,G-4756,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
+Zona Sur & Llanos,Hemiparexia con hipoxia neonatal,Economia del Hogar,C-2452,G-4872,21:00 - 22:30 p.m,1
+Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
+Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Siringomelia,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
 Zona Pacifico,hafisia,Reposteria 2,C-2520,G-4680,10:00 - 11:30 a.m,1
-Zona Caribe,Parkinson,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
+Antioquia & Eje Cafetero,Auditiva,"Bisuteria 1, 2",C-2738,G-4798,9:00 - 10:30 a.m,1
+Zona Caribe,Cognitiva,Ingles Nivel 1,C-2645,G-5064,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Orientacion Emprendedora,C-2563,G-4991,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Visual,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Visual,Sistemas 2,C-2468,G-4314,15:00 - 16:30 p.m,1
 Zona Caribe,Cognitiva,Orientacion Emprendedora,C-2661,G-4637,9:00 - 10:30 a.m,1
+Zona Caribe,Parkinson,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
+Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4847,10:00 - 11:30 a.m,1
 Bogota & Cundinamarca,Auditiva,Despertar Emprendedor,C-2619,G-4806,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4993,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Visual,Ingles Nivel 1,C-2581,G-4932,20:00 - 21:30 p.m,1
 Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4791,9:00 - 10:30 a.m,1
 Zona Pacifico,Cognitiva,Reposteria 1,C-2521,G-4352,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Sincope,Despertar Emprendedor,C-2619,G-4805,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-5066,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Otra,Pintura en madera 1,C-2540,G-4998,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,El ABC del Reciclaje,C-2612,G-4849,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4803,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Peinados y Trenzas,C-2730,G-4648,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4293,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Auditiva,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,1
-Zona Caribe,Hipertension,Bisuteria 1,C-2715,G-4708,9:00 - 10:30 a.m,1
-Zona Pacifico,Visual,Despertar Emprendedor,C-2475,G-4276,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-4770,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Visual,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
-Zona Pacifico,Fisica,Reposteria 1,C-2521,G-4355,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Peinados y Trenzas,C-2730,G-5106,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4304,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4326,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Sistemas Nivel 2,C-2559,G-4768,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4292,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Usa baston,Sistemas e Informatica | Nivel basico,C-2554,G-5132,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Multiple,Sin Limites Virtual,C-2500,G-4956,9:00 - 10:30 a.m,1
-Zona Caribe,Fisica,Modisteria (Faldas),C-2733,G-4686,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Italiano Nivel 2,C-2567,G-4982,17:00 - 18:30 p.m,1
-Zona Pacifico,Fisica,Modisteria 1 (Faldas),C-2654,G-4453,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Mental leve,Comprension Lectora,C-2691,G-5089,9:30 - 11:00 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4285,21:00 - 22:30 p.m,1
-Zona Sur & Llanos,Visual,Modisteria 1 (Faldas),C-2463,G-4312,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4953,11:00 - 12:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Sistemas e Informatica | Nivel basico,C-2554,G-4838,9:00 - 10:30 a.m,1
-Zona Caribe,Fisica,El ABC del Reciclaje,C-2716,G-4710,16:30 - 18:00 p.m,1
-Bogota & Cundinamarca,Visual,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Ingles Nivel 2,C-2580,G-4969,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-4770,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Sin Limites Virtual,C-2500,G-4956,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Fisica,Frances Nivel 1,C-2593,G-4919,20:00 - 21:30 p.m,1
-Zona Pacifico,Fisica,Sistemas e Informatica | Nivel basico,C-2486,G-4333,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Trastorno de ansiedad y depresion,Ingles 1,C-2459,G-5052,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Discapacidad fisica,Modisteria (Faldas),C-2674,G-4543,9:30 - 11:00 a.m,1
-Bogota & Cundinamarca,Fisica,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
-Zona Caribe,Cognitiva,Economia del Hogar,C-2628,G-4681,8:00 - 9:30 a.m,1
-Zona Pacifico,Auditiva,Comprension Lectora,C-2441,G-4224,20:00 - 21:30 p.m,1
-Zona Caribe,Visual,Despertar Humano,C-2533,G-4668,13:00 - 14:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Despertar Humano,C-2617,G-4829,11:00 - 12:30 a.m,1
-Zona Pacifico,Fisica,Italiano 1,C-2652,G-4457,20:00 - 21:30 p.m,1
-Zona Pacifico,Auditiva,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Diabetes,Despertar Humano,C-2449,G-4295,8:00 - 9:30 a.m,1
-Zona Caribe,Cognitiva,Comprension Lectora,C-2536,G-4639,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,El ABC del Reciclaje,C-2612,G-4848,10:00 - 11:30 a.m,1
-Zona Caribe,Auditiva,Reposteria 1,C-2707,G-4682,9:00 - 10:30 a.m,1
-Zona Pacifico,Multiple,Pintura en madera 1,C-2646,G-4448,10:00 - 11:30 a.m,1
-Zona Caribe,Visual,Ingles Nivel 2,C-2649,G-4644,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Despertar Humano,C-2713,G-4649,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Fisica,Ingles 2,C-2460,G-5053,16:00 - 17:30 p.m,1
-Bogota & Cundinamarca,Cognitiva,Comprension Lectora,C-2491,G-4797,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4797,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4802,16:00 - 17:30 p.m,1
-Zona Sur & Llanos,Persona con discapacidad minusvalida,Sistemas 1,C-2467,G-4972,8:00 - 9:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4773,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Ingles Nivel 2,C-2580,G-4970,10:00 - 11:30 a.m,1
-Zona Caribe,Psicosocial,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Paciente oncologica,Munecas de Trapo,C-2564,G-4988,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Visual,Mi Negocio en Internet,C-2566,G-4987,10:00 - 11:30 a.m,1
-Zona Caribe,Visual,Reposteria 2,C-2709,G-4673,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Peinados y Trenzas,C-2730,G-5105,17:00 - 18:30 p.m,1
-Zona Pacifico,Cognitiva,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Visual,Despertar Emprendedor,C-2448,G-4293,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Epilepsia,Sistemas e Informatica | Nivel basico,C-2532,G-4411,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Memoria debilitada por infarto en el 2020,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5003,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Memoria limitada por infarto cerebral en el ano 2020,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5003,10:00 - 11:30 a.m,1
-Zona Pacifico,Multiple,Frances 1,C-2642,G-4514,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Cognitiva,Comprension Lectora,C-2446,G-4237,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Ingles Nivel 2,C-2686,G-4751,8:00 - 9:30 a.m,1
-Zona Caribe,Visual,Comprension Lectora,C-2536,G-5062,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Esquizofrenia,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Epilepsia,Ingles Nivel 1,C-2581,G-4933,16:00 - 17:30 p.m,1
-Zona Pacifico,Visual,Reposteria 1,C-2521,G-4354,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Auditiva,Ingles Nivel 2,C-2686,G-4750,19:00 - 20:30 p.m,1
-Zona Pacifico,Cognitiva,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
-Zona Pacifico,Tdah,Orientacion Emprendedora,C-2647,G-4449,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fibromialgia,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Artritis,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
-Zona Pacifico,Fisica,Economia del Hogar,C-2627,G-4513,14:00 - 15:30 p.m,1
-Zona Sur & Llanos,Visual,Economia del Hogar,C-2452,G-4304,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Discapacidad mental,Despertar Humano,C-2617,G-4827,8:00 - 9:30 a.m,1
-Zona Pacifico,Cognitiva,Ingles 1,C-2648,G-4564,10:00 - 11:30 a.m,1
-"Santanderes, Boyaca y Cesar",Paciente oncologica,Sistemas e Informatica | Nivel basico,C-2532,G-5046,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Cognitiva,Despertar Humano,C-2449,G-4297,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Sistemas e Informatica | Nivel basico,C-2554,G-5130,11:00 - 12:30 a.m,1
-Zona Pacifico,Fisica,Frances 1,C-2642,G-4514,10:00 - 11:30 a.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Economia del Hogar,C-2526,G-5045,9:00 - 10:30 a.m,1
-Zona Caribe,Auditiva,Italiano Nivel 1,C-2683,G-4671,18:00 - 19:30 p.m,1
-Bogota & Cundinamarca,Fisica,Estrategias para la Busqueda de Empleo,C-2610,G-4859,16:00 - 17:30 p.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Despertar Humano,C-2443,G-4230,9:00 - 10:30 a.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Despertar Emprendedor 1,C-2529,G-4366,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Modisteria (Faldas),C-2641,G-5104,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Orientacion Emprendedora,C-2476,G-4299,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Discopatia,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4302,16:00 - 17:30 p.m,1
-Zona Pacifico,Fisica,Despertar Emprendedor,C-2475,G-5034,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-5132,19:00 - 20:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Business English 1,C-2737,G-4772,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Artrosis degenerativa,Sistemas Nivel 2,C-2559,G-4765,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Visual,Ingles Nivel 1,C-2729,G-4740,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Multiple,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4899,8:00 - 9:30 a.m,1
-Antioquia & Eje Cafetero,Auditiva,Comprension Lectora,C-2691,G-5014,9:00 - 10:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5101,9:30 - 11:00 a.m,1
-Bogota & Cundinamarca,Artritis rematoideal,Comprension Lectora,C-2491,G-4794,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Fisica,Modisteria Reparacion y Modificacion de Prendas de Vestir,C-2739,G-5004,10:00 - 11:30 a.m,1
-Zona Pacifico,Artosisi,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
-Zona Pacifico,Artrosis,Trenzas y Peinados,C-2643,G-4688,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Cognitiva,Despertar Humano,C-2449,G-4301,17:00 - 18:30 p.m,1
-Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4819,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
-Zona Pacifico,Visual,Reposteria 1,C-2521,G-4351,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Visual,Orientacion Emprendedora,C-2563,G-4994,8:00 - 9:30 a.m,1
-Zona Caribe,Fisica,Economia del Hogar,C-2628,G-4645,14:00 - 15:30 p.m,1
-Zona Pacifico,Visual,Portugues 1,C-2527,G-4361,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5020,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Multiple,Ingles Nivel 2,C-2580,G-4970,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Auditiva,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,1
-Zona Pacifico,Visual,Orientacion Emprendedora,C-2647,G-4452,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Ematoma,Despertar Humano,C-2449,G-4297,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Multiple,Orientacion Emprendedora,C-2476,G-4326,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Peinados y Trenzas,C-2552,G-4763,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4807,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Cognitiva,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 2,C-2530,G-4367,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Fisica,Reposteria 2,C-2502,G-4961,10:00 - 11:30 a.m,1
-Zona Caribe,Fisica,Comprension Lectora,C-2536,G-5063,15:00 - 16:30 p.m,1
-Zona Caribe,Motriz,Economia del Hogar,C-2628,G-4645,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Floristeria 1,C-2539,G-4916,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Despertar Emprendedor,C-2448,G-4290,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Multiple,Despertar Humano,C-2617,G-4909,20:00 - 21:30 p.m,1
-"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-4414,17:30 - 19:00 p.m,1
-Bogota & Cundinamarca,Fisica,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
-Zona Sur & Llanos,Fisica,Bienestar para la Persona Mayor,C-2445,G-4879,8:00 - 9:30 a.m,1
-"Santanderes, Boyaca y Cesar",Multiple,Ingles Nivel 1,C-2528,G-4412,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4910,19:00 - 20:30 p.m,1
-Bogota & Cundinamarca,Visual,Manejo de Maquinas de Confeccion,C-2621,G-4782,10:00 - 11:30 a.m,1
+"Santanderes, Boyaca y Cesar",Visual,Despertar Humano,C-2443,G-5066,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,1
+Bogota & Cundinamarca,Cognitiva,Comprension Lectora,C-2491,G-4790,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4954,19:00 - 20:30 p.m,1
+Zona Pacifico,Auditiva,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
+Zona Pacifico,Visual,Confeccion: Manejo de Maquinas,C-2474,G-4677,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Visual,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
+Zona Pacifico,Artrosis,Sistemas Nivel 2,C-2485,G-4906,14:00 - 15:30 p.m,1
+Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4828,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Multiple,Comprension Lectora,C-2446,G-4287,8:00 - 9:30 a.m,1
+"Santanderes, Boyaca y Cesar",Mental,Orientacion Emprendedora,C-2622,G-4416,8:00 - 9:30 a.m,1
+"Santanderes, Boyaca y Cesar",Auditiva,El ABC del Reciclaje,C-2537,G-4372,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4866,21:00 - 22:30 p.m,1
+Bogota & Cundinamarca,Desgaste de cadera,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4991,20:00 - 21:30 p.m,1
+Antioquia & Eje Cafetero,Visual,Familias Empresarias del Campo,C-2639,G-4761,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Auditiva,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Cognitiva,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
+Zona Caribe,Cognitiva,Economia del Hogar,C-2628,G-5055,14:00 - 15:30 p.m,1
+"Santanderes, Boyaca y Cesar",Fisica,Bisuteria 1,C-2677,G-5050,15:00 - 16:30 p.m,1
+Zona Pacifico,Fisica,Ingles 1,C-2648,G-5080,14:00 - 15:30 p.m,1
+Zona Pacifico,Fisica,Familias Empresarias del Campo,C-2632,G-4814,8:00 - 9:30 a.m,1
+Antioquia & Eje Cafetero,Fisica,Manejo de Maquinas de Confeccion,C-2644,G-4755,15:00 - 16:30 p.m,1
+Zona Caribe,Fisica,Sin Limites Virtual,C-2634,G-4707,15:00 - 16:30 p.m,1
+Zona Sur & Llanos,Auditiva,Bienestar para la Persona Mayor,C-2445,G-4879,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Fisica,Sistemas 1,C-2467,G-4972,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Italiano Nivel 1,C-2568,G-5079,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Pintura en madera 1,C-2540,G-4996,9:00 - 10:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4301,17:00 - 18:30 p.m,1
+Bogota & Cundinamarca,Multiple,Munecas de Trapo,C-2564,G-4988,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Cognitiva,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Bienestar para la Persona Mayor,C-2487,G-4694,19:00 - 20:30 p.m,1
+Zona Sur & Llanos,Cognitiva,Bienestar para la Persona Mayor,C-2445,G-5057,15:00 - 16:30 p.m,1
+"Santanderes, Boyaca y Cesar",Visual,Bisuteria 1,C-2677,G-5051,15:00 - 16:30 p.m,1
+Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4821,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Ninguna,Bienestar para la Persona Mayor,C-2487,G-4757,10:00 - 11:30 a.m,1
+Zona Sur & Llanos,Fisica,Modisteria 1 (Faldas),C-2463,G-4930,20:00 - 21:30 p.m,1
+Zona Caribe,Fisica,Sistemas e Informatica | Nivel basico,C-2638,G-4661,15:00 - 16:30 p.m,1
+Antioquia & Eje Cafetero,Fisica,Comprension Lectora,C-2691,G-5015,10:30 - 12:00 m,1
+"Santanderes, Boyaca y Cesar",Fisica,Ingles Nivel 1,C-2528,G-5049,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4809,10:00 - 11:30 a.m,1
+Bogota & Cundinamarca,Auditiva,Economia del Hogar,C-2616,G-4839,19:00 - 20:30 p.m,1
+Bogota & Cundinamarca,Multiple,Portugues Nivel 1,C-2561,G-4999,18:00 - 19:30 p.m,1
+Bogota & Cundinamarca,Fisica,Ingles Nivel 2,C-2580,G-4963,16:00 - 17:30 p.m,1
+Zona Pacifico,Visual,Sistemas e Informatica | Nivel basico,C-2486,G-5077,20:00 - 21:30 p.m,1
+Bogota & Cundinamarca,Epilepsia,Modisteria (Faldas),C-2565,G-5005,15:00 - 16:30 p.m,1
 Bogota & Cundinamarca,Visual,Pintura en madera 1,C-2540,G-4997,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Visual,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
-Bogota & Cundinamarca,Multiple,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Cognitiva,Comprension Lectora,C-2691,G-5015,10:30 - 12:00 m,1
-Zona Sur & Llanos,Fisica,Economia del Hogar,C-2452,G-4867,21:00 - 22:30 p.m,1
-Bogota & Cundinamarca,Visual,Despertar Humano,C-2617,G-4829,11:00 - 12:30 a.m,1
-Bogota & Cundinamarca,Fisica,Bisuteria 1,C-2488,G-4775,18:00 - 19:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Despertar Humano,C-2713,G-4697,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Peinados y Trenzas,C-2552,G-4836,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Movilidad reducida,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Auditiva,Bisuteria 1,C-2488,G-4776,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Orientacion Emprendedora,C-2563,G-4990,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5025,8:00 - 9:30 a.m,1
-Zona Pacifico,Fisica,Comprension Lectora,C-2441,G-4225,20:00 - 21:30 p.m,1
-Zona Pacifico,Fisica,Italiano 1,C-2652,G-4456,20:00 - 21:30 p.m,1
-Zona Caribe,medula osea,Orientacion Emprendedora,C-2661,G-4702,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Fisica,Sin Limites Virtual,C-2466,G-4313,9:00 - 10:30 a.m,1
-Zona Caribe,Fisica,Frances Nivel 1,C-2732,G-4672,15:00 - 16:30 p.m,1
-Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Sistemas e Informatica | Nivel basico,C-2689,G-4734,20:00 - 21:30 p.m,1
-Antioquia & Eje Cafetero,Visual,Sistemas Nivel 2,C-2684,G-4738,15:00 - 16:30 p.m,1
-Zona Pacifico,Auditiva,Sistemas Nivel 2,C-2485,G-4328,10:00 - 11:30 a.m,1
-Bogota & Cundinamarca,Fisica,Modisteria (Faldas),C-2565,G-5005,15:00 - 16:30 p.m,1
-Zona Sur & Llanos,Cognitiva,Economia del Hogar,C-2452,G-4870,21:00 - 22:30 p.m,1
-Zona Caribe,Fisica,Ingles Nivel 2,C-2649,G-4644,10:00 - 11:30 a.m,1
-Zona Pacifico,Ataxia,Familias Empresarias del Campo,C-2632,G-4814,8:00 - 9:30 a.m,1
-Zona Caribe,Auditiva,Bisuteria 1,C-2715,G-4708,9:00 - 10:30 a.m,1
-Zona Caribe,Auditiva,Pintura en Madera,C-2734,G-4709,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Fisica,Sistemas 1,C-2467,G-5124,8:00 - 9:30 a.m,1
-Zona Caribe,Fisica,Mi Negocio en Internet,C-2700,G-4640,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Manejo de Maquinas de Confeccion,C-2621,G-4783,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Cognitiva,Bienestar para la Persona Mayor,C-2487,G-4832,14:00 - 15:30 p.m,1
-Antioquia & Eje Cafetero,Ninguna,Ingles Nivel 1,C-2729,G-4744,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Reposteria 1,C-2504,G-4975,17:00 - 18:30 p.m,1
-Bogota & Cundinamarca,Fisica,Despertar Emprendedor,C-2619,G-4808,8:00 - 9:30 a.m,1
-Zona Sur & Llanos,Auditiva,Sistemas 1,C-2467,G-4973,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Auditiva,Comprension Lectora,C-2491,G-4789,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Fisica,Sistemas Nivel 2,C-2559,G-4767,8:00 - 9:30 a.m,1
-Bogota & Cundinamarca,Multiple,Manejo de Maquinas de Confeccion,C-2621,G-4782,10:00 - 11:30 a.m,1
-Antioquia & Eje Cafetero,Fisica,Sistemas e Informatica | Nivel basico,C-2689,G-5019,20:00 - 21:30 p.m,1
-Bogota & Cundinamarca,Fisica,Ingles Nivel 1,C-2581,G-4932,20:00 - 21:30 p.m,1
-Zona Sur & Llanos,Fisica,Ingles 1,C-2459,G-4920,21:00 - 22:30 p.m,1
-"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-4229,9:00 - 10:30 a.m,1
-Bogota & Cundinamarca,Ninguna,Economia del Hogar,C-2616,G-4847,10:00 - 11:30 a.m,1
-Zona Sur & Llanos,Fisica,Modisteria 1 (Faldas),C-2463,G-4312,10:00 - 11:30 a.m,1
-Zona Caribe,Fisica,Orientacion Emprendedora,C-2661,G-4702,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Fisica,Comprension Lectora,C-2491,G-4780,15:00 - 16:30 p.m,1
-Bogota & Cundinamarca,Artrosis degenerativa,Comprension Lectora,C-2491,G-4908,9:00 - 10:30 a.m,1
+Zona Caribe,Visual,Despertar Humano,C-2533,G-4668,13:00 - 14:30 p.m,1
+Bogota & Cundinamarca,Visual,Sistemas e Informatica | Nivel basico,C-2554,G-5129,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Fisica,Despertar Humano,C-2617,G-4829,11:00 - 12:30 a.m,1
+Zona Sur & Llanos,Fisica,Despertar Humano,C-2449,G-4295,8:00 - 9:30 a.m,1
+Zona Sur & Llanos,Visual,Peinados y Trenzas,C-2461,G-4971,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Economia del Hogar,C-2616,G-4810,9:00 - 10:30 a.m,1
+Bogota & Cundinamarca,Fisica,Sistemas e Informatica | Nivel basico,C-2554,G-4769,15:00 - 16:30 p.m,1
+Zona Pacifico,Fisica,Ingles 1,C-2648,G-4545,20:00 - 21:30 p.m,1
+Zona Pacifico,Cognitiva,Sistemas e Informatica | Nivel basico,C-2486,G-5032,20:00 - 21:30 p.m,1
+Zona Caribe,Fisica,Estrategias para la Busqueda de Empleo,C-2633,G-4641,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Visual,Pintura en Madera,C-2682,G-4756,15:00 - 16:30 p.m,1
+"Santanderes, Boyaca y Cesar",Cognitiva,Despertar Humano,C-2443,G-5066,8:00 - 9:30 a.m,1
+Zona Pacifico,Visual,Ingles 1,C-2648,G-4468,20:00 - 21:30 p.m,1
+Zona Sur & Llanos,Cognitiva,El ABC del Reciclaje,C-2453,G-4306,8:00 - 9:30 a.m,1
+Bogota & Cundinamarca,Visual,Despertar Emprendedor,C-2619,G-4804,19:00 - 20:30 p.m,1
+"Santanderes, Boyaca y Cesar",Cognitiva,El ABC del Reciclaje,C-2537,G-4372,9:00 - 10:30 a.m,1
+Antioquia & Eje Cafetero,Problema respiratorio,Peinados y Trenzas,C-2730,G-5105,17:00 - 18:30 p.m,1
 
