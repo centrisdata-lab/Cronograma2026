@@ -291,10 +291,8 @@ def build_csv(data):
     for et in data["demanda"]["etnia"]:
         lines.append(csv_row("etnia", strip_accents(et["etiqueta"]), et["n"]))
     disc = data["demanda"]["discapacidad"]
-    con_condicion = sum(d["n"] for d in disc if d["etiqueta"].strip().lower() != "ninguna")
-    sin_condicion = sum(d["n"] for d in disc if d["etiqueta"].strip().lower() == "ninguna")
-    lines.append(csv_row("discapacidad", "Con alguna condicion reportada", con_condicion))
-    lines.append(csv_row("discapacidad", "Sin condicion (Ninguna)", sin_condicion))
+    for d in disc:
+        lines.append(csv_row("discapacidad", strip_accents(d["etiqueta"]), d["n"]))
     for c in data.get("conocimiento", {}).get("items", []):
         lines.append(csv_row("conocimiento", strip_accents(c["opcion"]), c["n"]))
     # Pais de residencia (global): solo se guarda el total de Colombia y el

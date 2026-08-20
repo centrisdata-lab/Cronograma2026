@@ -789,7 +789,7 @@
         <span class="acc-desc">Género, edad, etnia y discapacidad — datos globales (todas las convocatorias del mundo, no solo las 6 zonas de Colombia).</span>
       </summary>
       <div class="panel" id="panel-otros">
-        <div class="kd-sub" style="margin-bottom:16px;">Estos cuatro datos son <b>globales</b> — el dashboard no los desglosa por zona. La discapacidad se muestra solo como total de personas con alguna condición reportada, sin el detalle individual.</div>
+        <div class="kd-sub" style="margin-bottom:16px;">Estos cuatro datos son <b>globales</b> — el dashboard no los desglosa por zona.</div>
         <div id="otros-grupos-slot"></div>
       </div>
     </details>
@@ -1602,7 +1602,8 @@ function dashboardHtml(){
   const colombiaTotalDash = (paisRowsDash.find(o=>o.lbl==='Colombia')||{}).val || 0;
   const paisTotalGlobalDash = (paisRowsDash.find(o=>o.lbl==='Total')||{}).val || 0;
   const externosEstColombiaDash = paisTotalGlobalDash ? Math.round(externos * colombiaTotalDash/paisTotalGlobalDash) : 0;
-  const discapacidadTotal = (OTROS.find(o=>o.cat==='discapacidad' && o.lbl==='Con alguna condicion reportada')||{}).val || 0;
+  const discapacidadRows = OTROS.filter(o=>o.cat==='discapacidad');
+  const discapacidadTotal = discapacidadRows.filter(o=>normKey(o.lbl)!=='ninguna').reduce((a,o)=>a+o.val,0);
   const cursosBajaOcu = CURSOS.filter(c=>c.ocu<30).length;
   // Un mismo curso (código) puede ofertarse en varias zonas -- "cursos
   // ofertados" cuenta códigos únicos, no filas de CURSOS (que son
@@ -1651,8 +1652,13 @@ function dashboardHtml(){
 // IDMJI -- sin tocar el dato crudo del CSV ni afectar otras categorías
 // que reutilizan esta misma función (género, edad, etnia, discapacidad).
 const RENOMBRES_ETIQUETA = { 'Iglesia': 'Personas internas' };
-function otrosBarGroup(titulo, cat){
-  const rows = OTROS.filter(o=>o.cat===cat);
+// En "Discapacidad" excluimos la etiqueta "Ninguna" del gráfico y del
+// total mostrado -- el interés aquí es ver la composición de quienes SÍ
+// reportan alguna condición, no diluirla con la mayoría que no reporta
+// ninguna. Las demás categorías (género, edad, etnia) sí muestran el 100%.
+function otrosBarGroup(titulo, cat, excluir){
+  let rows = OTROS.filter(o=>o.cat===cat);
+  if(excluir) rows = rows.filter(o=>!excluir.includes(normKey(o.lbl)));
   const total = rows.reduce((a,o)=>a+o.val,0);
   const max = Math.max(...rows.map(o=>o.val), 1);
   const bars = rows.map(o=>`
@@ -1671,7 +1677,7 @@ function otrosGruposHtml(){
       ${otrosBarGroup('Género','genero')}
       ${otrosBarGroup('Rango de edad','edad')}
       ${otrosBarGroup('Grupo étnico','etnia')}
-      ${otrosBarGroup('Discapacidad','discapacidad')}
+      ${otrosBarGroup('Discapacidad','discapacidad',['ninguna'])}
     </div>`;
 }
 function courseGroupsInlineHtml(z, cod, colspan){
@@ -1958,8 +1964,8 @@ function buildDetail(kind){
   }
   if(kind==='otros-discapacidad'){
     return kdHead('Personas con discapacidad',
-      'Dato global (todas las convocatorias del mundo, no filtrado a las 6 zonas de Colombia). Se muestra solo como total de personas con alguna condición reportada, sin el detalle individual de cuál condición.') +
-      `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('Discapacidad','discapacidad')}</div>`;
+      'Dato global (todas las convocatorias del mundo, no filtrado a las 6 zonas de Colombia), desglosado por tipo de condición reportada.') +
+      `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('Discapacidad','discapacidad',['ninguna'])}</div>`;
   }
   if(kind==='oferta'){
     const cursosUnicos = cursosOfertadosResumen();
