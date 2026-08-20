@@ -511,17 +511,32 @@
   .dash-tile--dest .dash-tile__arrow{color:#c7d6ee;}
   .dash-tile--dest.active .dash-tile__arrow{color:var(--white);}
 
+  #dash-charts{animation:chartsIn .3s cubic-bezier(0.16,1,0.3,1);}
+  @keyframes chartsIn{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){ #dash-charts{animation:none;} }
+
   .dash-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:16px; align-items:stretch;}
   @media (max-width:800px){ .dash-grid{grid-template-columns:1fr;} }
-  .dash-card{background:var(--white); border:1.5px solid var(--border); border-radius:12px; padding:14px 16px 16px;}
-  .dash-card__title{font-size:.8rem; font-weight:900; color:var(--blue); margin:0 0 10px;}
-  .dash-card__sub{text-align:center; font-size:.72rem; font-weight:700; color:var(--muted); margin-top:2px;}
+  .dash-card{
+    background:linear-gradient(180deg, var(--white) 0%, #fbfcfe 100%);
+    border:1.5px solid var(--border); border-radius:14px; padding:16px 18px 18px;
+    box-shadow:0 1px 2px rgba(26,60,110,.05), 0 4px 14px rgba(26,60,110,.05);
+    transition:box-shadow .2s, transform .2s;
+  }
+  .dash-card:hover{box-shadow:0 2px 4px rgba(26,60,110,.06), 0 8px 22px rgba(26,60,110,.09); transform:translateY(-1px);}
+  .dash-card__title{
+    font-size:.78rem; font-weight:900; color:var(--blue); margin:0 0 12px;
+    letter-spacing:.01em; display:flex; align-items:center; gap:7px;
+  }
+  .dash-card__title::before{content:''; width:4px; height:14px; border-radius:2px; background:linear-gradient(180deg, var(--orange), var(--orange-dk)); flex-shrink:0;}
+  .dash-card__sub{text-align:center; font-size:.72rem; font-weight:700; color:var(--muted); margin-top:4px;}
 
-  .dash-bar-row{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+  .dash-bar-row{display:flex; align-items:center; gap:8px; margin-bottom:10px;}
   .dash-bar-row:last-child{margin-bottom:0;}
-  .dash-bar-row--click{cursor:pointer; margin:0 -8px 8px; padding:3px 8px; border-radius:8px; transition:background-color .15s;}
-  .dash-bar-row--click:hover{background:var(--blue-light);}
+  .dash-bar-row--click{cursor:pointer; margin:0 -8px 10px; padding:4px 8px; border-radius:9px; transition:background-color .15s, transform .15s;}
+  .dash-bar-row--click:hover{background:var(--blue-light); transform:translateX(2px);}
   .dash-bar-row--click:hover .dash-bar-row__label span{color:var(--blue-mid);}
+  .dash-bar-row--click:hover .dash-bar-row__fill{filter:brightness(1.08);}
   .dash-bar-row__label{
     width:150px; flex-shrink:0; display:flex; align-items:center; gap:6px;
     font-size:.74rem; font-weight:700; color:var(--text);
@@ -529,16 +544,17 @@
   }
   .dash-bar-row__label span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;}
   @media (max-width:480px){ .dash-bar-row__label{width:100px; font-size:.68rem;} }
-  .dash-bar-row__dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
-  .dash-bar-row__track{flex:1; height:8px; background:var(--bg); border-radius:5px; overflow:hidden;}
-  .dash-bar-row__fill{height:100%; border-radius:5px; min-width:3px;}
-  .dash-bar-row__value{width:46px; flex-shrink:0; text-align:right; font-size:.74rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .dash-bar-row__dot{width:8px; height:8px; border-radius:50%; flex-shrink:0; box-shadow:0 0 0 3px color-mix(in srgb, currentColor 16%, transparent);}
+  .dash-bar-row__track{flex:1; height:10px; background:var(--bg); border-radius:6px; overflow:hidden; box-shadow:inset 0 1px 2px rgba(26,60,110,.08);}
+  .dash-bar-row__fill{height:100%; border-radius:6px; min-width:4px; transition:width .5s cubic-bezier(0.16,1,0.3,1), filter .15s; position:relative;}
+  .dash-bar-row__fill::after{content:''; position:absolute; inset:0; border-radius:6px; background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0) 60%);}
+  .dash-bar-row__value{width:50px; flex-shrink:0; text-align:right; font-size:.78rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
 
   .dash-card--gauge{display:flex; flex-direction:column; align-items:center; justify-content:center;}
-  .dash-gauge{width:100%; max-width:170px; height:auto;}
+  .dash-gauge{width:100%; max-width:170px; height:auto; filter:drop-shadow(0 2px 5px rgba(26,60,110,.12));}
   .dash-gauge__track{fill:none; stroke:var(--bg); stroke-width:16; stroke-linecap:round;}
-  .dash-gauge__fill{fill:none; stroke:var(--blue); stroke-width:16; stroke-linecap:round; transition:stroke-dasharray .3s;}
-  .dash-gauge__value{font-family:var(--font); font-size:1.7rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
+  .dash-gauge__fill{fill:none; stroke:url(#dashGaugeGrad); stroke-width:16; stroke-linecap:round; transition:stroke-dasharray .6s cubic-bezier(0.16,1,0.3,1);}
+  .dash-gauge__value{font-family:var(--font); font-size:1.85rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
 
   /* Barras verticales (columnas): variante para no repetir siempre el
      mismo tipo de gráfico entre las tarjetas de zona. */
@@ -549,22 +565,42 @@
     height:100%; cursor:default; padding:0;
   }
   .dash-col--click{cursor:pointer;}
-  .dash-col__value{font-size:.72rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums; margin-bottom:4px;}
-  .dash-col__track{width:100%; max-width:34px; height:100px; background:var(--bg); border-radius:6px 6px 3px 3px; overflow:hidden; display:flex; align-items:flex-end;}
-  .dash-col__fill{width:100%; border-radius:6px 6px 0 0; transition:height .2s;}
-  .dash-col--click .dash-col__track{transition:box-shadow .15s;}
-  .dash-col--click:hover .dash-col__track{box-shadow:0 0 0 2px var(--blue-light);}
-  .dash-col__label{font-size:.64rem; font-weight:700; margin-top:6px; text-align:center; line-height:1.2; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .dash-col__value{font-size:.74rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums; margin-bottom:5px;}
+  .dash-col__track{
+    width:100%; max-width:36px; height:100px; background:var(--bg); border-radius:8px 8px 4px 4px;
+    overflow:hidden; display:flex; align-items:flex-end; box-shadow:inset 0 1px 3px rgba(26,60,110,.09);
+  }
+  .dash-col__fill{width:100%; border-radius:8px 8px 0 0; transition:height .5s cubic-bezier(0.16,1,0.3,1); position:relative;}
+  .dash-col__fill::after{content:''; position:absolute; inset:0; border-radius:8px 8px 0 0; background:linear-gradient(90deg, rgba(255,255,255,.3), rgba(255,255,255,0) 55%);}
+  .dash-col--click .dash-col__track{transition:box-shadow .15s, transform .15s;}
+  .dash-col--click:hover .dash-col__track{box-shadow:0 0 0 3px var(--blue-light), inset 0 1px 3px rgba(26,60,110,.09); transform:scaleY(1.02); transform-origin:bottom;}
+  .dash-col__label{font-size:.65rem; font-weight:800; margin-top:7px; text-align:center; line-height:1.2; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
   /* Dona: proporciones de pocas categorías (género). */
   .dash-card--dona{display:flex; flex-direction:column;}
-  .dash-dona-wrap{display:flex; align-items:center; gap:16px; flex:1;}
-  .dash-dona{width:110px; height:110px; flex-shrink:0;}
-  .dash-dona__value{font-family:var(--font); font-size:1.15rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
-  .dash-dona__legend{display:flex; flex-direction:column; gap:8px; min-width:0;}
-  .dash-dona__item{display:flex; align-items:center; gap:7px; font-size:.76rem;}
+  .dash-dona-wrap{display:flex; align-items:center; gap:18px; flex:1;}
+  .dash-dona{width:114px; height:114px; flex-shrink:0; filter:drop-shadow(0 2px 5px rgba(26,60,110,.10));}
+  .dash-dona circle{transition:stroke-dasharray .6s cubic-bezier(0.16,1,0.3,1);}
+  .dash-dona__value{font-family:var(--font); font-size:1.2rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
+  .dash-dona__legend{display:flex; flex-direction:column; gap:9px; min-width:0;}
+  .dash-dona__item{display:flex; align-items:center; gap:7px; font-size:.78rem;}
   .dash-dona__item-label{font-weight:700; color:var(--text);}
   .dash-dona__item-value{color:var(--muted); font-weight:700; font-variant-numeric:tabular-nums; margin-left:auto; padding-left:8px;}
+
+  /* ---------- Modal de zona (overlay) ---------- */
+  .zmodal-backdrop{
+    position:fixed; inset:0; background:rgba(15,26,48,.52); backdrop-filter:blur(2px);
+    display:flex; align-items:center; justify-content:center; padding:20px; z-index:100;
+    animation:zmodalFadeIn .18s ease;
+  }
+  .zmodal-backdrop[hidden]{display:none;}
+  @keyframes zmodalFadeIn{from{opacity:0;} to{opacity:1;}}
+  .zmodal{
+    width:100%; max-width:720px; max-height:min(640px, 86vh); overflow:auto;
+    box-shadow:0 20px 60px rgba(10,20,40,.35); animation:zmodalIn .22s cubic-bezier(0.16,1,0.3,1);
+  }
+  @keyframes zmodalIn{from{opacity:0; transform:translateY(14px) scale(.98);} to{opacity:1; transform:translateY(0) scale(1);}}
+  @media (prefers-reduced-motion:reduce){ .zmodal-backdrop, .zmodal{animation:none;} }
 
   .otros-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   @media (max-width:800px){ .otros-grid{grid-template-columns:1fr;} }
@@ -580,9 +616,18 @@
      se ve en tarjeta propia y en azul (el hue del dashboard) en vez de
      verde, para que combine con las demás gráficas de esta sección sin
      tocar el estilo de "Otros datos" fuera de aquí. */
-  .dash-demografia .otros-group{background:var(--white); border:1.5px solid var(--border); border-radius:14px; padding:18px 20px;}
-  .dash-demografia .otros-group h4{font-size:.86rem; font-weight:900;}
-  .dash-demografia .otros-row .fill{background:var(--blue-mid);}
+  .dash-demografia .otros-group{
+    background:linear-gradient(180deg, var(--white) 0%, #fbfcfe 100%);
+    border:1.5px solid var(--border); border-radius:14px; padding:16px 18px 18px;
+    box-shadow:0 1px 2px rgba(26,60,110,.05), 0 4px 14px rgba(26,60,110,.05);
+  }
+  .dash-demografia .otros-group h4{
+    font-size:.78rem; font-weight:900; letter-spacing:.01em; color:var(--blue);
+    display:flex; align-items:center; gap:7px; margin-bottom:14px;
+  }
+  .dash-demografia .otros-group h4::before{content:''; width:4px; height:14px; border-radius:2px; background:linear-gradient(180deg, var(--orange), var(--orange-dk)); flex-shrink:0;}
+  .dash-demografia .otros-row .track{box-shadow:inset 0 1px 2px rgba(26,60,110,.08);}
+  .dash-demografia .otros-row .fill{background:linear-gradient(90deg, var(--blue-mid), var(--blue)); transition:width .5s cubic-bezier(0.16,1,0.3,1);}
 
   tr.curso-row{cursor:pointer;}
   .expand-cell{width:22px; text-align:center; color:var(--orange); font-size:.7rem; padding-right:0 !important;}
@@ -698,6 +743,10 @@
     <div class="kd-arrow" id="kd-arrow" hidden></div>
     <div class="kpi-detail panel" id="kpi-detail"></div>
     <div id="alerts-wrap" hidden></div>
+
+    <div class="zmodal-backdrop" id="zmodal-backdrop" hidden onclick="if(event.target===this) closeZonaModal();">
+      <div class="zmodal panel" id="zmodal" role="dialog" aria-modal="true"></div>
+    </div>
 
     <div class="quick-search">
       <span class="quick-search-icon">🔍</span>
@@ -1076,26 +1125,64 @@ function toggleZonaCursos(zoneCode){
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
 }
-// Desde una barra de zona en el dashboard: abre el detalle de "Total
-// matriculados" (o lo reutiliza si ya estaba abierto en otra zona) y dejа
-// esa zona expandida y resaltada, para que un solo clic en el gráfico
-// lleve directo al desglose de esa zona sin pasos intermedios.
-function abrirZonaDesdeGrafico(zoneCode, btnEl){
-  const zonasBtn = document.querySelector(`.dash-tile[onclick*="'zonas'"]`);
-  if(!zonasBtn) return;
-  if(activeDetailKind !== 'zonas'){
-    showDetail('zonas', zonasBtn);
+// Desde una fila/barra de zona en un gráfico del dashboard: abre una
+// ventana modal sobrepuesta (no el panel inline) con el detalle de esa
+// zona ya filtrado -- así el usuario no pierde de vista el gráfico que
+// tocó y puede cerrar la ventana apenas termine de mirar.
+function abrirZonaModal(zoneCode, modalKind){
+  const backdrop = document.getElementById('zmodal-backdrop');
+  const box = document.getElementById('zmodal');
+  if(!backdrop || !box) return;
+  box.innerHTML = zonaModalHtml(zoneCode, modalKind);
+  backdrop.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeZonaModal(){
+  const backdrop = document.getElementById('zmodal-backdrop');
+  if(!backdrop) return;
+  backdrop.hidden = true;
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){
+    const backdrop = document.getElementById('zmodal-backdrop');
+    if(backdrop && !backdrop.hidden) closeZonaModal();
   }
-  expandedZonas.add(zoneCode);
-  refreshActiveDetailScoped();
-  requestAnimationFrame(()=>{
-    const row = document.querySelector(`#zonas-detail-table tr[onclick*="toggleZonaCursos('${zoneCode}')"]`);
-    if(row){
-      row.scrollIntoView({behavior:'smooth', block:'center'});
-      row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash');
-      setTimeout(()=>row.classList.remove('flash'), 1300);
-    }
-  });
+});
+function zonaModalHtml(zoneCode, modalKind){
+  const z = ZONAS.find(zz=>zz.code===zoneCode);
+  if(!z) return '';
+  const head = (titulo, sub) => `<div class="kd-head"><h3>${titulo}</h3><button type="button" class="kd-close" onclick="closeZonaModal()">✕</button></div>${sub?`<div class="kd-sub">${sub}</div>`:''}`;
+  if(modalKind==='vacios'){
+    const grupos = alertsData.bajaMatRows.filter(g=>g.z===zoneCode);
+    const dupSet = new Set(alertsData.coincidenciasGrupos);
+    return `<div style="display:flex; align-items:center; gap:10px;">${head(`${z.name} — grupos con menos de 14 inscritos`, `${fmt(grupos.length)} grupos en esta zona con menos de 14 personas matriculadas.`)}</div>
+      <div class="table-scroll" style="max-height:60vh;"><table class="data mini">
+        <thead><tr><th>Grupo</th><th>Cód. curso</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
+        <tbody>${grupos.map(g=>{
+          const dup = dupSet.has(g);
+          return `<tr${dup?' class="row-crit"':''}><td class="code-cell">${g.g}</td><td class="code-cell">${g.cod}</td><td>${g.nom}${dup?' <span class="badge crit">horario duplicado</span>':''}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`;
+        }).join('') || '<tr><td colspan="6" class="empty-note">Sin grupos en esta condición.</td></tr>'}</tbody>
+      </table></div>`;
+  }
+  if(modalKind==='fusion'){
+    const grupos = alertsData.coincidenciasGrupos.filter(g=>g.z===zoneCode);
+    return `${head(`${z.name} — grupos que se pueden fusionar`, `${fmt(grupos.length)} grupos en esta zona coinciden en curso y horario exacto con otro grupo.`)}
+      <div class="table-scroll" style="max-height:60vh;"><table class="data mini">
+        <thead><tr><th>Grupo</th><th>Cód. curso</th><th>Curso</th><th>Horario</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th></tr></thead>
+        <tbody>${grupos.map(g=>`<tr><td class="code-cell">${g.g}</td><td class="code-cell">${g.cod}</td><td>${g.nom}</td><td>${g.h}</td><td class="num-cell">${g.mat}</td><td class="num-cell">${g.cap}</td></tr>`).join('') || '<tr><td colspan="6" class="empty-note">Sin grupos fusionables en esta zona.</td></tr>'}</tbody>
+      </table></div>`;
+  }
+  // modalKind === 'zonas' (o cualquier otro caso): tabla de cursos de esa zona.
+  const cursos = CURSOS.filter(c=>c.z===zoneCode).sort((a,b)=>a.ocu-b.ocu);
+  return `${head(`${z.name} — cursos`, `${fmt(z.mat)} matriculados de ${fmt(z.cap)} cupos (${pct(z.ocu)} de ocupación) · ${fmt(z.disp)} disponibles.`)}
+    <div class="table-scroll" style="max-height:60vh;"><table class="data mini">
+      <thead><tr><th>Código</th><th>Curso</th><th class="num-cell">Grupos</th><th class="num-cell">Matr.</th><th class="num-cell">Cap.</th><th class="num-cell">Ocup.</th><th class="num-cell">Espera</th></tr></thead>
+      <tbody>${cursos.map(c=>{
+        const cbadge = (c.disp===0 && c.esp>0) ? '<span class="badge info" style="margin-left:8px;">saturado</span>' : (c.ocu<30 ? '<span class="badge crit" style="margin-left:8px;">baja</span>' : '');
+        return `<tr><td class="code-cell">${c.cod}</td><td>${c.nom}${cbadge}</td><td class="num-cell">${c.grp}</td><td class="num-cell">${fmt(c.mat)}</td><td class="num-cell">${fmt(c.cap)}</td><td class="num-cell">${c.ocu.toFixed(0)}%</td><td class="num-cell">${c.esp||''}</td></tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
 }
 function toggleCursoInline(z, cod){
   const key = z+'|'+cod;
@@ -1343,23 +1430,35 @@ function dashTile(icon, valor, etiqueta, colorVar, sub, kind, destacado, hint){
       ${hint ? `<div class="dash-tile__hint">${hint}</div>` : ''}
     </button>`;
 }
+// Genera un degradado de dos tonos a partir de un color base (más claro
+// arriba/izquierda, el tono real abajo/derecha) -- da sensación de
+// volumen a las barras en vez de un relleno plano, sin perder el color
+// de identidad de cada zona.
+function colorGradient(hex, angle){
+  const h = hex.replace('#','');
+  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+  const lighten = (v) => Math.min(255, Math.round(v + (255-v)*0.35));
+  const lr = lighten(r), lg = lighten(g), lb = lighten(b);
+  const lightHex = `rgb(${lr},${lg},${lb})`;
+  return `linear-gradient(${angle||'90deg'}, ${lightHex}, ${hex})`;
+}
 // Barras horizontales categóricas (una por zona), con el color propio
 // de cada zona -- mismo color que sus íconos en el resto del informe,
 // para que la identidad de zona sea consistente en toda la app. Si
 // clicable=true, cada fila abre el detalle de esa zona en "Total
 // matriculados" (mismo destino que tocar la zona ahí directamente).
-function dashBarrasZona(titulo, items, unidad, clicable){
+function dashBarrasZona(titulo, items, unidad, clicable, modalKind){
   const max = Math.max(...items.map(i=>i.val), 1);
   const filas = items.map(i=>{
     const attrs = clicable
-      ? ` class="dash-bar-row dash-bar-row--click" onclick="abrirZonaDesdeGrafico('${i.code}', this)" title="Ver el detalle de ${i.nombre}"`
+      ? ` class="dash-bar-row dash-bar-row--click" onclick="abrirZonaModal('${i.code}', '${modalKind}')" title="Ver el detalle de ${i.nombre}"`
       : ` class="dash-bar-row"`;
     return `
     <div${attrs}>
       <span class="dash-bar-row__label" title="${i.nombre}">
         <span class="dash-bar-row__dot" style="background:${i.color};"></span><span>${i.nombre}</span>
       </span>
-      <div class="dash-bar-row__track"><div class="dash-bar-row__fill" style="width:${(i.val/max*100).toFixed(1)}%; background:${i.color};"></div></div>
+      <div class="dash-bar-row__track"><div class="dash-bar-row__fill" style="width:${(i.val/max*100).toFixed(1)}%; background:${colorGradient(i.color)}; color:${i.color};"></div></div>
       <span class="dash-bar-row__value">${fmt(i.val)}${unidad||''}</span>
     </div>`;
   }).join('');
@@ -1372,16 +1471,16 @@ function dashBarrasZona(titulo, items, unidad, clicable){
 // horizontales -- útil cuando hay pocas categorías y el número importa
 // más que leer nombres largos (aquí las 6 zonas ya se identifican por
 // color+leyenda en el gráfico de al lado).
-function dashColumnas(titulo, items, clicable){
+function dashColumnas(titulo, items, clicable, modalKind){
   const max = Math.max(...items.map(i=>i.val), 1);
   const barras = items.map(i=>{
     const h = Math.max((i.val/max*100), 3);
     const attrs = clicable
-      ? ` onclick="abrirZonaDesdeGrafico('${i.code}', this)" title="Ver el detalle de ${i.nombre}"`
+      ? ` onclick="abrirZonaModal('${i.code}', '${modalKind}')" title="Ver el detalle de ${i.nombre}"`
       : ` title="${i.nombre}: ${fmt(i.val)}"`;
     return `<div class="dash-col${clicable?' dash-col--click':''}"${attrs}>
         <span class="dash-col__value">${fmt(i.val)}</span>
-        <div class="dash-col__track"><div class="dash-col__fill" style="height:${h.toFixed(1)}%; background:${i.color};"></div></div>
+        <div class="dash-col__track"><div class="dash-col__fill" style="height:${h.toFixed(1)}%; background:${colorGradient(i.color,'180deg')};"></div></div>
         <span class="dash-col__label" style="color:${i.color};">${i.nombreCorto||i.nombre}</span>
       </div>`;
   }).join('');
@@ -1447,6 +1546,12 @@ function dashGauge(pct, label, sub){
   return `<div class="dash-card dash-card--gauge">
       <h4 class="dash-card__title">${label}</h4>
       <svg viewBox="0 0 190 190" class="dash-gauge">
+        <defs>
+          <linearGradient id="dashGaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--blue-mid)"/>
+            <stop offset="100%" stop-color="var(--blue)"/>
+          </linearGradient>
+        </defs>
         <path d="${arcPath(startAngle, endAngle)}" class="dash-gauge__track"/>
         <path d="${arcPath(startAngle, valueAngle)}" class="dash-gauge__fill"/>
         <text x="95" y="100" text-anchor="middle" class="dash-gauge__value">${pct.toFixed(0)}%</text>
@@ -1504,18 +1609,20 @@ function dashboardHtml(){
       ${dashTile('📍',fmt(IGLESIAS.length+IGLESIAS_INSC.length),'Iglesias totales','--red',`${fmt(IGLESIAS.length)} sin matrícula`,'iglesias',false,'Gestionar →')}
       ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial','otros-discapacidad',false,'Ver detalle →')}
     </div>
-    <div class="dash-grid" style="margin-top:20px;">
-      ${dashBarrasZona('Matriculados por zona', barrasMatricula, '', true)}
-      ${dashGauge(ocuPct, 'Ocupación global', `${fmt(mat)} de ${fmt(cap)} cupos usados`)}
-    </div>
-    <div class="dash-grid" style="margin-top:20px;">
-      ${dashColumnas('Grupos con menos de 14 inscritos, por zona', barrasBaja, true)}
-      ${dashBarrasZona('Grupos fusionables, por zona', barrasFusion, '', true)}
-    </div>
-    <div class="dash-grid" style="margin-top:20px;">
-      ${dashDona('Género', dataGenero)}
-      <div class="otros-grid dash-demografia" style="grid-template-columns:1fr;">
-        ${otrosBarGroup('Rango de edad','edad')}
+    <div id="dash-charts">
+      <div class="dash-grid" style="margin-top:20px;">
+        ${dashBarrasZona('Matriculados por zona', barrasMatricula, '', true, 'zonas')}
+        ${dashGauge(ocuPct, 'Ocupación global', `${fmt(mat)} de ${fmt(cap)} cupos usados`)}
+      </div>
+      <div class="dash-grid" style="margin-top:20px;">
+        ${dashColumnas('Grupos con menos de 14 inscritos, por zona', barrasBaja, true, 'vacios')}
+        ${dashBarrasZona('Grupos fusionables, por zona', barrasFusion, '', true, 'fusion')}
+      </div>
+      <div class="dash-grid" style="margin-top:20px;">
+        ${dashDona('Género', dataGenero)}
+        <div class="otros-grid dash-demografia" style="grid-template-columns:1fr;">
+          ${otrosBarGroup('Rango de edad','edad')}
+        </div>
       </div>
     </div>`;
 }
@@ -1862,11 +1969,13 @@ function positionKdArrow(btnEl){
 function showDetail(kind, btnEl){
   const box = document.getElementById('kpi-detail');
   const arrow = document.getElementById('kd-arrow');
+  const charts = document.getElementById('dash-charts');
   const wasActive = btnEl.classList.contains('active');
   document.querySelectorAll('.kpi.active, .dash-tile.active').forEach(b=>b.classList.remove('active'));
-  if(wasActive){ box.classList.remove('open'); if(arrow) arrow.hidden = true; activeDetailKind = null; return; }
+  if(wasActive){ box.classList.remove('open'); if(arrow) arrow.hidden = true; if(charts) charts.hidden = false; activeDetailKind = null; return; }
   btnEl.classList.add('active');
   activeDetailKind = kind;
+  if(charts) charts.hidden = true;
   box.innerHTML = buildDetail(kind);
   if(isMobileKpi()){
     if(arrow) arrow.hidden = true;
@@ -1901,6 +2010,8 @@ function closeDetail(){
   document.querySelectorAll('.kpi.active, .dash-tile.active').forEach(b=>b.classList.remove('active'));
   const arrow = document.getElementById('kd-arrow');
   if(arrow) arrow.hidden = true;
+  const charts = document.getElementById('dash-charts');
+  if(charts) charts.hidden = false;
   activeDetailKind = null;
 }
 
