@@ -1,0 +1,32 @@
+{
+  "corte": "2026-08-19T19:30:32.599372-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2562",
+      "nom": "Portugues Nivel 2",
+      "g": "G-5002",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2617",
+      "nom": "Despertar Humano",
+      "g": "G-4821",
+      "matAntes": 32,
+      "matAhora": 33,
+      "delta": 1
+    },
+    {
+      "z": "Antioquia & Eje Cafetero",
+      "cod": "C-2689",
+      "nom": "Sistemas e Informatica | Nivel basico",
+      "g": "G-4734",
+      "matAntes": 25,
+      "matAhora": 26,
+      "delta": 1
+    }
+  ]
+}
