@@ -210,26 +210,6 @@
 
   /* ---------- KPI strip (dash-card) ---------- */
   #resumen{position:relative;}
-  /* Clasificación de las tarjetas en dos grupos ("estado general":
-     matriculados + lista de espera; "requiere tu atención": baja
-     ocupación, vacíos, alertas, iglesias). Cada grupo es su propia
-     caja con fondo y borde sutiles — no un simple rótulo suelto
-     arriba de las tarjetas — para que se note de un vistazo que
-     agrupa varias, no solo la primera. El fondo es neutro (no usa
-     los mismos colores rojo/naranja/amarillo de las tarjetas) para
-     no competir con las alertas individuales. Al ser cajas separadas
-     (en vez de un único grid de 6 columnas), cada una define su
-     propio grid interno y colapsa de forma independiente en móvil.  */
-  .kpi-groups{display:block;}
-  .kpis{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
-  /* Un solo grid de 6 columnas iguales para las 6 tarjetas -- antes
-     estaban repartidas en dos cajas con distinto número de columnas
-     (2 y 4), lo que hacía que unas tarjetas se vieran más anchas que
-     otras al ser el mismo ancho total repartido entre menos columnas. */
-  .kpis-unificado{grid-template-columns:repeat(6,1fr);}
-  @media (max-width:1300px){ .kpis-unificado{grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:700px){ .kpis-unificado{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:560px){ .kpis-unificado{grid-template-columns:1fr;} }
   .kd-arrow{
     width:0; height:0; margin:10px 0 8px 0; position:relative; left:0;
     border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:12px solid var(--white);
@@ -492,19 +472,34 @@
 
   .igl-nombre{font-weight:600;}
 
-  /* ---------- Dashboard ---------- */
-  .dash-tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-  @media (max-width:900px){ .dash-tiles{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:560px){ .dash-tiles{grid-template-columns:1fr;} }
+  /* ---------- Dashboard (fusionado con el resumen: estas tarjetas SON
+     los botones que abren el detalle, ya no hay una fila .kpi separada
+     arriba repitiendo lo mismo). Tamaños más compactos que las viejas
+     .kpi para que quepa más información en la primera pantalla. ---------- */
+  .dash-tiles{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+  @media (max-width:1100px){ .dash-tiles{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:700px){ .dash-tiles{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:420px){ .dash-tiles{grid-template-columns:1fr;} }
   .dash-tile{
-    position:relative; overflow:hidden; background:var(--white);
-    border:1.5px solid var(--border); border-radius:14px; padding:16px 16px 14px;
+    -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; outline:none;
+    display:block; width:100%; text-align:left; font-family:var(--font); cursor:pointer;
+    position:relative; overflow:hidden; background:var(--white); min-width:0;
+    border:1.5px solid var(--border); border-radius:12px; padding:12px 12px 10px;
+    transition:transform .15s, box-shadow .15s, border-color .15s;
   }
-  .dash-tile__bar{position:absolute; top:0; left:0; right:0; height:4px;}
-  .dash-tile__icon{font-size:1.3rem; margin-bottom:6px;}
-  .dash-tile__value{font-size:1.7rem; font-weight:900; color:var(--blue); line-height:1.05; font-variant-numeric:tabular-nums;}
-  .dash-tile__label{font-size:.7rem; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--muted); margin-top:5px; line-height:1.3;}
-  .dash-tile__sub{font-size:.68rem; font-weight:700; color:var(--faint); margin-top:6px;}
+  .dash-tile:hover{transform:translateY(-2px); box-shadow:var(--shadow-hover); border-color:var(--border-strong);}
+  .dash-tile:active{transform:translateY(0);}
+  .dash-tile:focus-visible{outline:3px solid var(--orange); outline-offset:2px;}
+  .dash-tile.active{border-color:var(--blue); box-shadow:var(--shadow-hover);}
+  .dash-tile__arrow{position:absolute; top:10px; right:10px; color:var(--faint); font-size:.75rem; transition:transform .2s, color .2s;}
+  .dash-tile.active .dash-tile__arrow{transform:rotate(180deg); color:var(--blue);}
+  .dash-tile__bar{position:absolute; top:0; left:0; right:0; height:3px;}
+  .dash-tile__icon{font-size:1.1rem; margin-bottom:4px;}
+  .dash-tile__value{font-size:1.4rem; font-weight:900; color:var(--blue); line-height:1.05; font-variant-numeric:tabular-nums;}
+  .dash-tile__label{font-size:.64rem; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--muted); margin-top:4px; line-height:1.25;}
+  .dash-tile__sub{font-size:.63rem; font-weight:700; color:var(--faint); margin-top:4px;}
+  .dash-tile__hint{font-size:.6rem; font-weight:800; color:var(--blue-mid); margin-top:6px; opacity:0; transition:opacity .15s;}
+  .dash-tile:hover .dash-tile__hint, .dash-tile:focus-visible .dash-tile__hint{opacity:.9;}
   /* La cifra principal del dashboard destaca con fondo sólido, igual que
      la tarjeta "Total Sales" de un dashboard de referencia -- el resto
      queda en tono claro para no competir por atención. */
@@ -512,32 +507,64 @@
   .dash-tile--dest .dash-tile__value{color:var(--white);}
   .dash-tile--dest .dash-tile__label{color:#c7d6ee;}
   .dash-tile--dest .dash-tile__sub{color:#9fb6dc;}
+  .dash-tile--dest .dash-tile__hint{color:#d7e4f7;}
+  .dash-tile--dest .dash-tile__arrow{color:#c7d6ee;}
+  .dash-tile--dest.active .dash-tile__arrow{color:var(--white);}
 
-  .dash-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:22px; align-items:stretch;}
+  .dash-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:16px; align-items:stretch;}
   @media (max-width:800px){ .dash-grid{grid-template-columns:1fr;} }
-  .dash-card{background:var(--white); border:1.5px solid var(--border); border-radius:14px; padding:18px 20px;}
-  .dash-card__title{font-size:.86rem; font-weight:900; color:var(--blue); margin:0 0 14px;}
-  .dash-card__sub{text-align:center; font-size:.76rem; font-weight:700; color:var(--muted); margin-top:4px;}
+  .dash-card{background:var(--white); border:1.5px solid var(--border); border-radius:12px; padding:14px 16px 16px;}
+  .dash-card__title{font-size:.8rem; font-weight:900; color:var(--blue); margin:0 0 10px;}
+  .dash-card__sub{text-align:center; font-size:.72rem; font-weight:700; color:var(--muted); margin-top:2px;}
 
-  .dash-bar-row{display:flex; align-items:center; gap:10px; margin-bottom:11px;}
+  .dash-bar-row{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
   .dash-bar-row:last-child{margin-bottom:0;}
+  .dash-bar-row--click{cursor:pointer; margin:0 -8px 8px; padding:3px 8px; border-radius:8px; transition:background-color .15s;}
+  .dash-bar-row--click:hover{background:var(--blue-light);}
+  .dash-bar-row--click:hover .dash-bar-row__label span{color:var(--blue-mid);}
   .dash-bar-row__label{
-    width:172px; flex-shrink:0; display:flex; align-items:center; gap:7px;
-    font-size:.78rem; font-weight:700; color:var(--text);
+    width:150px; flex-shrink:0; display:flex; align-items:center; gap:6px;
+    font-size:.74rem; font-weight:700; color:var(--text);
     min-width:0;
   }
   .dash-bar-row__label span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;}
-  @media (max-width:480px){ .dash-bar-row__label{width:112px; font-size:.7rem;} }
-  .dash-bar-row__dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
-  .dash-bar-row__track{flex:1; height:10px; background:var(--bg); border-radius:6px; overflow:hidden;}
-  .dash-bar-row__fill{height:100%; border-radius:6px; min-width:3px;}
-  .dash-bar-row__value{width:52px; flex-shrink:0; text-align:right; font-size:.78rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
+  @media (max-width:480px){ .dash-bar-row__label{width:100px; font-size:.68rem;} }
+  .dash-bar-row__dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
+  .dash-bar-row__track{flex:1; height:8px; background:var(--bg); border-radius:5px; overflow:hidden;}
+  .dash-bar-row__fill{height:100%; border-radius:5px; min-width:3px;}
+  .dash-bar-row__value{width:46px; flex-shrink:0; text-align:right; font-size:.74rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
 
   .dash-card--gauge{display:flex; flex-direction:column; align-items:center; justify-content:center;}
-  .dash-gauge{width:100%; max-width:220px; height:auto;}
+  .dash-gauge{width:100%; max-width:170px; height:auto;}
   .dash-gauge__track{fill:none; stroke:var(--bg); stroke-width:16; stroke-linecap:round;}
   .dash-gauge__fill{fill:none; stroke:var(--blue); stroke-width:16; stroke-linecap:round; transition:stroke-dasharray .3s;}
-  .dash-gauge__value{font-family:var(--font); font-size:2rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
+  .dash-gauge__value{font-family:var(--font); font-size:1.7rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
+
+  /* Barras verticales (columnas): variante para no repetir siempre el
+     mismo tipo de gráfico entre las tarjetas de zona. */
+  .dash-cols{display:flex; align-items:flex-end; gap:10px; height:150px; padding-top:8px;}
+  .dash-col{
+    -webkit-appearance:none; appearance:none; background:none; border:none; font-family:var(--font);
+    flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    height:100%; cursor:default; padding:0;
+  }
+  .dash-col--click{cursor:pointer;}
+  .dash-col__value{font-size:.72rem; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums; margin-bottom:4px;}
+  .dash-col__track{width:100%; max-width:34px; height:100px; background:var(--bg); border-radius:6px 6px 3px 3px; overflow:hidden; display:flex; align-items:flex-end;}
+  .dash-col__fill{width:100%; border-radius:6px 6px 0 0; transition:height .2s;}
+  .dash-col--click .dash-col__track{transition:box-shadow .15s;}
+  .dash-col--click:hover .dash-col__track{box-shadow:0 0 0 2px var(--blue-light);}
+  .dash-col__label{font-size:.64rem; font-weight:700; margin-top:6px; text-align:center; line-height:1.2; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+  /* Dona: proporciones de pocas categorías (género). */
+  .dash-card--dona{display:flex; flex-direction:column;}
+  .dash-dona-wrap{display:flex; align-items:center; gap:16px; flex:1;}
+  .dash-dona{width:110px; height:110px; flex-shrink:0;}
+  .dash-dona__value{font-family:var(--font); font-size:1.15rem; font-weight:900; fill:var(--blue); font-variant-numeric:tabular-nums;}
+  .dash-dona__legend{display:flex; flex-direction:column; gap:8px; min-width:0;}
+  .dash-dona__item{display:flex; align-items:center; gap:7px; font-size:.76rem;}
+  .dash-dona__item-label{font-weight:700; color:var(--text);}
+  .dash-dona__item-value{color:var(--muted); font-weight:700; font-variant-numeric:tabular-nums; margin-left:auto; padding-left:8px;}
 
   .otros-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   @media (max-width:800px){ .otros-grid{grid-template-columns:1fr;} }
@@ -1049,6 +1076,27 @@ function toggleZonaCursos(zoneCode){
   const table = document.getElementById('zonas-detail-table');
   withScrollLock(()=>{ if(table) table.innerHTML = zonasTableHtml(); });
 }
+// Desde una barra de zona en el dashboard: abre el detalle de "Total
+// matriculados" (o lo reutiliza si ya estaba abierto en otra zona) y dejа
+// esa zona expandida y resaltada, para que un solo clic en el gráfico
+// lleve directo al desglose de esa zona sin pasos intermedios.
+function abrirZonaDesdeGrafico(zoneCode, btnEl){
+  const zonasBtn = document.querySelector(`.dash-tile[onclick*="'zonas'"]`);
+  if(!zonasBtn) return;
+  if(activeDetailKind !== 'zonas'){
+    showDetail('zonas', zonasBtn);
+  }
+  expandedZonas.add(zoneCode);
+  refreshActiveDetailScoped();
+  requestAnimationFrame(()=>{
+    const row = document.querySelector(`#zonas-detail-table tr[onclick*="toggleZonaCursos('${zoneCode}')"]`);
+    if(row){
+      row.scrollIntoView({behavior:'smooth', block:'center'});
+      row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash');
+      setTimeout(()=>row.classList.remove('flash'), 1300);
+    }
+  });
+}
 function toggleCursoInline(z, cod){
   const key = z+'|'+cod;
   if(expandedCursos.has(key)) expandedCursos.delete(key); else expandedCursos.add(key);
@@ -1297,20 +1345,83 @@ function dashTile(icon, valor, etiqueta, colorVar, sub, kind, destacado, hint){
 }
 // Barras horizontales categóricas (una por zona), con el color propio
 // de cada zona -- mismo color que sus íconos en el resto del informe,
-// para que la identidad de zona sea consistente en toda la app.
-function dashBarrasZona(titulo, items, unidad){
+// para que la identidad de zona sea consistente en toda la app. Si
+// clicable=true, cada fila abre el detalle de esa zona en "Total
+// matriculados" (mismo destino que tocar la zona ahí directamente).
+function dashBarrasZona(titulo, items, unidad, clicable){
   const max = Math.max(...items.map(i=>i.val), 1);
-  const filas = items.map(i=>`
-    <div class="dash-bar-row">
+  const filas = items.map(i=>{
+    const attrs = clicable
+      ? ` class="dash-bar-row dash-bar-row--click" onclick="abrirZonaDesdeGrafico('${i.code}', this)" title="Ver el detalle de ${i.nombre}"`
+      : ` class="dash-bar-row"`;
+    return `
+    <div${attrs}>
       <span class="dash-bar-row__label" title="${i.nombre}">
         <span class="dash-bar-row__dot" style="background:${i.color};"></span><span>${i.nombre}</span>
       </span>
       <div class="dash-bar-row__track"><div class="dash-bar-row__fill" style="width:${(i.val/max*100).toFixed(1)}%; background:${i.color};"></div></div>
       <span class="dash-bar-row__value">${fmt(i.val)}${unidad||''}</span>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   return `<div class="dash-card">
       <h4 class="dash-card__title">${titulo}</h4>
       ${filas}
+    </div>`;
+}
+// Barras verticales (columnas), para variar el estilo frente a las
+// horizontales -- útil cuando hay pocas categorías y el número importa
+// más que leer nombres largos (aquí las 6 zonas ya se identifican por
+// color+leyenda en el gráfico de al lado).
+function dashColumnas(titulo, items, clicable){
+  const max = Math.max(...items.map(i=>i.val), 1);
+  const barras = items.map(i=>{
+    const h = Math.max((i.val/max*100), 3);
+    const attrs = clicable
+      ? ` onclick="abrirZonaDesdeGrafico('${i.code}', this)" title="Ver el detalle de ${i.nombre}"`
+      : ` title="${i.nombre}: ${fmt(i.val)}"`;
+    return `<div class="dash-col${clicable?' dash-col--click':''}"${attrs}>
+        <span class="dash-col__value">${fmt(i.val)}</span>
+        <div class="dash-col__track"><div class="dash-col__fill" style="height:${h.toFixed(1)}%; background:${i.color};"></div></div>
+        <span class="dash-col__label" style="color:${i.color};">${i.nombreCorto||i.nombre}</span>
+      </div>`;
+  }).join('');
+  return `<div class="dash-card">
+      <h4 class="dash-card__title">${titulo}</h4>
+      <div class="dash-cols">${barras}</div>
+    </div>`;
+}
+// Dona de dos (o pocas) categorías -- para proporciones simples como
+// género, donde el todo/parte se lee mejor que en una barra.
+function dashDona(titulo, items, subtitulo){
+  const total = items.reduce((a,i)=>a+i.val,0) || 1;
+  const r = 60, cx = 70, cy = 70, circumference = 2*Math.PI*r;
+  let acc = 0;
+  const segmentos = items.map(i=>{
+    const frac = i.val/total;
+    const dash = frac*circumference;
+    const offset = -acc*circumference;
+    acc += frac;
+    return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${i.color}" stroke-width="20"
+      stroke-dasharray="${dash.toFixed(2)} ${(circumference-dash).toFixed(2)}" stroke-dashoffset="${offset.toFixed(2)}"
+      transform="rotate(-90 ${cx} ${cy})"/>`;
+  }).join('');
+  const leyenda = items.map(i=>`
+    <div class="dash-dona__item">
+      <span class="dash-bar-row__dot" style="background:${i.color};"></span>
+      <span class="dash-dona__item-label">${i.nombre}</span>
+      <span class="dash-dona__item-value">${fmt(i.val)} · ${(i.val/total*100).toFixed(0)}%</span>
+    </div>`).join('');
+  return `<div class="dash-card dash-card--dona">
+      <h4 class="dash-card__title">${titulo}</h4>
+      <div class="dash-dona-wrap">
+        <svg viewBox="0 0 140 140" class="dash-dona">
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--bg)" stroke-width="20"/>
+          ${segmentos}
+          <text x="70" y="76" text-anchor="middle" class="dash-dona__value">${fmt(total)}</text>
+        </svg>
+        <div class="dash-dona__legend">${leyenda}</div>
+      </div>
+      ${subtitulo ? `<div class="dash-card__sub">${subtitulo}</div>` : ''}
     </div>`;
 }
 // Medidor de ocupación: arco SVG de 270°, un solo hue (magnitud, no
@@ -1343,22 +1454,28 @@ function dashGauge(pct, label, sub){
       <div class="dash-card__sub">${sub}</div>
     </div>`;
 }
+// Nombres cortos de zona para las columnas verticales, donde el ancho
+// es limitado y el nombre completo no cabe debajo de cada barra.
+const ZONA_NOMBRE_CORTO = {
+  'BOG': 'Bogotá', 'CAR': 'Caribe', 'ANT': 'Antioquia',
+  'PAC': 'Pacífico', 'SUR': 'Sur & Llanos', 'SAN': 'Santanderes',
+};
 function dashboardHtml(){
   const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
   const mat = sum('mat'), cap = sum('cap'), esp = sum('esp'), disp = cap-mat;
   const ocuPct = cap ? (mat/cap*100) : 0;
 
   const zonasOrdenadas = [...ZONAS].sort((a,b)=>b.mat-a.mat);
-  const barrasMatricula = zonasOrdenadas.map(z=>({nombre:z.name, val:z.mat, color:z.color}));
+  const barrasMatricula = zonasOrdenadas.map(z=>({nombre:z.name, nombreCorto:ZONA_NOMBRE_CORTO[z.code], code:z.code, val:z.mat, color:z.color}));
 
   const bajaMatPorZona = {};
   alertsData.bajaMatRows.forEach(g=>{ bajaMatPorZona[g.z] = (bajaMatPorZona[g.z]||0)+1; });
   const dupPorZona = {};
   alertsData.coincidenciasGrupos.forEach(g=>{ dupPorZona[g.z] = (dupPorZona[g.z]||0)+1; });
   const barrasBaja = [...ZONAS].sort((a,b)=>(bajaMatPorZona[b.code]||0)-(bajaMatPorZona[a.code]||0))
-    .map(z=>({nombre:z.name, val:bajaMatPorZona[z.code]||0, color:z.color}));
+    .map(z=>({nombre:z.name, nombreCorto:ZONA_NOMBRE_CORTO[z.code], code:z.code, val:bajaMatPorZona[z.code]||0, color:z.color}));
   const barrasFusion = [...ZONAS].sort((a,b)=>(dupPorZona[b.code]||0)-(dupPorZona[a.code]||0))
-    .map(z=>({nombre:z.name, val:dupPorZona[z.code]||0, color:z.color}));
+    .map(z=>({nombre:z.name, code:z.code, val:dupPorZona[z.code]||0, color:z.color}));
 
   const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
   const externos = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
@@ -1367,31 +1484,39 @@ function dashboardHtml(){
   const paisTotalGlobalDash = (paisRowsDash.find(o=>o.lbl==='Total')||{}).val || 0;
   const externosEstColombiaDash = paisTotalGlobalDash ? Math.round(externos * colombiaTotalDash/paisTotalGlobalDash) : 0;
   const discapacidadTotal = (OTROS.find(o=>o.cat==='discapacidad' && o.lbl==='Con alguna condicion reportada')||{}).val || 0;
+  const cursosBajaOcu = CURSOS.filter(c=>c.ocu<30).length;
+
+  const generoRows = OTROS.filter(o=>o.cat==='genero');
+  const coloresGenero = ['var(--blue)','var(--blue-mid)','var(--faint)'];
+  const dataGenero = generoRows.map((g,i)=>({nombre:g.lbl, val:g.val, color:coloresGenero[i%coloresGenero.length]}));
 
   return `
     <div class="dash-tiles">
-      ${dashTile('📖',fmt(mat),'Total matriculados','--blue',null,true)}
-      ${dashTile('⏳',fmt(esp),'En lista de espera','--orange-dk')}
-      ${dashTile('🟢',fmt(disp),'Cupos disponibles','--green')}
-      ${dashTile('📍',fmt(IGLESIAS.length),'Iglesias sin matrícula','--red')}
+      ${dashTile('📖',fmt(mat),'Total matriculados','--blue','','zonas',true,'Ver por zona →')}
+      ${dashTile('⏳',fmt(esp),'En lista de espera','--orange-dk','','espera',false,'Ver grupos →')}
+      ${dashTile('🟢',fmt(disp),'Cupos disponibles','--green','','zonas',false,'Ver por zona →')}
+      ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`,'externos',false,'Ver por medio →')}
     </div>
     <div class="dash-tiles" style="margin-top:14px;">
-      ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`)}
-      ${dashTile('🚫',fmt(alertsData.bajaMatCount),'Grupos con menos de 14 inscritos','--orange-dk')}
-      ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`)}
-      ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial')}
+      ${dashTile('🚫',fmt(alertsData.bajaMatCount),'Grupos con menos de 14 inscritos','--orange-dk','','vacios',false,'Ver grupos →')}
+      ${dashTile('📉',fmt(cursosBajaOcu),'Cursos con baja ocupación','--orange-dk','< 30%','bajo',false,'Ver cursos →')}
+      ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`,'vacios',false,'Ver grupos →')}
+      ${dashTile('📍',fmt(IGLESIAS.length+IGLESIAS_INSC.length),'Iglesias totales','--red',`${fmt(IGLESIAS.length)} sin matrícula`,'iglesias',false,'Gestionar →')}
+      ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial','otros-discapacidad',false,'Ver detalle →')}
     </div>
     <div class="dash-grid" style="margin-top:20px;">
-      ${dashBarrasZona('Matriculados por zona', barrasMatricula)}
+      ${dashBarrasZona('Matriculados por zona', barrasMatricula, '', true)}
       ${dashGauge(ocuPct, 'Ocupación global', `${fmt(mat)} de ${fmt(cap)} cupos usados`)}
     </div>
     <div class="dash-grid" style="margin-top:20px;">
-      ${dashBarrasZona('Grupos con menos de 14 inscritos, por zona', barrasBaja)}
-      ${dashBarrasZona('Grupos fusionables, por zona', barrasFusion)}
+      ${dashColumnas('Grupos con menos de 14 inscritos, por zona', barrasBaja, true)}
+      ${dashBarrasZona('Grupos fusionables, por zona', barrasFusion, '', true)}
     </div>
-    <div class="otros-grid dash-demografia" style="margin-top:20px;">
-      ${otrosBarGroup('Género','genero')}
-      ${otrosBarGroup('Rango de edad','edad')}
+    <div class="dash-grid" style="margin-top:20px;">
+      ${dashDona('Género', dataGenero)}
+      <div class="otros-grid dash-demografia" style="grid-template-columns:1fr;">
+        ${otrosBarGroup('Rango de edad','edad')}
+      </div>
     </div>`;
 }
 // La respuesta "Iglesia" del dashboard (pregunta "¿Cómo conoció la
@@ -1704,6 +1829,11 @@ function buildDetail(kind){
       <input type="search" id="iglesias-search" placeholder="Buscar iglesia, departamento o zona…" oninput="onIglesiasSearch(this.value)" style="margin-bottom:12px; width:100%;">
       <div class="table-scroll no-vscroll"><table class="data" id="iglesias-detail-table">${iglesiasTableHtml()}</table></div>`;
   }
+  if(kind==='otros-discapacidad'){
+    return kdHead('Personas con discapacidad',
+      'Dato global (todas las convocatorias del mundo, no filtrado a las 6 zonas de Colombia). Se muestra solo como total de personas con alguna condición reportada, sin el detalle individual de cuál condición.') +
+      `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('Discapacidad','discapacidad')}</div>`;
+  }
   return '';
 }
 
@@ -1768,7 +1898,7 @@ function refreshDetail(){
 }
 function closeDetail(){
   document.getElementById('kpi-detail').classList.remove('open');
-  document.querySelectorAll('.kpi.active').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.kpi.active, .dash-tile.active').forEach(b=>b.classList.remove('active'));
   const arrow = document.getElementById('kd-arrow');
   if(arrow) arrow.hidden = true;
   activeDetailKind = null;
