@@ -955,11 +955,20 @@
   // Firebase ni de switchTab() (aún no definida a esta altura del HTML):
   // solo lee localStorage y ajusta clases, así que puede correr ya mismo.
   (function(){
-    var saved = localStorage.getItem('activeTab');
+    // Igual que restoreTab() más abajo: ?tab= en la URL manda sobre la
+    // última pestaña guardada, para que un link compartido abra siempre
+    // en la pestaña del link y no en la que tenía este navegador.
+    var fromUrl = new URLSearchParams(window.location.search).get('tab');
+    var saved = fromUrl || localStorage.getItem('activeTab');
     if(!saved || saved === 'cronograma') return;
     var css = '#tab-cronograma{display:none !important;}#tab-' + saved + '{display:block !important;}';
     if(saved === 'informe' || saved === 'matriculas') css += '#app-header{display:none !important;}';
-    document.write('<style>' + css + '</style>');
+    // id fijo para poder quitar este <style> en cuanto switchTab() tome el
+    // control (primer clic real en una pestaña) -- si se deja para
+    // siempre, su display:block !important en la pestaña guardada sigue
+    // ganando aunque switchTab() ya le haya quitado la clase "active" a
+    // esa sección, dejándola visible al mismo tiempo que la nueva.
+    document.write('<style id="tab-preload-style">' + css + '</style>');
     // Los botones de pestaña ya existen en el DOM a esta altura (van antes
     // de este script), así que también se puede corregir cuál se ve
     // "active" sin esperar a switchTab().
@@ -3192,6 +3201,15 @@ function addOrganigramaExtra(titulo, desc) {
 }
 
 function switchTab(name, btnEl) {
+  // El <style id="tab-preload-style"> (si existe) fuerza con !important la
+  // pestaña que estaba guardada en localStorage ANTES del primer paint, para
+  // evitar el flash de "Cronograma". Una vez que switchTab() toma el
+  // control (aquí, en cualquier cambio real de pestaña) ese <style> debe
+  // desaparecer -- si se queda, su display:block !important sigue ganando
+  // sobre la sección que ya no tiene la clase "active", dejándola visible
+  // apilada debajo de la nueva pestaña.
+  const preloadStyle = document.getElementById("tab-preload-style");
+  if (preloadStyle) preloadStyle.remove();
   document.querySelectorAll(".tab-section").forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("tab-" + name).classList.add("active");
@@ -3208,10 +3226,24 @@ function switchTab(name, btnEl) {
   if (name === "organigrama") restoreOrgPanel();
   if (editMode) updateAddBtn();
   localStorage.setItem("activeTab", name);
+  // La URL de la barra de direcciones refleja la pestaña activa, así que
+  // copiar el link en cualquier momento (o usar el botón nativo de
+  // compartir del navegador) lleva a quien lo abra directo a esa misma
+  // pestaña. replaceState (no pushState) para no llenar el historial de
+  // "atrás" con cada clic entre pestañas.
+  const url = new URL(window.location.href);
+  if (name === "cronograma") url.searchParams.delete("tab");
+  else url.searchParams.set("tab", name);
+  history.replaceState(null, "", url);
 }
 
 function restoreTab() {
-  const saved = localStorage.getItem("activeTab");
+  // El parámetro ?tab= en la URL (para compartir un link directo a una
+  // pestaña) tiene prioridad sobre la última pestaña guardada en este
+  // navegador -- si no, abrir el link de otra persona mostraría SU última
+  // pestaña visitada, no la que va en el link.
+  const fromUrl = new URLSearchParams(window.location.search).get("tab");
+  const saved = fromUrl || localStorage.getItem("activeTab");
   if (saved && saved !== "cronograma") {
     const btn = document.querySelector(`.tab-btn[onclick*="'${saved}'"]`);
     if (btn) switchTab(saved, btn);

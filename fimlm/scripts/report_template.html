@@ -1734,8 +1734,8 @@ function dashboardHtml(){
     <div class="dash-tiles">
       ${dashTile('📖',fmt(mat),'Total matriculados','--blue','','zonas',true,'Ver por zona →')}
       ${dashTile('⏳',fmt(esp),'En lista de espera','--orange-dk','','espera',false,'Ver grupos →')}
-      ${dashTile('🟢',fmt(disp),'Cupos disponibles','--green','','zonas',false,'Ver por zona →')}
-      ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas de Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`,'externos',false,'Ver por medio →')}
+      ${dashTile('🟢',fmt(disp),'Cupos disponibles','--green','','cupos',false,'Ver por zona →')}
+      ${dashTile('🌐',fmt(externosEstColombiaDash),'Personas externas inscritas en Colombia','--blue-mid',`Aproximado · ${fmt(externos)} total mundial`,'externos',false,'Ver por medio →')}
       ${dashTile('📚',fmt(cursosUnicos.length),'Cursos ofertados','--green','En las 6 zonas','oferta',false,'Ver por inscritos →')}
     </div>
     <div class="dash-tiles" style="margin-top:14px;">
@@ -2082,6 +2082,17 @@ function buildDetail(kind){
       </div>
       <div class="table-scroll no-vscroll"><table class="data" id="zonas-detail-table">${zonasTableHtml()}</table></div>`;
   }
+  if(kind==='cupos'){
+    const zonasPorDisp = [...ZONAS].sort((a,b)=>b.disp-a.disp);
+    return kdHead('Cupos disponibles por zona',
+      `${fmt(zonasPorDisp.reduce((a,z)=>a+z.disp,0))} cupos disponibles en total, entre las 6 zonas.`) +
+      `<table class="data">
+        <thead><tr><th>Zona</th><th class="num-cell">Disponibles</th></tr></thead>
+        <tbody>${zonasPorDisp.map(z=>
+          `<tr><td><div style="display:flex; align-items:center; gap:10px;"><span class="zone-icon-badge" style="background:${z.color}">${z.icon}</span><span class="zona-nombre">${z.name}</span></div></td><td class="num-cell"><b>${fmt(z.disp)}</b></td></tr>`
+        ).join('')}</tbody>
+      </table>`;
+  }
   if(kind==='espera'){
     return kdHead('Grupos con lista de espera',
       `${fmt(alertsData.espTotalGrupos)} grupos con alguien esperando cupo, agrupados por zona — <b>todos</b> están al 100% de su capacidad (0 disponibles). La espera aquí siempre va ligada a un grupo lleno, no a falta de inscripción a tiempo. Toca una zona para ver sus grupos.`) +
@@ -2089,15 +2100,14 @@ function buildDetail(kind){
   }
   if(kind==='externos'){
     const conocimiento = OTROS.filter(o=>o.cat==='conocimiento');
-    const internasItem = conocimiento.find(o=>o.lbl==='Iglesia');
     const externosTotal = conocimiento.filter(o=>o.lbl!=='Iglesia').reduce((a,o)=>a+o.val,0);
     const paisRows = OTROS.filter(o=>o.cat==='origen_pais');
     const colombiaTotal = (paisRows.find(o=>o.lbl==='Colombia')||{}).val || 0;
     const paisTotalGlobal = (paisRows.find(o=>o.lbl==='Total')||{}).val || 0;
     const pctColombia = paisTotalGlobal ? (colombiaTotal/paisTotalGlobal*100) : 0;
     const externosEstColombia = paisTotalGlobal ? Math.round(externosTotal * colombiaTotal/paisTotalGlobal) : 0;
-    return kdHead('Personas externas inscritas',
-      `Respuesta a "¿Cómo conoció la FIMLM?" — dato global. "Personas internas" (${fmt(internasItem?internasItem.val:0)}) es la respuesta "Iglesia", quienes asisten a la IDMJI. El resto (referido, redes, web, noticias o sin dato) son <b>${fmt(externosTotal)}</b> personas externas, total mundial. Aproximado <b>${fmt(externosEstColombia)}</b> serían de Colombia, según el % de matriculados que sí son de Colombia (${pctColombia.toFixed(0)}%) — no es un conteo real.`) +
+    return kdHead('Personas externas inscritas en Colombia',
+      `<b>${fmt(externosEstColombia)}</b> personas externas (no asisten a la IDMJI) aproximadas en Colombia, de <b>${fmt(externosTotal)}</b> total mundial — estimado según el % de matriculados que son de Colombia (${pctColombia.toFixed(0)}%), no es un conteo real.`) +
       `<div class="otros-grid" style="grid-template-columns:1fr;">${otrosBarGroup('¿Cómo conoció la FIMLM?','conocimiento')}</div>`;
   }
   if(kind==='bajo'){
