@@ -2018,13 +2018,13 @@ function esperaTableHtml(){
           <td class="num-cell"><b>${c.totalEspera}</b></td>
         </tr>`;
       const filasGrupos = abiertoCurso ? c.grupos.map(g=>
-        `<tr><td></td><td></td><td></td><td style="padding-left:20px; color:var(--muted);">${g.h}</td><td class="num-cell">${g.esp}</td></tr>`
+        `<tr><td></td><td></td><td style="padding-left:20px;" class="code-cell">${g.g}</td><td>${g.h}</td><td class="num-cell">${g.esp}</td></tr>`
       ).join('') : '';
       return cabeceraCurso + filasGrupos;
     }).join('') : '';
     return cabeceraZona + filasCursos;
   }).join('');
-  return `<thead><tr><th></th><th></th><th>Cód. curso</th><th>Curso / horario</th><th class="num-cell">Espera</th></tr></thead>
+  return `<thead><tr><th></th><th></th><th>Cód. curso</th><th>Grupo / horario</th><th class="num-cell">Espera</th></tr></thead>
     <tbody>${body}</tbody>`;
 }
 function bajoTableHtml(){
