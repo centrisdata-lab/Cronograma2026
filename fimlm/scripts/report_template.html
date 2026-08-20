@@ -657,6 +657,20 @@
   .disc-tree__curso-total{font-weight:800; font-size:.8rem; color:var(--muted); font-variant-numeric:tabular-nums;}
   .disc-tree__curso .groups-inline{margin-left:20px;}
 
+  /* Botón ligero para desplegar el dato global de discapacidad -- a
+     diferencia de details.explorer (pensado para secciones grandes de
+     nivel superior), este va DENTRO de un panel de detalle ya abierto,
+     así que es más discreto: sin sombra ni tarjeta propia. */
+  .disc-global-toggle{margin-top:18px; border-top:1px solid var(--border); padding-top:14px;}
+  .disc-global-toggle > summary{
+    cursor:pointer; list-style:none; display:flex; align-items:center; gap:8px;
+    font-size:.8rem; font-weight:700; color:var(--blue-mid);
+  }
+  .disc-global-toggle > summary::-webkit-details-marker{display:none;}
+  .disc-global-toggle > summary::before{content:"▸"; color:var(--faint); font-size:.9rem; transition:transform .15s;}
+  .disc-global-toggle[open] > summary::before{transform:rotate(90deg);}
+  .disc-global-toggle > summary:hover{color:var(--blue);}
+
   tr.curso-row{cursor:pointer;}
   .expand-cell{width:22px; text-align:center; color:var(--orange); font-size:.7rem; padding-right:0 !important;}
   .zone-icon-badge{
@@ -2176,10 +2190,13 @@ function buildDetail(kind){
   if(kind==='otros-discapacidad'){
     const { total: discTotalMundial, colombia: discTotalColombia } = discapacidadTotales();
     return kdHead('Personas con discapacidad en Colombia',
-      `<b>${fmt(discTotalColombia)}</b> reportes de alguna condición en las 6 zonas de Colombia (<b>${fmt(discTotalMundial)}</b> total mundial). El gráfico de abajo es el dato <b>global</b>; el árbol condición → curso → grupo y horario es solo de Colombia. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.`) +
-      `<div class="otros-grid" style="grid-template-columns:1fr; margin-bottom:18px;">${otrosBarGroup('Discapacidad (dato global)','discapacidad',['ninguna'])}</div>` +
+      `<b>${fmt(discTotalColombia)}</b> reportes de alguna condición en las 6 zonas de Colombia. Toca una condición para ver sus cursos, y un curso para ver el grupo, horario y zona exactos.`) +
       `<input type="search" id="disc-search" placeholder="Buscar condición o curso…" value="${discSearchTerm.replace(/"/g,'&quot;')}" oninput="onDiscSearch(this.value)" style="margin-bottom:14px; width:100%;">
-      <div id="disc-detalle-tree">${discDetalleTreeHtml()}</div>`;
+      <div id="disc-detalle-tree">${discDetalleTreeHtml()}</div>
+      <details class="disc-global-toggle">
+        <summary>Ver dato global (${fmt(discTotalMundial)} total mundial, todas las convocatorias)</summary>
+        <div class="otros-grid" style="grid-template-columns:1fr; margin-top:14px;">${otrosBarGroup('Discapacidad (dato global)','discapacidad',['ninguna'])}</div>
+      </details>`;
   }
   if(kind==='oferta'){
     const cursosUnicos = cursosOfertadosResumen();
