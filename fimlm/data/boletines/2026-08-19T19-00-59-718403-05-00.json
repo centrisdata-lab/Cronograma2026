@@ -1,0 +1,50 @@
+{
+  "corte": "2026-08-19T19:00:59.718403-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4840",
+      "matAntes": 20,
+      "matAhora": 21,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2566",
+      "nom": "Mi Negocio en Internet",
+      "g": "G-4984",
+      "matAntes": 7,
+      "matAhora": 8,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4848",
+      "matAntes": 9,
+      "matAhora": 10,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2612",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4849",
+      "matAntes": 11,
+      "matAhora": 12,
+      "delta": 1
+    },
+    {
+      "z": "Zona Sur & Llanos",
+      "cod": "C-2452",
+      "nom": "Economia del Hogar",
+      "g": "G-5125",
+      "matAntes": 45,
+      "matAhora": 46,
+      "delta": 1
+    }
+  ]
+}
