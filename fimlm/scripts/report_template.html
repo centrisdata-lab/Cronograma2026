@@ -1565,6 +1565,20 @@ const ZONA_NOMBRE_CORTO = {
   'BOG': 'Bogotá', 'CAR': 'Caribe', 'ANT': 'Antioquia',
   'PAC': 'Pacífico', 'SUR': 'Sur & Llanos', 'SAN': 'Santanderes',
 };
+// Agrupa CURSOS (filas por zona×curso) en códigos de curso únicos,
+// sumando matrículas/capacidad/grupos entre las zonas donde se ofrece
+// -- así "cursos ofertados" cuenta cursos reales, no una fila por cada
+// zona en la que aparece el mismo curso.
+function cursosOfertadosResumen(){
+  const porCodigo = {};
+  CURSOS.forEach(c=>{
+    if(!porCodigo[c.cod]) porCodigo[c.cod] = { cod:c.cod, nom:c.nom, mat:0, cap:0, grp:0, zonas:[] };
+    const u = porCodigo[c.cod];
+    u.mat += c.mat; u.cap += c.cap; u.grp += c.grp;
+    u.zonas.push({z:c.z, zn:c.zn, mat:c.mat});
+  });
+  return Object.values(porCodigo).sort((a,b)=>b.mat-a.mat);
+}
 function dashboardHtml(){
   const sum = k => ZONAS.reduce((a,z)=>a+z[k],0);
   const mat = sum('mat'), cap = sum('cap'), esp = sum('esp'), disp = cap-mat;
@@ -1590,6 +1604,11 @@ function dashboardHtml(){
   const externosEstColombiaDash = paisTotalGlobalDash ? Math.round(externos * colombiaTotalDash/paisTotalGlobalDash) : 0;
   const discapacidadTotal = (OTROS.find(o=>o.cat==='discapacidad' && o.lbl==='Con alguna condicion reportada')||{}).val || 0;
   const cursosBajaOcu = CURSOS.filter(c=>c.ocu<30).length;
+  // Un mismo curso (código) puede ofertarse en varias zonas -- "cursos
+  // ofertados" cuenta códigos únicos, no filas de CURSOS (que son
+  // zona×curso). Sumamos sus matrículas/capacidad entre zonas para poder
+  // ordenar el detalle de mayor a menor inscritos.
+  const cursosUnicos = cursosOfertadosResumen();
 
   const generoRows = OTROS.filter(o=>o.cat==='genero');
   const coloresGenero = ['var(--blue)','var(--blue-mid)','var(--faint)'];
@@ -1608,6 +1627,7 @@ function dashboardHtml(){
       ${dashTile('🔗',fmt(alertsData.coincidenciasGrupos.length),'Grupos que se pueden fusionar','--red',`${alertsData.coincidenciasCount} caso${alertsData.coincidenciasCount===1?'':'s'}`,'vacios',false,'Ver grupos →')}
       ${dashTile('📍',fmt(IGLESIAS.length+IGLESIAS_INSC.length),'Iglesias totales','--red',`${fmt(IGLESIAS.length)} sin matrícula`,'iglesias',false,'Gestionar →')}
       ${dashTile('♿',fmt(discapacidadTotal),'Personas con discapacidad','--blue-mid','Total mundial','otros-discapacidad',false,'Ver detalle →')}
+      ${dashTile('📚',fmt(cursosUnicos.length),'Cursos ofertados','--green','En las 6 zonas','oferta',false,'Ver por inscritos →')}
     </div>
     <div id="dash-charts">
       <div class="dash-grid" style="margin-top:20px;">

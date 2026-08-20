@@ -1,0 +1,68 @@
+{
+  "corte": "2026-08-19T21:30:32.367464-05:00",
+  "novedades": [
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2616",
+      "nom": "Economia del Hogar",
+      "g": "G-4845",
+      "matAntes": 29,
+      "matAhora": 31,
+      "delta": 2
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2607",
+      "nom": "Familias Empresarias del Campo",
+      "g": "G-4913",
+      "matAntes": 18,
+      "matAhora": 19,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4994",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Bogota & Cundinamarca",
+      "cod": "C-2563",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4995",
+      "matAntes": 36,
+      "matAhora": 37,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2709",
+      "nom": "Reposteria 2",
+      "g": "G-4684",
+      "matAntes": 27,
+      "matAhora": 28,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2716",
+      "nom": "El ABC del Reciclaje",
+      "g": "G-4710",
+      "matAntes": 38,
+      "matAhora": 39,
+      "delta": 1
+    },
+    {
+      "z": "Zona Caribe",
+      "cod": "C-2661",
+      "nom": "Orientacion Emprendedora",
+      "g": "G-4702",
+      "matAntes": 41,
+      "matAhora": 42,
+      "delta": 1
+    }
+  ]
+}
