@@ -110,10 +110,14 @@
     .tabs-inner {
       display: flex; gap: 0;
       max-width: 1180px; margin: 0 auto; width: 100%;
+      /* Con 8 pestañas ya no caben todas en 1180px: min-content deja que la
+         fila crezca más allá del max-width en vez de comprimir los botones,
+         y .tabs (overflow-x:auto) se encarga del scroll cuando hace falta. */
+      min-width: min-content;
     }
     .tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
-      padding: 14px 28px; font-family: inherit; font-size: 0.85rem;
+      padding: 14px 18px; font-family: inherit; font-size: 0.85rem;
       font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
       border: none; background: none; cursor: pointer; color: var(--muted);
       border-bottom: 3px solid transparent; margin-bottom: -2px;
@@ -121,6 +125,16 @@
     }
     .tab-btn.active { color: var(--blue); border-bottom-color: var(--orange); }
     .tab-btn:hover:not(.active) { color: var(--blue); }
+    /* Enlaces a apps externas dentro de la misma barra de pestañas: se ven
+       igual que las pestañas normales, pero nunca toman el estado "active"
+       (no son secciones de esta app) y llevan una flechita ↗ que solo se
+       resalta en hover, para no competir con el texto del botón. */
+    .tab-btn--externo {
+      display: inline-flex; align-items: center; gap: 6px;
+      text-decoration: none; line-height: normal;
+    }
+    .tab-btn__ext { font-size: 0.8em; opacity: 0.55; transition: opacity 0.2s, color 0.2s; }
+    .tab-btn--externo:hover .tab-btn__ext { opacity: 1; color: var(--orange); }
 
     /* ── MAIN ── */
     main { max-width: 1180px; margin: 0 auto; padding: 28px 28px 64px; }
@@ -941,8 +955,13 @@
     <button class="tab-btn" onclick="switchTab('equipo')">👥 Roles</button>
     <button class="tab-btn" onclick="switchTab('organigrama')">🏛️ Organigrama</button>
     <button class="tab-btn" onclick="switchTab('zonas')">🗺️ Zonas</button>
-    <button class="tab-btn" onclick="switchTab('informe')">📊 Informe Nacional</button>
-    <button class="tab-btn" onclick="switchTab('matriculas')">🎯 Cupos y Matrículas</button>
+    <button class="tab-btn" onclick="switchTab('informe')">📊 Informe</button>
+    <button class="tab-btn" onclick="switchTab('matriculas')">🎯 Matrículas</button>
+    <!-- Enlaces a apps externas: van como <a target="_blank"> (no switchTab)
+         porque son aplicaciones aparte con su propia sesión, no pestañas de
+         esta app. El ↗ indica que abren fuera. -->
+    <a class="tab-btn tab-btn--externo" href="https://gestion-grabaciones-production.up.railway.app/" target="_blank" rel="noopener noreferrer" title="Abre en una pestaña nueva">📹 Grabaciones <span class="tab-btn__ext">↗</span></a>
+    <a class="tab-btn tab-btn--externo" href="https://diagnostico-clase-fimlm.onrender.com/" target="_blank" rel="noopener noreferrer" title="Diagnóstico de clase — abre en una pestaña nueva">📋 Diagnóstico <span class="tab-btn__ext">↗</span></a>
   </div>
 </nav>
 
@@ -975,7 +994,10 @@
     // "active" sin esperar a switchTab().
     var btns = document.querySelectorAll('.tab-btn');
     for(var i=0;i<btns.length;i++){
-      var isSaved = btns[i].getAttribute('onclick').indexOf("'" + saved + "'") !== -1;
+      // Los enlaces externos (.tab-btn--externo) comparten la clase pero no
+      // tienen onclick — nunca son la pestaña activa, así que se saltan.
+      var oc = btns[i].getAttribute('onclick');
+      var isSaved = !!oc && oc.indexOf("'" + saved + "'") !== -1;
       btns[i].classList.toggle('active', isSaved);
     }
   })();
