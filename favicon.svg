@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Informe Campus">
+  <!-- Favicon: hoja de informe con barras de datos.
+       Colores de marca: azul #1a3c6e, naranja #f5a623.
+       Formas grandes y pocas, para que siga siendo legible a 16x16 px. -->
+  <rect width="64" height="64" rx="14" fill="#1a3c6e"/>
+
+  <!-- hoja del informe, con la esquina superior derecha doblada -->
+  <path d="M15 10h21l13 13v28a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z" fill="#ffffff"/>
+  <path d="M36 10l13 13H40a4 4 0 0 1-4-4z" fill="#c3d6f0"/>
+
+  <!-- barras del informe, crecientes; la más alta en naranja -->
+  <rect x="19" y="37" width="8" height="12" rx="2" fill="#1a3c6e"/>
+  <rect x="30" y="30" width="8" height="19" rx="2" fill="#1a3c6e"/>
+  <rect x="41" y="23" width="8" height="26" rx="2" fill="#f5a623"/>
+</svg>
